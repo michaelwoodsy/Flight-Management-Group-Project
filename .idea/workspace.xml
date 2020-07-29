@@ -10,10 +10,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Adding maven scaffolding">
-      <change afterPath="$PROJECT_DIR$/src/main/edstest.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Ed testing push">
+      <change beforePath="$PROJECT_DIR$/src/main/edstest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/edstest.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +41,11 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\elang\planesonar25\src\main" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -133,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595997216573</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Ed testing push">
+      <created>1596016247656</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1596016247656</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -151,7 +161,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Testing pushing" />
     <MESSAGE value="Adding maven scaffolding" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding maven scaffolding" />
+    <MESSAGE value="Ed testing push" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ed testing push" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
