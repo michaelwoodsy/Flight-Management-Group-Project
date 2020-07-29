@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:master" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Ed testing push">
-      <change afterPath="$PROJECT_DIR$/src/test/java/project/EdsjunitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,6 +47,13 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1fKp0bXfPGomktsYLVExaYRxrL3" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -44,6 +69,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
@@ -56,8 +83,22 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="repository" />
+      <useClassPathOnly />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="project.*" />
@@ -66,7 +107,9 @@
       </extension>
       <option name="PACKAGE_NAME" value="project" />
       <option name="MAIN_CLASS_NAME" value="project.AppTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
+      <option name="PARAMETERS" value="" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -77,6 +120,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -87,6 +131,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1595976416487</updated>
+      <workItem from="1596065064881" duration="47000" />
     </task>
     <task id="LOCAL-00001" summary="Testing pushing">
       <created>1595977595204</created>
@@ -161,6 +206,9 @@
     <option name="localTasksCounter" value="11" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -212,18 +260,20 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="166" y="12" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1595997449081" />
-    <state x="338" y="208" key="Vcs.Push.Dialog.v2" timestamp="1596017372267">
-      <screen x="0" y="0" width="1664" height="1069" />
+    <state x="260" y="134" key="Vcs.Push.Dialog.v2" timestamp="1596018082043">
+      <screen x="0" y="0" width="1280" height="688" />
     </state>
+    <state x="260" y="134" key="Vcs.Push.Dialog.v2/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1596018082043" />
     <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1595997237571" />
     <state x="338" y="208" key="Vcs.Push.Dialog.v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017372267" />
     <state x="408" y="329" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1595980153516">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="408" y="329" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1368.872@0.0.1368.872" timestamp="1595980153516" />
-    <state x="600" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596017354998">
-      <screen x="0" y="0" width="1664" height="1069" />
+    <state x="462" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596018178665">
+      <screen x="0" y="0" width="1280" height="688" />
     </state>
+    <state x="462" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1596018178665" />
     <state x="493" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1368.872@0.0.1368.872" timestamp="1595982886240" />
     <state x="600" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017354998" />
     <state x="243" y="301" key="git4idea.merge.GitPullDialog" timestamp="1595977713016">

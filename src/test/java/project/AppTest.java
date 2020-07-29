@@ -1,6 +1,7 @@
 package project;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -19,8 +20,8 @@ public class AppTest
     }
 
     @Test
-    public void whichIsBiggerTest() {
-        assertEquals(10, whichIsBigger(10, 5));
-        assertEquals(50, whichIsBigger(50, 50));
+    public void goodAtMaths() {
+        assertEquals(10, 5+5);
+        assertEquals(25, 5*5);
     }
 }
