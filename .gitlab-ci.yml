@@ -1,13 +1,13 @@
 junit:
     stage: test
     script:
-    -mvn -B clean test
+    - mvn -B clean test
     
 generate_artifacts:
     stage: deploy
     script:
-    -mvn -B clean package
+    - mvn -B clean package
     
     artifacts:
         paths:
-        -target/SENG202Project*.jar
+        - target/SENG202Project*.jar
