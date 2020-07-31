@@ -21,6 +21,12 @@ public class AppTest
     }
 
     @Test
+    public void mathsWorks() {
+        assertEquals(30, 15+15);
+        assertEquals(30, 15*2);
+    }
+
+    @Test
     public void goodAtMaths() {
         assertEquals(10, 5+5);
         assertEquals(25, 5*5);
