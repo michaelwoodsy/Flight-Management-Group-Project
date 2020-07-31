@@ -30,4 +30,17 @@ public class AppTest
     {
         assertTrue( true );
     }
+
+    @Test
+    public void LouisTest()
+    {
+        String myName = "Louis";
+        assertEquals( myName, "Louis" );
+    }
+
+    @Test
+    public void failingTest()
+    {
+        assertTrue( false );
+    }
 }
