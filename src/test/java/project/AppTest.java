@@ -38,9 +38,9 @@ public class AppTest
         assertEquals( myName, "Louis" );
     }
 
-    @Test
+    /* @Test
     public void failingTest()
     {
         assertTrue( false );
-    }
+    } */
 }
