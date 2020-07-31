@@ -24,4 +24,10 @@ public class AppTest
         assertEquals(10, 5+5);
         assertEquals(25, 5*5);
     }
+
+    @Test
+    public void shouldAnswerWithTrueTwo()
+    {
+        assertTrue( true );
+    }
 }
