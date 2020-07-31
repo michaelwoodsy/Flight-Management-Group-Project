@@ -26,10 +26,8 @@ public class AppTest
     }
 
     @Test
-    public void LouisTestPush()
+    public void shouldAnswerWithTrueTwo()
     {
-        String myName = "Louis";
-        assertEquals( myName, "Louis" );
+        assertTrue( true );
     }
-
 }
