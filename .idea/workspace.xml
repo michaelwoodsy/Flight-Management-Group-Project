@@ -10,10 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Ed testing push">
-      <change afterPath="$PROJECT_DIR$/src/test/java/project/EdsjunitTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Ed testing junit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -158,7 +155,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596016349406</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Ed testing junit">
+      <created>1596017409306</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1596017409306</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -177,7 +181,8 @@
     <MESSAGE value="Testing pushing" />
     <MESSAGE value="Adding maven scaffolding" />
     <MESSAGE value="Ed testing push" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ed testing push" />
+    <MESSAGE value="Ed testing junit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ed testing junit" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
@@ -192,22 +197,22 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1595996669318" />
-    <state width="1621" height="292" key="GridCell.Tab.0.bottom" timestamp="1596017124337">
+    <state width="1621" height="292" key="GridCell.Tab.0.bottom" timestamp="1596017607681">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state width="1621" height="292" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1621" height="292" key="GridCell.Tab.0.center" timestamp="1596017124337">
+    <state width="1621" height="292" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1596017607681" />
+    <state width="1621" height="292" key="GridCell.Tab.0.center" timestamp="1596017607681">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state width="1621" height="292" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1621" height="292" key="GridCell.Tab.0.left" timestamp="1596017124337">
+    <state width="1621" height="292" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1596017607681" />
+    <state width="1621" height="292" key="GridCell.Tab.0.left" timestamp="1596017607681">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state width="1621" height="292" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1621" height="292" key="GridCell.Tab.0.right" timestamp="1596017124337">
+    <state width="1621" height="292" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1596017607681" />
+    <state width="1621" height="292" key="GridCell.Tab.0.right" timestamp="1596017607681">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
-    <state width="1621" height="292" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
+    <state width="1621" height="292" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1596017607681" />
     <state x="166" y="12" key="SettingsEditor" timestamp="1595997449081">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
@@ -221,11 +226,11 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="408" y="329" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1368.872@0.0.1368.872" timestamp="1595980153516" />
-    <state x="600" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596017354998">
+    <state x="600" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596017435212">
       <screen x="0" y="0" width="1664" height="1069" />
     </state>
     <state x="493" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1368.872@0.0.1368.872" timestamp="1595982886240" />
-    <state x="600" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017354998" />
+    <state x="600" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017435212" />
     <state x="243" y="301" key="git4idea.merge.GitPullDialog" timestamp="1595977713016">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
