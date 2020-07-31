@@ -12,6 +12,7 @@ public class AppTest
 {
     /**
      * Rigorous Test :-)
+     * Testing JUNIT test
      */
     @Test
     public void shouldAnswerWithTrue()
