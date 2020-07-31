@@ -10,4 +10,4 @@ generate_artifacts:
     
     artifacts:
         paths:
-            -target/PlaneSonar25*.jar
+            -target/SENG202Project*.jar
