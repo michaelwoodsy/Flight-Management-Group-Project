@@ -11,6 +11,18 @@ public class Route {
     private String equipment;
     private boolean codeshare;
 
+    public Route(String airline, int id, String sourceAirport, int sourceID, String destAirport, int destID, int numStops, String equipment, boolean codeshare) {
+            setAirline(airline);
+            setId(id);
+            setSourceAirport(sourceAirport);
+            setSourceID(sourceID);
+            setDestAirport(destAirport);
+            setDestID(destID);
+            setNumStops(numStops);
+            setEquipment(equipment);
+            setCodeshare(codeshare);
+
+    }
     public String getAirline() {
         return airline;
     }
