@@ -12,11 +12,18 @@ public class AppTest
 {
     /**
      * Rigorous Test :-)
+     * Testing JUNIT test
      */
     @Test
     public void shouldAnswerWithTrue()
     {
         assertTrue( true );
+    }
+
+    @Test
+    public void mathsWorks() {
+        assertEquals(30, 15+15);
+        assertEquals(30, 15*2);
     }
 
     @Test
