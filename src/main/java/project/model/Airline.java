@@ -10,6 +10,17 @@ public class Airline {
     private String iata;
     private String icao;
 
+    public Airline(int id, String name, boolean active, String country, String alias, String callSign, String iata, String icao) {
+        setId(id);
+        setName(name);
+        setActive(active);
+        setCountry(country);
+        setAlias(alias);
+        setCallSign(callSign);
+        setIata(iata);
+        setIcao(icao);
+    }
+
     public void update(int id, String name, boolean active, String country, String alias, String callSign, String iata, String icao) {
         if (id != this.id) {
             setId(id);
@@ -37,6 +48,9 @@ public class Airline {
         }
     }
 
+    /**
+     * Placeholder until we've decided what the format should be for airlines.
+     */
     public void print() {
         System.out.println("The Airline (" + id + ") " + name + " from " + country + ". is currently");
     }

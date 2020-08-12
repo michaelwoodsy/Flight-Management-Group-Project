@@ -2,7 +2,7 @@ package project.model;
 
 import java.util.ArrayList;
 
-public class Flight extends Data {
+public class Flight {
 
     /**
      * ArrayList containing the latitudes at certain points during the flight
@@ -80,18 +80,8 @@ public class Flight extends Data {
     }
 
     /**
-     * Added print function matching signature of that in data class.
-     * Serves no real purpose other than to print every value from every point in the flight.
-     * Welcome to change in the future.
+     * Placeholder until we've decided what the format should be for flights.
      */
-    public String print() {
-        String totalString = "";
-        for (int counter = 0; counter < altitudes.size(); counter++) {
-            totalString += print(counter);
-        }
-        return totalString;
-    }
-
     public String print(int pointInFlight) {
         if (pointInFlight > altitudes.size()) {
             return ("Provided int not within bounds");
