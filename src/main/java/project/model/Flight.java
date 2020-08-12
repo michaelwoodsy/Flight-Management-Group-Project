@@ -79,6 +79,19 @@ public class Flight extends Data {
         return risk;
     }
 
+    /**
+     * Added print function matching signature of that in data class.
+     * Serves no real purpose other than to print every value from every point in the flight.
+     * Welcome to change in the future.
+     */
+    public String print() {
+        String totalString = "";
+        for (int counter = 0; counter < altitudes.size(); counter++) {
+            totalString += print(counter);
+        }
+        return totalString;
+    }
+
     public String print(int pointInFlight) {
         if (pointInFlight > altitudes.size()) {
             return ("Provided int not within bounds");
