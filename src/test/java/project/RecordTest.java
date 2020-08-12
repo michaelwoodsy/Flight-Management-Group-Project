@@ -1,12 +1,10 @@
 package project;
 
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import project.model.*;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class RecordTest {
