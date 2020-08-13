@@ -1,6 +1,7 @@
 package project;
 
 import org.junit.Test;
+import project.model.Airline;
 import project.model.Loader;
 import project.model.Route;
 
@@ -17,7 +18,20 @@ public class LoaderTest {
         Loader loader = new Loader();
         ArrayList<Route> routeList = loader.loadRouteFile("data/routes.dat");
         for (Route route: routeList) {
-            System.out.println(route);
+            //System.out.println(route);
+        }
+
+    }
+
+    @Test
+    /**
+     * Manual testing. Will update later.
+     */
+    public void loadAirlineFileTest() throws IOException {
+        Loader loader = new Loader();
+        ArrayList<Airline> airlineList = loader.loadAirlineFile("data/airlines.dat");
+        for (Airline airline: airlineList) {
+            System.out.println(airline);
         }
 
     }

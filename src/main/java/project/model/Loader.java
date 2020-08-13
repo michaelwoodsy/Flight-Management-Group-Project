@@ -8,6 +8,29 @@ import java.util.ArrayList;
 public class Loader {
 
     /**
+     * Returns a list of airlines by reading a comma-separated data file.
+     */
+    public ArrayList<Airline> loadAirlineFile(String path) throws IOException {
+
+        ArrayList<Airline> airlineList = new ArrayList<Airline>();
+
+        BufferedReader dataReader = new BufferedReader(new FileReader(path));
+
+        boolean breaker = false;
+        while (!breaker) {
+            String row = dataReader.readLine();
+            if (row == null) {
+                breaker = true;
+            } else {
+                String[] data = row.split(",");
+                airlineList.add(loadAirline(data));
+            }
+        }
+        dataReader.close();
+        return airlineList;
+    }
+
+    /**
      * Returns a list of routes by reading a comma-separated data file.
      */
     public ArrayList<Route> loadRouteFile(String path) throws IOException {
@@ -28,6 +51,45 @@ public class Loader {
         }
         dataReader.close();
         return routeList;
+    }
+
+    /**
+     * Returns a route class from a line read in routes.dat.
+     */
+    public Airline loadAirline(String[] airlineData) {
+
+        int id = Integer.parseInt(airlineData[0]);
+        String name = airlineData[1];
+        String alias = airlineData[2];
+        String callSign = airlineData[5];
+        String country = airlineData[6];
+        String activeString = airlineData[7];
+
+        // Error handling
+        String iata;
+        try {
+            iata = airlineData[3];
+        } catch (Exception e) {
+            iata = "";
+        }
+
+        String icao;
+        try {
+            icao = airlineData[4];
+        } catch (Exception e) {
+            icao = "";
+        }
+
+        boolean active;
+        if (activeString == "Y") {
+            active = true;
+        } else {
+            active = false;
+        }
+
+        Airline newAirline = new Airline(id, name, active, country, alias, callSign, iata, icao);
+        return newAirline;
+
     }
 
     /**

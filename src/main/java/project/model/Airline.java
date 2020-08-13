@@ -48,13 +48,6 @@ public class Airline {
         }
     }
 
-    /**
-     * Placeholder until we've decided what the format should be for airlines.
-     */
-    public void print() {
-        System.out.println("The Airline (" + id + ") " + name + " from " + country + ". is currently");
-    }
-
     public void setId(int id) {
         this.id = id;
     }
@@ -117,5 +110,22 @@ public class Airline {
 
     public String getIcao() {
         return icao;
+    }
+
+    /**
+     * Placeholder until we've decided what the format should be for airlines.
+     */
+    @Override
+    public String toString() {
+        return "Airline{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", active=" + active +
+                ", country='" + country + '\'' +
+                ", alias='" + alias + '\'' +
+                ", callSign='" + callSign + '\'' +
+                ", iata='" + iata + '\'' +
+                ", icao='" + icao + '\'' +
+                '}';
     }
 }
