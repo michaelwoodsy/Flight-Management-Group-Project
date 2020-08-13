@@ -154,10 +154,16 @@ public class Record {
 
     }
 
+    /**
+     * Might need to make separate add functions for each data class. Depends on GUI implementation.
+     */
     public void addData(int dataType) {
 
     }
 
+    /**
+     * Could be same as above. Depends on GUI implementation.
+     */
     public void deleteData(int dataType, int index) {
 
     }
