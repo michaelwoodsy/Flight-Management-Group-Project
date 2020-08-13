@@ -31,6 +31,29 @@ public class Loader {
     }
 
     /**
+     * Returns a list of airports by reading a comma-separated data file.
+     */
+    public ArrayList<Airport> loadAirportFile(String path) throws IOException {
+
+        ArrayList<Airport> airportList = new ArrayList<Airport>();
+
+        BufferedReader dataReader = new BufferedReader(new FileReader(path));
+
+        boolean breaker = false;
+        while (!breaker) {
+            String row = dataReader.readLine();
+            if (row == null) {
+                breaker = true;
+            } else {
+                String[] data = row.split(",");
+                //airportList.add(loadAirport(data));
+            }
+        }
+        dataReader.close();
+        return airportList;
+    }
+
+    /**
      * Returns a list of routes by reading a comma-separated data file.
      */
     public ArrayList<Route> loadRouteFile(String path) throws IOException {
@@ -54,7 +77,7 @@ public class Loader {
     }
 
     /**
-     * Returns a route class from a line read in routes.dat.
+     * Returns an airline class from a line read in airlines.dat.
      */
     public Airline loadAirline(String[] airlineData) {
 
@@ -91,6 +114,36 @@ public class Loader {
         return newAirline;
 
     }
+
+    /**
+     * Returns an airport class from a line read in airports.dat.
+     */
+
+    /**
+    public Airport loadAirport(String[] airportData) {
+
+
+        int risk = 0; //Placeholder until we decide how we're doing the covid stuff
+
+        int id = Integer.parseInt(airportData[0]);
+        String name = airportData[1];
+        String city = airportData[2];
+        String country = airportData[3];
+        String iata = airportData[4];
+        String icao = airportData[5];
+        double latitude = airportData[6];
+        double longitude = airportData[7];
+        int altitude = airportData[8];
+        double timezone = airportData[9];
+        String dst = airportData[10];
+        String timezoneString = airportData[11];
+        String type = airportData[12];
+        String source = airportData[13];
+        int numRoutes = 0; //Placeholder
+
+
+    }
+     */
 
     /**
      * Returns a route class from a line read in routes.dat.

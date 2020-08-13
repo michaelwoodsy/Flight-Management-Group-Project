@@ -4,9 +4,12 @@ public class Airport {
     private int id;
     private int risk;
     private String name;
+    private String city;
     private String country;
     private String iata;
     private String icao;
+    private double latitude;
+    private double longitude;
     private int altitude;
     private double timezone;
     private String dst;
@@ -15,13 +18,16 @@ public class Airport {
     private String source;
     private int numRoutes;
 
-    public Airport(int id, int risk, String name, String country, String iata, String icao, int altitude, double timezone, String dst, String timezoneString, String type, String source, int numRoutes) {
+    public Airport(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, double timezone, String dst, String timezoneString, String type, String source, int numRoutes) {
         setId(id);
         setRisk(risk);
         setName(name);
+        setCity(city);
         setCountry(country);
         setIata(iata);
         setIcao(icao);
+        setLatitude(latitude);
+        setLongitude(longitude);
         setAltitude(altitude);
         setTimezone(timezone);
         setDst(dst);
@@ -55,6 +61,14 @@ public class Airport {
         this.name = name;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
     public String getCountry() {
         return country;
     }
@@ -77,6 +91,22 @@ public class Airport {
 
     public void setIcao(String icao) {
         this.icao = icao;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public int getAltitude() {
@@ -138,11 +168,29 @@ public class Airport {
     /**
      * Placeholder until we've decided what the format should be for airports.
      */
-    public String print() {
-        return "Test";
+    @Override
+    public String toString() {
+        return "Airport{" +
+                "id=" + id +
+                ", risk=" + risk +
+                ", name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", iata='" + iata + '\'' +
+                ", icao='" + icao + '\'' +
+                ", latitude='" + latitude + '\'' +
+                ", longitude='" + longitude + '\'' +
+                ", altitude=" + altitude +
+                ", timezone=" + timezone +
+                ", dst='" + dst + '\'' +
+                ", timezoneString='" + timezoneString + '\'' +
+                ", type='" + type + '\'' +
+                ", source='" + source + '\'' +
+                ", numRoutes=" + numRoutes +
+                '}';
     }
 
-    public void update(int id, int risk, String name, String country, String iata, String icao, int altitude, double timezone, String dst, String timezoneString, String type, String source, int numRoutes) {
+    public void update(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, double timezone, String dst, String timezoneString, String type, String source, int numRoutes) {
 
         if (id != this.id) {
             setId(id);
@@ -153,6 +201,9 @@ public class Airport {
         if (!name.equals(this.name)) {
             setName(name);
         }
+        if (!city.equals(this.city)) {
+            setCity(city);
+        }
         if (!country.equals(this.country)) {
             setCountry(country);
         }
@@ -161,6 +212,12 @@ public class Airport {
         }
         if (!icao.equals(this.icao)) {
             setIcao(icao);
+        }
+        if (latitude != this.latitude) {
+            setLatitude(latitude);
+        }
+        if (longitude != this.longitude) {
+            setLongitude(longitude);
         }
         if (altitude != this.altitude) {
             setAltitude(altitude);
