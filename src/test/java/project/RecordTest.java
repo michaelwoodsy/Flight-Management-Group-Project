@@ -3,6 +3,7 @@ package project;
 import org.junit.Test;;
 import project.model.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -227,4 +228,5 @@ public class RecordTest {
         assertEquals(comparisonAirportList, rankedAirports);
 
     }
+
 }

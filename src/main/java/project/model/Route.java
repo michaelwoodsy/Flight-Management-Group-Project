@@ -136,7 +136,19 @@ public class Route {
     /**
      * Placeholder until we've decided what the format should be for routes.
      */
-    public String print() {
-        return "Test";
+    @Override
+    public String toString() {
+        return "Route{" +
+                "airline='" + airline + '\'' +
+                ", id=" + id +
+                ", sourceAirport='" + sourceAirport + '\'' +
+                ", sourceID=" + sourceID +
+                ", destAirport='" + destAirport + '\'' +
+                ", destID=" + destID +
+                ", numStops=" + numStops +
+                ", equipment='" + equipment + '\'' +
+                ", codeshare=" + codeshare +
+                '}';
     }
+
 }

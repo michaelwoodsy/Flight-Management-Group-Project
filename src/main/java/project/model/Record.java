@@ -1,6 +1,6 @@
 package project.model;
 
-import java.io.InputStream;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -150,7 +150,7 @@ public class Record {
     /**
      * This will be tricky. return statement and parameters aren't concrete.
      */
-    public void addRecord(InputStream inFile, boolean newRecord){
+    public void addRecord(InputStream inFile, boolean newRecord) {
 
     }
 
