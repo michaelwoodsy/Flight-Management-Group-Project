@@ -10,6 +10,17 @@ public class Airline {
     private String iata;
     private String icao;
 
+    public Airline(int id, String name, boolean active, String country, String alias, String callSign, String iata, String icao) {
+        setId(id);
+        setName(name);
+        setActive(active);
+        setCountry(country);
+        setAlias(alias);
+        setCallSign(callSign);
+        setIata(iata);
+        setIcao(icao);
+    }
+
     public void update(int id, String name, boolean active, String country, String alias, String callSign, String iata, String icao) {
         if (id != this.id) {
             setId(id);
@@ -35,10 +46,6 @@ public class Airline {
         if (!icao.equals(this.icao)) {
             setIcao(icao);
         }
-    }
-
-    public void print() {
-        System.out.println("The Airline (" + id + ") " + name + " from " + country + ". is currently");
     }
 
     public void setId(int id) {
@@ -103,5 +110,22 @@ public class Airline {
 
     public String getIcao() {
         return icao;
+    }
+
+    /**
+     * Placeholder until we've decided what the format should be for airlines.
+     */
+    @Override
+    public String toString() {
+        return "Airline{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", active=" + active +
+                ", country='" + country + '\'' +
+                ", alias='" + alias + '\'' +
+                ", callSign='" + callSign + '\'' +
+                ", iata='" + iata + '\'' +
+                ", icao='" + icao + '\'' +
+                '}';
     }
 }

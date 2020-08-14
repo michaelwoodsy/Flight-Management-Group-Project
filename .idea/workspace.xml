@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -11,8 +14,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Ed testing push">
-      <change afterPath="$PROJECT_DIR$/src/test/java/project/EdsjunitTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Flight.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +47,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaFX Tut" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -77,6 +82,7 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -87,6 +93,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1595976416487</updated>
+      <workItem from="1597184003381" duration="58000" />
     </task>
     <task id="LOCAL-00001" summary="Testing pushing">
       <created>1595977595204</created>
@@ -161,6 +168,9 @@
     <option name="localTasksCounter" value="11" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -188,9 +198,10 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="408" y="125" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1368.872@0.0.1368.872" timestamp="1595996744421" />
-    <state x="465" y="154" key="FileChooserDialogImpl" timestamp="1595996669318">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state x="435" y="122" key="FileChooserDialogImpl" timestamp="1597184056499">
+      <screen x="0" y="0" width="1280" height="688" />
     </state>
+    <state x="435" y="122" key="FileChooserDialogImpl/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597184056499" />
     <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1595996669318" />
     <state width="1621" height="292" key="GridCell.Tab.0.bottom" timestamp="1596017124337">
       <screen x="0" y="0" width="1664" height="1069" />
@@ -230,5 +241,9 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="243" y="301" key="git4idea.merge.GitPullDialog/0.0.1368.872@0.0.1368.872" timestamp="1595977713016" />
+    <state x="91" y="6" key="new project wizard" timestamp="1597183246104">
+      <screen x="0" y="0" width="1280" height="688" />
+    </state>
+    <state x="91" y="6" key="new project wizard/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597183246104" />
   </component>
 </project>

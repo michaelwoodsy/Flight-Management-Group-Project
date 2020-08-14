@@ -2,7 +2,7 @@ package project.model;
 
 import java.util.ArrayList;
 
-public class Flight extends Data {
+public class Flight {
 
     /**
      * ArrayList containing the latitudes at certain points during the flight
@@ -79,8 +79,10 @@ public class Flight extends Data {
         return risk;
     }
 
-    public String print() {
-        int pointInFlight = 1;
+    /**
+     * Placeholder until we've decided what the format should be for flights.
+     */
+    public String print(int pointInFlight) {
         if (pointInFlight > altitudes.size()) {
             return ("Provided int not within bounds");
         } else {

@@ -23,6 +23,7 @@ public class Route {
             setCodeshare(codeshare);
 
     }
+
     public String getAirline() {
         return airline;
     }
@@ -96,13 +97,13 @@ public class Route {
     }
 
     public void update(String airline, int id, String sourceAirport, int sourceID, String destAirport, int destID, int numStops, String equipment, boolean codeshare) {
-        if (airline != this.airline) {
+        if (!airline.equals(this.airline)) {
             setAirline(airline);
         }
         if (id != this.id) {
             setId(id);
         }
-        if (sourceAirport != this.sourceAirport) {
+        if (!sourceAirport.equals(this.sourceAirport)) {
             setSourceAirport(sourceAirport);
         }
 
@@ -110,7 +111,7 @@ public class Route {
             setSourceID(sourceID);
         }
 
-        if (destAirport != this.destAirport) {
+        if (!destAirport.equals(this.destAirport)) {
             setDestAirport(destAirport);
         }
 
@@ -122,7 +123,7 @@ public class Route {
             setNumStops(numStops);
         }
 
-        if (equipment != this.equipment) {
+        if (!equipment.equals(this.equipment)) {
             setEquipment(equipment);
         }
 
@@ -131,4 +132,23 @@ public class Route {
         }
 
     }
+
+    /**
+     * Placeholder until we've decided what the format should be for routes.
+     */
+    @Override
+    public String toString() {
+        return "Route{" +
+                "airline='" + airline + '\'' +
+                ", id=" + id +
+                ", sourceAirport='" + sourceAirport + '\'' +
+                ", sourceID=" + sourceID +
+                ", destAirport='" + destAirport + '\'' +
+                ", destID=" + destID +
+                ", numStops=" + numStops +
+                ", equipment='" + equipment + '\'' +
+                ", codeshare=" + codeshare +
+                '}';
+    }
+
 }
