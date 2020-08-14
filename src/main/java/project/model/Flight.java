@@ -79,7 +79,8 @@ public class Flight extends Data {
         return risk;
     }
 
-    public String print(int pointInFlight) {
+    public String print() {
+        int pointInFlight = 1;
         if (pointInFlight > altitudes.size()) {
             return ("Provided int not within bounds");
         } else {
@@ -90,6 +91,11 @@ public class Flight extends Data {
         }
     }
 
-    public void update() {}
+    /**
+     * Placeholder function for update
+     */
+    public void update() {
+        risk = 0;
+    }
 
 }
