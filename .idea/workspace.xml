@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -10,7 +13,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Scene Builder, Map view GUI" />
+    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Ed testing push">
+      <change afterPath="$PROJECT_DIR$/src/test/java/project/AirportTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Airport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Airport.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,8 +51,15 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaFX Tut" />
-    <property name="project.structure.last.edited" value="SDKs" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
@@ -54,7 +68,33 @@
       <recent name="C:\Users\elang\planesonar25\src\main" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.AirportTest">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AirportTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="repository" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="project" />
+      <option name="MAIN_CLASS_NAME" value="project.AirportTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="repository" />
       <extension name="coverage">
@@ -72,11 +112,12 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AirportTest" />
         <item itemvalue="JUnit.AppTest" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -88,6 +129,7 @@
       <option name="presentableId" value="Default" />
       <updated>1595976416487</updated>
       <workItem from="1597184003381" duration="58000" />
+      <workItem from="1597544002158" duration="2109000" />
     </task>
     <task id="LOCAL-00001" summary="Testing pushing">
       <created>1595977595204</created>
@@ -159,14 +201,7 @@
       <option name="project" value="LOCAL" />
       <updated>1596016349406</updated>
     </task>
-    <task id="LOCAL-00011" summary="Scene Builder, Map view GUI">
-      <created>1597485459324</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1597485459324</updated>
-    </task>
-    <option name="localTasksCounter" value="12" />
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -188,14 +223,17 @@
     <MESSAGE value="Testing pushing" />
     <MESSAGE value="Adding maven scaffolding" />
     <MESSAGE value="Ed testing push" />
-    <MESSAGE value="Scene Builder, Map view GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Scene Builder, Map view GUI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ed testing push" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="555" y="300" key="#Notifications/0.0.1368.872@0.0.1368.872" timestamp="1595984112742" />
+    <state x="249" y="0" key="#Project_Structure" timestamp="1597544114612">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1597544114612" />
     <state x="408" y="125" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1595996744421">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
@@ -205,22 +243,42 @@
     </state>
     <state x="435" y="122" key="FileChooserDialogImpl/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597184056499" />
     <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1595996669318" />
-    <state width="1621" height="292" key="GridCell.Tab.0.bottom" timestamp="1596017124337">
-      <screen x="0" y="0" width="1664" height="1069" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1597546094985">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1621" height="292" key="GridCell.Tab.0.center" timestamp="1596017124337">
-      <screen x="0" y="0" width="1664" height="1069" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1597546094985">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1621" height="292" key="GridCell.Tab.0.left" timestamp="1596017124337">
-      <screen x="0" y="0" width="1664" height="1069" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1597546094985">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1621" height="292" key="GridCell.Tab.0.right" timestamp="1596017124337">
-      <screen x="0" y="0" width="1664" height="1069" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1597546094985">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1597545878362">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597545878362" />
+    <state width="1493" height="261" key="GridCell.Tab.1.center" timestamp="1597545878362">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1597545878362" />
+    <state width="1493" height="261" key="GridCell.Tab.1.left" timestamp="1597545878362">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1597545878362" />
+    <state width="1493" height="261" key="GridCell.Tab.1.right" timestamp="1597545878362">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1597545878362" />
     <state x="166" y="12" key="SettingsEditor" timestamp="1595997449081">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
