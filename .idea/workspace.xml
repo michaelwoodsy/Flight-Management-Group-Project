@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -65,17 +68,6 @@
     </key>
   </component>
   <component name="RunManager" selected="JUnit.AirportTest">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AirportTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="repository" />
       <extension name="coverage">
@@ -113,7 +105,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -126,6 +118,7 @@
       <updated>1595976416487</updated>
       <workItem from="1597184003381" duration="58000" />
       <workItem from="1597544002158" duration="2109000" />
+      <workItem from="1597582723726" duration="2250000" />
     </task>
     <task id="LOCAL-00001" summary="Testing pushing">
       <created>1595977595204</created>
@@ -301,11 +294,12 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="408" y="329" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1368.872@0.0.1368.872" timestamp="1595980153516" />
-    <state x="600" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1596017354998">
-      <screen x="0" y="0" width="1664" height="1069" />
+    <state x="692" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597582737155">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="493" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1368.872@0.0.1368.872" timestamp="1595982886240" />
     <state x="600" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017354998" />
+    <state x="692" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1597582737155" />
     <state x="243" y="301" key="git4idea.merge.GitPullDialog" timestamp="1595977713016">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
