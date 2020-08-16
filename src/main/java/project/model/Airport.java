@@ -242,5 +242,19 @@ public class Airport {
         }
     }
 
+    public double distance(Airport destAirport) {
+        double lat1 = this.latitude;
+        double lat2 = destAirport.latitude;
+        double lon1 = this.longitude;
+        double lon2 = destAirport.longitude;
+        double radius = 6371;
+        double theta1 = lat1 * Math.PI / 180;
+        double theta2 = lat2 * Math.PI / 180;
+        double deltaTheta = (lat2 - lat1) * Math.PI / 180;
+        double deltaLat = (lon2 - lon1) * Math.PI / 180;
+        double a = Math.sin(deltaTheta / 2) * Math.sin(deltaTheta / 2) + Math.cos(theta1) * Math.cos(theta2) * Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return radius * c;
+    }
 
 }
