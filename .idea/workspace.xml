@@ -14,6 +14,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="GUI with map tab (map view)">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/JavaFX__SDK.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/controller/GUI_Application_Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/controller/GUI_Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/project/controller/main_test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/repository.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/repository.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/view/GUI_Screens.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/view/GUI_Screens.fxml" afterDir="false" />
     </list>
@@ -49,7 +54,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../JavaFX Tut" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Java/JavaFx_SDK/javafx-sdk-11.0.2/lib" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -57,7 +62,7 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.general" />
@@ -67,7 +72,20 @@
       <recent name="C:\Users\elang\planesonar25\src\main" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AirportTest">
+  <component name="RunManager" selected="Application.main_test">
+    <configuration name="main_test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="project.controller.main_test" />
+      <module name="repository" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AirportTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="repository" />
       <extension name="coverage">
@@ -100,8 +118,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AirportTest" />
+        <item itemvalue="Application.main_test" />
         <item itemvalue="JUnit.AppTest" />
+        <item itemvalue="JUnit.AirportTest" />
       </list>
     </recent_temporary>
   </component>
@@ -119,6 +138,7 @@
       <workItem from="1597184003381" duration="58000" />
       <workItem from="1597544002158" duration="2109000" />
       <workItem from="1597582723726" duration="2250000" />
+      <workItem from="1597620098816" duration="3557000" />
     </task>
     <task id="LOCAL-00001" summary="Testing pushing">
       <created>1595977595204</created>
@@ -231,34 +251,42 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1597544114612" />
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1597624050611">
+      <screen x="0" y="0" width="1280" height="688" />
+    </state>
+    <state x="96" y="0" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597624050611" />
     <state x="408" y="125" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1595996744421">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="408" y="125" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1368.872@0.0.1368.872" timestamp="1595996744421" />
-    <state x="653" y="184" key="FileChooserDialogImpl" timestamp="1597556338095">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="435" y="122" key="FileChooserDialogImpl" timestamp="1597622942889">
+      <screen x="0" y="0" width="1280" height="688" />
     </state>
-    <state x="435" y="122" key="FileChooserDialogImpl/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597184056499" />
+    <state x="435" y="122" key="FileChooserDialogImpl/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597622942889" />
     <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1595996669318" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1597556338095" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1597546094985">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom" timestamp="1597624172017">
+      <screen x="0" y="0" width="1280" height="688" />
     </state>
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597624172017" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1597546094985">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1237" height="166" key="GridCell.Tab.0.center" timestamp="1597624172017">
+      <screen x="0" y="0" width="1280" height="688" />
     </state>
+    <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597624172017" />
     <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1597546094985">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1237" height="166" key="GridCell.Tab.0.left" timestamp="1597624172017">
+      <screen x="0" y="0" width="1280" height="688" />
     </state>
+    <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597624172017" />
     <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1597546094985">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state width="1237" height="166" key="GridCell.Tab.0.right" timestamp="1597624172017">
+      <screen x="0" y="0" width="1280" height="688" />
     </state>
+    <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597624172017" />
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
     <state width="1493" height="261" key="GridCell.Tab.1.bottom" timestamp="1597545878362">
@@ -281,9 +309,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="598" y="281" key="MultipleFileMergeDialog/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1597555339490" />
-    <state x="166" y="12" key="SettingsEditor" timestamp="1595997449081">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state x="155" y="0" key="SettingsEditor" timestamp="1597622967066">
+      <screen x="0" y="0" width="1280" height="688" />
     </state>
+    <state x="155" y="0" key="SettingsEditor/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597622967066" />
     <state x="166" y="12" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1595997449081" />
     <state x="338" y="208" key="Vcs.Push.Dialog.v2" timestamp="1596017372267">
       <screen x="0" y="0" width="1664" height="1069" />
@@ -308,5 +337,9 @@
       <screen x="0" y="0" width="1280" height="688" />
     </state>
     <state x="91" y="6" key="new project wizard/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597183246104" />
+    <state x="303" y="9" width="672" height="678" key="search.everywhere.popup" timestamp="1597623930697">
+      <screen x="0" y="0" width="1280" height="688" />
+    </state>
+    <state x="303" y="9" width="672" height="678" key="search.everywhere.popup/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597623930697" />
   </component>
 </project>
