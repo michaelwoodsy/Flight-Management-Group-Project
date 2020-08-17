@@ -196,4 +196,47 @@ public class Loader {
         return newRoute;
 
     }
+    public ArrayList<Covid> loadCovidFile(String path) throws IOException {
+
+        ArrayList<Covid> covidList = new ArrayList<Covid>();
+
+
+        BufferedReader dataReader = new BufferedReader(new FileReader(path));
+
+        boolean breaker = false;
+        while (!breaker) {
+            String row = dataReader.readLine();
+            if (row == null) {
+                breaker = true;
+            } else {
+                String[] data = row.split(",");
+                covidList.add(loadCovid(data));
+            }
+        }
+        dataReader.close();
+        return covidList;
+    }
+
+    public Covid loadCovid(String[] covidData) {
+
+        String Iso_code = covidData[0];
+        String continent = covidData[1];
+        String location = covidData[2];
+        String date = covidData[3];
+        int total_cases = Integer.parseInt(covidData[4]);
+        int new_cases = Integer.parseInt(covidData[5]);
+        int total_deaths = Integer.parseInt(covidData[6]);
+        int new_deaths = Integer.parseInt(covidData[7]);
+        float total_cases_per_million = Float.parseFloat(covidData[8]);
+        float total_deaths_per_million = Float.parseFloat(covidData[9]);
+        int population = Integer.parseInt(covidData[10]);
+        float population_density = Float.parseFloat(covidData[11]);
+
+        //need to add error handling
+
+        Covid newCovid = new Covid(Iso_code, continent, location, date, total_cases, new_cases, total_deaths,
+                new_deaths, total_cases_per_million, total_deaths_per_million, population, population_density);
+        return newCovid;
+
+    }
 }
