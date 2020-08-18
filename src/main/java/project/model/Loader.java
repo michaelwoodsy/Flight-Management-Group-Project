@@ -118,10 +118,7 @@ public class Loader {
     /**
      * Returns an airport class from a line read in airports.dat.
      */
-
-    /**
     public Airport loadAirport(String[] airportData) {
-
 
         int risk = 0; //Placeholder until we decide how we're doing the covid stuff
 
@@ -129,21 +126,48 @@ public class Loader {
         String name = airportData[1];
         String city = airportData[2];
         String country = airportData[3];
-        String iata = airportData[4];
-        String icao = airportData[5];
-        double latitude = airportData[6];
-        double longitude = airportData[7];
-        int altitude = airportData[8];
-        double timezone = airportData[9];
+
+        String iata;
+        try {
+            iata = airportData[4];
+        } catch (Exception e) {
+            iata = "";
+        }
+
+        String icao;
+        try {
+            icao = airportData[5];
+        } catch (Exception e) {
+            icao = "";
+        }
+
+
+        double latitude = Double.parseDouble(airportData[6]);
+        double longitude = Double.parseDouble(airportData[7]);
+        int altitude = Integer.parseInt(airportData[8]);
+        int timezone = Integer.parseInt(airportData[9]);
         String dst = airportData[10];
         String timezoneString = airportData[11];
-        String type = airportData[12];
-        String source = airportData[13];
+
+        String type;
+        try {
+            type = airportData[12];
+        } catch (Exception e) {
+            type = "";
+        }
+
+        String source;
+        try {
+            source = airportData[13];
+        } catch (Exception e) {
+            source = "";
+        }
+
         int numRoutes = 0; //Placeholder
 
-
+        Airport newAirport = new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutes);
+        return newAirport;
     }
-     */
 
     /**
      * Returns a route class from a line read in routes.dat.

@@ -11,14 +11,14 @@ public class Airport {
     private double latitude;
     private double longitude;
     private int altitude;
-    private double timezone;
+    private int timezone;
     private String dst;
     private String timezoneString;
     private String type;
     private String source;
     private int numRoutes;
 
-    public Airport(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, double timezone, String dst, String timezoneString, String type, String source, int numRoutes) {
+    public Airport(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, int timezone, String dst, String timezoneString, String type, String source, int numRoutes) {
         setId(id);
         setRisk(risk);
         setName(name);
@@ -117,11 +117,11 @@ public class Airport {
         this.altitude = altitude;
     }
 
-    public double getTimezone() {
+    public int getTimezone() {
         return timezone;
     }
 
-    public void setTimezone(double timezone) {
+    public void setTimezone(int timezone) {
         this.timezone = timezone;
     }
 
@@ -190,7 +190,7 @@ public class Airport {
                 '}';
     }
 
-    public void update(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, double timezone, String dst, String timezoneString, String type, String source, int numRoutes) {
+    public void update(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, int timezone, String dst, String timezoneString, String type, String source, int numRoutes) {
 
         if (id != this.id) {
             setId(id);
