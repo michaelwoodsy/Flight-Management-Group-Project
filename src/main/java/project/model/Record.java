@@ -135,8 +135,7 @@ public class Record {
     }
 
     /**
-     * Placeholders.
-     * What are we basing the search criteria on? Airport? Country? Same applies to function below.
+     * Search by id
      */
     public ArrayList<Airport> searchAirports(String search) {
 

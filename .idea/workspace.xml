@@ -10,9 +10,15 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Ed testing push">
-      <change afterPath="$PROJECT_DIR$/src/test/java/project/EdsjunitTest.java" afterDir="false" />
+    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Fixed up the airport class (was missing some attributes), started work on loading airport classes in from airports.dat">
+      <change beforePath="$PROJECT_DIR$/.idea/repository.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/repository.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Airport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Airport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/project/DataUnitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/DataUnitTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/project/RecordTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/RecordTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,12 +36,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1fKp0bXfPGomktsYLVExaYRxrL3" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="Repository.Attach.Annotations" value="false" />
@@ -55,7 +64,7 @@
       <recent name="C:\Users\elang\planesonar25\src\main" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.DataUnitTests">
     <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="repository" />
       <extension name="coverage">
@@ -71,8 +80,56 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DataUnitTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="repository" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="project" />
+      <option name="MAIN_CLASS_NAME" value="project.DataUnitTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoaderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="repository" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="project" />
+      <option name="MAIN_CLASS_NAME" value="project.LoaderTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RecordTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="repository" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="project" />
+      <option name="MAIN_CLASS_NAME" value="project.RecordTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DataUnitTests" />
+        <item itemvalue="JUnit.RecordTest" />
+        <item itemvalue="JUnit.LoaderTest" />
         <item itemvalue="JUnit.AppTest" />
       </list>
     </recent_temporary>
@@ -158,7 +215,77 @@
       <option name="project" value="LOCAL" />
       <updated>1596016349406</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added test case for setup checklist">
+      <created>1597112802474</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1597112802474</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Completed data.java class, most of Route.java">
+      <created>1597114560788</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1597114560788</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Route.java updates">
+      <created>1597114761315</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1597114761315</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Added test class for data classes, added print statement in flight class.">
+      <created>1597193692320</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1597193692320</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Added test class for data classes, added placeholder print functions, fleshed out airport class.">
+      <created>1597200107495</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1597200107495</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Fleshing out record class methods, a few tests for these methods">
+      <created>1597206588287</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1597206588287</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Minor changes + Record class tests for all finished methods">
+      <created>1597285351631</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1597285351631</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Loading route files in as an arraylist of classes, and manual testing.">
+      <created>1597290970769</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1597290970769</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Loading airline files in as an arraylist of classes, and manual testing.">
+      <created>1597292096684</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1597292096684</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Fixed up the airport class (was missing some attributes), started work on loading airport classes in from airports.dat">
+      <created>1597293801641</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1597293801641</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,48 +301,67 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Testing pushing" />
     <MESSAGE value="Adding maven scaffolding" />
     <MESSAGE value="Ed testing push" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ed testing push" />
+    <MESSAGE value="Added test case for setup checklist" />
+    <MESSAGE value="Completed data.java class, most of Route.java" />
+    <MESSAGE value="Route.java updates" />
+    <MESSAGE value="Added test class for data classes, added print statement in flight class." />
+    <MESSAGE value="Added test class for data classes, added placeholder print functions, fleshed out airport class." />
+    <MESSAGE value="Fleshing out record class methods, a few tests for these methods" />
+    <MESSAGE value="Minor changes + Record class tests for all finished methods" />
+    <MESSAGE value="Loading route files in as an arraylist of classes, and manual testing." />
+    <MESSAGE value="Loading airline files in as an arraylist of classes, and manual testing." />
+    <MESSAGE value="Fixed up the airport class (was missing some attributes), started work on loading airport classes in from airports.dat" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed up the airport class (was missing some attributes), started work on loading airport classes in from airports.dat" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="555" y="300" key="#Notifications/0.0.1368.872@0.0.1368.872" timestamp="1595984112742" />
+    <state x="907" y="157" key="#com.intellij.ide.util.MemberChooser" timestamp="1597293012375">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="907" y="157" key="#com.intellij.ide.util.MemberChooser/0.0.1368.872@0.0.1368.872" timestamp="1597293012375" />
     <state x="408" y="125" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1595996744421">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="408" y="125" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1368.872@0.0.1368.872" timestamp="1595996744421" />
-    <state x="465" y="154" key="FileChooserDialogImpl" timestamp="1595996669318">
+    <state x="465" y="154" key="FileChooserDialogImpl" timestamp="1597187681799">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1595996669318" />
-    <state width="1621" height="292" key="GridCell.Tab.0.bottom" timestamp="1596017124337">
-      <screen x="0" y="0" width="1664" height="1069" />
+    <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1597187681799" />
+    <state width="663" height="256" key="GridCell.Tab.0.bottom" timestamp="1597294968643">
+      <screen x="0" y="0" width="1368" height="872" />
     </state>
+    <state width="663" height="256" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1597294968643" />
     <state width="1621" height="292" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1621" height="292" key="GridCell.Tab.0.center" timestamp="1596017124337">
-      <screen x="0" y="0" width="1664" height="1069" />
+    <state width="663" height="256" key="GridCell.Tab.0.center" timestamp="1597294968643">
+      <screen x="0" y="0" width="1368" height="872" />
     </state>
+    <state width="663" height="256" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1597294968643" />
     <state width="1621" height="292" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1621" height="292" key="GridCell.Tab.0.left" timestamp="1596017124337">
-      <screen x="0" y="0" width="1664" height="1069" />
+    <state width="663" height="256" key="GridCell.Tab.0.left" timestamp="1597294968643">
+      <screen x="0" y="0" width="1368" height="872" />
     </state>
+    <state width="663" height="256" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1597294968643" />
     <state width="1621" height="292" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1621" height="292" key="GridCell.Tab.0.right" timestamp="1596017124337">
-      <screen x="0" y="0" width="1664" height="1069" />
+    <state width="663" height="256" key="GridCell.Tab.0.right" timestamp="1597294968643">
+      <screen x="0" y="0" width="1368" height="872" />
     </state>
+    <state width="663" height="256" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1597294968643" />
     <state width="1621" height="292" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
     <state x="166" y="12" key="SettingsEditor" timestamp="1595997449081">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="166" y="12" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1595997449081" />
-    <state x="338" y="208" key="Vcs.Push.Dialog.v2" timestamp="1596017372267">
-      <screen x="0" y="0" width="1664" height="1069" />
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1597293811044">
+      <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1595997237571" />
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1597293811044" />
     <state x="338" y="208" key="Vcs.Push.Dialog.v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017372267" />
     <state x="408" y="329" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1595980153516">
       <screen x="0" y="0" width="1368" height="872" />
@@ -226,9 +372,17 @@
     </state>
     <state x="493" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1368.872@0.0.1368.872" timestamp="1595982886240" />
     <state x="600" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017354998" />
-    <state x="243" y="301" key="git4idea.merge.GitPullDialog" timestamp="1595977713016">
+    <state x="243" y="301" key="git4idea.merge.GitPullDialog" timestamp="1597285361318">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="243" y="301" key="git4idea.merge.GitPullDialog/0.0.1368.872@0.0.1368.872" timestamp="1595977713016" />
+    <state x="243" y="301" key="git4idea.merge.GitPullDialog/0.0.1368.872@0.0.1368.872" timestamp="1597285361318" />
+    <state x="343" y="200" key="run.anything.popup" timestamp="1597206139345">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="343" y="200" key="run.anything.popup/0.0.1368.872@0.0.1368.872" timestamp="1597206139345" />
+    <state x="348" y="185" width="672" height="678" key="search.everywhere.popup" timestamp="1597292237525">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="348" y="185" width="672" height="678" key="search.everywhere.popup/0.0.1368.872@0.0.1368.872" timestamp="1597292237525" />
   </component>
 </project>

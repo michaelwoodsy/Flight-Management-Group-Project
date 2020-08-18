@@ -22,11 +22,11 @@ public class RecordTest {
     Route testRoute4 = new Route("Air NZ", 500, "Christchurch International Airport", 411, "Sydney International Airport", 511, 1, "DXa34", false);
     Route testRoute5 = new Route("Air NZ", 500, "Wellington International Airport", 411, "Sydney International Airport", 511, 1, "DXa34", false);
 
-    Airport testAirport1 = new Airport(100, 500, "Test1", "Christchurch", "New Zealand", "Test1", "Test1", 40.0, 40.0, 50, 0.0, "Test1", "Test1", "Test1", "Openflights", 1);
-    Airport testAirport2 = new Airport(100, 500, "Test2", "Christchurch", "New Zealand", "Test2", "Test2", 40.0, 40.0,50, 0.0, "Test2", "Test2", "Test2", "Openflights", 4);
-    Airport testAirport3 = new Airport(100, 500, "Test3", "Sydney", "Australia", "Test3", "Test3", 40.0, 40.0,50, 0.0, "Test3", "Test3", "Test3", "Openflights", 10);
-    Airport testAirport4 = new Airport(100, 500, "Test4", "Sydney", "Australia", "Test4", "Test4", 40.0, 40.0,50, 0.0, "Test4", "Test4", "Test4", "Openflights", 2);
-    Airport testAirport5 = new Airport(100, 500, "Test5", "Christchurch", "New Zealand", "Test5", "Test5", 40.0, 40.0,50, 0.0, "Test5", "Test5", "Test5", "Openflights", 0);
+    Airport testAirport1 = new Airport(100, 500, "Test1", "Christchurch", "New Zealand", "Test1", "Test1", 40.0, 40.0, 50, 0, "Test1", "Test1", "Test1", "Openflights", 1);
+    Airport testAirport2 = new Airport(100, 500, "Test2", "Christchurch", "New Zealand", "Test2", "Test2", 40.0, 40.0,50, 0, "Test2", "Test2", "Test2", "Openflights", 4);
+    Airport testAirport3 = new Airport(100, 500, "Test3", "Sydney", "Australia", "Test3", "Test3", 40.0, 40.0,50, 0, "Test3", "Test3", "Test3", "Openflights", 10);
+    Airport testAirport4 = new Airport(100, 500, "Test4", "Sydney", "Australia", "Test4", "Test4", 40.0, 40.0,50, 0, "Test4", "Test4", "Test4", "Openflights", 2);
+    Airport testAirport5 = new Airport(100, 500, "Test5", "Christchurch", "New Zealand", "Test5", "Test5", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0);
 
     /**
      * Tried to do a @BeforeEach but couldn't, might need changing later
