@@ -2,6 +2,7 @@ package project;
 
 import org.junit.Test;
 import project.model.Airline;
+import project.model.Airport;
 import project.model.Loader;
 import project.model.Route;
 
@@ -27,11 +28,23 @@ public class LoaderTest {
     /**
      * Manual testing. Will update later.
      */
+    public void loadAirportFileTest() throws IOException {
+        Loader loader = new Loader();
+        ArrayList<Airport> airportList = loader.loadAirportFile("data/airports.dat");
+        for (Airport airport: airportList) {
+            System.out.println(airport);
+        }
+    }
+
+    @Test
+    /**
+     * Manual testing. Will update later.
+     */
     public void loadAirlineFileTest() throws IOException {
         Loader loader = new Loader();
         ArrayList<Airline> airlineList = loader.loadAirlineFile("data/airlines.dat");
         for (Airline airline: airlineList) {
-            System.out.println(airline);
+            // System.out.println(airline);
         }
 
     }

@@ -46,7 +46,13 @@ public class Loader {
                 breaker = true;
             } else {
                 String[] data = row.split(",");
-                //airportList.add(loadAirport(data));
+
+                // TBC
+                int errorCheck = Integer.parseInt(data[0]);
+                if (errorCheck == 5674 || errorCheck == 5675 || errorCheck == 5562 || errorCheck == 5881) {
+                    continue;
+                }
+                airportList.add(loadAirport(data));
             }
         }
         dataReader.close();
@@ -123,6 +129,7 @@ public class Loader {
         int risk = 0; //Placeholder until we decide how we're doing the covid stuff
 
         int id = Integer.parseInt(airportData[0]);
+
         String name = airportData[1];
         String city = airportData[2];
         String country = airportData[3];
@@ -141,11 +148,10 @@ public class Loader {
             icao = "";
         }
 
-
         double latitude = Double.parseDouble(airportData[6]);
         double longitude = Double.parseDouble(airportData[7]);
         int altitude = Integer.parseInt(airportData[8]);
-        int timezone = Integer.parseInt(airportData[9]);
+        double timezone = Double.parseDouble(airportData[9]);
         String dst = airportData[10];
         String timezoneString = airportData[11];
 
