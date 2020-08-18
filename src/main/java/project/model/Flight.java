@@ -93,6 +93,11 @@ public class Flight {
         }
     }
 
-    public void update() {}
+    /**
+     * Placeholder function for update
+     */
+    public void update() {
+        risk = 0;
+    }
 
 }
