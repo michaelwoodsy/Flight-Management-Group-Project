@@ -9,15 +9,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 /**
- * Test application methods to run the GUI
+ * Application methods to run the GUI
  */
-public class GUI_Application_Test extends Application {
+public class GUIApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("GUI_Screens.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        Parent root = FXMLLoader.load(getClass().getResource("../GUI_Screens.fxml"));
+        primaryStage.setScene(new Scene(root, 750, 500));
         primaryStage.show();
     }
 

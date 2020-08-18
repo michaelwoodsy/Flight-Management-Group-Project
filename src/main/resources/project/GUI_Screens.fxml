@@ -5,7 +5,6 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -17,20 +16,27 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.web.WebView?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controller.GUI_Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controller.GUIController">
   <tabs>
     <Tab fx:id="airport_tab" text="Airport">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ScrollPane layoutX="14.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0">
-                    <content>
-                      <AnchorPane minHeight="450.0" minWidth="450.0" prefHeight="450.0" prefWidth="500.0">
-                           <children>
-                              <ListView fx:id="airportList" prefHeight="30.0" prefWidth="500.0" />
-                           </children></AnchorPane>
-                    </content>
-                  </ScrollPane>
+                  <SplitPane dividerPositions="0.5" layoutX="535.0" layoutY="10.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="200.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                    </items>
+                  </SplitPane>
+                  <ListView fx:id="airportList" layoutX="15.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0" />
+               </children></AnchorPane>
+      </content>
+    </Tab>
+      <Tab fx:id="airline_tab" text="Airline">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ListView layoutX="15.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0" />
                   <SplitPane dividerPositions="0.5" layoutX="535.0" layoutY="10.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="200.0">
                     <items>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
@@ -38,16 +44,20 @@
                     </items>
                   </SplitPane>
                </children></AnchorPane>
-      </content>
-    </Tab>
-      <Tab fx:id="airline_tab" text="Airline">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
         </content>
       </Tab>
       <Tab fx:id="route_tab" text="Route">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ListView layoutX="15.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0" />
+                  <SplitPane dividerPositions="0.5" layoutX="535.0" layoutY="10.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="200.0">
+                    <items>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                    </items>
+                  </SplitPane>
+               </children></AnchorPane>
         </content>
       </Tab>
     <Tab fx:id="map_tab" text="Map">
