@@ -1,7 +1,6 @@
 package project.model;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -141,6 +140,10 @@ public class Record {
 
         return new ArrayList<Airport>();
     }
+
+    /**
+     * Search by ??? - flights don't have IDS.
+     */
     public ArrayList<Flight> searchFlights(String search) {
 
         return new ArrayList<Flight>();
