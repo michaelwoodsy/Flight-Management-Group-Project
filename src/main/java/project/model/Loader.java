@@ -30,6 +30,37 @@ public class Loader {
         return airlineList;
     }
 
+    public Flight loadFlightFile(String path) throws IOException {
+
+        ArrayList<Double> latitudes = new ArrayList<Double>();
+        ArrayList<Double> longitudes = new ArrayList<Double>();
+        ArrayList<Integer> altitudes = new ArrayList<Integer>();
+        ArrayList<String> locations = new ArrayList<String>();
+        ArrayList<String> status = new ArrayList<String>();
+        int risk = 0; // Placeholder
+
+        BufferedReader dataReader = new BufferedReader(new FileReader(path));
+
+        boolean breaker = false;
+        while (!breaker) {
+            String row = dataReader.readLine();
+            if (row == null) {
+                breaker = true;
+            } else {
+                String[] data = row.split(",");
+                latitudes.add(Double.parseDouble(data[3]));
+                longitudes.add(Double.parseDouble(data[4]));
+                altitudes.add(Integer.parseInt(data[2]));
+                locations.add(data[1]);
+                status.add(data[0]);
+            }
+        }
+        dataReader.close();
+
+        Flight flight = new Flight(latitudes, longitudes, altitudes, locations, status, risk);
+        return flight;
+    }
+
     /**
      * Returns a list of airports by reading a comma-separated data file.
      */
