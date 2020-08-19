@@ -1,10 +1,7 @@
 package project;
 
 import org.junit.Test;
-import project.model.Airline;
-import project.model.Airport;
-import project.model.Loader;
-import project.model.Route;
+import project.model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -81,6 +78,22 @@ public class LoaderTest {
         for (Route route: routeList) {
             //System.out.println(route);
         }
+
+    }
+
+    @Test
+    /**
+     * Manual testing. Will update later.
+     */
+    public void loadFlightFileTest() throws IOException {
+
+        Flight flight = loader.loadFlightFile("data/flight.csv");
+
+        System.out.println(flight.getStatus());
+        System.out.println(flight.getLocations());
+        System.out.println(flight.getAltitudes());
+        System.out.println(flight.getLatitudes());
+        System.out.println(flight.getLongitudes());
 
     }
 

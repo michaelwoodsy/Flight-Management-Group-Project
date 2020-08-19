@@ -29,7 +29,14 @@ public class Flight {
      */
     private int risk;
 
-    public Flight(ArrayList<Double> latitudes, ArrayList<Double> longitudes, ArrayList<Integer> altitudes, ArrayList<String> locations, ArrayList<String> status, int risk) {}
+    public Flight(ArrayList<Double> latitudes, ArrayList<Double> longitudes, ArrayList<Integer> altitudes, ArrayList<String> locations, ArrayList<String> status, int risk) {
+        this.latitudes = latitudes;
+        this.longitudes = longitudes;
+        this.altitudes = altitudes;
+        this.locations = locations;
+        this.status = status;
+        this.risk = risk;
+    }
 
     public void setAltitudes(ArrayList<Integer> altitudes) {
         this.altitudes = altitudes;
