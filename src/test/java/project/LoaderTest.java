@@ -87,7 +87,7 @@ public class LoaderTest {
      */
     public void loadFlightFileTest() throws IOException {
 
-        Flight flight = loader.loadFlightFile("data/flight.csv");
+        Flight flight = loader.loadFlightFile("data/flighttest.csv");
 
         System.out.println(flight.getStatus());
         System.out.println(flight.getLocations());

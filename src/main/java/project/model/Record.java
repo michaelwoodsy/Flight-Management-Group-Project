@@ -134,19 +134,57 @@ public class Record {
     }
 
     /**
-     * Search by id
+     * Search by id. Might need changing.
      */
-    public ArrayList<Airport> searchAirports(String search) {
+    public Airport searchAirports(int id) {
 
-        return new ArrayList<Airport>();
+        for (Airport airport: airportList) {
+            if (airport.getId() == id) {
+                return airport;
+            }
+        }
+        return null; // In the GUI, use some code to handle this situation: Call function, if return null, print error.
     }
 
     /**
-     * Search by ??? - flights don't have IDS.
+     * Search by id. Might need changing.
      */
-    public ArrayList<Flight> searchFlights(String search) {
+    public Route searchRoutes(int id) {
 
-        return new ArrayList<Flight>();
+        for (Route route: routeList) {
+            if (route.getId() == id) {
+                return route;
+            }
+        }
+        return null; // In the GUI, use some code to handle this situation: Call function, if return null, print error.
+    }
+
+    /**
+     * Completed. Requires special implementation in GUI.
+     * To search flights, check either the destination or source checkbox (can't be both).
+     * Then enter the name of the source/destination airport. If this is on record, will identify the
+     * ICAO code from that airport, and search the flightlist for flights matching this source/destination
+     * ICAO. If none can be found, returns null. Print exception when this occurs.
+     */
+    public Flight searchFlights(boolean source, String airportName) {
+
+        for (Airport airport: airportList) {
+            if (airport.getName() == airportName) {
+                String icao = airport.getIcao();
+                for (Flight flight : flightList) {
+                    if (source) { // Searching source
+                        if (flight.getSource() == icao) {
+                            return flight;
+                        }
+                    } else {  // Searching destination
+                        if (flight.getDest() == icao) {
+                            return flight;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
     }
 
     /**

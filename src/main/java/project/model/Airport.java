@@ -178,10 +178,10 @@ public class Airport {
                 ", country='" + country + '\'' +
                 ", iata='" + iata + '\'' +
                 ", icao='" + icao + '\'' +
-                ", latitude='" + latitude + '\'' +
-                ", longitude='" + longitude + '\'' +
-                ", altitude=" + altitude +
-                ", timezone=" + timezone +
+                ", latitude='" + String.format("%.4f", latitude) + '\'' +
+                ", longitude='" + String.format("%.4f", longitude) + '\'' +
+                ", altitude=" + altitude + '\'' +
+                ", timezone=" + timezone + '\'' +
                 ", dst='" + dst + '\'' +
                 ", timezoneString='" + timezoneString + '\'' +
                 ", type='" + type + '\'' +

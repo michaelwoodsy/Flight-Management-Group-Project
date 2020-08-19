@@ -29,6 +29,16 @@ public class Flight {
      */
     private int risk;
 
+    /**
+     * First code displayed in locations array (source ICAO airport code).
+     */
+    private String source;
+
+    /**
+     * Last code displayed in locations array (destination ICAO airport code).
+     */
+    private String dest;
+
     public Flight(ArrayList<Double> latitudes, ArrayList<Double> longitudes, ArrayList<Integer> altitudes, ArrayList<String> locations, ArrayList<String> status, int risk) {
         this.latitudes = latitudes;
         this.longitudes = longitudes;
@@ -36,6 +46,8 @@ public class Flight {
         this.locations = locations;
         this.status = status;
         this.risk = risk;
+        this.source = locations.get(0);
+        this.dest = locations.get(locations.size() - 1);
     }
 
     public void setAltitudes(ArrayList<Integer> altitudes) {
@@ -52,6 +64,8 @@ public class Flight {
 
     public void setLocations(ArrayList<String> locations) {
         this.locations = locations;
+        this.source = locations.get(0);
+        this.dest = locations.get(locations.size() - 1);
     }
 
     public void setRisk(int risk) {
@@ -86,6 +100,14 @@ public class Flight {
         return risk;
     }
 
+    public String getSource() {
+        return source;
+    }
+
+    public String getDest() {
+        return dest;
+    }
+
     /**
      * Placeholder until we've decided what the format should be for flights.
      */
@@ -96,7 +118,7 @@ public class Flight {
             int altitude = altitudes.get(pointInFlight);
             double lat = latitudes.get(pointInFlight);
             double lon = longitudes.get(pointInFlight);
-            return (String.format("At point %d in the flight, the plane had an altitude of %f, and was located at coordinates %f, %f", altitude, lat, lon));
+            return (String.format("At point % in the flight, the plane had an altitude of %, and was located at coordinates %.4f, %.4f", altitude, lat, lon));
         }
     }
 
