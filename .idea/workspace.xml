@@ -10,11 +10,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Deleted some unnecessary stuff, Added search functions for airports, routes, flights, and added/updated tests.">
+    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Added error handling for distance function, added further error handling for loading classes, added ability to set number of routes for airports (untested).">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Airport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Airport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/project/RecordTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/RecordTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -280,7 +278,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597879065583</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Added error handling for distance function, added further error handling for loading classes, added ability to set number of routes for airports (untested).">
+      <created>1597895525096</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1597895525096</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,7 +316,8 @@
     <MESSAGE value="Got flight loading working + manual tests. Works fine." />
     <MESSAGE value="Added some concerns to a function docstring so I don't forget later" />
     <MESSAGE value="Deleted some unnecessary stuff, Added search functions for airports, routes, flights, and added/updated tests." />
-    <option name="LAST_COMMIT_MESSAGE" value="Deleted some unnecessary stuff, Added search functions for airports, routes, flights, and added/updated tests." />
+    <MESSAGE value="Added error handling for distance function, added further error handling for loading classes, added ability to set number of routes for airports (untested)." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added error handling for distance function, added further error handling for loading classes, added ability to set number of routes for airports (untested)." />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
@@ -322,10 +328,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="249" y="0" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1597544114612" />
-    <state x="93" y="93" width="1181" height="685" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1597808293653">
+    <state x="93" y="93" width="1181" height="685" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1597896139005">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="93" y="93" width="1181" height="685" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1368.872@0.0.1368.872" timestamp="1597808293653" />
+    <state x="93" y="93" width="1181" height="685" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1368.872@0.0.1368.872" timestamp="1597896139005" />
     <state x="490" y="152" key="#com.intellij.ide.util.MemberChooser" timestamp="1597876666946">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
@@ -340,28 +346,28 @@
     <state x="435" y="122" key="FileChooserDialogImpl/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597184056499" />
     <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1595996669318" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1597556338095" />
-    <state width="663" height="256" key="GridCell.Tab.0.bottom" timestamp="1597878979952">
+    <state width="663" height="256" key="GridCell.Tab.0.bottom" timestamp="1597897400764">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="663" height="256" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1597878979952" />
+    <state width="663" height="256" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1597897400764" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="663" height="256" key="GridCell.Tab.0.center" timestamp="1597878979951">
+    <state width="663" height="256" key="GridCell.Tab.0.center" timestamp="1597897400764">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="663" height="256" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1597878979951" />
+    <state width="663" height="256" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1597897400763" />
     <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="663" height="256" key="GridCell.Tab.0.left" timestamp="1597878979950">
+    <state width="663" height="256" key="GridCell.Tab.0.left" timestamp="1597897400763">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="663" height="256" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1597878979950" />
+    <state width="663" height="256" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1597897400763" />
     <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="663" height="256" key="GridCell.Tab.0.right" timestamp="1597878979951">
+    <state width="663" height="256" key="GridCell.Tab.0.right" timestamp="1597897400764">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state width="663" height="256" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1597878979951" />
+    <state width="663" height="256" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1597897400764" />
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
     <state width="663" height="281" key="GridCell.Tab.1.bottom" timestamp="1597811672058">
@@ -392,10 +398,10 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="166" y="12" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1595997449081" />
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1597879075069">
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1597895532868">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1597879075069" />
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1597895532868" />
     <state x="338" y="208" key="Vcs.Push.Dialog.v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017372267" />
     <state x="408" y="329" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1595980153516">
       <screen x="0" y="0" width="1368" height="872" />
@@ -420,5 +426,9 @@
     </state>
     <state x="403" y="203" key="run.anything.popup/0.0.1368.872@0.0.1368.872" timestamp="1597894844662" />
     <state x="489" y="248" key="run.anything.popup/0.0.1664.1069@0.0.1664.1069" timestamp="1597666146718" />
+    <state x="343" y="91" width="670" height="676" key="search.everywhere.popup" timestamp="1597895993587">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="343" y="91" width="670" height="676" key="search.everywhere.popup/0.0.1368.872@0.0.1368.872" timestamp="1597895993587" />
   </component>
 </project>
