@@ -247,6 +247,11 @@ public class Airport {
         double lat2 = destAirport.latitude;
         double lon1 = this.longitude;
         double lon2 = destAirport.longitude;
+
+        if (lat1 == 360 || lon1 == 360 || lat2 == 360 || lon2 == 360) {
+            return -1; // Error case, can't have distance of -1. When this occurs, print error message in GUI.
+        }
+
         double radius = 6371;
         double theta1 = lat1 * Math.PI / 180;
         double theta2 = lat2 * Math.PI / 180;

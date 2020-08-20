@@ -188,6 +188,23 @@ public class Record {
     }
 
     /**
+     * Iterates through the list of airports and list of routes and adds 1 to the numRoutes attribute
+     * of each airport based on how many routes begin at that airport. Only counts routes from, not routes to.
+     * (This might need to be changed)
+     */
+    public void setNumRoutes() {
+        for (Airport airport : airportList) {
+            String icao = airport.getIcao();
+            String iata = airport.getIata();
+            for (Route route : routeList) {
+                if (route.getSourceAirport() == icao || route.getSourceAirport() == iata) {
+                    airport.setNumRoutes(airport.getNumRoutes() + 1);
+                }
+            }
+        }
+    }
+
+    /**
      * This will be tricky. return statement and parameters aren't concrete.
      */
     public void addRecord(InputStream inFile, boolean newRecord) {
