@@ -80,7 +80,7 @@ public class Covid {
     }
 
     public String get_risk(int total_cases, int population){
-        double percentage = (float)(total_cases / population)*100.00;
+        double percentage = (float)(total_cases / population) * 100.00;
         if (percentage <= 1){
             return "Extremely Low";
         }
