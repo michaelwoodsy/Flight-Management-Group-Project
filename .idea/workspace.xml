@@ -14,9 +14,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="GUI with map tab (map view)">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_media_11_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_media_win_11_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_web_11_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_openjfx_javafx_web_win_11_0_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/repository.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/repository.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

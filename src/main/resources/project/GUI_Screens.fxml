@@ -24,8 +24,8 @@
                <children>
                   <SplitPane dividerPositions="0.5" layoutX="535.0" layoutY="10.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="200.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                      <AnchorPane fx:id="airportSearchPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                      <AnchorPane fx:id="airportDetailPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
                     </items>
                   </SplitPane>
                   <ListView fx:id="airportList" layoutX="15.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0" />
@@ -36,11 +36,11 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ListView layoutX="15.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0" />
+                  <ListView fx:id="airlineList" layoutX="15.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0" />
                   <SplitPane dividerPositions="0.5" layoutX="535.0" layoutY="10.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="200.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                      <AnchorPane fx:id="airlineSearchPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                      <AnchorPane fx:id="airlineDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
                     </items>
                   </SplitPane>
                </children></AnchorPane>
@@ -50,11 +50,11 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ListView layoutX="15.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0" />
+                  <ListView fx:id="routeList" layoutX="15.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0" />
                   <SplitPane dividerPositions="0.5" layoutX="535.0" layoutY="10.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="200.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                      <AnchorPane fx:id="routeSearchPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                      <AnchorPane fx:id="routeDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
                     </items>
                   </SplitPane>
                </children></AnchorPane>
