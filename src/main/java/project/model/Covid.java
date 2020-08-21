@@ -79,4 +79,22 @@ public class Covid {
         this.population_density = population_density;
     }
 
+    public String get_risk(int total_cases, int population){
+        double percentage = (float)(total_cases / population)*100.00;
+        if (percentage <= 1){
+            return "Extremely Low";
+        }
+        if (percentage <= 5){
+            return "Low";
+        }
+        else if(percentage <= 10){
+            return "Medium";
+        }
+        else if (percentage <= 15){
+            return "High Risk";
+        }
+        else{
+            return "Extreme risk";
+        }
+    }
 }
