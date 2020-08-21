@@ -121,4 +121,14 @@ public class LoaderTest {
         }
 
     }
+
+    @Test
+
+    public void loadCovidFileTest() throws IOException{
+        ArrayList<Covid> covid_list = loader.loadCovidFile("data/covid.dat");
+//        for(Covid covid: covid_list){
+//            System.out.println(covid.print_country_data());
+//        }
+
+    }
 }

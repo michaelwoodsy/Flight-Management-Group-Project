@@ -12,11 +12,10 @@ public class Covid {
     private float total_cases_per_million;
     private float total_deaths_per_million;
     private int population;
-    private float population_density;
 
     public Covid(String iso_code, String continent, String location, String date, int total_cases, int new_cases,
                  int total_deaths, int new_deaths, float total_cases_per_million, float total_deaths_per_million,
-                 int population, float population_density) {
+                 int population) {
         setIso_code(iso_code);
         setContinent(continent);
         setLocation(location);
@@ -28,7 +27,6 @@ public class Covid {
         setTotal_cases_per_million(total_cases_per_million);
         setTotal_deaths_per_million(total_deaths_per_million);
         setPopulation(population);
-        setPopulation_density(population_density);
     }
 
     public void setIso_code(String iso_code) {
@@ -75,8 +73,10 @@ public class Covid {
         this.population = population;
     }
 
-    public void setPopulation_density(float population_density) {
-        this.population_density = population_density;
+    //just used for the checking that loader works of the loader
+    public String print_country_data(){
+        return iso_code + " " + continent + " " + location + " " +  date + " " + total_cases + " " +  new_cases
+        + " " + total_deaths + " " + new_deaths + " " + total_cases_per_million + " " + total_deaths_per_million + " " + population;
     }
 
     public String get_risk(int total_cases, int population){

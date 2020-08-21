@@ -445,12 +445,11 @@ public class Loader {
         float total_cases_per_million = Float.parseFloat(covidData[8]);
         float total_deaths_per_million = Float.parseFloat(covidData[9]);
         int population = Integer.parseInt(covidData[10]);
-        float population_density = Float.parseFloat(covidData[11]);
 
         //need to add error handling
 
         Covid newCovid = new Covid(Iso_code, continent, location, date, total_cases, new_cases, total_deaths,
-                new_deaths, total_cases_per_million, total_deaths_per_million, population, population_density);
+                new_deaths, total_cases_per_million, total_deaths_per_million, population);
         return newCovid;
 
     }
