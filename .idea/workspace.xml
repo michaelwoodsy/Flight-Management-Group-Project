@@ -10,10 +10,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="covid.dat file added">
+    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="fixed covid loader and wrote a test that checks if loading was successful">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/covid.dat" beforeDir="false" afterPath="$PROJECT_DIR$/data/covid.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Covid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Covid.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/project/LoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/LoaderTest.java" afterDir="false" />
     </list>
@@ -309,7 +307,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597982132801</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="fixed covid loader and wrote a test that checks if loading was successful">
+      <created>1597984121243</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1597984121243</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -343,7 +348,8 @@
     <MESSAGE value="Added error handling for distance function, added further error handling for loading classes, added ability to set number of routes for airports (untested)." />
     <MESSAGE value="added a get_risk for countries with COIV-19 that does basic percentage calculation based on population an d total cases. and returns a string representation of risks. e.g. &quot;high&quot;, &quot;Low&quot;" />
     <MESSAGE value="covid.dat file added" />
-    <option name="LAST_COMMIT_MESSAGE" value="covid.dat file added" />
+    <MESSAGE value="fixed covid loader and wrote a test that checks if loading was successful" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed covid loader and wrote a test that checks if loading was successful" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
@@ -373,34 +379,34 @@
     <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1595996669318" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1597556338095" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597981987286" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1597983887717">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1597985879104">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="663" height="256" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1597897400764" />
     <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597983887717" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1597983887717">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597985879104" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1597985879104">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="663" height="256" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1597897400763" />
     <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597983887717" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1597983887717">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597985879104" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1597985879104">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="663" height="256" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1597897400763" />
     <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597983887717" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1597983887717">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597985879104" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1597985879104">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="663" height="256" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1597897400764" />
     <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
     <state width="1621" height="292" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597983887717" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597985879104" />
     <state width="663" height="281" key="GridCell.Tab.1.bottom" timestamp="1597811672058">
       <screen x="0" y="0" width="1368" height="872" />
     </state>

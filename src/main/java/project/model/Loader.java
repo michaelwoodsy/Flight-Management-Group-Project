@@ -433,20 +433,80 @@ public class Loader {
     }
 
     public Covid loadCovid(String[] covidData) {
+        String Iso_code;
+        try {
+            Iso_code = covidData[0];
+        }catch (Exception e){
+            Iso_code = null;
+        }
 
-        String Iso_code = covidData[0];
-        String continent = covidData[1];
-        String location = covidData[2];
-        String date = covidData[3];
-        int total_cases = Integer.parseInt(covidData[4]);
-        int new_cases = Integer.parseInt(covidData[5]);
-        int total_deaths = Integer.parseInt(covidData[6]);
-        int new_deaths = Integer.parseInt(covidData[7]);
-        float total_cases_per_million = Float.parseFloat(covidData[8]);
-        float total_deaths_per_million = Float.parseFloat(covidData[9]);
-        int population = Integer.parseInt(covidData[10]);
+        String continent;
+        try {
+            continent = covidData[1];
+        }catch (Exception e){
+            continent = null;
+        }
 
-        //need to add error handling
+        String location;
+        try {
+            location = covidData[2];
+        }catch (Exception e){
+            location = null;
+        }
+
+        String date;
+        try {
+            date = covidData[3];
+        }catch (Exception e){
+            date = null;
+        }
+
+        int total_cases;
+        try {
+            total_cases = Integer.parseInt(covidData[4]);
+        }catch (Exception e){
+            total_cases = 0;
+        }
+
+        int new_cases;
+        try {
+            new_cases = Integer.parseInt(covidData[5]);
+        }catch (Exception e){
+            new_cases = 0;
+        }
+
+        int total_deaths;
+        try {
+            total_deaths = Integer.parseInt(covidData[6]);
+        }catch (Exception e){
+            total_deaths = 0;
+        }
+        int new_deaths;
+        try {
+            new_deaths = Integer.parseInt(covidData[7]);
+        }catch (Exception e){
+            new_deaths = 0;
+        }
+        float total_cases_per_million;
+        try {
+            total_cases_per_million = Float.parseFloat(covidData[8]);
+        }catch (Exception e){
+            total_cases_per_million = 0;
+        }
+        float total_deaths_per_million;
+        try {
+            total_deaths_per_million = Float.parseFloat(covidData[9]);
+        }catch (Exception e){
+            total_deaths_per_million = 0;
+        }
+
+        int population;
+        try {
+            population = Integer.parseInt(covidData[10]);
+        }catch (Exception e){
+            population = 0;
+        }
+        
 
         Covid newCovid = new Covid(Iso_code, continent, location, date, total_cases, new_cases, total_deaths,
                 new_deaths, total_cases_per_million, total_deaths_per_million, population);
