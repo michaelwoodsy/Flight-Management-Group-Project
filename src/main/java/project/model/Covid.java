@@ -81,6 +81,7 @@ public class Covid {
 
     public String get_risk(Covid covid){
         double percentage = (float)(covid.total_cases / covid.population) * 100.00;
+        //values that determine the severity of the risk will change! just a placeholder.
         if (percentage <= 1){
             return "Extremely Low";
         }

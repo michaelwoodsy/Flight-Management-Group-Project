@@ -10,8 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Added error handling for distance function, added further error handling for loading classes, added ability to set number of routes for airports (untested).">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="edited covid risk class">
       <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Covid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Covid.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -356,7 +355,14 @@
       <option name="project" value="LOCAL" />
       <updated>1597984121243</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="edited covid risk class">
+      <created>1598263026790</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1598263026790</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +397,8 @@
     <MESSAGE value="added a get_risk for countries with COIV-19 that does basic percentage calculation based on population an d total cases. and returns a string representation of risks. e.g. &quot;high&quot;, &quot;Low&quot;" />
     <MESSAGE value="covid.dat file added" />
     <MESSAGE value="fixed covid loader and wrote a test that checks if loading was successful" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed covid loader and wrote a test that checks if loading was successful" />
+    <MESSAGE value="edited covid risk class" />
+    <option name="LAST_COMMIT_MESSAGE" value="edited covid risk class" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
