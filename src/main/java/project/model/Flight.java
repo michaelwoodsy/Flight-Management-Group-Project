@@ -39,6 +39,9 @@ public class Flight {
      */
     private String dest;
 
+    /**
+     * Constructor class for a flight
+     */
     public Flight(ArrayList<Double> latitudes, ArrayList<Double> longitudes, ArrayList<Integer> altitudes, ArrayList<String> locations, ArrayList<String> status, int risk) {
         this.latitudes = latitudes;
         this.longitudes = longitudes;
