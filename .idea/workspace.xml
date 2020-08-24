@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -12,11 +15,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Added error handling for distance function, added further error handling for loading classes, added ability to set number of routes for airports (untested).">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/flighttest.csv" beforeDir="false" afterPath="$PROJECT_DIR$/data/flighttest.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Airport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Airport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Record.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/project/DataUnitTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/DataUnitTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/project/RecordTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/RecordTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/project/AirportTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/AirportTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +40,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.4\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -84,18 +83,7 @@
       <recent name="C:\Users\elang\planesonar25\src\main" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RecordTest">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.AirportTest">
     <configuration name="Database" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project.controller.Database" />
       <module name="repository" />
@@ -118,6 +106,19 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -169,15 +170,15 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AirportTest" />
         <item itemvalue="JUnit.RecordTest" />
         <item itemvalue="Application.Database" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.LoaderTest" />
-        <item itemvalue="JUnit.AirportTest" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -195,6 +196,7 @@
       <workItem from="1597717809972" duration="1898000" />
       <workItem from="1597789819543" duration="3455000" />
       <workItem from="1598230828256" duration="1456000" />
+      <workItem from="1598259410758" duration="1275000" />
     </task>
     <task id="LOCAL-00001" summary="Testing pushing">
       <created>1595977595204</created>
@@ -430,40 +432,40 @@
     <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1595996669318" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1597556338095" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597981987286" />
-    <state width="663" height="256" key="GridCell.Tab.0.bottom" timestamp="1598243118992">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state width="746" height="210" key="GridCell.Tab.0.bottom" timestamp="1598260663813">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382835" />
     <state width="1237" height="164" key="GridCell.Tab.0.bottom/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
     <state width="663" height="256" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1598243118992" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
+    <state width="746" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
     <state width="1621" height="292" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597985879104" />
-    <state width="663" height="256" key="GridCell.Tab.0.center" timestamp="1598243118992">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state width="746" height="210" key="GridCell.Tab.0.center" timestamp="1598260663813">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382834" />
     <state width="1237" height="164" key="GridCell.Tab.0.center/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
     <state width="663" height="256" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1598243118992" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
+    <state width="746" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
     <state width="1621" height="292" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597985879104" />
-    <state width="663" height="256" key="GridCell.Tab.0.left" timestamp="1598243118992">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state width="746" height="210" key="GridCell.Tab.0.left" timestamp="1598260663813">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382834" />
     <state width="1237" height="164" key="GridCell.Tab.0.left/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
     <state width="663" height="256" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1598243118992" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
+    <state width="746" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
     <state width="1621" height="292" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597985879104" />
-    <state width="663" height="256" key="GridCell.Tab.0.right" timestamp="1598243118992">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state width="746" height="210" key="GridCell.Tab.0.right" timestamp="1598260663813">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382835" />
     <state width="1237" height="164" key="GridCell.Tab.0.right/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
     <state width="663" height="256" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1598243118992" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
+    <state width="746" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
     <state width="1621" height="292" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597985879104" />
     <state width="663" height="281" key="GridCell.Tab.1.bottom" timestamp="1597811672058">
