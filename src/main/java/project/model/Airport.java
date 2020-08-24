@@ -178,10 +178,10 @@ public class Airport {
                 ", country='" + country + '\'' +
                 ", iata='" + iata + '\'' +
                 ", icao='" + icao + '\'' +
-                ", latitude='" + latitude + '\'' +
-                ", longitude='" + longitude + '\'' +
-                ", altitude=" + altitude +
-                ", timezone=" + timezone +
+                ", latitude='" + String.format("%.4f", latitude) + '\'' +
+                ", longitude='" + String.format("%.4f", longitude) + '\'' +
+                ", altitude=" + altitude + '\'' +
+                ", timezone=" + timezone + '\'' +
                 ", dst='" + dst + '\'' +
                 ", timezoneString='" + timezoneString + '\'' +
                 ", type='" + type + '\'' +
@@ -190,7 +190,7 @@ public class Airport {
                 '}';
     }
 
-    public void update(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, double timezone, String dst, String timezoneString, String type, String source, int numRoutes) {
+    public void update(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, int timezone, String dst, String timezoneString, String type, String source, int numRoutes) {
 
         if (id != this.id) {
             setId(id);
@@ -247,6 +247,11 @@ public class Airport {
         double lat2 = destAirport.latitude;
         double lon1 = this.longitude;
         double lon2 = destAirport.longitude;
+
+        if (lat1 == 360 || lon1 == 360 || lat2 == 360 || lon2 == 360) {
+            return -1; // Error case, can't have distance of -1. When this occurs, print error message in GUI.
+        }
+
         double radius = 6371;
         double theta1 = lat1 * Math.PI / 180;
         double theta2 = lat2 * Math.PI / 180;

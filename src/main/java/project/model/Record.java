@@ -1,7 +1,6 @@
 package project.model;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -135,16 +134,74 @@ public class Record {
     }
 
     /**
-     * Placeholders.
-     * What are we basing the search criteria on? Airport? Country? Same applies to function below.
+     * Search by id. Might need changing.
      */
-    public ArrayList<Airport> searchAirports(String search) {
+    public Airport searchAirports(int id) {
 
-        return new ArrayList<Airport>();
+        for (Airport airport: airportList) {
+            if (airport.getId() == id) {
+                return airport;
+            }
+        }
+        return null; // In the GUI, use some code to handle this situation: Call function, if return null, print error.
     }
-    public ArrayList<Flight> searchFlights(String search) {
 
-        return new ArrayList<Flight>();
+    /**
+     * Search by id. Might need changing.
+     */
+    public Route searchRoutes(int id) {
+
+        for (Route route: routeList) {
+            if (route.getId() == id) {
+                return route;
+            }
+        }
+        return null; // In the GUI, use some code to handle this situation: Call function, if return null, print error.
+    }
+
+    /**
+     * Completed. Requires special implementation in GUI.
+     * To search flights, check either the destination or source checkbox (can't be both).
+     * Then enter the name of the source/destination airport. If this is on record, will identify the
+     * ICAO code from that airport, and search the flightlist for flights matching this source/destination
+     * ICAO. If none can be found, returns null. Print exception when this occurs.
+     */
+    public Flight searchFlights(boolean source, String airportName) {
+
+        for (Airport airport: airportList) {
+            if (airport.getName() == airportName) {
+                String icao = airport.getIcao();
+                for (Flight flight : flightList) {
+                    if (source) { // Searching source
+                        if (flight.getSource() == icao) {
+                            return flight;
+                        }
+                    } else {  // Searching destination
+                        if (flight.getDest() == icao) {
+                            return flight;
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Iterates through the list of airports and list of routes and adds 1 to the numRoutes attribute
+     * of each airport based on how many routes begin at that airport. Only counts routes from, not routes to.
+     * (This might need to be changed)
+     */
+    public void setNumRoutes() {
+        for (Airport airport : airportList) {
+            String icao = airport.getIcao();
+            String iata = airport.getIata();
+            for (Route route : routeList) {
+                if (route.getSourceAirport() == icao || route.getSourceAirport() == iata) {
+                    airport.setNumRoutes(airport.getNumRoutes() + 1);
+                }
+            }
+        }
     }
 
     /**

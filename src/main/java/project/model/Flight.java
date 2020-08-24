@@ -7,15 +7,15 @@ public class Flight {
     /**
      * ArrayList containing the latitudes at certain points during the flight
      */
-    private ArrayList<Float> latitudes;
+    private ArrayList<Double> latitudes;
     /**
      * ArrayList containing the longitudes at certain points during the flight
      */
-    private ArrayList<Float> longitudes;
+    private ArrayList<Double> longitudes;
     /**
      * ArrayList containing the altitudes at certain points during the flight
      */
-    private ArrayList<Float> altitudes;
+    private ArrayList<Integer> altitudes;
     /**
      * ArrayList containing the nearest locations at certain points during the flight
      */
@@ -29,22 +29,43 @@ public class Flight {
      */
     private int risk;
 
-    public Flight(ArrayList<Float> latitudes, ArrayList<Float> longitudes, ArrayList<Float> altitudes, ArrayList<String> locations, String status, int risk) {}
+    /**
+     * First code displayed in locations array (source ICAO airport code).
+     */
+    private String source;
 
-    public void setAltitudes(ArrayList<Float> altitudes) {
+    /**
+     * Last code displayed in locations array (destination ICAO airport code).
+     */
+    private String dest;
+
+    public Flight(ArrayList<Double> latitudes, ArrayList<Double> longitudes, ArrayList<Integer> altitudes, ArrayList<String> locations, ArrayList<String> status, int risk) {
+        this.latitudes = latitudes;
+        this.longitudes = longitudes;
+        this.altitudes = altitudes;
+        this.locations = locations;
+        this.status = status;
+        this.risk = risk;
+        this.source = locations.get(0);
+        this.dest = locations.get(locations.size() - 1);
+    }
+
+    public void setAltitudes(ArrayList<Integer> altitudes) {
         this.altitudes = altitudes;
     }
 
-    public void setLatitudes(ArrayList<Float> latitudes) {
+    public void setLatitudes(ArrayList<Double> latitudes) {
         this.latitudes = latitudes;
     }
 
-    public void setLongitudes(ArrayList<Float> longitudes) {
+    public void setLongitudes(ArrayList<Double> longitudes) {
         this.longitudes = longitudes;
     }
 
     public void setLocations(ArrayList<String> locations) {
         this.locations = locations;
+        this.source = locations.get(0);
+        this.dest = locations.get(locations.size() - 1);
     }
 
     public void setRisk(int risk) {
@@ -55,15 +76,15 @@ public class Flight {
         this.status = status;
     }
 
-    public ArrayList<Float> getLatitudes() {
+    public ArrayList<Double> getLatitudes() {
         return latitudes;
     }
 
-    public ArrayList<Float> getLongitudes() {
+    public ArrayList<Double> getLongitudes() {
         return longitudes;
     }
 
-    public ArrayList<Float> getAltitudes() {
+    public ArrayList<Integer> getAltitudes() {
         return altitudes;
     }
 
@@ -79,6 +100,14 @@ public class Flight {
         return risk;
     }
 
+    public String getSource() {
+        return source;
+    }
+
+    public String getDest() {
+        return dest;
+    }
+
     /**
      * Placeholder until we've decided what the format should be for flights.
      */
@@ -86,10 +115,10 @@ public class Flight {
         if (pointInFlight > altitudes.size()) {
             return ("Provided int not within bounds");
         } else {
-            float altitude = altitudes.get(pointInFlight);
-            float lat = latitudes.get(pointInFlight);
-            float lon = longitudes.get(pointInFlight);
-            return (String.format("At point %d in the flight, the plane had an altitude of %f, and was located at coordinates %f, %f", altitude, lat, lon));
+            int altitude = altitudes.get(pointInFlight);
+            double lat = latitudes.get(pointInFlight);
+            double lon = longitudes.get(pointInFlight);
+            return (String.format("At point % in the flight, the plane had an altitude of %, and was located at coordinates %.4f, %.4f", altitude, lat, lon));
         }
     }
 
