@@ -5,7 +5,6 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -17,34 +16,58 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.web.WebView?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controller.GUIController">
   <tabs>
     <Tab fx:id="airport_tab" text="Airport">
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <ScrollPane layoutX="14.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0">
-                    <content>
-                      <AnchorPane minHeight="450.0" minWidth="450.0" prefHeight="450.0" prefWidth="450.0" />
-                    </content>
-                  </ScrollPane>
                   <SplitPane dividerPositions="0.5" layoutX="535.0" layoutY="10.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="200.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                      <AnchorPane fx:id="airportSearchPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <TextField fx:id="searchBar" layoutX="25.0" layoutY="14.0" />
+                              <CheckBox layoutX="25.0" layoutY="56.0" mnemonicParsing="false" text="CheckBox" />
+                              <CheckBox layoutX="26.0" layoutY="94.0" mnemonicParsing="false" text="CheckBox" />
+                              <CheckBox layoutX="26.0" layoutY="130.0" mnemonicParsing="false" text="CheckBox" />
+                              <CheckBox layoutX="26.0" layoutY="168.0" mnemonicParsing="false" text="CheckBox" />
+                           </children></AnchorPane>
+                      <AnchorPane fx:id="airportDetailPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                           <children>
+                              <ListView layoutX="-1.0" prefHeight="221.0" prefWidth="200.0" />
+                           </children></AnchorPane>
                     </items>
                   </SplitPane>
+                  <ListView fx:id="airportList" layoutX="15.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0" />
                </children></AnchorPane>
       </content>
     </Tab>
       <Tab fx:id="airline_tab" text="Airline">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ListView fx:id="airlineList" layoutX="15.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0" />
+                  <SplitPane dividerPositions="0.5" layoutX="535.0" layoutY="10.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="200.0">
+                    <items>
+                      <AnchorPane fx:id="airlineSearchPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                      <AnchorPane fx:id="airlineDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                    </items>
+                  </SplitPane>
+               </children></AnchorPane>
         </content>
       </Tab>
       <Tab fx:id="route_tab" text="Route">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <ListView fx:id="routeList" layoutX="15.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0" />
+                  <SplitPane dividerPositions="0.5" layoutX="535.0" layoutY="10.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="200.0">
+                    <items>
+                      <AnchorPane fx:id="routeSearchPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                      <AnchorPane fx:id="routeDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                    </items>
+                  </SplitPane>
+               </children></AnchorPane>
         </content>
       </Tab>
     <Tab fx:id="map_tab" text="Map">
@@ -231,6 +254,31 @@
                   </Pane>
                </children></AnchorPane>
          </content>
+      </Tab>
+      <Tab text="Settings">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <GridPane hgap="100.0" layoutX="14.0" layoutY="14.0" prefHeight="376.0" prefWidth="241.0" vgap="10.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="49.59999389648438" minHeight="0.0" prefHeight="43.99998779296875" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="60.800012207031244" minHeight="10.0" prefHeight="53.60000000000001" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="51.9999938964844" minHeight="10.0" prefHeight="49.60000000000002" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <padding>
+                        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+                     </padding>
+                     <children>
+                        <CheckBox fx:id="defaultSettingsCheckBox" mnemonicParsing="false" text="Reset Default Settings" />
+                        <CheckBox fx:id="hobbyCheckBox" mnemonicParsing="false" text="Opt in Hobby Pilot Data" GridPane.rowIndex="1" />
+                        <CheckBox fx:id="enthusiastCheckBox" mnemonicParsing="false" text="Opt in Flight Enthusiast Data" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </children></AnchorPane>
+        </content>
       </Tab>
   </tabs>
 </TabPane>
