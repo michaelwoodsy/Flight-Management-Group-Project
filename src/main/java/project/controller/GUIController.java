@@ -43,10 +43,5 @@ public class GUIController {
                 existingAirportCodes.add(airport.getIata());
             }
         }
-
-        //Not multiselect by default
-        airportList.getItems().addAll("test", "Test2", "test23");
-        //Operation to enable multiselect
-        airportList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 }
