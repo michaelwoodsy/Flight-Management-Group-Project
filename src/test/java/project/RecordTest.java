@@ -24,11 +24,11 @@ public class RecordTest {
     Route testRoute6 = new Route("Air NZ", 505, "CHC", 411, "YSSY", 511, 4, "DXa34", false);
 
 
-    Airport testAirport1 = new Airport(101, 500, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", "Test1", "Openflights", 1);
-    Airport testAirport2 = new Airport(102, 500, "Test2", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", "Test2", "Openflights", 4);
-    Airport testAirport3 = new Airport(103, 500, "Test3", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test3", "Test3", "Test3", "Openflights", 10);
-    Airport testAirport4 = new Airport(104, 500, "Test4", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test4", "Test4", "Test4", "Openflights", 2);
-    Airport testAirport5 = new Airport(105, 500, "Test5", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0);
+    Airport testAirport1 = new Airport(101, 500, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", "Test1", "Openflights", 1, 1);
+    Airport testAirport2 = new Airport(102, 500, "Test2", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", "Test2", "Openflights", 4, 4);
+    Airport testAirport3 = new Airport(103, 500, "Test3", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test3", "Test3", "Test3", "Openflights", 10, 10);
+    Airport testAirport4 = new Airport(104, 500, "Test4", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test4", "Test4", "Test4", "Openflights", 2, 2);
+    Airport testAirport5 = new Airport(105, 500, "Test5", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
 
     private Loader loader = new Loader();
 
@@ -42,6 +42,9 @@ public class RecordTest {
         Flight testFlight2 = loader.loadFlightFile("data/flighttest.csv");
 
         ArrayList<Flight> testFlightList = new ArrayList<Flight>();
+        testFlightList.add(testFlight1);
+        testFlightList.add(testFlight1);
+        testFlightList.add(testFlight2);
         testFlightList.add(testFlight1);
         testFlightList.add(testFlight2);
 
@@ -269,12 +272,12 @@ public class RecordTest {
         ArrayList<Flight> testFlightList = new ArrayList<Flight>();
 
         ArrayList<Airport> testAirportList = new ArrayList<Airport>();
-        Airport testAirport6 = new Airport(101, 500, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", "Test1", "Openflights", 0);
-        Airport testAirport7 = new Airport(102, 500, "Test2", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", "Test2", "Openflights", 0);
-        Airport testAirport8 = new Airport(103, 500, "Test3", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test3", "Test3", "Test3", "Openflights", 0);
-        Airport testAirport9 = new Airport(104, 500, "Test4", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test4", "Test4", "Test4", "Openflights", 0);
-        Airport testAirport10 = new Airport(105, 500, "Test5", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0);
-        Airport testAirport11 = new Airport(105, 500, "Test5", "Christchurch", "New Zealand", "YEET", "YEET", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0);
+        Airport testAirport6 = new Airport(101, 500, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", "Test1", "Openflights", 0, 0);
+        Airport testAirport7 = new Airport(102, 500, "Test2", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", "Test2", "Openflights", 0, 0);
+        Airport testAirport8 = new Airport(103, 500, "Test3", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test3", "Test3", "Test3", "Openflights", 0, 0);
+        Airport testAirport9 = new Airport(104, 500, "Test4", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test4", "Test4", "Test4", "Openflights", 0, 0);
+        Airport testAirport10 = new Airport(105, 500, "Test5", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
+        Airport testAirport11 = new Airport(105, 500, "Test5", "Christchurch", "New Zealand", "YEET", "YEET", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
 
 
         ArrayList<Route> testRouteList = new ArrayList<Route>();
@@ -301,12 +304,27 @@ public class RecordTest {
 
         Record testRecord = new Record(testFlightList, testRouteList, testAirportList, testAirlineList);
 
-        testRecord.setNumRoutes();
+        testRecord.setNumRoutesDest();
+        testRecord.setNumRoutesSource();
 
-        assertEquals(3, testRecord.rankAirports(true).get(0).getNumRoutes());
-        assertEquals(2, testRecord.rankAirports(true).get(4).getNumRoutes());
-        assertEquals(0, testRecord.rankAirports(true).get(5).getNumRoutes());
+        assertEquals(6, testRecord.rankAirports(true).get(0).getTotalRoutes());
+        assertEquals(4, testRecord.rankAirports(true).get(4).getTotalRoutes());
+        assertEquals(0, testRecord.rankAirports(true).get(5).getTotalRoutes());
 
+    }
+
+    @Test
+    public void searchFlightsTest() throws IOException {
+        Record testRecord = setUp();
+
+        ArrayList<Flight> flightList = testRecord.searchFlights(true, "Test1");
+        assertEquals(3, flightList.size());
+
+        flightList = testRecord.searchFlights(false, "Test4");
+        assertEquals(2, flightList.size());
+
+        flightList = testRecord.searchFlights(false, "???");
+        assertEquals(0, flightList.size());
 
     }
 }

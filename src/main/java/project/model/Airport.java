@@ -16,25 +16,29 @@ public class Airport {
     private String timezoneString;
     private String type;
     private String source;
-    private int numRoutes;
+    private int numRoutesSource;
+    private int numRoutesDest;
+    private int totalRoutes;
 
-    public Airport(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, double timezone, String dst, String timezoneString, String type, String source, int numRoutes) {
-        setId(id);
-        setRisk(risk);
-        setName(name);
-        setCity(city);
-        setCountry(country);
-        setIata(iata);
-        setIcao(icao);
-        setLatitude(latitude);
-        setLongitude(longitude);
-        setAltitude(altitude);
-        setTimezone(timezone);
-        setDst(dst);
-        setTimezoneString(timezoneString);
-        setType(type);
-        setSource(source);
-        setNumRoutes(numRoutes);
+    public Airport(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, double timezone, String dst, String timezoneString, String type, String source, int numRoutesSource, int numRoutesDest) {
+        this.id = id;
+        this.risk = risk;
+        this.name = name;
+        this.city = city;
+        this.country = country;
+        this.iata = iata;
+        this.icao = icao;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.altitude = altitude;
+        this.timezone = timezone;
+        this.dst = dst;
+        this.timezoneString = timezoneString;
+        this.type = type;
+        this.source = source;
+        this.numRoutesSource = numRoutesSource;
+        this.numRoutesDest = numRoutesDest;
+        this.totalRoutes = this.numRoutesDest + this.numRoutesSource;
     }
 
     public int getId() {
@@ -157,12 +161,30 @@ public class Airport {
         this.source = source;
     }
 
-    public int getNumRoutes() {
-        return numRoutes;
+    public int getNumRoutesSource() {
+        return numRoutesSource;
     }
 
-    public void setNumRoutes(int numRoutes) {
-        this.numRoutes = numRoutes;
+    public void setNumRoutesSource(int numRoutesSource) {
+        this.numRoutesSource = numRoutesSource;
+        setTotalRoutes();
+    }
+
+    public int getNumRoutesDest() {
+        return numRoutesDest;
+    }
+
+    public void setNumRoutesDest(int numRoutesDest) {
+        this.numRoutesDest = numRoutesDest;
+        setTotalRoutes();
+    }
+
+    public int getTotalRoutes() {
+        return totalRoutes;
+    }
+
+    public void setTotalRoutes() {
+        this.totalRoutes = this.numRoutesDest + this.numRoutesSource;
     }
 
     /**
@@ -186,11 +208,13 @@ public class Airport {
                 ", timezoneString='" + timezoneString + '\'' +
                 ", type='" + type + '\'' +
                 ", source='" + source + '\'' +
-                ", numRoutes=" + numRoutes +
+                ", numRoutesSource=" + numRoutesSource +
+                ", numRoutesDest=" + numRoutesDest +
+                ", totalRoutes=" + totalRoutes +
                 '}';
     }
 
-    public void update(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, int timezone, String dst, String timezoneString, String type, String source, int numRoutes) {
+    public void update(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, int timezone, String dst, String timezoneString, String type, String source, int numRoutesSource, int numRoutesDest) {
 
         if (id != this.id) {
             setId(id);
@@ -237,8 +261,11 @@ public class Airport {
         if (!source.equals(this.source)) {
             setSource(source);
         }
-        if (numRoutes != this.numRoutes) {
-            setNumRoutes(numRoutes);
+        if (numRoutesSource != this.numRoutesSource) {
+            setNumRoutesSource(numRoutesSource);
+        }
+        if (numRoutesDest != this.numRoutesDest) {
+            setNumRoutesDest(numRoutesDest);
         }
     }
 
