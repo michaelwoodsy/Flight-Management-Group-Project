@@ -126,9 +126,9 @@ public class Record {
     public ArrayList<Airport> rankAirports(boolean reverse) {
         ArrayList<Airport> rankedAirports = airportList;
         if (reverse) {
-            rankedAirports.sort(Comparator.comparing(Airport::getNumRoutes).reversed());
+            rankedAirports.sort(Comparator.comparing(Airport::getTotalRoutes).reversed());
         } else {
-            rankedAirports.sort(Comparator.comparing(Airport::getNumRoutes));
+            rankedAirports.sort(Comparator.comparing(Airport::getTotalRoutes));
         }
         return rankedAirports;
     }
@@ -164,41 +164,58 @@ public class Record {
      * To search flights, check either the destination or source checkbox (can't be both).
      * Then enter the name of the source/destination airport. If this is on record, will identify the
      * ICAO code from that airport, and search the flightlist for flights matching this source/destination
-     * ICAO. If none can be found, returns null. Print exception when this occurs.
+     * ICAO. If none can be found, returns empty list. Print exception when this occurs.
      */
-    public Flight searchFlights(boolean source, String airportName) {
+    public ArrayList<Flight> searchFlights(boolean source, String airportName) {
+
+        ArrayList<Flight> searchedFlights = new ArrayList<Flight>();
 
         for (Airport airport: airportList) {
-            if (airport.getName() == airportName) {
+            if (airport.getName().equals(airportName)) {
                 String icao = airport.getIcao();
                 for (Flight flight : flightList) {
                     if (source) { // Searching source
-                        if (flight.getSource() == icao) {
-                            return flight;
+                        if (flight.getSource().equals(icao)) {
+                            searchedFlights.add(flight);
                         }
                     } else {  // Searching destination
-                        if (flight.getDest() == icao) {
-                            return flight;
+                        if (flight.getDest().equals(icao)) {
+                            searchedFlights.add(flight);
                         }
                     }
                 }
             }
         }
-        return null;
+        return searchedFlights;
     }
 
     /**
-     * Iterates through the list of airports and list of routes and adds 1 to the numRoutes attribute
-     * of each airport based on how many routes begin at that airport. Only counts routes from, not routes to.
-     * (This might need to be changed)
+     * Iterates through the list of airports and list of routes and adds 1 to the numRoutesSource attribute
+     * of each airport based on how many routes begin at that airport.
      */
-    public void setNumRoutes() {
+    public void setNumRoutesSource() {
         for (Airport airport : airportList) {
             String icao = airport.getIcao();
             String iata = airport.getIata();
             for (Route route : routeList) {
-                if (route.getSourceAirport() == icao || route.getSourceAirport() == iata) {
-                    airport.setNumRoutes(airport.getNumRoutes() + 1);
+                if (route.getSourceAirport().equals(icao) || route.getSourceAirport().equals(iata)) {
+                    airport.setNumRoutesSource(airport.getNumRoutesSource() + 1);
+                }
+            }
+        }
+    }
+
+    /**
+     * Iterates through the list of airports and list of routes and adds 1 to the numRoutesDest attribute
+     * of each airport based on how many routes end at that airport.
+     */
+    public void setNumRoutesDest() {
+        for (Airport airport : airportList) {
+            String icao = airport.getIcao();
+            String iata = airport.getIata();
+            for (Route route : routeList) {
+                if (route.getDestAirport().equals(icao) || route.getDestAirport().equals(iata)) {
+                    airport.setNumRoutesDest(airport.getNumRoutesDest() + 1);
                 }
             }
         }
@@ -225,4 +242,19 @@ public class Record {
 
     }
 
+    public ArrayList<Flight> getFlightList() {
+        return flightList;
+    }
+
+    public ArrayList<Route> getRouteList() {
+        return routeList;
+    }
+
+    public ArrayList<Airport> getAirportList() {
+        return airportList;
+    }
+
+    public ArrayList<Airline> getAirlineList() {
+        return airlineList;
+    }
 }
