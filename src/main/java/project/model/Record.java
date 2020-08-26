@@ -134,16 +134,28 @@ public class Record {
     }
 
     /**
-     * Search by id. Might need changing.
+     * Search by Keyword. Might need changing...
+     * To search airports, input a key word(string)
+     * Searches through list of Airports and checks whether it contains the key word
+     * e.g. keyWord = "land", results = "Zealand", "orLANDdo"...
+     *
+     * @param keyWord The key word(string) to be searched
+     * @return searchResult, a list of Airport containing key word in Airport name
      */
-    public Airport searchAirports(int id) {
+    public ArrayList<Airport> searchAirports(String keyWord) {
+        ArrayList<Airport> searchResult = new ArrayList<>();
 
         for (Airport airport: airportList) {
-            if (airport.getId() == id) {
-                return airport;
+            if (airport.getName().toUpperCase().contains(keyWord.toUpperCase())) {
+                searchResult.add(airport);
             }
         }
-        return null; // In the GUI, use some code to handle this situation: Call function, if return null, print error.
+
+        if (searchResult.size() >= 1) {
+            return searchResult;
+        } else {
+            return null;
+        }// In the GUI, use some code to handle this situation: Call function, if return null, print error.
     }
 
     /**
