@@ -125,11 +125,18 @@ public class LoaderTest {
     @Test
 
     public void loadCovidFileTest() throws IOException{
+        // checks that covid file doesnt fail
         ArrayList<Covid> covid_list = loader.loadCovidFile("data/covid.dat");
+    }
+
+    @Test
+    public void testCovid() throws IOException {
+        //runs test file with missing attributes to ensure loader wont crash
+        ArrayList<Covid> covid_list = loader.loadCovidFile("data/covid_test.dat");
         /*
         for(Covid covid: covid_list){
             System.out.println(covid.print_country_data());
         }
-        */
+         */
     }
 }
