@@ -4,6 +4,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TextField;
 import project.model.*;
 
 import java.util.ArrayList;
@@ -15,6 +16,12 @@ public class GUIController {
 
     @FXML
     private ListView airportList;
+    @FXML
+    private ListView detailList;
+    @FXML
+    private TextField searchBar;
+
+
     private ArrayList<String> existingAirportCodes = new ArrayList<String>();
 
     /**
