@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -10,9 +13,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Added number of dest and source routes to airports, methods to find these, and some tests to search flights.">
+    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Searching Airports using keywords (searchAirports method), done 3 tests (more tests maybe?) and drafted documentation for method.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Record.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,26 +74,18 @@
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="preferences.general" />
+    <property name="settings.editor.selected.configurable" value="inlay.hints.JAVA" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="project" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\dan\Documents\SENG202\planesonar25\src\main\resources\project" />
       <recent name="C:\Users\elang\planesonar25\src\main" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.RecordTest">
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.RecordTest.searchAirportsTest">
     <configuration name="Database" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project.controller.Database" />
       <module name="repository" />
@@ -118,6 +112,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="AirportTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="repository" />
       <extension name="coverage">
@@ -133,7 +140,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoaderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CovidTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="repository" />
       <extension name="coverage">
         <pattern>
@@ -142,13 +149,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="project" />
-      <option name="MAIN_CLASS_NAME" value="project.LoaderTest" />
+      <option name="MAIN_CLASS_NAME" value="project.CovidTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RecordTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RecordTest.searchAirportsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="repository" />
       <extension name="coverage">
         <pattern>
@@ -158,22 +165,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="project" />
       <option name="MAIN_CLASS_NAME" value="project.RecordTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="searchAirportsTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RecordTest" />
+        <item itemvalue="JUnit.RecordTest.searchAirportsTest" />
         <item itemvalue="Application.Database" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.LoaderTest" />
         <item itemvalue="JUnit.AirportTest" />
+        <item itemvalue="JUnit.CovidTest" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -191,6 +199,8 @@
       <workItem from="1597717809972" duration="1898000" />
       <workItem from="1597789819543" duration="3455000" />
       <workItem from="1598230828256" duration="1456000" />
+      <workItem from="1598259410758" duration="1275000" />
+      <workItem from="1598399542678" duration="403000" />
     </task>
     <task id="LOCAL-00001" summary="Testing pushing">
       <created>1595977595204</created>
@@ -353,14 +363,35 @@
       <option name="project" value="LOCAL" />
       <updated>1597984121243</updated>
     </task>
-    <task id="LOCAL-00024" summary="Added number of dest and source routes to airports, methods to find these, and some tests to search flights.">
-      <created>1598244123967</created>
+    <task id="LOCAL-00024" summary="edited covid risk class">
+      <created>1598263026790</created>
       <option name="number" value="00024" />
       <option name="presentableId" value="LOCAL-00024" />
       <option name="project" value="LOCAL" />
-      <updated>1598244123968</updated>
+      <updated>1598263026790</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="edited covid risk class">
+      <created>1598263187853</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1598263187853</updated>
+    </task>
+    <task id="LOCAL-00026" summary="added a covid_test file, that has missing attributes to test that laoder wont crash with missing input">
+      <created>1598331770109</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1598331770109</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Searching Airports using keywords (searchAirports method), done 3 tests (more tests maybe?) and drafted documentation for method.">
+      <created>1598429479251</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1598429479251</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -395,8 +426,10 @@
     <MESSAGE value="added a get_risk for countries with COIV-19 that does basic percentage calculation based on population an d total cases. and returns a string representation of risks. e.g. &quot;high&quot;, &quot;Low&quot;" />
     <MESSAGE value="covid.dat file added" />
     <MESSAGE value="fixed covid loader and wrote a test that checks if loading was successful" />
-    <MESSAGE value="Added number of dest and source routes to airports, methods to find these, and some tests to search flights." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added number of dest and source routes to airports, methods to find these, and some tests to search flights." />
+    <MESSAGE value="edited covid risk class" />
+    <MESSAGE value="added a covid_test file, that has missing attributes to test that laoder wont crash with missing input" />
+    <MESSAGE value="Searching Airports using keywords (searchAirports method), done 3 tests (more tests maybe?) and drafted documentation for method." />
+    <option name="LAST_COMMIT_MESSAGE" value="Searching Airports using keywords (searchAirports method), done 3 tests (more tests maybe?) and drafted documentation for method." />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
@@ -415,10 +448,11 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="93" y="93" width="1181" height="685" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1368.872@0.0.1368.872" timestamp="1597896139005" />
-    <state x="397" y="147" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1598234202438">
-      <screen x="0" y="0" width="1280" height="688" />
+    <state x="596" y="222" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1598311734227">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="397" y="147" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234202438" />
+    <state x="596" y="222" key="#com.intellij.fileTypes.FileTypeChooser/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598311734227" />
     <state x="490" y="152" key="#com.intellij.ide.util.MemberChooser" timestamp="1598243695835">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
@@ -427,6 +461,11 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="408" y="125" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1368.872@0.0.1368.872" timestamp="1595996744421" />
+    <state x="743" y="389" width="433" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1598423060171">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="743" y="389" width="433" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1598423060171" />
+    <state x="743" y="389" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598332540931" />
     <state x="653" y="184" key="FileChooserDialogImpl" timestamp="1597981987286">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -434,42 +473,46 @@
     <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1595996669318" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1597556338095" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597981987286" />
-    <state width="663" height="256" key="GridCell.Tab.0.bottom" timestamp="1598244525072">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1598429423416">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382835" />
     <state width="1237" height="164" key="GridCell.Tab.0.bottom/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="663" height="256" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1598244525072" />
-    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
-    <state width="1621" height="292" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597985879104" />
-    <state width="663" height="256" key="GridCell.Tab.0.center" timestamp="1598244525072">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state width="663" height="256" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1598243118992" />
+    <state width="746" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
+    <state width="1621" height="172" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966906" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1598429423416" />
+    <state width="1877" height="163" key="GridCell.Tab.0.bottom/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598335200683" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1598429423416">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382834" />
     <state width="1237" height="164" key="GridCell.Tab.0.center/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="663" height="256" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1598244525072" />
-    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
-    <state width="1621" height="292" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597985879104" />
-    <state width="663" height="256" key="GridCell.Tab.0.left" timestamp="1598244525072">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state width="663" height="256" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1598243118992" />
+    <state width="746" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
+    <state width="1621" height="172" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966904" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1598429423416" />
+    <state width="1877" height="163" key="GridCell.Tab.0.center/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598335200682" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1598429423416">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382834" />
     <state width="1237" height="164" key="GridCell.Tab.0.left/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="663" height="256" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1598244525072" />
-    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
-    <state width="1621" height="292" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597985879104" />
-    <state width="663" height="256" key="GridCell.Tab.0.right" timestamp="1598244525072">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state width="663" height="256" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1598243118992" />
+    <state width="746" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
+    <state width="1621" height="172" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966899" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1598429423416" />
+    <state width="1877" height="163" key="GridCell.Tab.0.left/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598335200682" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1598429423416">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382835" />
     <state width="1237" height="164" key="GridCell.Tab.0.right/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="663" height="256" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1598244525072" />
-    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1597546094985" />
-    <state width="1621" height="292" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1596017124337" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597985879104" />
+    <state width="663" height="256" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1598243118992" />
+    <state width="746" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
+    <state width="1621" height="172" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966905" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1598429423416" />
+    <state width="1877" height="163" key="GridCell.Tab.0.right/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598335200682" />
     <state width="663" height="281" key="GridCell.Tab.1.bottom" timestamp="1597811672058">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
@@ -494,27 +537,28 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="598" y="281" key="MultipleFileMergeDialog/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1597555339490" />
-    <state x="155" y="0" key="SettingsEditor" timestamp="1597622967066">
-      <screen x="0" y="0" width="1280" height="688" />
+    <state x="233" y="0" key="SettingsEditor" timestamp="1598425220256">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="155" y="0" key="SettingsEditor/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597622967066" />
     <state x="166" y="12" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1595997449081" />
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1598244129366">
+    <state x="233" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598425220256" />
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1597895532868">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1598244129366" />
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1597895532868" />
     <state x="312" y="160" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1597831535073" />
     <state x="338" y="208" key="Vcs.Push.Dialog.v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017372267" />
     <state x="408" y="329" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1595980153516">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="408" y="329" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1368.872@0.0.1368.872" timestamp="1595980153516" />
-    <state x="692" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1597582737155">
+    <state x="692" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1598429317390">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="493" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1368.872@0.0.1368.872" timestamp="1595982886240" />
     <state x="600" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017354998" />
-    <state x="692" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1597582737155" />
+    <state x="692" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1598429317390" />
     <state x="1920" y="248" width="1657" height="716" maximized="true" key="dock-window-1" timestamp="1597983024945">
       <screen x="1920" y="0" width="1664" height="1082" />
     </state>
@@ -536,10 +580,11 @@
     </state>
     <state x="403" y="203" key="run.anything.popup/0.0.1368.872@0.0.1368.872" timestamp="1597894844662" />
     <state x="489" y="248" key="run.anything.popup/0.0.1664.1069@0.0.1664.1069" timestamp="1597666146718" />
-    <state x="343" y="91" width="670" height="676" key="search.everywhere.popup" timestamp="1597895993587">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state x="481" y="109" width="941" height="807" key="search.everywhere.popup" timestamp="1598331234255">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="303" y="9" width="672" height="678" key="search.everywhere.popup/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597623930697" />
     <state x="343" y="91" width="670" height="676" key="search.everywhere.popup/0.0.1368.872@0.0.1368.872" timestamp="1597895993587" />
+    <state x="481" y="109" width="941" height="807" key="search.everywhere.popup/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598331234255" />
   </component>
 </project>

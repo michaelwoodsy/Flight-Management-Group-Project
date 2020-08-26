@@ -1,5 +1,7 @@
 package project.model;
 
+import java.util.ArrayList;
+
 public class Airport {
     private int id;
     private int risk;

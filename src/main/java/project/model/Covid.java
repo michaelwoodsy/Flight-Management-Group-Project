@@ -9,12 +9,12 @@ public class Covid {
     private int new_cases;
     private int total_deaths;
     private int new_deaths;
-    private float total_cases_per_million;
-    private float total_deaths_per_million;
+    private double total_cases_per_million;
+    private double total_deaths_per_million;
     private int population;
 
     public Covid(String iso_code, String continent, String location, String date, int total_cases, int new_cases,
-                 int total_deaths, int new_deaths, float total_cases_per_million, float total_deaths_per_million,
+                 int total_deaths, int new_deaths, double total_cases_per_million, double total_deaths_per_million,
                  int population) {
         setIso_code(iso_code);
         setContinent(continent);
@@ -61,11 +61,11 @@ public class Covid {
         this.new_deaths = new_deaths;
     }
 
-    public void setTotal_cases_per_million(float total_cases_per_million) {
+    public void setTotal_cases_per_million(double total_cases_per_million) {
         this.total_cases_per_million = total_cases_per_million;
     }
 
-    public void setTotal_deaths_per_million(float total_deaths_per_million) {
+    public void setTotal_deaths_per_million(double total_deaths_per_million) {
         this.total_deaths_per_million = total_deaths_per_million;
     }
 
@@ -79,18 +79,19 @@ public class Covid {
         + " " + total_deaths + " " + new_deaths + " " + total_cases_per_million + " " + total_deaths_per_million + " " + population;
     }
 
-    public String get_risk(int total_cases, int population){
-        double percentage = (float)(total_cases / population) * 100.00;
+    public String get_risk(){
+        double percentage = (float)(this.total_cases * 100.00) / this.population;
+        //values that determine the severity of the risk will change! just a placeholder.
         if (percentage <= 1){
             return "Extremely Low";
         }
-        if (percentage <= 5){
+        if (percentage <= 3){
             return "Low";
         }
-        else if(percentage <= 10){
+        else if(percentage <= 4){
             return "Medium";
         }
-        else if (percentage <= 15){
+        else if (percentage <= 5){
             return "High Risk";
         }
         else{

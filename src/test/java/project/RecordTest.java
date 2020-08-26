@@ -1,9 +1,10 @@
 package project;
 
-import org.junit.Test;;
+import org.junit.Test;
 import project.model.*;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
@@ -41,14 +42,14 @@ public class RecordTest {
         Flight testFlight1 = loader.loadFlightFile("data/flight.csv");
         Flight testFlight2 = loader.loadFlightFile("data/flighttest.csv");
 
-        ArrayList<Flight> testFlightList = new ArrayList<Flight>();
+        ArrayList<Flight> testFlightList = new ArrayList<>();
         testFlightList.add(testFlight1);
         testFlightList.add(testFlight1);
         testFlightList.add(testFlight2);
         testFlightList.add(testFlight1);
         testFlightList.add(testFlight2);
 
-        ArrayList<Route> testRouteList = new ArrayList<Route>();
+        ArrayList<Route> testRouteList = new ArrayList<>();
         testRouteList.add(testRoute1);
         testRouteList.add(testRoute2);
         testRouteList.add(testRoute3);
@@ -56,14 +57,14 @@ public class RecordTest {
         testRouteList.add(testRoute5);
         testRouteList.add(testRoute6);
 
-        ArrayList<Airport> testAirportList = new ArrayList<Airport>();
+        ArrayList<Airport> testAirportList = new ArrayList<>();
         testAirportList.add(testAirport1);
         testAirportList.add(testAirport2);
         testAirportList.add(testAirport3);
         testAirportList.add(testAirport4);
         testAirportList.add(testAirport5);
 
-        ArrayList<Airline> testAirlineList = new ArrayList<Airline>();
+        ArrayList<Airline> testAirlineList = new ArrayList<>();
         testAirlineList.add(testAirline1);
         testAirlineList.add(testAirline2);
         testAirlineList.add(testAirline3);
@@ -80,7 +81,7 @@ public class RecordTest {
 
         ArrayList<Airport> filteredTestAirportList = testRecord.filterAirports("New Zealand");
 
-        ArrayList<Airport> comparisonAirportList = new ArrayList<Airport>();
+        ArrayList<Airport> comparisonAirportList = new ArrayList<>();
 
         comparisonAirportList.add(testAirport1);
         comparisonAirportList.add(testAirport2);
@@ -258,11 +259,37 @@ public class RecordTest {
     @Test
     public void searchAirportsTest() throws IOException {
         Record testRecord = setUp();
-        Airport testAirport = testRecord.searchAirports(101);
-        assertEquals(testAirport1, testAirport);
+        ArrayList<Airport> searchResults = testRecord.searchAirports("est");
+        assertEquals(testRecord.getAirportList(), searchResults);
 
-        testAirport = testRecord.searchAirports(999);
-        assertEquals(null, testAirport);
+        ArrayList<Airport> testAirport = new ArrayList<>();
+        ArrayList<Airport> comparisonList = new ArrayList<>();
+
+        Airport testAirport6 = new Airport(101, 500, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", "Test1", "Openflights", 0, 0);
+        Airport testAirport7 = new Airport(102, 500, "Ranla ndom", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", "Test2", "Openflights", 0, 0);
+        Airport testAirport8 = new Airport(103, 500, "England", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test3", "Test3", "Test3", "Openflights", 0, 0);
+        Airport testAirport9 = new Airport(104, 500, "New Zealand", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test4", "Test4", "Test4", "Openflights", 0, 0);
+        Airport testAirport10 = new Airport(105, 500, "Orlando", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
+        Airport testAirport11 = new Airport(105, 500, "Test6", "Christchurch", "New Zealand", "YEET", "YEET", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
+
+        testAirport.add(testAirport6);
+        testAirport.add(testAirport7);
+        testAirport.add(testAirport8);
+        testAirport.add(testAirport9);
+        testAirport.add(testAirport10);
+        testAirport.add(testAirport11);
+
+        testRecord = new Record(null, null, testAirport, null);
+
+        comparisonList.add(testAirport8);
+        comparisonList.add(testAirport9);
+        comparisonList.add(testAirport10);
+
+        searchResults = testRecord.searchAirports("land");
+        assertEquals(comparisonList, searchResults);
+
+        searchResults = testRecord.searchAirports("auckland");
+        assertEquals(null, searchResults);
     }
 
     @Test
