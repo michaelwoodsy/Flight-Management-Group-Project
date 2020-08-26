@@ -20,28 +20,44 @@ public class GUIController {
     @FXML
     private ListView airportList;
     @FXML
-    private ListView detailList;
+    private ListView airportDetailList;
     @FXML
-    private TextField searchBar;
+    private TextField airportSearchCriteria;
     @FXML
-    private Button searchButton;
+    private Button airportSearchButton;
     @FXML
-    private ChoiceBox sortChoice;
+    private ChoiceBox airportSortBy;
+    @FXML
+    private ChoiceBox airlineSortBy;
+    @FXML
+    private ChoiceBox airlineSearchBy;
+    @FXML
+    private ChoiceBox routeSearchBy;
+    @FXML
+    private ChoiceBox routeSortBy;
 
     private Record record = Database.generateRecord();
 
     public void filterAirportsByCountry() {
-        sortChoice.setItems(observableArrayList("Most Popular", "Least Popular"));
-        sortChoice.setValue("Most Popular");
-        String country = searchBar.getText().toLowerCase();
+        airportSortBy.setItems(observableArrayList("Most Popular", "Least Popular"));
+        airportSortBy.setValue("Most Popular");
+        String country = airportSearchCriteria.getText().toLowerCase();
         ArrayList<Airport> filteredAirports = record.filterAirports(country);
-        String wayToSort = (String) sortChoice.getValue();
-        if (wayToSort == "Least Popular") {
-            airportList.setItems(observableArrayList(record.rankAirports(true)));
-
-        } else {
-            airportList.setItems(observableArrayList(record.rankAirports(false)));
-        }
-
     }
+
+    public void sortCurrentData() {}
+
+    public void setUpChoices() {
+        ObservableList<String> sortStrings = observableArrayList("Most Popular", "Least Popular");
+        airportSortBy.setItems(sortStrings);
+        routeSortBy.setItems(sortStrings);
+        airlineSortBy.setItems(sortStrings);
+        airportSortBy.setValue("Most Popular");
+        airlineSortBy.setValue("Most Popular");
+        routeSortBy.setValue("Most Popular");
+
+        airlineSearchBy.setItems(observableArrayList("Country of Origin", "Active", "Inactive"));
+        routeSearchBy.setItems(observableArrayList("Destination", "Departure Location", "Equipment"));
+    }
+
 }
