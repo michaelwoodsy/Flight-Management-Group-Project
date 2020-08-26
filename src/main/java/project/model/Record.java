@@ -160,7 +160,7 @@ public class Record {
     }
 
     /**
-     * Completed. Requires special implementation in GUI.
+     * Requires special implementation in GUI.
      * To search flights, check either the destination or source checkbox (can't be both).
      * Then enter the name of the source/destination airport. If this is on record, will identify the
      * ICAO code from that airport, and search the flightlist for flights matching this source/destination
