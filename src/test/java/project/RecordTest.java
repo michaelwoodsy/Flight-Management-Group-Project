@@ -247,16 +247,6 @@ public class RecordTest {
     }
 
     @Test
-    public void searchRoutesTest() throws IOException {
-        Record testRecord = setUp();
-        Route testRoute = testRecord.searchRoutes(500);
-        assertEquals(testRoute1, testRoute);
-
-        testRoute = testRecord.searchRoutes(999);
-        assertEquals(null, testRoute);
-    }
-
-    @Test
     public void searchAirportsTest() throws IOException {
         Record testRecord = setUp();
         ArrayList<Airport> searchResults = testRecord.searchAirports("est");
@@ -289,7 +279,7 @@ public class RecordTest {
         assertEquals(comparisonList, searchResults);
 
         searchResults = testRecord.searchAirports("auckland");
-        assertEquals(null, searchResults);
+        assertEquals(0, searchResults.size());
     }
 
     @Test

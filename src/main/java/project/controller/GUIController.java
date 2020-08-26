@@ -1,12 +1,16 @@
 package project.controller;
 
+import com.sun.glass.ui.CommonDialogs;
 import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
 import project.model.*;
 
+import java.io.File;
 import java.util.*;
 
 import static javafx.collections.FXCollections.observableArrayList;
@@ -48,6 +52,19 @@ public class GUIController {
         }
         ArrayList<Airport> filteredAirports = record.filterAirports(country);
         airportList.setItems(observableArrayList(filteredAirports));
+    }
+
+    public void addButton(ActionEvent event) {
+        FileChooser loadFile = new FileChooser();
+        loadFile.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+        loadFile.getExtensionFilters().add(new FileChooser.ExtensionFilter("DAT Files", "*.dat"));
+
+        File file = loadFile.showOpenDialog(null);
+
+        if (file != null) {
+            System.out.println(file.getAbsolutePath());
+        }
+
     }
 
     /**
