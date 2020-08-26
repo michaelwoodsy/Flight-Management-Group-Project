@@ -31,8 +31,9 @@
                               <TextField fx:id="airportSearchCriteria" layoutX="25.0" layoutY="25.0" prefWidth="150.0" />
                               <Text layoutX="25.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Country:" />
                               <Button fx:id="ariportSearchButton" layoutX="115.0" layoutY="60.0" mnemonicParsing="false" text="SEARCH" />
-                              <ChoiceBox fx:id="airportSortBy" layoutX="25.0" layoutY="165.0" prefHeight="25.0" prefWidth="150.0" />
-                              <Text layoutX="25.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort by:" />
+                              <ChoiceBox fx:id="airportSortBy" layoutX="25.0" layoutY="120.0" prefHeight="25.0" prefWidth="150.0" />
+                              <Text layoutX="25.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort by:" />
+                              <Button fx:id="showAllAirports" layoutX="71.0" layoutY="182.0" mnemonicParsing="false" text="SHOW ALL DATA" />
                            </children></AnchorPane>
                       <AnchorPane fx:id="airportDetailPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
