@@ -143,32 +143,28 @@ public class Record {
      * @return searchResult, a list of Airport containing key word in Airport name
      */
     public ArrayList<Airport> searchAirports(String keyWord) {
-        ArrayList<Airport> searchResult = new ArrayList<>();
+        ArrayList<Airport> searchResult = new ArrayList<Airport>();
 
         for (Airport airport: airportList) {
             if (airport.getName().toUpperCase().contains(keyWord.toUpperCase())) {
                 searchResult.add(airport);
             }
         }
-
-        if (searchResult.size() >= 1) {
-            return searchResult;
-        } else {
-            return null;
-        }// In the GUI, use some code to handle this situation: Call function, if return null, print error.
+        return searchResult;
     }
 
     /**
-     * Search by id. Might need changing.
+     * Search by airline name. Might need changing.
      */
-    public Route searchRoutes(int id) {
+    public ArrayList<Route> searchRoutes(String keyWord) {
+        ArrayList<Route> searchResult = new ArrayList<Route>();
 
         for (Route route: routeList) {
-            if (route.getId() == id) {
-                return route;
+            if (route.getAirline().toUpperCase().contains(keyWord.toUpperCase())) {
+                searchResult.add(route);
             }
         }
-        return null; // In the GUI, use some code to handle this situation: Call function, if return null, print error.
+        return searchResult;
     }
 
     /**
@@ -178,27 +174,27 @@ public class Record {
      * ICAO code from that airport, and search the flightlist for flights matching this source/destination
      * ICAO. If none can be found, returns empty list. Print exception when this occurs.
      */
-    public ArrayList<Flight> searchFlights(boolean source, String airportName) {
+    public ArrayList<Flight> searchFlights(boolean source, String keyWord) {
 
-        ArrayList<Flight> searchedFlights = new ArrayList<Flight>();
+        ArrayList<Flight> searchResult = new ArrayList<Flight>();
 
         for (Airport airport: airportList) {
-            if (airport.getName().equals(airportName)) {
+            if (airport.getName().toUpperCase().contains(keyWord.toUpperCase())) {
                 String icao = airport.getIcao();
                 for (Flight flight : flightList) {
                     if (source) { // Searching source
                         if (flight.getSource().equals(icao)) {
-                            searchedFlights.add(flight);
+                            searchResult.add(flight);
                         }
                     } else {  // Searching destination
                         if (flight.getDest().equals(icao)) {
-                            searchedFlights.add(flight);
+                            searchResult.add(flight);
                         }
                     }
                 }
             }
         }
-        return searchedFlights;
+        return searchResult;
     }
 
     /**
