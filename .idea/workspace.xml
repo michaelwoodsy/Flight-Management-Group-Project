@@ -10,9 +10,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Added to settings panel, in map GUI">
+    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="added covid testing, checked for missing or illegal values and set defaults if invalid">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/covid_test.dat" beforeDir="false" afterPath="$PROJECT_DIR$/data/covid_test.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/project/LoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/LoaderTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +85,7 @@
       <recent name="C:\Users\elang\planesonar25\src\main" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.LoaderTest">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -91,19 +93,6 @@
         </value>
       </option>
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Database" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="project.controller.Database" />
-      <module name="repository" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="project.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -121,7 +110,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RecordTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CovidTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="repository" />
       <extension name="coverage">
         <pattern>
@@ -130,7 +119,22 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="project" />
-      <option name="MAIN_CLASS_NAME" value="project.RecordTest" />
+      <option name="MAIN_CLASS_NAME" value="project.CovidTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoaderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="repository" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="project" />
+      <option name="MAIN_CLASS_NAME" value="project.LoaderTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -170,11 +174,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LoaderTest" />
+        <item itemvalue="JUnit.CovidTest" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.RecordTest.filterAirportsTest" />
         <item itemvalue="JUnit.RecordTest.searchAirportsTest" />
-        <item itemvalue="JUnit.RecordTest" />
-        <item itemvalue="Application.Database" />
       </list>
     </recent_temporary>
   </component>
@@ -402,7 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598485467342</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Added to settings panel, in map GUI">
+      <created>1598501348398</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1598501348398</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,7 +454,8 @@
     <MESSAGE value="Search route function added. No testing yet." />
     <MESSAGE value="Fixes here and there, adding filechooser to GUI" />
     <MESSAGE value="Added to settings panel, in map GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added to settings panel, in map GUI" />
+    <MESSAGE value="added covid testing, checked for missing or illegal values and set defaults if invalid" />
+    <option name="LAST_COMMIT_MESSAGE" value="added covid testing, checked for missing or illegal values and set defaults if invalid" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
@@ -487,7 +499,7 @@
     <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1598488559645" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1597556338095" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597981987286" />
-    <state width="1877" height="163" key="GridCell.Tab.0.bottom" timestamp="1598500965844">
+    <state width="1877" height="420" key="GridCell.Tab.0.bottom" timestamp="1598506751131">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382835" />
@@ -496,8 +508,8 @@
     <state width="746" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
     <state width="1621" height="172" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966906" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1598497210155" />
-    <state width="1877" height="163" key="GridCell.Tab.0.bottom/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598500965844" />
-    <state width="1877" height="163" key="GridCell.Tab.0.center" timestamp="1598500965844">
+    <state width="1877" height="420" key="GridCell.Tab.0.bottom/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
+    <state width="1877" height="420" key="GridCell.Tab.0.center" timestamp="1598506751131">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382834" />
@@ -506,8 +518,8 @@
     <state width="746" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
     <state width="1621" height="172" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966904" />
     <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1598497210155" />
-    <state width="1877" height="163" key="GridCell.Tab.0.center/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598500965844" />
-    <state width="1877" height="163" key="GridCell.Tab.0.left" timestamp="1598500965844">
+    <state width="1877" height="420" key="GridCell.Tab.0.center/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
+    <state width="1877" height="420" key="GridCell.Tab.0.left" timestamp="1598506751130">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382834" />
@@ -516,8 +528,8 @@
     <state width="746" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
     <state width="1621" height="172" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966899" />
     <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1598497210155" />
-    <state width="1877" height="163" key="GridCell.Tab.0.left/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598500965844" />
-    <state width="1877" height="163" key="GridCell.Tab.0.right" timestamp="1598500965844">
+    <state width="1877" height="420" key="GridCell.Tab.0.left/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751130" />
+    <state width="1877" height="420" key="GridCell.Tab.0.right" timestamp="1598506751131">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382835" />
@@ -526,7 +538,7 @@
     <state width="746" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
     <state width="1621" height="172" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966905" />
     <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1598497210155" />
-    <state width="1877" height="163" key="GridCell.Tab.0.right/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598500965844" />
+    <state width="1877" height="420" key="GridCell.Tab.0.right/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
     <state width="663" height="281" key="GridCell.Tab.1.bottom" timestamp="1597811672058">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
