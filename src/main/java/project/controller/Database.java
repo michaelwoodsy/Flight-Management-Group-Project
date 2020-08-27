@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 public class Database {
 
+    /**
+     * Connects to the database stored in the data folder
+     * @return conn - A Connection object referencing the database
+     */
     public static Connection connect() {
         Connection conn = null;
         try {
@@ -35,7 +39,6 @@ public class Database {
 
     /**
      * Creates a new table within the database for airport data
-     * @param url The location of the database within the program
      */
     public static void createAirportTable() {
         String sql = "CREATE TABLE IF NOT EXISTS airports (\n"
@@ -68,7 +71,6 @@ public class Database {
 
     /**
      * Creates a new table within the database to hold airline data
-     * @param url The location of the database within the program
      */
     public static void createAirlineTable() {
         String sql = "CREATE TABLE IF NOT EXISTS airlines (\n"
@@ -92,7 +94,6 @@ public class Database {
 
     /**
      * Creates a new table within the database for route data
-     * @param url The location of the database within the program
      */
     public static void createRouteTable() {
         String sql = "CREATE TABLE IF NOT EXISTS routes (\n"
@@ -121,6 +122,10 @@ public class Database {
 
     //public static ArrayList<Flight> getAllFlights() {}
 
+    /**
+     * Extracts each airport from the database, and creates a new Airport object for each of them
+     * @return airports - an ArrayList containing an object for each airport in the database
+     */
     public static ArrayList<Airport> getAllAirports() {
         String query = "SELECT id, risk , altitude, numRoutesSource, numRoutesDest, airportName, city, " +
                 "country, iata, icao, destination, timezoneString, airportType, airportSource, latitude, longitude, " +
@@ -146,6 +151,10 @@ public class Database {
         return airports;
     }
 
+    /**
+     * Extracts each airline data point from the database, and creates an airline object for each point
+     * @return airlines - an ArrayList containing each an object for each airline in the database
+     */
     public static ArrayList<Airline> getAllAirlines() {
         String query = "SELECT id, airlineName, country, alias, callsign, icao, iata, active FROM airlines";
         ArrayList<Airline> airlines = new ArrayList<Airline>();
@@ -169,6 +178,10 @@ public class Database {
         return airlines;
     }
 
+    /**
+     * Retrieves all information from the route table, and creates Route objects for each existing data point
+     * @return routes - an ArrayList containing a route object for each route in the database
+     */
     public static ArrayList<Route> getAllRoutes() {
         String query = "SELECT id, sourceID, destID, numStops, airline, sourceAirport, destAirport, equipment, codeshare FROM routes";
         ArrayList<Route> routes = new ArrayList<Route>();
@@ -193,15 +206,31 @@ public class Database {
         return routes;
     }
 
+    /**
+     * Generates a record class from the data within the current database's tables.
+     * Attempts to connect to the database; if it can't, the database is not present, and is created.
+     * @return A record class, containing all the data from the databases tables.
+     */
     public static Record generateRecord() {
-        ArrayList<Airline> airlines = getAllAirlines();
-        ArrayList<Airport> airports = getAllAirports();
-        ArrayList<Route> routes = getAllRoutes();
-        ArrayList<Flight> flights = new ArrayList<Flight>();
-        Record record = new Record(flights, routes, airports, airlines);
-        return record;
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery("SELECT id FROM airports"))
+        {} catch (SQLException e) {
+            setupDatabase();
+        } finally {
+            ArrayList<Airline> airlines = getAllAirlines();
+            ArrayList<Airport> airports = getAllAirports();
+            ArrayList<Route> routes = getAllRoutes();
+            ArrayList<Flight> flights = new ArrayList<Flight>();
+            Record record = new Record(flights, routes, airports, airlines);
+            return record;
+        }
     }
 
+    /**
+     * Calls support functions to establish a database and create tables within it.
+     * Called on first time database is built.
+     */
     public static void setupDatabase() {
         createNewDatabase();
         createAirportTable();

@@ -1,8 +1,11 @@
 package project.model;
 
+import javafx.collections.ObservableList;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class Record {
     private ArrayList<Flight> flightList = new ArrayList<Flight>();
@@ -123,8 +126,8 @@ public class Record {
      * Can be either ascending or descending order depending on the reverse parameter.
      * Returns new, sorted list of airports (doesn't override original airportList).
      */
-    public ArrayList<Airport> rankAirports(boolean reverse) {
-        ArrayList<Airport> rankedAirports = airportList;
+    public List<Airport> rankAirports(boolean reverse, List<Airport> airports) {
+        List<Airport> rankedAirports = airports;
         if (reverse) {
             rankedAirports.sort(Comparator.comparing(Airport::getTotalRoutes).reversed());
         } else {

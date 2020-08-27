@@ -34,7 +34,7 @@
                               <ChoiceBox fx:id="airportSortBy" layoutX="24.0" layoutY="76.0" prefHeight="25.0" prefWidth="150.0" />
                               <Text layoutX="25.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort by:" />
                               <Button fx:id="showAllAirports" layoutX="34.0" layoutY="182.0" mnemonicParsing="false" onAction="#displayAllAirports" text="SHOW ALL AIRPORTS" />
-                              <Button fx:id="airportSortButton" layoutX="23.0" layoutY="120.0" mnemonicParsing="false" onAction="#sortCurrentAirportData" text="SORT" />
+                              <Button fx:id="airportSortButton" layoutX="23.0" layoutY="120.0" mnemonicParsing="false" onAction="#sortCurrentData" text="SORT" />
                            </children></AnchorPane>
                       <AnchorPane fx:id="airportDetailPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
