@@ -9,12 +9,14 @@ public class Record {
     private ArrayList<Route> routeList = new ArrayList<Route>();
     private ArrayList<Airport> airportList = new ArrayList<Airport>();
     private ArrayList<Airline> airlineList = new ArrayList<Airline>();
+    private ArrayList<Covid> covidList = new ArrayList<Covid>();
 
-    public Record(ArrayList<Flight> flightList, ArrayList<Route> routeList, ArrayList<Airport> airportList, ArrayList<Airline> airlineList) {
+    public Record(ArrayList<Flight> flightList, ArrayList<Route> routeList, ArrayList<Airport> airportList, ArrayList<Airline> airlineList, ArrayList<Covid> covidList) {
         this.flightList = flightList;
         this.routeList = routeList;
         this.airportList = airportList;
         this.airlineList = airlineList;
+        this.covidList = covidList;
     }
 
     /**
@@ -248,6 +250,26 @@ public class Record {
      */
     public void deleteData(int dataType, int index) {
 
+    }
+
+    public void addRoutes(ArrayList<Route> newRouteList) {
+        this.routeList.addAll(routeList);
+    }
+
+    public void addAirports(ArrayList<Airport> newAirportList) {
+        this.airportList.addAll(newAirportList);
+    }
+
+    public void addAirlines(ArrayList<Airline> newAirlineList) {
+        this.airlineList.addAll(newAirlineList);
+    }
+
+    public void addFlights(Flight newFlight) {
+        this.flightList.add(newFlight);
+    }
+
+    public void addCovid(ArrayList<Covid> newCovidList) {
+        this.covidList.addAll(newCovidList);
     }
 
     public ArrayList<Flight> getFlightList() {

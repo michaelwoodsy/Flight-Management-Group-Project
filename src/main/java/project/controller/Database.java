@@ -35,7 +35,6 @@ public class Database {
 
     /**
      * Creates a new table within the database for airport data
-     * @param url The location of the database within the program
      */
     public static void createAirportTable() {
         String sql = "CREATE TABLE IF NOT EXISTS airports (\n"
@@ -68,7 +67,6 @@ public class Database {
 
     /**
      * Creates a new table within the database to hold airline data
-     * @param url The location of the database within the program
      */
     public static void createAirlineTable() {
         String sql = "CREATE TABLE IF NOT EXISTS airlines (\n"
@@ -92,7 +90,6 @@ public class Database {
 
     /**
      * Creates a new table within the database for route data
-     * @param url The location of the database within the program
      */
     public static void createRouteTable() {
         String sql = "CREATE TABLE IF NOT EXISTS routes (\n"
@@ -198,7 +195,8 @@ public class Database {
         ArrayList<Airport> airports = getAllAirports();
         ArrayList<Route> routes = getAllRoutes();
         ArrayList<Flight> flights = new ArrayList<Flight>();
-        Record record = new Record(flights, routes, airports, airlines);
+        ArrayList<Covid> covids = new ArrayList<Covid>();
+        Record record = new Record(flights, routes, airports, airlines, covids);
         return record;
     }
 

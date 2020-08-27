@@ -1,16 +1,22 @@
 package project.controller;
 
 import com.sun.glass.ui.CommonDialogs;
+import javafx.application.Application;
 import javafx.beans.InvalidationListener;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import project.model.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 import static javafx.collections.FXCollections.observableArrayList;
@@ -36,9 +42,24 @@ public class GUIController {
     private ChoiceBox routeSearchBy;
     @FXML
     private ChoiceBox routeSortBy;
+    @FXML
+    private TabPane newTab;
+    @FXML
+    private ToggleGroup selectFile;
+    @FXML
+    private RadioButton airportRadioButton;
+    @FXML
+    private RadioButton airlineRadioButton;
+    @FXML
+    private RadioButton routeRadioButton;
+    @FXML
+    private RadioButton flightRadioButton;
+    @FXML
+    private RadioButton covidRadioButton;
 
     private Record record = Database.generateRecord();
     private boolean optedIn = false;
+    private Loader loader = new Loader();
 
     /**
      * Retrieves user input and searches for airports that are located within that country.
@@ -54,15 +75,39 @@ public class GUIController {
         airportList.setItems(observableArrayList(filteredAirports));
     }
 
-    public void addButton(ActionEvent event) {
-        FileChooser loadFile = new FileChooser();
-        loadFile.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
-        loadFile.getExtensionFilters().add(new FileChooser.ExtensionFilter("DAT Files", "*.dat"));
+    @FXML
+    /**
+     * Can't handle errors yet, and doesn't have the option to append data to new record yet.
+     * Also doesn't have confirmation on when files are successfully loaded.
+     */
+    public void addButton(ActionEvent event) throws IOException {
 
-        File file = loadFile.showOpenDialog(null);
+        if (newTab.getSelectionModel().getSelectedIndex() == 3) {
+            FileChooser loadFile = new FileChooser();
+            loadFile.getExtensionFilters().add(new FileChooser.ExtensionFilter("DAT Files", "*.dat"));
+            loadFile.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
 
-        if (file != null) {
-            System.out.println(file.getAbsolutePath());
+            File file = loadFile.showOpenDialog(null);
+
+
+            if (file != null) {
+                if (selectFile.getSelectedToggle() == airportRadioButton) {
+                    ArrayList<Airport> newAirportList = loader.loadAirportFile(file.getAbsolutePath());
+                    record.addAirports(newAirportList);
+                } else if (selectFile.getSelectedToggle() == airlineRadioButton) {
+                    ArrayList<Airline> newAirlineList = loader.loadAirlineFile(file.getAbsolutePath());
+                    record.addAirlines(newAirlineList);
+                } else if (selectFile.getSelectedToggle() == routeRadioButton) {
+                    ArrayList<Route> newRouteList = loader.loadRouteFile(file.getAbsolutePath());
+                    record.addRoutes(newRouteList);
+                } else if (selectFile.getSelectedToggle() == flightRadioButton) {
+                    Flight newFlight = loader.loadFlightFile(file.getAbsolutePath());
+                    record.addFlights(newFlight);
+                } else {
+                    ArrayList<Covid> newCovidList = loader.loadCovidFile(file.getAbsolutePath());
+                    record.addCovid(newCovidList);
+                }
+            }
         }
 
     }
