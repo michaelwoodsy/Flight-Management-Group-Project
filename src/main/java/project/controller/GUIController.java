@@ -68,7 +68,7 @@ public class GUIController {
      */
     public void filterAirports() {
         String country = airportSearchCriteria.getText().toLowerCase();
-        if (country == "") {
+        if (country.equals("")) {
             System.err.println("No country entered");
         }
         ArrayList<Airport> filteredAirports = record.filterAirports(country);
