@@ -107,12 +107,55 @@ public class LoaderTest {
      */
     public void loadIndividualAirportTest() {
 
-        String[] airportData1 = {"1", "Goroka", "Goroka", "Papua New Guinea", "GKA", "AYGA", "-6.081689", "145.391881", "5282", "10", "U", "Pacific/Port_Moresby"};
+        String[] airportData1 = {"1", "Goroka", "Goroka", "Papua New Guinea", "GKA", "AYGA", "-6.081689", "145.391881", "5282", "10", "U", "Pacific/Port_Moresby", "type", "source"};
         Airport testAirport1 = loader.loadAirport(airportData1);
 
-        assertEquals(testAirport1.getName(), "Goroka");
         assertEquals(testAirport1.getId(), 1);
-        assertEquals(Double.doubleToLongBits(testAirport1.getLatitude()), Double.doubleToLongBits(-6.081689));
+        assertEquals(testAirport1.getRisk(), 0);
+        assertEquals(testAirport1.getName(), "Goroka");
+        assertEquals(testAirport1.getCity(), "Goroka");
+        assertEquals(testAirport1.getCountry(), "Papua New Guinea");
+        assertEquals(testAirport1.getIata(), "GKA");
+        assertEquals(testAirport1.getIcao(), "AYGA");
+        assertEquals(testAirport1.getLatitude(), -6.081689, 0);
+        assertEquals(testAirport1.getLongitude(), 145.391881, 0);
+        assertEquals(testAirport1.getAltitude(), 5282);
+        assertEquals(testAirport1.getTimezone(), 10, 0);
+        assertEquals(testAirport1.getDst(), "U");
+        assertEquals(testAirport1.getTimezoneString(), "Pacific/Port_Moresby");
+        assertEquals(testAirport1.getType(), "type");
+        assertEquals(testAirport1.getSource(), "source");
+        assertEquals(testAirport1.getNumRoutesSource(), 0);
+        assertEquals(testAirport1.getNumRoutesDest(), 0);
+        assertEquals(testAirport1.getTotalRoutes(), 0);
+
+        String[] airportData2 = {"1a", "Goroka", "Goroka", "Papua New Guinea", "GKA", "AYGA", "-6.081689a", "145.391881a", "5282a", "10a", "U", "Pacific/Port_Moresby", "type", "source"};
+        testAirport1 = loader.loadAirport(airportData2);
+
+        assertEquals(testAirport1.getId(), -1);
+        assertEquals(testAirport1.getLatitude(), 360, 0);
+        assertEquals(testAirport1.getLongitude(), 360, 0);
+        assertEquals(testAirport1.getAltitude(), -1);
+        assertEquals(testAirport1.getTimezone(), 25, 0);
+
+        String[] airportData3 = {"", "", "", "", "", "", "", "", "", "", "", "", "", ""};
+        testAirport1 = loader.loadAirport(airportData3);
+
+        assertEquals(testAirport1.getId(), -1);
+        assertEquals(testAirport1.getName(), "");
+        assertEquals(testAirport1.getCity(), "");
+        assertEquals(testAirport1.getCountry(), "");
+        assertEquals(testAirport1.getIata(), "");
+        assertEquals(testAirport1.getIcao(), "");
+        assertEquals(testAirport1.getLatitude(), 360, 0);
+        assertEquals(testAirport1.getLongitude(), 360, 0);
+        assertEquals(testAirport1.getAltitude(), -1);
+        assertEquals(testAirport1.getTimezone(), 25, 0);
+        assertEquals(testAirport1.getDst(), "");
+        assertEquals(testAirport1.getTimezoneString(), "");
+        assertEquals(testAirport1.getType(), "");
+        assertEquals(testAirport1.getSource(), "");
+
     }
 
     @Test
