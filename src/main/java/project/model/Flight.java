@@ -138,8 +138,8 @@ public class Flight {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Flight flight = (Flight) o;
-        return getSource().equals(flight.getSource()) &&
-                getDest().equals(flight.getDest());
+        return Objects.equals(getSource(), flight.getSource()) &&
+                Objects.equals(getDest(), flight.getDest());
     }
 
     @Override

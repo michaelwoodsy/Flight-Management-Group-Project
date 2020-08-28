@@ -252,16 +252,16 @@ public class Record {
     }
 
     public void addRoutes(ArrayList<Route> newRouteList) {
-        Set<Route> uniqueElements = new HashSet<Route>(newRouteList);
-        newRouteList.clear();
-        newRouteList.addAll(uniqueElements);
         this.routeList.addAll(newRouteList);
+        Set<Route> uniqueElements = new HashSet<>(this.routeList);
+        this.routeList.clear();
+        this.routeList.addAll(uniqueElements);
+        this.routeList.sort(Comparator.comparing(Route::getId));
     }
 
     public void addAirports(ArrayList<Airport> newAirportList) {
         this.airportList.addAll(newAirportList);
-
-        Set<Airport> uniqueElements = new HashSet<Airport>(this.airportList);
+        Set<Airport> uniqueElements = new HashSet<>(this.airportList);
         this.airportList.clear();
         this.airportList.addAll(uniqueElements);
         this.airportList.sort(Comparator.comparing(Airport::getId));
@@ -269,12 +269,22 @@ public class Record {
 
     public void addAirlines(ArrayList<Airline> newAirlineList) {
         this.airlineList.addAll(newAirlineList);
+        Set<Airline> uniqueElements = new HashSet<>(this.airlineList);
+        this.airlineList.clear();
+        this.airlineList.addAll(uniqueElements);
+        this.airlineList.sort(Comparator.comparing(Airline::getId));
     }
 
     public void addFlights(Flight newFlight) {
         this.flightList.add(newFlight);
+        Set<Flight> uniqueElements = new HashSet<>(this.flightList);
+        this.flightList.clear();
+        this.flightList.addAll(uniqueElements);
     }
 
+    /**
+     * Not sure if we'll even need this function. Incomplete.
+     */
     public void addCovid(ArrayList<Covid> newCovidList) {
         this.covidList.addAll(newCovidList);
     }

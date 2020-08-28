@@ -302,15 +302,15 @@ public class Airport {
                 Double.compare(airport.getLongitude(), getLongitude()) == 0 &&
                 getAltitude() == airport.getAltitude() &&
                 Double.compare(airport.getTimezone(), getTimezone()) == 0 &&
-                getName().equals(airport.getName()) &&
-                getCity().equals(airport.getCity()) &&
-                getCountry().equals(airport.getCountry()) &&
-                getIata().equals(airport.getIata()) &&
-                getIcao().equals(airport.getIcao()) &&
-                getDst().equals(airport.getDst()) &&
-                getTimezoneString().equals(airport.getTimezoneString()) &&
-                getType().equals(airport.getType()) &&
-                getSource().equals(airport.getSource());
+                Objects.equals(getName(), airport.getName()) &&
+                Objects.equals(getCity(), airport.getCity()) &&
+                Objects.equals(getCountry(), airport.getCountry()) &&
+                Objects.equals(getIata(), airport.getIata()) &&
+                Objects.equals(getIcao(), airport.getIcao()) &&
+                Objects.equals(getDst(), airport.getDst()) &&
+                Objects.equals(getTimezoneString(), airport.getTimezoneString()) &&
+                Objects.equals(getType(), airport.getType()) &&
+                Objects.equals(getSource(), airport.getSource());
     }
 
     @Override

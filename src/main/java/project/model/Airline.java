@@ -138,12 +138,12 @@ public class Airline {
         Airline airline = (Airline) o;
         return getId() == airline.getId() &&
                 isActive() == airline.isActive() &&
-                getName().equals(airline.getName()) &&
-                getCountry().equals(airline.getCountry()) &&
-                getAlias().equals(airline.getAlias()) &&
-                getCallSign().equals(airline.getCallSign()) &&
-                getIata().equals(airline.getIata()) &&
-                getIcao().equals(airline.getIcao());
+                Objects.equals(getName(), airline.getName()) &&
+                Objects.equals(getCountry(), airline.getCountry()) &&
+                Objects.equals(getAlias(), airline.getAlias()) &&
+                Objects.equals(getCallSign(), airline.getCallSign()) &&
+                Objects.equals(getIata(), airline.getIata()) &&
+                Objects.equals(getIcao(), airline.getIcao());
     }
 
     @Override

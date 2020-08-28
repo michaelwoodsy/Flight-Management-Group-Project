@@ -163,10 +163,10 @@ public class Route {
                 getDestID() == route.getDestID() &&
                 getNumStops() == route.getNumStops() &&
                 isCodeshare() == route.isCodeshare() &&
-                getAirline().equals(route.getAirline()) &&
-                getSourceAirport().equals(route.getSourceAirport()) &&
-                getDestAirport().equals(route.getDestAirport()) &&
-                getEquipment().equals(route.getEquipment());
+                Objects.equals(getAirline(), route.getAirline()) &&
+                Objects.equals(getSourceAirport(), route.getSourceAirport()) &&
+                Objects.equals(getDestAirport(), route.getDestAirport()) &&
+                Objects.equals(getEquipment(), route.getEquipment());
     }
 
     @Override
