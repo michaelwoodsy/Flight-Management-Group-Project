@@ -47,8 +47,6 @@ public class LoaderTest {
         assertEquals(testRoute1.getSourceID(), -1);
         assertEquals(testRoute1.getDestID(), -1);
         assertEquals(testRoute1.getNumStops(), -1);
-
-
     }
 
     @Test

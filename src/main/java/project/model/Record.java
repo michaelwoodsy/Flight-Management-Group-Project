@@ -252,14 +252,19 @@ public class Record {
 
     }
 
-    /**
-     * Add functions need a bit of work - need to be able to remove duplicate data.
-     */
     public void addRoutes(ArrayList<Route> newRouteList) {
-        for (Route newRoute : newRouteList) {
+        ArrayList<Route> filter = new ArrayList<Route>();
 
+        for (Route newRoute : newRouteList) {
+            for (Route route : routeList) {
+                if (newRoute.equals(route)) {
+                    filter.add(newRoute);
+                }
+            }
         }
-        this.routeList.addAll(routeList);
+
+        newRouteList.removeAll(filter);
+        this.routeList.addAll(newRouteList);
     }
 
     public void addAirports(ArrayList<Airport> newAirportList) {
