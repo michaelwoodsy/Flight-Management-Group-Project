@@ -285,7 +285,7 @@ public class RecordTest {
     }
 
     @Test
-    public void setNumRoutesTest() throws IOException {
+    public void setNumRoutesTest() {
 
         ArrayList<Airline> testAirlineList = new ArrayList<Airline>();
         ArrayList<Flight> testFlightList = new ArrayList<Flight>();
@@ -347,5 +347,76 @@ public class RecordTest {
         flightList = testRecord.searchFlights(false, "???");
         assertEquals(0, flightList.size());
 
+    }
+
+    @Test
+    public void addAirportsTest() throws IOException {
+        Record testRecord = setUp();
+
+        assertEquals(testRecord.getAirportList().size(), 5);
+
+        ArrayList<Airport> testAirportList = new ArrayList<>();
+        testAirportList.add(testAirport1);
+        testAirportList.add(testAirport2);
+        testAirportList.add(testAirport5);
+
+        Airport testAirport6 = new Airport(119, 500, "Test5", "Christchurch", "New Zealand", "YEET", "YEET", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
+
+        testAirportList.add(testAirport6);
+
+        testRecord.addAirports(testAirportList);
+        assertEquals(testRecord.getAirportList().size(), 6);
+    }
+
+    @Test
+    public void addAirlinesTest() throws IOException {
+        Record testRecord = setUp();
+
+        assertEquals(testRecord.getAirlineList().size(), 5);
+
+        ArrayList<Airline> testAirlineList = new ArrayList<>();
+        testAirlineList.add(testAirline1);
+        testAirlineList.add(testAirline2);
+        testAirlineList.add(testAirline3);
+
+        Airline testAirline6 = new Airline(114, "Test5", true, "U.K.", "Test5", "Test5", "Test5", "Test5");
+
+        testAirlineList.add(testAirline6);
+
+        testRecord.addAirlines(testAirlineList);
+        assertEquals(testRecord.getAirlineList().size(), 6);
+    }
+
+    @Test
+    public void addRoutesTest() throws IOException {
+        Record testRecord = setUp();
+
+        assertEquals(testRecord.getRouteList().size(), 6);
+
+        ArrayList<Route> testRouteList = new ArrayList<>();
+        testRouteList.add(testRoute1);
+        testRouteList.add(testRoute4);
+        testRouteList.add(testRoute5);
+        testRouteList.add(testRoute1);
+
+        Route testRoute7 = new Route("Air NZL", 505, "CHC", 411, "YSSY", 511, 4, "DXa34", false);
+
+        testRouteList.add(testRoute7);
+
+        testRecord.addRoutes(testRouteList);
+        assertEquals(testRecord.getRouteList().size(), 7);
+    }
+
+    @Test
+    public void addFlightsTest() throws IOException {
+        Record testRecord = setUp();
+
+        assertEquals(testRecord.getFlightList().size(), 5);
+
+        ArrayList<Flight> testFlightList = new ArrayList<>();
+
+        testRecord.addFlights(loader.loadFlightFile("data/flight.csv"));
+
+        assertEquals(2, testRecord.getFlightList().size());
     }
 }
