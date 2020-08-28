@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class LoaderTest {
     private final Loader loader = new Loader();
@@ -47,6 +48,13 @@ public class LoaderTest {
         assertEquals(testRoute1.getSourceID(), -1);
         assertEquals(testRoute1.getDestID(), -1);
         assertEquals(testRoute1.getNumStops(), -1);
+
+        String[] routeData4 = {"", "410", "", "2965", "", "2990", "Y", "0", ""};
+        testRoute1 = loader.loadRoute(routeData4);
+        assertEquals(testRoute1.getAirline(), "");
+        assertEquals(testRoute1.getSourceAirport(), "");
+        assertEquals(testRoute1.getDestAirport(), "");
+        assertEquals(testRoute1.getEquipment(), "");
     }
 
     @Test
