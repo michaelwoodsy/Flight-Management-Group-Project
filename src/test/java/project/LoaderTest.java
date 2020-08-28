@@ -6,10 +6,10 @@ import project.model.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class LoaderTest {
-    private Loader loader = new Loader();
+    private final Loader loader = new Loader();
 
     @Test
     /**
@@ -18,18 +18,36 @@ public class LoaderTest {
      */
     public void loadIndividualRouteTest() {
 
-        String[] routeData1 = {"2B", "410", "AER", "2965", "KZN", "2990", "", "0", "CR2"};
+        String[] routeData1 = {"2B", "410", "AER", "2965", "KZN", "2990", "Y", "0", "CR2"};
         Route testRoute1 = loader.loadRoute(routeData1);
 
+        assertEquals(testRoute1.getAirline(), "2B");
+        assertEquals(testRoute1.getSourceAirport(), "AER");
+        assertEquals(testRoute1.getDestAirport(), "KZN");
         assertEquals(testRoute1.getEquipment(), "CR2");
         assertEquals(testRoute1.getId(), 410);
-        assertEquals(testRoute1.isCodeshare(), false);
+        assertEquals(testRoute1.getSourceID(), 2965);
+        assertEquals(testRoute1.getDestID(), 2990);
+        assertTrue(testRoute1.isCodeshare());
+        assertEquals(testRoute1.getNumStops(), 0);
 
-        String[] routeData2 = {"2B", "410a", "AER", "2965", "123", "2990", "Y", "0", "CR2"};
+        String[] routeData2 = {"2B", "410a", "AER", "2965a", "KZN", "2990a", "N", "0a", "CR2"};
         testRoute1 = loader.loadRoute(routeData2);
 
         assertEquals(testRoute1.getId(), -1);
-        assertEquals(testRoute1.isCodeshare(), true);
+        assertEquals(testRoute1.getSourceID(), -1);
+        assertEquals(testRoute1.getDestID(), -1);
+        assertEquals(testRoute1.getNumStops(), -1);
+        assertFalse(testRoute1.isCodeshare());
+
+        String[] routeData3 = {"2B", "", "AER", "", "KZN", "", "", "", "CR2"};
+        testRoute1 = loader.loadRoute(routeData3);
+        assertFalse(testRoute1.isCodeshare());
+        assertEquals(testRoute1.getId(), -1);
+        assertEquals(testRoute1.getSourceID(), -1);
+        assertEquals(testRoute1.getDestID(), -1);
+        assertEquals(testRoute1.getNumStops(), -1);
+
 
     }
 
@@ -45,12 +63,12 @@ public class LoaderTest {
 
         assertEquals(testAirline1.getName(), "Private flight");
         assertEquals(testAirline1.getId(), 1);
-        assertEquals(testAirline1.isActive(), true);
+        assertTrue(testAirline1.isActive());
 
         String[] airlineData2 = {"1", "Private flight", "", "-", "N/A", "", "", ""};
         testAirline1 = loader.loadAirline(airlineData2);
 
-        assertEquals(testAirline1.isActive(), false);
+        assertFalse(testAirline1.isActive());
 
     }
 
