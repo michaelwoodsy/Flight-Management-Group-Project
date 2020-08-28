@@ -64,17 +64,39 @@ public class LoaderTest {
      */
     public void loadIndividualAirlineTest() {
 
-        String[] airlineData1 = {"1", "Private flight", "", "-", "N/A", "", "", "Y"};
+        String[] airlineData1 = {"1", "Private flight", "alias", "iata", "icao", "callsign", "country", "Y"};
         Airline testAirline1 = loader.loadAirline(airlineData1);
 
-        assertEquals(testAirline1.getName(), "Private flight");
         assertEquals(testAirline1.getId(), 1);
+        assertEquals(testAirline1.getName(), "Private flight");
+        assertEquals(testAirline1.getAlias(), "alias");
+        assertEquals(testAirline1.getIata(), "iata");
+        assertEquals(testAirline1.getIcao(), "icao");
+        assertEquals(testAirline1.getCallSign(), "callsign");
+        assertEquals(testAirline1.getCountry(), "country");
         assertTrue(testAirline1.isActive());
 
-        String[] airlineData2 = {"1", "Private flight", "", "-", "N/A", "", "", ""};
+        String[] airlineData2 = {"1a", "Private flight", "alias", "iata", "icao", "callsign", "country", "N"};
         testAirline1 = loader.loadAirline(airlineData2);
 
+        assertEquals(testAirline1.getId(), -1);
         assertFalse(testAirline1.isActive());
+
+        String[] airlineData3 = {"", "Private flight", "alias", "iata", "icao", "callsign", "country", ""};
+        testAirline1 = loader.loadAirline(airlineData3);
+
+        assertEquals(testAirline1.getId(), -1);
+        assertFalse(testAirline1.isActive());
+
+        String[] airlineData4 = {"1", "", "", "", "", "", "", "Y"};
+        testAirline1 = loader.loadAirline(airlineData4);
+
+        assertEquals(testAirline1.getName(), "");
+        assertEquals(testAirline1.getAlias(), "");
+        assertEquals(testAirline1.getIata(), "");
+        assertEquals(testAirline1.getIcao(), "");
+        assertEquals(testAirline1.getCallSign(), "");
+        assertEquals(testAirline1.getCountry(), "");
 
     }
 
