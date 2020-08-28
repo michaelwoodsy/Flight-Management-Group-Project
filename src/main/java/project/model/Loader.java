@@ -402,7 +402,7 @@ public class Loader {
         }
 
         boolean codeshare;
-        if (codeshareString == "Y") {
+        if (codeshareString.equals("Y")) {
             codeshare = true;
         } else {
             codeshare = false;

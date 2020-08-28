@@ -1,8 +1,7 @@
 package project.model;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.*;
 
 public class Record {
     private ArrayList<Flight> flightList = new ArrayList<Flight>();
@@ -253,22 +252,19 @@ public class Record {
     }
 
     public void addRoutes(ArrayList<Route> newRouteList) {
-        ArrayList<Route> filter = new ArrayList<Route>();
-
-        for (Route newRoute : newRouteList) {
-            for (Route route : routeList) {
-                if (newRoute.equals(route)) {
-                    filter.add(newRoute);
-                }
-            }
-        }
-
-        newRouteList.removeAll(filter);
+        Set<Route> uniqueElements = new HashSet<Route>(newRouteList);
+        newRouteList.clear();
+        newRouteList.addAll(uniqueElements);
         this.routeList.addAll(newRouteList);
     }
 
     public void addAirports(ArrayList<Airport> newAirportList) {
         this.airportList.addAll(newAirportList);
+
+        Set<Airport> uniqueElements = new HashSet<Airport>(this.airportList);
+        this.airportList.clear();
+        this.airportList.addAll(uniqueElements);
+        this.airportList.sort(Comparator.comparing(Airport::getId));
     }
 
     public void addAirlines(ArrayList<Airline> newAirlineList) {
