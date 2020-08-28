@@ -1,26 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.web.WebView?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.web.*?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controller.GUIController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controller.GUIController">
   <tabs>
     <Tab fx:id="airport_tab" text="Airport">
       <content>
@@ -107,6 +93,13 @@
                   <Pane fx:id="setting_pane" layoutX="531.0" layoutY="20.0" prefHeight="430.0" prefWidth="198.0">
                      <children>
                         <ListView fx:id="setting_controller" layoutX="6.0" layoutY="7.0" prefHeight="417.0" prefWidth="186.0" />
+                        <Label fx:id="settingLabel" alignment="CENTER" layoutX="43.0" layoutY="29.0" prefHeight="26.0" prefWidth="114.0" text="Settings:" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <CheckBox fx:id="additional_information_checkbox" layoutX="27.0" layoutY="87.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="150.0" text="Additional Information" />
+                        <CheckBox fx:id="restore_defaullts_checkbox" layoutX="27.0" layoutY="123.0" mnemonicParsing="false" text="Restore Defaults" />
                      </children>
                   </Pane>
                   <Pane fx:id="information_pane" layoutX="340.0" layoutY="20.0" prefHeight="427.0" prefWidth="189.0">

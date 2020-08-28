@@ -25,7 +25,7 @@ public class Record {
     public ArrayList<Airport> filterAirports(String country) {
         ArrayList<Airport> filteredAirports = new ArrayList<Airport>();
         for (Airport airport: airportList) {
-            if (airport.getCountry().equals(country)) {
+            if (airport.getCountry().toLowerCase().equals(country.toLowerCase())) {
                 filteredAirports.add(airport);
             }
         }

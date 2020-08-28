@@ -10,13 +10,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="Added loading file functionality in GUI - only works for blue sky scenarios so far">
+    <list default="true" id="f0a997c7-a23e-420d-930e-88586fa37753" name="Default Changelist" comment="added covid testing, checked for missing or illegal values and set defaults if invalid">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Airline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Airline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Airport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Airport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Flight.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Flight.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/covid_test.dat" beforeDir="false" afterPath="$PROJECT_DIR$/data/covid_test.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/project/LoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/LoaderTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,29 +85,14 @@
       <recent name="C:\Users\elang\planesonar25\src\main" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.LoaderTest">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Database" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="project.controller.Database" />
-      <module name="repository" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="project.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -127,7 +110,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AirportTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CovidTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="repository" />
       <extension name="coverage">
         <pattern>
@@ -136,13 +119,28 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="project" />
-      <option name="MAIN_CLASS_NAME" value="project.AirportTest" />
+      <option name="MAIN_CLASS_NAME" value="project.CovidTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RecordTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="LoaderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="repository" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="project" />
+      <option name="MAIN_CLASS_NAME" value="project.LoaderTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RecordTest.filterAirportsTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="repository" />
       <extension name="coverage">
         <pattern>
@@ -152,7 +150,8 @@
       </extension>
       <option name="PACKAGE_NAME" value="project" />
       <option name="MAIN_CLASS_NAME" value="project.RecordTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="filterAirportsTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -175,11 +174,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LoaderTest" />
+        <item itemvalue="JUnit.CovidTest" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.RecordTest" />
+        <item itemvalue="JUnit.RecordTest.filterAirportsTest" />
         <item itemvalue="JUnit.RecordTest.searchAirportsTest" />
-        <item itemvalue="Application.Database" />
-        <item itemvalue="JUnit.AirportTest" />
       </list>
     </recent_temporary>
   </component>
@@ -407,21 +406,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598485467342</updated>
     </task>
-    <task id="LOCAL-00030" summary="Added loading file functionality in GUI - only works for blue sky scenarios so far">
-      <created>1598493747406</created>
+    <task id="LOCAL-00030" summary="Added to settings panel, in map GUI">
+      <created>1598501348398</created>
       <option name="number" value="00030" />
       <option name="presentableId" value="LOCAL-00030" />
       <option name="project" value="LOCAL" />
-      <updated>1598493747406</updated>
+      <updated>1598501348398</updated>
     </task>
-    <task id="LOCAL-00031" summary="Added loading file functionality in GUI - only works for blue sky scenarios so far">
-      <created>1598493782488</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1598493782488</updated>
-    </task>
-    <option name="localTasksCounter" value="32" />
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,8 +453,9 @@
     <MESSAGE value="Searching Airports using keywords (searchAirports method), done 3 tests (more tests maybe?) and drafted documentation for method." />
     <MESSAGE value="Search route function added. No testing yet." />
     <MESSAGE value="Fixes here and there, adding filechooser to GUI" />
-    <MESSAGE value="Added loading file functionality in GUI - only works for blue sky scenarios so far" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added loading file functionality in GUI - only works for blue sky scenarios so far" />
+    <MESSAGE value="Added to settings panel, in map GUI" />
+    <MESSAGE value="added covid testing, checked for missing or illegal values and set defaults if invalid" />
+    <option name="LAST_COMMIT_MESSAGE" value="added covid testing, checked for missing or illegal values and set defaults if invalid" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
@@ -494,10 +487,10 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="408" y="125" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1368.872@0.0.1368.872" timestamp="1595996744421" />
-    <state x="743" y="389" width="433" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1598423060171">
+    <state x="743" y="389" width="433" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1598496751354">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="743" y="389" width="433" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1598423060171" />
+    <state x="743" y="389" width="433" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1598496751354" />
     <state x="743" y="389" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598332540931" />
     <state x="465" y="154" key="FileChooserDialogImpl" timestamp="1598488559645">
       <screen x="0" y="0" width="1368" height="872" />
@@ -506,46 +499,46 @@
     <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1598488559645" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1597556338095" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597981987286" />
-    <state width="1326" height="256" key="GridCell.Tab.0.bottom" timestamp="1598494221319">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state width="1877" height="420" key="GridCell.Tab.0.bottom" timestamp="1598506751131">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382835" />
     <state width="1237" height="164" key="GridCell.Tab.0.bottom/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="1326" height="256" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1598494221319" />
+    <state width="663" height="256" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1598493346337" />
     <state width="746" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
     <state width="1621" height="172" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966906" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1598429423416" />
-    <state width="1877" height="163" key="GridCell.Tab.0.bottom/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598335200683" />
-    <state width="1326" height="256" key="GridCell.Tab.0.center" timestamp="1598494221318">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1598497210155" />
+    <state width="1877" height="420" key="GridCell.Tab.0.bottom/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
+    <state width="1877" height="420" key="GridCell.Tab.0.center" timestamp="1598506751131">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382834" />
     <state width="1237" height="164" key="GridCell.Tab.0.center/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="1326" height="256" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1598494221318" />
+    <state width="663" height="256" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1598493346337" />
     <state width="746" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
     <state width="1621" height="172" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966904" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1598429423416" />
-    <state width="1877" height="163" key="GridCell.Tab.0.center/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598335200682" />
-    <state width="1326" height="256" key="GridCell.Tab.0.left" timestamp="1598494221318">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1598497210155" />
+    <state width="1877" height="420" key="GridCell.Tab.0.center/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
+    <state width="1877" height="420" key="GridCell.Tab.0.left" timestamp="1598506751130">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382834" />
     <state width="1237" height="164" key="GridCell.Tab.0.left/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="1326" height="256" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1598494221317" />
+    <state width="663" height="256" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1598493346337" />
     <state width="746" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
     <state width="1621" height="172" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966899" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1598429423416" />
-    <state width="1877" height="163" key="GridCell.Tab.0.left/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598335200682" />
-    <state width="1326" height="256" key="GridCell.Tab.0.right" timestamp="1598494221319">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1598497210155" />
+    <state width="1877" height="420" key="GridCell.Tab.0.left/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751130" />
+    <state width="1877" height="420" key="GridCell.Tab.0.right" timestamp="1598506751131">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598234382835" />
     <state width="1237" height="164" key="GridCell.Tab.0.right/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="1326" height="256" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1598494221319" />
+    <state width="663" height="256" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1598493346337" />
     <state width="746" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1598260663813" />
     <state width="1621" height="172" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966905" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1598429423416" />
-    <state width="1877" height="163" key="GridCell.Tab.0.right/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598335200682" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1598497210155" />
+    <state width="1877" height="420" key="GridCell.Tab.0.right/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
     <state width="663" height="281" key="GridCell.Tab.1.bottom" timestamp="1597811672058">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
@@ -576,22 +569,22 @@
     <state x="155" y="0" key="SettingsEditor/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597622967066" />
     <state x="166" y="12" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1595997449081" />
     <state x="233" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598425220256" />
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1598493788337">
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1598485477266">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1598493788337" />
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1598485477266" />
     <state x="312" y="160" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1597831535073" />
     <state x="338" y="208" key="Vcs.Push.Dialog.v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017372267" />
     <state x="408" y="329" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1595980153516">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="408" y="329" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1368.872@0.0.1368.872" timestamp="1595980153516" />
-    <state x="692" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1598429317390">
+    <state x="692" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1598495191548">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="493" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1368.872@0.0.1368.872" timestamp="1595982886240" />
     <state x="600" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017354998" />
-    <state x="692" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1598429317390" />
+    <state x="692" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1598495191548" />
     <state x="1920" y="248" width="1657" height="716" maximized="true" key="dock-window-1" timestamp="1597983024945">
       <screen x="1920" y="0" width="1664" height="1082" />
     </state>
@@ -613,11 +606,26 @@
     </state>
     <state x="403" y="203" key="run.anything.popup/0.0.1368.872@0.0.1368.872" timestamp="1597894844662" />
     <state x="489" y="248" key="run.anything.popup/0.0.1664.1069@0.0.1664.1069" timestamp="1597666146718" />
-    <state x="481" y="109" width="941" height="807" key="search.everywhere.popup" timestamp="1598331234255">
+    <state x="481" y="109" width="941" height="807" key="search.everywhere.popup" timestamp="1598494801341">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="303" y="9" width="672" height="678" key="search.everywhere.popup/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597623930697" />
     <state x="343" y="91" width="670" height="676" key="search.everywhere.popup/0.0.1368.872@0.0.1368.872" timestamp="1597895993587" />
+    <state x="481" y="109" width="941" height="807" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1598494801341" />
     <state x="481" y="109" width="941" height="807" key="search.everywhere.popup/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598331234255" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/project/RecordTest.java</url>
+          <line>80</line>
+          <properties class="project.RecordTest" method="filterAirportsTest">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

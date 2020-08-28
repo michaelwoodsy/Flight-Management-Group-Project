@@ -67,7 +67,7 @@ public class GUIController {
      * If input is blank, display an error pop-up.
      */
     public void filterAirports() {
-        String country = airportSearchCriteria.getText().toLowerCase();
+        String country = airportSearchCriteria.getText();
         if (country.equals("")) {
             System.err.println("No country entered");
         }

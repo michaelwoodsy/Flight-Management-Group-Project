@@ -434,30 +434,55 @@ public class Loader {
     }
 
     public Covid loadCovid(String[] covidData) {
+        // for numeric values, if they are not valid they are set to a default of 0.
+        // for string values, if they contain illegal characters are set to null
+        //e.g. if total_cases is missing or is not numeric, then it is set to 0
+        //e.g. if continent is Asi3a (invalid), it is set to null
         String Iso_code;
         try {
-            Iso_code = covidData[0];
+            if (covidData[0].matches("[A-Za-z]+")){
+                Iso_code = covidData[0];
+            }
+            else {
+                Iso_code = null;
+            }
         }catch (Exception e){
             Iso_code = null;
         }
 
         String continent;
         try {
-            continent = covidData[1];
+            if (covidData[1].matches("[A-Za-z]+")){
+                continent = covidData[1];
+            }
+            else {
+                continent = null;
+            }
         }catch (Exception e){
             continent = null;
         }
 
         String location;
         try {
-            location = covidData[2];
+            if (covidData[2].matches("[A-Za-z]+")){
+                location = covidData[2];
+            }
+            else{
+                location = null;
+            }
         }catch (Exception e){
             location = null;
         }
 
         String date;
         try {
-            date = covidData[3];
+            //checks date doesn't contain invalid characters
+            if (covidData[3].matches("[0-9/]+")){
+                date = covidData[3];
+            }
+            else{
+                date = null;
+            }
         }catch (Exception e){
             date = null;
         }
@@ -507,7 +532,6 @@ public class Loader {
         }catch (Exception e){
             population = 0;
         }
-        
 
         Covid newCovid = new Covid(Iso_code, continent, location, date, total_cases, new_cases, total_deaths,
                 new_deaths, total_cases_per_million, total_deaths_per_million, population);
