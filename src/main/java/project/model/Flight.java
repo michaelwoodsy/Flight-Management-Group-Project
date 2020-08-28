@@ -1,6 +1,7 @@
 package project.model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Flight {
 
@@ -132,12 +133,17 @@ public class Flight {
         risk = 0;
     }
 
-    /**
-     * Checks two flights for duplicates
-     */
-    public boolean equals(Flight otherFlight) {
-        return ((this.source.equals(otherFlight.getSource()))
-                && (this.dest.equals(otherFlight.getDest())));
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Flight flight = (Flight) o;
+        return getSource().equals(flight.getSource()) &&
+                getDest().equals(flight.getDest());
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSource(), getDest());
+    }
 }
