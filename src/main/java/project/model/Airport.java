@@ -291,4 +291,24 @@ public class Airport {
         return radius * c;
     }
 
+    /**
+     * Checks two airports for duplicates
+     */
+    public boolean equals(Airport otherAirport) {
+        return ((this.id == otherAirport.getId())
+                && (this.name.equals(otherAirport.getName()))
+                && (this.city.equals(otherAirport.getCity()))
+                && (this.country.equals(otherAirport.getCountry()))
+                && (this.dst.equals(otherAirport.getDst()))
+                && (this.timezoneString.equals(otherAirport.getTimezoneString()))
+                && (this.iata.equals(otherAirport.getIata()))
+                && (this.icao.equals(otherAirport.getIcao()))
+                && (this.type.equals(otherAirport.getType()))
+                && (this.source.equals(otherAirport.getSource()))
+                && (this.latitude == otherAirport.getLatitude())
+                && (this.longitude == otherAirport.getLongitude())
+                && (this.altitude == otherAirport.getAltitude())
+                && (this.timezone == otherAirport.getTimezone()));
+    }
+
 }
