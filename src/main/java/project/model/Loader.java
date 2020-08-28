@@ -93,8 +93,7 @@ public class Loader {
         }
         dataReader.close();
 
-        Flight flight = new Flight(latitudes, longitudes, altitudes, locations, statuses, risk);
-        return flight;
+        return new Flight(latitudes, longitudes, altitudes, locations, statuses, risk);
     }
 
     /**
@@ -211,14 +210,9 @@ public class Loader {
         }
 
         boolean active;
-        if (activeString == "Y") {
-            active = true;
-        } else {
-            active = false;
-        }
+        active = activeString.equals("Y");
 
-        Airline newAirline = new Airline(id, name, active, country, alias, callSign, iata, icao);
-        return newAirline;
+        return new Airline(id, name, active, country, alias, callSign, iata, icao);
 
     }
 
@@ -329,8 +323,7 @@ public class Loader {
         int numRoutesDest = 0; // Same as above.
         int risk = 0; // Placeholder until we decide how we're doing the covid stuff.
 
-        Airport newAirport = new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
-        return newAirport;
+        return new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
     }
 
     /**
@@ -398,18 +391,13 @@ public class Loader {
         try {
             equipment = routeData[8];
         } catch (Exception e) {
-            equipment = "";
+            equipment = null;
         }
 
         boolean codeshare;
-        if (codeshareString == "Y") {
-            codeshare = true;
-        } else {
-            codeshare = false;
-        }
+        codeshare = codeshareString.equals("Y");
 
-        Route newRoute = new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
-        return newRoute;
+        return new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
 
     }
     public ArrayList<Covid> loadCovidFile(String path) throws IOException {

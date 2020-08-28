@@ -1,8 +1,7 @@
 package project.model;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.*;
 
 public class Record {
     private ArrayList<Flight> flightList = new ArrayList<Flight>();
@@ -252,25 +251,40 @@ public class Record {
 
     }
 
-    /**
-     * Add functions need a bit of work - need to be able to remove duplicate data.
-     */
     public void addRoutes(ArrayList<Route> newRouteList) {
-        this.routeList.addAll(routeList);
+        this.routeList.addAll(newRouteList);
+        Set<Route> uniqueElements = new HashSet<>(this.routeList);
+        this.routeList.clear();
+        this.routeList.addAll(uniqueElements);
+        this.routeList.sort(Comparator.comparing(Route::getId));
     }
 
     public void addAirports(ArrayList<Airport> newAirportList) {
         this.airportList.addAll(newAirportList);
+        Set<Airport> uniqueElements = new HashSet<>(this.airportList);
+        this.airportList.clear();
+        this.airportList.addAll(uniqueElements);
+        this.airportList.sort(Comparator.comparing(Airport::getId));
     }
 
     public void addAirlines(ArrayList<Airline> newAirlineList) {
         this.airlineList.addAll(newAirlineList);
+        Set<Airline> uniqueElements = new HashSet<>(this.airlineList);
+        this.airlineList.clear();
+        this.airlineList.addAll(uniqueElements);
+        this.airlineList.sort(Comparator.comparing(Airline::getId));
     }
 
     public void addFlights(Flight newFlight) {
         this.flightList.add(newFlight);
+        Set<Flight> uniqueElements = new HashSet<>(this.flightList);
+        this.flightList.clear();
+        this.flightList.addAll(uniqueElements);
     }
 
+    /**
+     * Not sure if we'll even need this function. Incomplete.
+     */
     public void addCovid(ArrayList<Covid> newCovidList) {
         this.covidList.addAll(newCovidList);
     }
