@@ -285,6 +285,49 @@ public class RecordTest {
     }
 
     @Test
+    public void searchRoutesTest() throws IOException {
+        Record testRecord = setUp();
+        ArrayList<Route> searchResults = testRecord.searchRoutes("NZ");
+        assertEquals(testRecord.getRouteList(), searchResults);
+
+        ArrayList<Route> testRouteList = new ArrayList<>();
+        ArrayList<Route> comparisonList = new ArrayList<>();
+
+        Route testRoute7 = new Route("Air NZL", 500, "NZWN", 411, "NZCH", 511, 0, "DXa134", false);
+        Route testRoute8 = new Route("AIR NZL", 501, "NZCH", 411, "WLG", 511, 0, "DXa34", false);
+        Route testRoute9 = new Route("ubereats", 502, "NZAA", 411, "SYD", 511, 2, "DXa34", false);
+        Route testRoute10 = new Route("frubereats", 503, "NZCH", 411, "SYD", 511, 1, "DXa34", false);
+        Route testRoute11 = new Route("frubercheats", 504, "NZWN", 411, "SYD", 511, 1, "DXa34", false);
+
+        testRouteList.add(testRoute1);
+        testRouteList.add(testRoute2);
+        testRouteList.add(testRoute3);
+        testRouteList.add(testRoute4);
+        testRouteList.add(testRoute5);
+        testRouteList.add(testRoute6);
+        testRouteList.add(testRoute7);
+        testRouteList.add(testRoute8);
+        testRouteList.add(testRoute9);
+        testRouteList.add(testRoute10);
+        testRouteList.add(testRoute11);
+
+        testRecord = new Record(null, testRouteList, null, null, null);
+
+        comparisonList.add(testRoute9);
+        comparisonList.add(testRoute10);
+        comparisonList.add(testRoute11);
+
+        searchResults = testRecord.searchRoutes("uber");
+        assertEquals(comparisonList, searchResults);
+
+        searchResults = testRecord.searchRoutes("auckland");
+        assertEquals(0, searchResults.size());
+
+        searchResults = testRecord.searchRoutes("air nz");
+        assertEquals(8, searchResults.size());
+    }
+
+    @Test
     public void setNumRoutesTest() {
 
         ArrayList<Airline> testAirlineList = new ArrayList<Airline>();
