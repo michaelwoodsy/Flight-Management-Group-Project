@@ -128,4 +128,18 @@ public class Airline {
                 ", icao='" + icao + '\'' +
                 '}';
     }
+
+    /**
+     * Checks two airlines for duplicates
+     */
+    public boolean equals(Airline otherAirline) {
+        return ((this.id == otherAirline.getId())
+        && (this.name.equals(otherAirline.getName()))
+        && (this.active == otherAirline.isActive())
+        && (this.country.equals(otherAirline.getCountry()))
+        && (this.alias.equals(otherAirline.getAlias()))
+        && (this.callSign.equals(otherAirline.getCallSign()))
+        && (this.iata.equals(otherAirline.getIata()))
+        && (this.icao.equals(otherAirline.getIcao())));
+    }
 }

@@ -252,6 +252,9 @@ public class Record {
 
     }
 
+    /**
+     * Add functions need a bit of work - need to be able to remove duplicate data.
+     */
     public void addRoutes(ArrayList<Route> newRouteList) {
         this.routeList.addAll(routeList);
     }

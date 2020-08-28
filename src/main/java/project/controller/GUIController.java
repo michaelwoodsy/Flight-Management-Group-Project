@@ -103,7 +103,7 @@ public class GUIController {
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
                     Flight newFlight = loader.loadFlightFile(file.getAbsolutePath());
                     record.addFlights(newFlight);
-                } else {
+                } else if (selectFile.getSelectedToggle() == covidRadioButton) {
                     ArrayList<Covid> newCovidList = loader.loadCovidFile(file.getAbsolutePath());
                     record.addCovid(newCovidList);
                 }

@@ -151,4 +151,19 @@ public class Route {
                 '}';
     }
 
+    /**
+     * Checks two routes for duplicates
+     */
+    public boolean equals(Route otherRoute) {
+        return ((this.airline.equals(otherRoute.getAirline()))
+                && (this.id == otherRoute.getId())
+                && (this.sourceAirport.equals(otherRoute.getSourceAirport()))
+                && (this.sourceID == otherRoute.getSourceID())
+                && (this.destAirport.equals(otherRoute.getDestAirport()))
+                && (this.destID == otherRoute.getDestID())
+                && (this.numStops == otherRoute.getNumStops())
+                && (this.equipment.equals(otherRoute.getEquipment()))
+                && (this.codeshare == otherRoute.isCodeshare()));
+    }
+
 }

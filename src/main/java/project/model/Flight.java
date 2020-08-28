@@ -132,4 +132,12 @@ public class Flight {
         risk = 0;
     }
 
+    /**
+     * Checks two flights for duplicates
+     */
+    public boolean equals(Flight otherFlight) {
+        return ((this.source.equals(otherFlight.getSource()))
+                && (this.dest.equals(otherFlight.getDest())));
+    }
+
 }
