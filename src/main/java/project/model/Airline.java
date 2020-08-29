@@ -1,5 +1,7 @@
 package project.model;
 
+import java.util.Objects;
+
 public class Airline {
     private int id;
     private String name;
@@ -127,5 +129,25 @@ public class Airline {
                 ", iata='" + iata + '\'' +
                 ", icao='" + icao + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Airline airline = (Airline) o;
+        return getId() == airline.getId() &&
+                isActive() == airline.isActive() &&
+                Objects.equals(getName(), airline.getName()) &&
+                Objects.equals(getCountry(), airline.getCountry()) &&
+                Objects.equals(getAlias(), airline.getAlias()) &&
+                Objects.equals(getCallSign(), airline.getCallSign()) &&
+                Objects.equals(getIata(), airline.getIata()) &&
+                Objects.equals(getIcao(), airline.getIcao());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), isActive(), getCountry(), getAlias(), getCallSign(), getIata(), getIcao());
     }
 }

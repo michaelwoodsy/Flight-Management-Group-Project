@@ -222,7 +222,8 @@ public class Database {
             ArrayList<Airport> airports = getAllAirports();
             ArrayList<Route> routes = getAllRoutes();
             ArrayList<Flight> flights = new ArrayList<Flight>();
-            Record record = new Record(flights, routes, airports, airlines);
+            ArrayList<Covid> covid = new ArrayList<>();
+            Record record = new Record(flights, routes, airports, airlines, covid);
             return record;
         }
     }

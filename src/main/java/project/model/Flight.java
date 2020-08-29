@@ -1,6 +1,7 @@
 package project.model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Flight {
 
@@ -132,4 +133,17 @@ public class Flight {
         risk = 0;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Flight flight = (Flight) o;
+        return Objects.equals(getSource(), flight.getSource()) &&
+                Objects.equals(getDest(), flight.getDest());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getSource(), getDest());
+    }
 }

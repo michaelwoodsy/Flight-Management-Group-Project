@@ -1,6 +1,7 @@
 package project.model;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Airport {
     private int id;
@@ -291,4 +292,29 @@ public class Airport {
         return radius * c;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Airport airport = (Airport) o;
+        return getId() == airport.getId() &&
+                Double.compare(airport.getLatitude(), getLatitude()) == 0 &&
+                Double.compare(airport.getLongitude(), getLongitude()) == 0 &&
+                getAltitude() == airport.getAltitude() &&
+                Double.compare(airport.getTimezone(), getTimezone()) == 0 &&
+                Objects.equals(getName(), airport.getName()) &&
+                Objects.equals(getCity(), airport.getCity()) &&
+                Objects.equals(getCountry(), airport.getCountry()) &&
+                Objects.equals(getIata(), airport.getIata()) &&
+                Objects.equals(getIcao(), airport.getIcao()) &&
+                Objects.equals(getDst(), airport.getDst()) &&
+                Objects.equals(getTimezoneString(), airport.getTimezoneString()) &&
+                Objects.equals(getType(), airport.getType()) &&
+                Objects.equals(getSource(), airport.getSource());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getCity(), getCountry(), getIata(), getIcao(), getLatitude(), getLongitude(), getAltitude(), getTimezone(), getDst(), getTimezoneString(), getType(), getSource());
+    }
 }

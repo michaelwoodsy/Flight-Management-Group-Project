@@ -93,8 +93,7 @@ public class Loader {
         }
         dataReader.close();
 
-        Flight flight = new Flight(latitudes, longitudes, altitudes, locations, statuses, risk);
-        return flight;
+        return new Flight(latitudes, longitudes, altitudes, locations, statuses, risk);
     }
 
     /**
@@ -211,14 +210,9 @@ public class Loader {
         }
 
         boolean active;
-        if (activeString == "Y") {
-            active = true;
-        } else {
-            active = false;
-        }
+        active = activeString.equals("Y");
 
-        Airline newAirline = new Airline(id, name, active, country, alias, callSign, iata, icao);
-        return newAirline;
+        return new Airline(id, name, active, country, alias, callSign, iata, icao);
 
     }
 
@@ -329,8 +323,7 @@ public class Loader {
         int numRoutesDest = 0; // Same as above.
         int risk = 0; // Placeholder until we decide how we're doing the covid stuff.
 
-        Airport newAirport = new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
-        return newAirport;
+        return new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
     }
 
     /**
@@ -398,18 +391,13 @@ public class Loader {
         try {
             equipment = routeData[8];
         } catch (Exception e) {
-            equipment = "";
+            equipment = null;
         }
 
         boolean codeshare;
-        if (codeshareString == "Y") {
-            codeshare = true;
-        } else {
-            codeshare = false;
-        }
+        codeshare = codeshareString.equals("Y");
 
-        Route newRoute = new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
-        return newRoute;
+        return new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
 
     }
     public ArrayList<Covid> loadCovidFile(String path) throws IOException {
@@ -434,30 +422,55 @@ public class Loader {
     }
 
     public Covid loadCovid(String[] covidData) {
+        // for numeric values, if they are not valid they are set to a default of 0.
+        // for string values, if they contain illegal characters are set to null
+        //e.g. if total_cases is missing or is not numeric, then it is set to 0
+        //e.g. if continent is Asi3a (invalid), it is set to null
         String Iso_code;
         try {
-            Iso_code = covidData[0];
+            if (covidData[0].matches("[A-Za-z]+")){
+                Iso_code = covidData[0];
+            }
+            else {
+                Iso_code = null;
+            }
         }catch (Exception e){
             Iso_code = null;
         }
 
         String continent;
         try {
-            continent = covidData[1];
+            if (covidData[1].matches("[A-Za-z]+")){
+                continent = covidData[1];
+            }
+            else {
+                continent = null;
+            }
         }catch (Exception e){
             continent = null;
         }
 
         String location;
         try {
-            location = covidData[2];
+            if (covidData[2].matches("[A-Za-z]+")){
+                location = covidData[2];
+            }
+            else{
+                location = null;
+            }
         }catch (Exception e){
             location = null;
         }
 
         String date;
         try {
-            date = covidData[3];
+            //checks date doesn't contain invalid characters
+            if (covidData[3].matches("[0-9/]+")){
+                date = covidData[3];
+            }
+            else{
+                date = null;
+            }
         }catch (Exception e){
             date = null;
         }
@@ -507,7 +520,6 @@ public class Loader {
         }catch (Exception e){
             population = 0;
         }
-        
 
         Covid newCovid = new Covid(Iso_code, continent, location, date, total_cases, new_cases, total_deaths,
                 new_deaths, total_cases_per_million, total_deaths_per_million, population);

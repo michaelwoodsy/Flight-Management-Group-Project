@@ -1,5 +1,7 @@
 package project.model;
 
+import java.util.Objects;
+
 public class Route {
     private String airline;
     private int id;
@@ -151,4 +153,24 @@ public class Route {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Route route = (Route) o;
+        return getId() == route.getId() &&
+                getSourceID() == route.getSourceID() &&
+                getDestID() == route.getDestID() &&
+                getNumStops() == route.getNumStops() &&
+                isCodeshare() == route.isCodeshare() &&
+                Objects.equals(getAirline(), route.getAirline()) &&
+                Objects.equals(getSourceAirport(), route.getSourceAirport()) &&
+                Objects.equals(getDestAirport(), route.getDestAirport()) &&
+                Objects.equals(getEquipment(), route.getEquipment());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getAirline(), getId(), getSourceAirport(), getSourceID(), getDestAirport(), getDestID(), getNumStops(), getEquipment(), isCodeshare());
+    }
 }

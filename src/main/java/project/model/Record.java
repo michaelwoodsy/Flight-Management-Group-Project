@@ -3,21 +3,22 @@ package project.model;
 import javafx.collections.ObservableList;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+
 
 public class Record {
     private ArrayList<Flight> flightList = new ArrayList<Flight>();
     private ArrayList<Route> routeList = new ArrayList<Route>();
     private ArrayList<Airport> airportList = new ArrayList<Airport>();
     private ArrayList<Airline> airlineList = new ArrayList<Airline>();
+    private ArrayList<Covid> covidList = new ArrayList<Covid>();
 
-    public Record(ArrayList<Flight> flightList, ArrayList<Route> routeList, ArrayList<Airport> airportList, ArrayList<Airline> airlineList) {
+    public Record(ArrayList<Flight> flightList, ArrayList<Route> routeList, ArrayList<Airport> airportList, ArrayList<Airline> airlineList, ArrayList<Covid> covidList) {
         this.flightList = flightList;
         this.routeList = routeList;
         this.airportList = airportList;
         this.airlineList = airlineList;
+        this.covidList = covidList;
     }
 
     /**
@@ -26,7 +27,7 @@ public class Record {
     public ArrayList<Airport> filterAirports(String country) {
         ArrayList<Airport> filteredAirports = new ArrayList<Airport>();
         for (Airport airport: airportList) {
-            if (airport.getCountry().equals(country)) {
+            if (airport.getCountry().toLowerCase().equals(country.toLowerCase())) {
                 filteredAirports.add(airport);
             }
         }
@@ -240,17 +241,48 @@ public class Record {
     }
 
     /**
-     * Might need to make separate add functions for each data class. Depends on GUI implementation.
-     */
-    public void addData(int dataType) {
-
-    }
-
-    /**
      * Could be same as above. Depends on GUI implementation.
      */
     public void deleteData(int dataType, int index) {
 
+    }
+
+    public void addRoutes(ArrayList<Route> newRouteList) {
+        this.routeList.addAll(newRouteList);
+        Set<Route> uniqueElements = new HashSet<>(this.routeList);
+        this.routeList.clear();
+        this.routeList.addAll(uniqueElements);
+        this.routeList.sort(Comparator.comparing(Route::getId));
+    }
+
+    public void addAirports(ArrayList<Airport> newAirportList) {
+        this.airportList.addAll(newAirportList);
+        Set<Airport> uniqueElements = new HashSet<>(this.airportList);
+        this.airportList.clear();
+        this.airportList.addAll(uniqueElements);
+        this.airportList.sort(Comparator.comparing(Airport::getId));
+    }
+
+    public void addAirlines(ArrayList<Airline> newAirlineList) {
+        this.airlineList.addAll(newAirlineList);
+        Set<Airline> uniqueElements = new HashSet<>(this.airlineList);
+        this.airlineList.clear();
+        this.airlineList.addAll(uniqueElements);
+        this.airlineList.sort(Comparator.comparing(Airline::getId));
+    }
+
+    public void addFlights(Flight newFlight) {
+        this.flightList.add(newFlight);
+        Set<Flight> uniqueElements = new HashSet<>(this.flightList);
+        this.flightList.clear();
+        this.flightList.addAll(uniqueElements);
+    }
+
+    /**
+     * Not sure if we'll even need this function. Incomplete.
+     */
+    public void addCovid(ArrayList<Covid> newCovidList) {
+        this.covidList.addAll(newCovidList);
     }
 
     public ArrayList<Flight> getFlightList() {
