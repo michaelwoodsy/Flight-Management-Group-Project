@@ -7,6 +7,10 @@ import java.util.ArrayList;
 
 public class Database {
 
+    private static ArrayList<String> airportTableColumns;
+    private static ArrayList<String> airlineTableColumns;
+    private static ArrayList<String> routeTableColumns;
+
     /**
      * Connects to the database stored in the data folder
      * @return conn - A Connection object referencing the database
@@ -32,6 +36,73 @@ public class Database {
                 System.out.println("The driver name is " + meta.getDriverName());
                 System.out.println("A new database has been created");
             }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    /**
+     * Adds a new airport into the database's airport table.
+     * It is assumed that the table has already been created.
+     * @param airport The airport object to be added to the database.
+     */
+    public static void addNewAirport(Airport airport) {
+
+        String insertStatement = String.format("INSERT INTO airports(id, risk, altitude, numRoutesSource, numRoutesDest, " +
+                "airportName, city, country, iata, icao, destination, timezoneString, airportType, airportSource, latitude, " +
+                "longitude, timezone) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
+            pstmt.setInt(1, airport.getId());
+            pstmt.setInt(2, airport.getRisk());
+            pstmt.setInt(3, airport.getAltitude());
+            pstmt.setInt(4, airport.getNumRoutesSource());
+            pstmt.setInt(5, airport.getNumRoutesDest());
+            pstmt.setString(6, airport.getName());
+            pstmt.setString(7, airport.getCity());
+            pstmt.setString(8, airport.getCountry());
+            pstmt.setString(9, airport.getIata());
+            pstmt.setString(10, airport.getIcao());
+            pstmt.setString(11, airport.getDst());
+            pstmt.setString(12, airport.getTimezoneString());
+            pstmt.setString(13, airport.getType());
+            pstmt.setString(14, airport.getSource());
+            pstmt.setDouble(15, airport.getLatitude());
+            pstmt.setDouble(16, airport.getLongitude());
+            pstmt.setDouble(17, airport.getTimezone());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void addNewAirline(Airline airline) {}
+
+    public static void addNewRoute(Route route) {}
+
+    /**
+     * Removes an amount of airports from the database that match the provided criteria.
+     * @param column If a data point has 'value' in this column, it will be deleted.
+     * @param value If a data point has this value in 'column', it will be deleted.
+     */
+    public static void removeAirport(String column, String value, String columnType) throws NoSuchFieldException {
+
+        if (!airportTableColumns.contains(column)) {
+            throw new NoSuchFieldException("Provided column value is not a column in the airport table");
+        }
+
+        String deleteStatement = String.format("DELETE FROM airports WHERE %s = ?", column);
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(deleteStatement)) {
+            if (columnType.toLowerCase() == "string") {
+                pstmt.setString(1, value);
+            } else if (columnType.toLowerCase() == "int") {
+                pstmt.setInt(1, Integer.parseInt(value));
+            } else if (columnType.toLowerCase() == "double") {
+                pstmt.setDouble(1, Double.parseDouble(value));
+            }
+            pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
