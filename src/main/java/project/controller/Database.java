@@ -7,9 +7,59 @@ import java.util.ArrayList;
 
 public class Database {
 
-    private static ArrayList<String> airportTableColumns;
-    private static ArrayList<String> airlineTableColumns;
-    private static ArrayList<String> routeTableColumns;
+    private static ArrayList<String> airportTableColumns = new ArrayList<String>();
+    private static ArrayList<String> airlineTableColumns = new ArrayList<String>();
+    private static ArrayList<String> routeTableColumns = new ArrayList<String>();
+
+    public static void populateAirportTableColumns() {
+        if (airportTableColumns.size() == 0) {
+            airportTableColumns.add("id");
+            airportTableColumns.add("risk");
+            airportTableColumns.add("altitude");
+            airportTableColumns.add("numRoutesSource");
+            airportTableColumns.add("numRoutesDest");
+            airportTableColumns.add("airportName");
+            airportTableColumns.add("city");
+            airportTableColumns.add("country");
+            airportTableColumns.add("iata");
+            airportTableColumns.add("icao");
+            airportTableColumns.add("destination");
+            airportTableColumns.add("timezoneString");
+            airportTableColumns.add("airportType");
+            airportTableColumns.add("airportSource");
+            airportTableColumns.add("latitude");
+            airportTableColumns.add("longitude");
+            airportTableColumns.add("timezone");
+        }
+    }
+
+    public static void populateAirlineTableColumns() {
+        if (airlineTableColumns.size() == 0) {
+            airlineTableColumns.add("id");
+            airlineTableColumns.add("airlineName");
+            airlineTableColumns.add("country");
+            airlineTableColumns.add("alias");
+            airlineTableColumns.add("callsign");
+            airlineTableColumns.add("icao");
+            airlineTableColumns.add("iata");
+            airlineTableColumns.add("active");
+        }
+    }
+
+    public static void populateRouteTableColumns() {
+        if (routeTableColumns.size() == 0) {
+            routeTableColumns.add("id");
+            routeTableColumns.add("sourceID");
+            routeTableColumns.add("destID");
+            routeTableColumns.add("numStops");
+            routeTableColumns.add("airline");
+            routeTableColumns.add("sourceAirport");
+            routeTableColumns.add("destAirport");
+            routeTableColumns.add("equipment");
+            routeTableColumns.add("codeshare");
+        }
+    }
+
 
     /**
      * Connects to the database stored in the data folder
@@ -76,16 +126,60 @@ public class Database {
         }
     }
 
-    public static void addNewAirline(Airline airline) {}
+    public static void addNewAirline(Airline airline) {
 
-    public static void addNewRoute(Route route) {}
+        String insertStatement = String.format("INSERT INTO airlines(id, airlineName, country, alias, callsign, icao, iata, " +
+                "active) VALUES(?,?,?,?,?,?,?,?)");
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
+            pstmt.setInt(1, airline.getId());
+            pstmt.setString(2, airline.getName());
+            pstmt.setString(3, airline.getCountry());
+            pstmt.setString(4, airline.getAlias());
+            pstmt.setString(5, airline.getCallSign());
+            pstmt.setString(6, airline.getIcao());
+            pstmt.setString(7, airline.getIata());
+            if (airline.isActive()) {
+                pstmt.setInt(8, 1);
+            } else {
+                pstmt.setInt(8, 0);
+            }
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void addNewRoute(Route route) {
+        String insertStatement = String.format("INSERT INTO routes(id, sourceID, destID, numStops, airline, sourceAirport, " +
+                "destAirport, equipment, codeshare) VALUES(?,?,?,?,?,?,?,?,?)");
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
+            pstmt.setInt(1, route.getId());
+            pstmt.setInt(2, route.getSourceID());
+            pstmt.setInt(3, route.getDestID());
+            pstmt.setInt(4, route.getNumStops());
+            pstmt.setString(5, route.getAirline());
+            pstmt.setString(6, route.getSourceAirport());
+            pstmt.setString(7, route.getDestAirport());
+            pstmt.setString(8, route.getEquipment());
+            if (route.isCodeshare()) {
+                pstmt.setInt(9, 1);
+            } else {
+                pstmt.setInt(9, 0);
+            }
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     /**
      * Removes an amount of airports from the database that match the provided criteria.
      * @param column If a data point has 'value' in this column, it will be deleted.
      * @param value If a data point has this value in 'column', it will be deleted.
      */
-    public static void removeAirport(String column, String value, String columnType) throws NoSuchFieldException {
+    public static void removeAirport(String column, String value) throws NoSuchFieldException {
 
         if (!airportTableColumns.contains(column)) {
             throw new NoSuchFieldException("Provided column value is not a column in the airport table");
@@ -95,18 +189,45 @@ public class Database {
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(deleteStatement)) {
-            if (columnType.toLowerCase() == "string") {
-                pstmt.setString(1, value);
-            } else if (columnType.toLowerCase() == "int") {
-                pstmt.setInt(1, Integer.parseInt(value));
-            } else if (columnType.toLowerCase() == "double") {
-                pstmt.setDouble(1, Double.parseDouble(value));
-            }
+            pstmt.setString(1, value);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
+
+    public static void removeAirline(String column, String value) throws NoSuchFieldException {
+        if (!airlineTableColumns.contains(column)) {
+            throw new NoSuchFieldException("Column name does not exist in the airline table.");
+        }
+
+        String deleteStatement = String.format("DELETE FROM airlines WHERE %s = ?", column);
+
+        try (Connection conn = connect();
+            PreparedStatement pstmt = conn.prepareStatement(deleteStatement)) {
+            pstmt.setString(1, value);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+
+    }
+
+    public static void removeRoute(String column, String value) throws NoSuchFieldException {
+        if (!routeTableColumns.contains(column)) {
+            throw new NoSuchFieldException("Column name does not exist in the routes table.");
+        }
+
+        try (Connection conn = connect();
+             PreparedStatement pstmt = conn.prepareStatement(String.format("DELETE FROM routes WHERE %s = ?", column))) {
+            pstmt.setString(1, value);
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 
     /**
      * Creates a new table within the database for airport data
