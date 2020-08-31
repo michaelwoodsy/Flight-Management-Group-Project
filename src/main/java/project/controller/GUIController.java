@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -17,6 +18,7 @@ import project.model.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
 import static javafx.collections.FXCollections.observableArrayList;
@@ -24,12 +26,14 @@ import static javafx.collections.FXCollections.observableArrayList;
 /**
  * Class for working in while experimenting with GUI features
  */
-public class GUIController {
+public class GUIController implements Initializable {
 
     @FXML
     private ListView airportList;
     @FXML
     private ListView airlineList;
+    @FXML
+    private ListView routeList;
     @FXML
     private ListView airlineDetailList;
     @FXML
@@ -58,12 +62,27 @@ public class GUIController {
     private RadioButton routeRadioButton;
     @FXML
     private RadioButton flightRadioButton;
-    @FXML
-    private RadioButton covidRadioButton;
 
     private Record record = Database.generateRecord();
     private boolean optedIn = false;
     private Loader loader = new Loader();
+
+    /**
+     * Stuff to do on setup
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        ObservableList<String> sortStrings = observableArrayList("Most Popular", "Least Popular");
+        airportSortBy.setItems(sortStrings);
+        routeSortBy.setItems(sortStrings);
+        airlineSortBy.setItems(sortStrings);
+        airportSortBy.setValue("Most Popular");
+        airlineSortBy.setValue("Most Popular");
+        routeSortBy.setValue("Most Popular");
+
+        airlineSearchBy.setItems(observableArrayList("Country of Origin", "Active", "Inactive"));
+        routeSearchBy.setItems(observableArrayList("Destination", "Departure Location", "Equipment"));
+    }
 
     /**
      * Retrieves user input and searches for airports that are located within that country.
@@ -75,7 +94,6 @@ public class GUIController {
         if (country.isBlank()) {
             System.err.println("No country entered");
         }
-        System.out.println(country);
         ArrayList<Airport> filteredAirports = record.filterAirports(country);
         airportList.setItems(observableArrayList(filteredAirports));
     }
@@ -108,9 +126,6 @@ public class GUIController {
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
                     Flight newFlight = loader.loadFlightFile(file.getAbsolutePath());
                     record.addFlights(newFlight);
-                } else if (selectFile.getSelectedToggle() == covidRadioButton) {
-                    ArrayList<Covid> newCovidList = loader.loadCovidFile(file.getAbsolutePath());
-                    record.addCovid(newCovidList);
                 }
             }
         }
@@ -124,6 +139,14 @@ public class GUIController {
         airportList.setItems(observableArrayList(record.getAirportList()));
     }
 
+    public void displayAllAirlines() {
+        airlineList.setItems(observableArrayList(record.getAirlineList()));
+    }
+
+    public void displayAllRoutes() {
+        routeList.setItems(observableArrayList(record.getRouteList()));
+    }
+
     /**
      * Sorts the data that is currently within the main data viewer.
      * Uses the current value of the airport choice box to determine how to sort.
@@ -132,28 +155,11 @@ public class GUIController {
         List<Airport> currentData = airlineList.getItems();
         String sortBy = (String) airlineSortBy.getValue();
         boolean reverse = true;
-        if (sortBy == "Most Popular") {
+        if (sortBy.equals("Most Popular")) {
             reverse = false;
         }
         List<Airport> sortedAirports = record.rankAirports(reverse, currentData);
         airportList.setItems(observableArrayList(sortedAirports));
-    }
-
-    /**
-     * Populates each choiceBox in the GUI with appropriate options.
-     * Each choicebox specifies what criteria a user can search/sort with.
-     */
-    public void setUpChoices() {
-        ObservableList<String> sortStrings = observableArrayList("Most Popular", "Least Popular");
-        airportSortBy.setItems(sortStrings);
-        routeSortBy.setItems(sortStrings);
-        airlineSortBy.setItems(sortStrings);
-        airportSortBy.setValue("Most Popular");
-        airlineSortBy.setValue("Most Popular");
-        routeSortBy.setValue("Most Popular");
-
-        airlineSearchBy.setItems(observableArrayList("Country of Origin", "Active", "Inactive"));
-        routeSearchBy.setItems(observableArrayList("Destination", "Departure Location", "Equipment"));
     }
 
     /**

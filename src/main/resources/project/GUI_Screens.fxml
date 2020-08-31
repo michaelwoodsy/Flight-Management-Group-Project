@@ -1,12 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.web.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.web.WebView?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controller.GUIController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controller.GUIController">
   <tabs>
     <Tab fx:id="airport_tab" text="Airport">
       <content>
@@ -45,11 +60,12 @@
                            <children>
                               <TextField fx:id="airlineSearchCriteria" layoutX="25.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" />
                               <ChoiceBox fx:id="airlineSearchBy" layoutX="25.0" layoutY="75.0" prefHeight="25.0" prefWidth="150.0" />
-                              <ChoiceBox fx:id="airlineSortBy" layoutX="25.0" layoutY="175.0" prefWidth="150.0" />
+                              <ChoiceBox fx:id="airlineSortBy" layoutX="24.0" layoutY="144.0" prefWidth="150.0" />
                               <Text layoutX="25.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Criteria:" />
                               <Text layoutX="25.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search By:" />
-                              <Text layoutX="25.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort By:" />
-                              <Button fx:id="airlineSearchButton" layoutX="115.0" layoutY="120.0" mnemonicParsing="false" text="SEARCH" />
+                              <Text layoutX="25.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort By:" />
+                              <Button fx:id="airlineSearchButton" layoutX="115.0" layoutY="111.0" mnemonicParsing="false" text="SEARCH" />
+                              <Button fx:id="showAllAirlines" layoutX="36.0" layoutY="182.0" mnemonicParsing="false" onAction="#displayAllAirlines" text="SHOW ALL AIRLINES" />
                            </children></AnchorPane>
                       <AnchorPane fx:id="airlineDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
@@ -72,10 +88,11 @@
                               <TextField fx:id="routeSearchCriteria" layoutX="25.0" layoutY="25.0" prefHeight="25.0" prefWidth="150.0" />
                               <Text layoutX="25.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search Criteria:" />
                               <Text layoutX="25.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search By:" />
-                              <Text layoutX="25.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort By:" />
+                              <Text layoutX="25.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort By:" />
                               <ChoiceBox fx:id="routeSearchBy" layoutX="25.0" layoutY="75.0" prefWidth="150.0" />
-                              <ChoiceBox fx:id="routeSortBy" layoutX="25.0" layoutY="175.0" prefWidth="150.0" />
-                              <Button fx:id="routeSearchButton" layoutX="115.0" layoutY="120.0" mnemonicParsing="false" text="SEARCH" />
+                              <ChoiceBox fx:id="routeSortBy" layoutX="24.0" layoutY="144.0" prefWidth="150.0" />
+                              <Button fx:id="routeSearchButton" layoutX="115.0" layoutY="111.0" mnemonicParsing="false" text="SEARCH" />
+                              <Button fx:id="showAllRoutes" layoutX="39.0" layoutY="182.0" mnemonicParsing="false" onAction="#displayAllRoutes" text="SHOW ALL ROUTES" />
                            </children></AnchorPane>
                       <AnchorPane fx:id="routeDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
@@ -272,7 +289,6 @@
                                     <RadioButton fx:id="airlineRadioButton" layoutX="43.0" layoutY="73.0" mnemonicParsing="false" text="Airline" toggleGroup="$selectFile" />
                                     <RadioButton fx:id="routeRadioButton" layoutX="43.0" layoutY="113.0" mnemonicParsing="false" text="Route" toggleGroup="$selectFile" />
                                     <RadioButton fx:id="flightRadioButton" layoutX="43.0" layoutY="153.0" mnemonicParsing="false" text="Flight" toggleGroup="$selectFile" />
-                                    <RadioButton fx:id="covidRadioButton" layoutX="43.0" layoutY="193.0" mnemonicParsing="false" text="Covid" toggleGroup="$selectFile" />
                                  </children></AnchorPane>
                           </content>
                         </Tab>
