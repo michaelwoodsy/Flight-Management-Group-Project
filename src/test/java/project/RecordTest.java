@@ -6,6 +6,7 @@ import project.model.*;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -222,7 +223,9 @@ public class RecordTest {
     public void rankAirportsTest() throws IOException {
         Record testRecord = setUp();
 
-        ArrayList<Airport> rankedAirports = testRecord.rankAirports(false);
+        ArrayList<Airport> testAirports = testRecord.getAirportList();
+
+        List<Airport> rankedAirports = testRecord.rankAirports(false, testAirports);
 
         ArrayList<Airport> comparisonAirportList = new ArrayList<Airport>();
 
@@ -234,7 +237,7 @@ public class RecordTest {
 
         assertEquals(comparisonAirportList, rankedAirports);
 
-        rankedAirports = testRecord.rankAirports(true);
+        rankedAirports = testRecord.rankAirports(true, testAirports);
 
         comparisonAirportList = new ArrayList<Airport>();
 
@@ -367,13 +370,14 @@ public class RecordTest {
         ArrayList<Covid> testCovidList = new ArrayList<Covid>();
 
         Record testRecord = new Record(testFlightList, testRouteList, testAirportList, testAirlineList, testCovidList);
+        List<Airport> testAirports = testRecord.getAirportList();
 
         testRecord.setNumRoutesDest();
         testRecord.setNumRoutesSource();
 
-        assertEquals(6, testRecord.rankAirports(true).get(0).getTotalRoutes());
-        assertEquals(4, testRecord.rankAirports(true).get(4).getTotalRoutes());
-        assertEquals(0, testRecord.rankAirports(true).get(5).getTotalRoutes());
+        assertEquals(6, testRecord.rankAirports(true, testAirports).get(0).getTotalRoutes());
+        assertEquals(4, testRecord.rankAirports(true, testAirports).get(4).getTotalRoutes());
+        assertEquals(0, testRecord.rankAirports(true, testAirports).get(5).getTotalRoutes());
 
     }
 

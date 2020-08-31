@@ -29,6 +29,10 @@ public class GUIController {
     @FXML
     private ListView airportList;
     @FXML
+    private ListView airlineList;
+    @FXML
+    private ListView airlineDetailList;
+    @FXML
     private ListView airportDetailList;
     @FXML
     private TextField airportSearchCriteria;
@@ -67,10 +71,11 @@ public class GUIController {
      * If input is blank, display an error pop-up.
      */
     public void filterAirports() {
-        String country = airportSearchCriteria.getText();
-        if (country.equals("")) {
+        String country = airportSearchCriteria.getText().toLowerCase();
+        if (country.isBlank()) {
             System.err.println("No country entered");
         }
+        System.out.println(country);
         ArrayList<Airport> filteredAirports = record.filterAirports(country);
         airportList.setItems(observableArrayList(filteredAirports));
     }
@@ -119,10 +124,24 @@ public class GUIController {
         airportList.setItems(observableArrayList(record.getAirportList()));
     }
 
-    public void sortCurrentData() {}
+    /**
+     * Sorts the data that is currently within the main data viewer.
+     * Uses the current value of the airport choice box to determine how to sort.
+     */
+    public void sortCurrentAirportData() {
+        List<Airport> currentData = airlineList.getItems();
+        String sortBy = (String) airlineSortBy.getValue();
+        boolean reverse = true;
+        if (sortBy == "Most Popular") {
+            reverse = false;
+        }
+        List<Airport> sortedAirports = record.rankAirports(reverse, currentData);
+        airportList.setItems(observableArrayList(sortedAirports));
+    }
 
     /**
-     * Populate every choiceBox with the relevant choices for the user.
+     * Populates each choiceBox in the GUI with appropriate options.
+     * Each choicebox specifies what criteria a user can search/sort with.
      */
     public void setUpChoices() {
         ObservableList<String> sortStrings = observableArrayList("Most Popular", "Least Popular");
@@ -137,10 +156,13 @@ public class GUIController {
         routeSearchBy.setItems(observableArrayList("Destination", "Departure Location", "Equipment"));
     }
 
+    /**
+     * Extracts the selected airport from the current data in the data viewer, and displays its additional
+     * data in the appropriate panel. Displays additional information if the user has opted in.
+     */
     public void additionalAirportInfo() {
-        ObservableList chosenAirport = airportList.getSelectionModel().getSelectedItems();
-        if (chosenAirport.size() != 1) {
-            Airport airport = (Airport) chosenAirport.get(0);
+        Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
+        if (airport != null) {
             String name = "Name: " + airport.getName();
             String city = String.format("Location: %s, %s", airport.getCity(), airport.getCountry());
             String risk = String.format("COVID risk: %d", airport.getRisk());
@@ -158,5 +180,28 @@ public class GUIController {
         }
     }
 
-
+    /**
+     * Displays additional information about a selected airline in the detail panel.
+     * If the user has opted in, displays further additional information
+     */
+    public void additionalAirlineInfo() {
+        Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
+        if (airline != null) {
+            String activeStatus = "";
+            if (!airline.isActive()) {
+                activeStatus = " not";
+            }
+            String name = String.format("Name: %s", airline.getCountry());
+            String country = String.format("Country of Origin: %s", airline.getCountry());
+            String active = String.format("Airline is%s currently operating", activeStatus);
+            String alias = String.format("Airline also known as %s", airline.getAlias());
+            airlineDetailList.setItems(observableArrayList(name, country, active, alias));
+            if (optedIn) {
+                String iata = String.format("Airline's IATA code: %s", airline.getIata());
+                String icao = String.format("Airline's, ICAO code: %s", airline.getIcao());
+                String callsign = String.format("Airline's callsign: %s", airline.getCallSign());
+                airlineDetailList.getItems().addAll(iata, icao, callsign);
+            }
+        }
+    }
 }

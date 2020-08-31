@@ -18,10 +18,11 @@
                            <children>
                               <TextField fx:id="airportSearchCriteria" layoutX="25.0" layoutY="25.0" prefWidth="150.0" />
                               <Text layoutX="25.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search by Country:" />
-                              <Button fx:id="ariportSearchButton" layoutX="115.0" layoutY="60.0" mnemonicParsing="false" onAction="#filterAirports" text="SEARCH" />
-                              <ChoiceBox fx:id="airportSortBy" layoutX="25.0" layoutY="120.0" prefHeight="25.0" prefWidth="150.0" />
-                              <Text layoutX="25.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort by:" />
+                              <Button fx:id="ariportSearchButton" layoutX="114.0" layoutY="120.0" mnemonicParsing="false" onAction="#filterAirports" text="SEARCH" />
+                              <ChoiceBox fx:id="airportSortBy" layoutX="24.0" layoutY="76.0" prefHeight="25.0" prefWidth="150.0" />
+                              <Text layoutX="25.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sort by:" />
                               <Button fx:id="showAllAirports" layoutX="34.0" layoutY="182.0" mnemonicParsing="false" onAction="#displayAllAirports" text="SHOW ALL AIRPORTS" />
+                              <Button fx:id="airportSortButton" layoutX="23.0" layoutY="120.0" mnemonicParsing="false" onAction="#sortCurrentAirportData" text="SORT" />
                            </children></AnchorPane>
                       <AnchorPane fx:id="airportDetailPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
@@ -52,7 +53,7 @@
                            </children></AnchorPane>
                       <AnchorPane fx:id="airlineDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <ListView layoutX="-1.0" prefHeight="221.0" prefWidth="200.0" />
+                              <ListView fx:id="airlineDetailList" layoutX="-1.0" prefHeight="221.0" prefWidth="200.0" />
                            </children></AnchorPane>
                     </items>
                   </SplitPane>
@@ -78,7 +79,7 @@
                            </children></AnchorPane>
                       <AnchorPane fx:id="routeDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <ListView fx:id="routeAdditionalInformation" layoutX="-1.0" prefHeight="221.0" prefWidth="200.0" />
+                              <ListView fx:id="routeDetailList" layoutX="-1.0" prefHeight="221.0" prefWidth="200.0" />
                            </children></AnchorPane>
                     </items>
                   </SplitPane>
