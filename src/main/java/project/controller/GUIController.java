@@ -62,6 +62,14 @@ public class GUIController implements Initializable {
     private RadioButton routeRadioButton;
     @FXML
     private RadioButton flightRadioButton;
+    @FXML
+    private ChoiceBox airlineFilterDropdown;
+    @FXML
+    private ChoiceBox airportFilterDropdown;
+    @FXML
+    private ChoiceBox routeFilterDropdown;
+    @FXML
+    private ChoiceBox airportSearchBy;
 
     private Record record = Database.generateRecord();
     private boolean optedIn = false;
@@ -72,16 +80,24 @@ public class GUIController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<String> sortStrings = observableArrayList("Most Popular", "Least Popular");
-        airportSortBy.setItems(sortStrings);
-        routeSortBy.setItems(sortStrings);
-        airlineSortBy.setItems(sortStrings);
-        airportSortBy.setValue("Most Popular");
-        airlineSortBy.setValue("Most Popular");
-        routeSortBy.setValue("Most Popular");
 
-        airlineSearchBy.setItems(observableArrayList("Country of Origin", "Active", "Inactive"));
-        routeSearchBy.setItems(observableArrayList("Destination", "Departure Location", "Equipment"));
+        ObservableList<String> filterAirlines = observableArrayList("Countries");
+        ObservableList<String> searchAirlines = observableArrayList("Name", "Alias", "Callsign", "IATA", "ICAO");
+
+        airlineFilterDropdown.setItems(filterAirlines);
+        airlineSearchBy.setItems(searchAirlines);
+
+        ObservableList<String> filterAirports = observableArrayList("Countries");
+        ObservableList<String> searchAirports = observableArrayList("Name", "City", "IATA", "ICAO", "Timezone", "Total # Routes");
+
+        airportFilterDropdown.setItems(filterAirports);
+        airportSearchBy.setItems(searchAirports);
+
+        ObservableList<String> filterRoutes = observableArrayList("Departure Location", "Destination", "Equipment");
+        ObservableList<String> searchRoutes = observableArrayList("Airline", "Total # Stops", "Source ID", "Destination ID");
+
+        routeFilterDropdown.setItems(filterRoutes);
+        routeSearchBy.setItems(searchRoutes);
     }
 
     /**
