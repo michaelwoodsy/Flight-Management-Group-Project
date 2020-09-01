@@ -90,7 +90,7 @@
       <recent name="C:\Users\elang\planesonar25\src\main" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.LoaderTest">
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -178,8 +178,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.LoaderTest" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JUnit.DatabaseTest" />
         <item itemvalue="JUnit.RecordTest" />
         <item itemvalue="JUnit.LoaderTest.loadIndividualRouteTest" />
