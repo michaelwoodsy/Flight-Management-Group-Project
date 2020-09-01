@@ -1,5 +1,6 @@
 package project;
 
+import org.junit.Before;
 import org.junit.Test;
 import project.model.*;
 
@@ -33,12 +34,14 @@ public class RecordTest {
     Airport testAirport5 = new Airport(105, 500, "Test5", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
 
     private Loader loader = new Loader();
+    private Record testRecord;
 
 
     /**
      * Tried to do a @BeforeEach but couldn't, might need changing later
      */
-    public Record setUp() throws IOException {
+    @Before
+    public void setUp() throws IOException {
 
         Flight testFlight1 = loader.loadFlightFile("data/flight.csv");
         Flight testFlight2 = loader.loadFlightFile("data/flighttest.csv");
@@ -73,14 +76,11 @@ public class RecordTest {
         testAirlineList.add(testAirline5);
 
         ArrayList<Covid> testCovidList = new ArrayList<Covid>();
-        Record testRecord = new Record(testFlightList, testRouteList, testAirportList, testAirlineList, testCovidList);
-
-        return testRecord;
+        testRecord = new Record(testFlightList, testRouteList, testAirportList, testAirlineList, testCovidList);
     }
 
     @Test
     public void filterAirportsTest() throws IOException {
-        Record testRecord = setUp();
 
         ArrayList<Airport> filteredTestAirportList = testRecord.filterAirports("New Zealand");
 
@@ -103,7 +103,6 @@ public class RecordTest {
 
     @Test
     public void filterAirlinesTest() throws IOException {
-        Record testRecord = setUp();
 
         ArrayList<Airline> filteredTestAirlineList = testRecord.filterAirlines(true, testRecord.getAirlineList());
 
@@ -126,7 +125,6 @@ public class RecordTest {
 
     @Test
     public void filterAirlinesCountryTest() throws IOException {
-        Record testRecord = setUp();
 
         ArrayList<Airline> filteredTestAirlineList = testRecord.filterAirlinesCountry("New Zealand");
 
@@ -147,7 +145,6 @@ public class RecordTest {
 
     @Test
     public void filterRoutesDepartureTest() throws IOException {
-        Record testRecord = setUp();
 
         ArrayList<Route> filteredRouteList = testRecord.filterRoutesDeparture("NZWN");
 
@@ -168,7 +165,6 @@ public class RecordTest {
 
     @Test
     public void filterRoutesDestinationTest() throws IOException {
-        Record testRecord = setUp();
 
         ArrayList<Route> filteredRouteList = testRecord.filterRoutesDestination("SYD");
 
@@ -182,7 +178,6 @@ public class RecordTest {
 
     @Test
     public void filterRoutesStopsTest() throws IOException {
-        Record testRecord = setUp();
 
         ArrayList<Route> filteredRouteList = testRecord.filterRoutesStops(true, testRecord.getRouteList());
 
@@ -205,7 +200,6 @@ public class RecordTest {
 
     @Test
     public void filterRoutesEquipmentTest() throws IOException {
-        Record testRecord = setUp();
 
         ArrayList<Route> filteredRouteList = testRecord.filterRoutesEquipment("DXa34");
 
@@ -221,7 +215,6 @@ public class RecordTest {
 
     @Test
     public void rankAirportsTest() throws IOException {
-        Record testRecord = setUp();
 
         ArrayList<Airport> testAirports = testRecord.getAirportList();
 
@@ -253,12 +246,12 @@ public class RecordTest {
 
     @Test
     public void searchAirportsTest() throws IOException {
-        Record testRecord = setUp();
-        ArrayList<Airport> searchResults = testRecord.searchAirports("est");
+        ArrayList<Airport> searchResults = (ArrayList<Airport>) testRecord.searchAirports("est", "name");
         assertEquals(testRecord.getAirportList(), searchResults);
 
         ArrayList<Airport> testAirport = new ArrayList<>();
         ArrayList<Airport> comparisonList = new ArrayList<>();
+        List<Airport> cityComparisonList = new ArrayList<>();
 
         Airport testAirport6 = new Airport(101, 500, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", "Test1", "Openflights", 0, 0);
         Airport testAirport7 = new Airport(102, 500, "Ranla ndom", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", "Test2", "Openflights", 0, 0);
@@ -280,16 +273,21 @@ public class RecordTest {
         comparisonList.add(testAirport9);
         comparisonList.add(testAirport10);
 
-        searchResults = testRecord.searchAirports("land");
+        cityComparisonList.add(testAirport8);
+        cityComparisonList.add(testAirport9);
+
+        searchResults = (ArrayList<Airport>) testRecord.searchAirports("land", "name");
         assertEquals(comparisonList, searchResults);
 
-        searchResults = testRecord.searchAirports("auckland");
+        searchResults = (ArrayList<Airport>) testRecord.searchAirports("auckland", "name");
         assertEquals(0, searchResults.size());
+
+        searchResults = (ArrayList<Airport>) testRecord.searchAirports("Sydney", "city");
+        assertEquals(cityComparisonList, searchResults);
     }
 
     @Test
     public void searchRoutesTest() throws IOException {
-        Record testRecord = setUp();
         ArrayList<Route> searchResults = testRecord.searchRoutes("NZ");
         assertEquals(testRecord.getRouteList(), searchResults);
 
@@ -383,7 +381,6 @@ public class RecordTest {
 
     @Test
     public void searchFlightsTest() throws IOException {
-        Record testRecord = setUp();
 
         ArrayList<Flight> flightList = testRecord.searchFlights(true, "Test1");
         assertEquals(3, flightList.size());
@@ -398,7 +395,6 @@ public class RecordTest {
 
     @Test
     public void addAirportsTest() throws IOException {
-        Record testRecord = setUp();
 
         assertEquals(testRecord.getAirportList().size(), 5);
 
@@ -417,7 +413,6 @@ public class RecordTest {
 
     @Test
     public void addAirlinesTest() throws IOException {
-        Record testRecord = setUp();
 
         assertEquals(testRecord.getAirlineList().size(), 5);
 
@@ -436,7 +431,6 @@ public class RecordTest {
 
     @Test
     public void addRoutesTest() throws IOException {
-        Record testRecord = setUp();
 
         assertEquals(testRecord.getRouteList().size(), 6);
 
@@ -456,7 +450,6 @@ public class RecordTest {
 
     @Test
     public void addFlightsTest() throws IOException {
-        Record testRecord = setUp();
 
         assertEquals(testRecord.getFlightList().size(), 5);
 

@@ -43,17 +43,15 @@ public class GUIController implements Initializable {
     @FXML
     private TextField airlineFilterCriteria;
     @FXML
+    private TextField airportSearchCriteria;
+    @FXML
+    private TextField airlineSearchCriteria;
+    @FXML
     private TextField routeFilterCriteria;
-    @FXML
-    private ChoiceBox airportSortBy;
-    @FXML
-    private ChoiceBox airlineSortBy;
     @FXML
     private ChoiceBox airlineSearchBy;
     @FXML
     private ChoiceBox routeSearchBy;
-    @FXML
-    private ChoiceBox routeSortBy;
     @FXML
     private TabPane newTab;
     @FXML
@@ -301,21 +299,6 @@ public class GUIController implements Initializable {
     }
 
     /**
-     * Sorts the data that is currently within the main data viewer.
-     * Uses the current value of the airport choice box to determine how to sort.
-     */
-    public void sortCurrentAirportData() {
-        List<Airport> currentData = airlineList.getItems();
-        String sortBy = (String) airlineSortBy.getValue();
-        boolean reverse = true;
-        if (sortBy.equals("Most Popular")) {
-            reverse = false;
-        }
-        List<Airport> sortedAirports = record.rankAirports(reverse, currentData);
-        airportList.setItems(observableArrayList(sortedAirports));
-    }
-
-    /**
      * Extracts the selected airport from the current data in the data viewer, and displays its additional
      * data in the appropriate panel. Displays additional information if the user has opted in.
      */
@@ -363,4 +346,31 @@ public class GUIController implements Initializable {
             }
         }
     }
+
+    /**
+     * Retrieves the user's inputs, and searches for airports that match the provided criteria.
+     * Does nothing if the textfield is empty.
+     */
+    public void searchForAirport() {
+        String searchCategory = (String) airportSearchBy.getSelectionModel().getSelectedItem();
+        String searchCriteria = airportSearchCriteria.getText().toLowerCase();
+        if (!searchCriteria.isBlank()) {
+            List<Airport> matchingAirports = record.searchAirports(searchCriteria, searchCategory);
+            airportList.setItems((ObservableList) matchingAirports);
+        }
+    }
+
+    /**
+     * Retrieves the user's inputs, and searches for airlines that match the provided criteria in the selected attribute.
+     * Does nothing if the textfield is empty.
+     */
+    public void searchForAirline() {
+        String searchCategory = (String) airlineSearchBy.getSelectionModel().getSelectedItem();
+        String searchCriteria = airlineSearchCriteria.getText().toLowerCase();
+        if (!searchCriteria.isBlank()) {
+            List<Airline> matchingAirlines = record.searchAirlines(searchCriteria, searchCategory);
+            airlineList.setItems((ObservableList) matchingAirlines);
+        }
+    }
+
 }

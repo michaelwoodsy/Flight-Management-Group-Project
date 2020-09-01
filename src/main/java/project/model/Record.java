@@ -1,5 +1,8 @@
 package project.model;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.io.*;
@@ -163,6 +166,68 @@ public class Record {
         }
         return searchResult;
     }
+
+    /**
+     * Finds airports where the value of the airport's 'attribute' matches 'keyword'
+     * @param keyword The value of the airport's attributes that we are searching for
+     * @param attribute The attribute of the airports to be compared
+     * @return A list of airports which have a value of attribute that matches the keyword
+     */
+    public List<Airport> searchAirports(String keyword, String attribute) {
+        List<Airport> searchResult = new ArrayList<Airport>();
+
+        for (Airport airport: airportList) {
+            boolean airportMatches = false;
+            if (attribute == "name") {
+                airportMatches = airport.getName().toUpperCase().contains(keyword.toUpperCase());
+            } else if (attribute == "city") {
+                airportMatches = airport.getCity().toUpperCase().contains(keyword.toUpperCase());
+            } else if (attribute == "total # routes") {
+                airportMatches = (Integer.toString(airport.getTotalRoutes()) == keyword);
+            } else if (attribute == "iata") {
+                airportMatches = airport.getIata() == keyword;
+            } else if (attribute == "icao") {
+                airportMatches = airport.getIcao() == keyword;
+            } else if (attribute == "timezone") {
+                airportMatches = airport.getTimezoneString() == keyword;
+            }
+
+            if (airportMatches) {
+                searchResult.add(airport);
+            }
+        }
+        return searchResult;
+    }
+
+    /**
+     * Finds airlines where the value of the airline's 'attribute' matches 'keyword'
+     * @param keyword The value of the airline's attributes that we are searching for
+     * @param attribute The attribute of the airlines to be compared
+     * @return A list of airlines which have a value of 'attribute' that matches the keyword
+     */
+    public List<Airline> searchAirlines(String keyword, String attribute) {
+       List<Airline> searchResult = new ArrayList<Airline>();
+       for (Airline airline: airlineList) {
+           boolean airlineMatches = false;
+           if (attribute == "name") {
+               airlineMatches = airline.getName().toUpperCase().contains(keyword.toUpperCase());
+           } else if (attribute == "alias") {
+               airlineMatches = airline.getAlias().toUpperCase().contains(keyword.toUpperCase());
+           } else if (attribute == "iata") {
+               airlineMatches = airline.getIata() == keyword;
+           } else if (attribute == "icao") {
+               airlineMatches = airline.getIcao() == keyword;
+           } else if (attribute == "callsign") {
+               airlineMatches = airline.getCallSign() == keyword;
+           }
+
+           if (airlineMatches) {
+               searchResult.add(airline);
+           }
+       }
+       return searchResult;
+    }
+
 
     /**
      * Search by airline name. Might need changing.
