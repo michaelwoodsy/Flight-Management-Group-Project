@@ -10,11 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="GUI additions, check controller class. most notably, initialise method for stuff on startup">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Added all neccessary boxes to cover filtering and searching" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -445,7 +441,14 @@
       <option name="project" value="LOCAL" />
       <updated>1598915290124</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Added all neccessary boxes to cover filtering and searching">
+      <created>1598919687639</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1598919687639</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,7 +468,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Adding maven scaffolding" />
     <MESSAGE value="Ed testing push" />
     <MESSAGE value="GUI with map tab (map view)" />
     <MESSAGE value="Covid class(basic setter), covid file loader code added" />
@@ -490,7 +492,8 @@
     <MESSAGE value="Added more tests for empty strings in loadIndividualRouteTest" />
     <MESSAGE value="Added more extensive test for empty strings and invalid value type in loadIndividualAirlineTest" />
     <MESSAGE value="GUI additions, check controller class. most notably, initialise method for stuff on startup" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI additions, check controller class. most notably, initialise method for stuff on startup" />
+    <MESSAGE value="Added all neccessary boxes to cover filtering and searching" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added all neccessary boxes to cover filtering and searching" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
@@ -609,10 +612,10 @@
     <state x="155" y="0" key="SettingsEditor/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597622967066" />
     <state x="166" y="12" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1595997449081" />
     <state x="233" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598425220256" />
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1598915294287">
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1598919693738">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1598915294287" />
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1598919693738" />
     <state x="312" y="160" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1598581356049" />
     <state x="338" y="208" key="Vcs.Push.Dialog.v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017372267" />
     <state x="408" y="329" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1595980153516">

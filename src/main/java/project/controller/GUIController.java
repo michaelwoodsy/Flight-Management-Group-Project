@@ -63,11 +63,11 @@ public class GUIController implements Initializable {
     @FXML
     private RadioButton flightRadioButton;
     @FXML
-    private ChoiceBox airlineFilterDropdown;
+    private ChoiceBox airlineFilterBy;
     @FXML
-    private ChoiceBox airportFilterDropdown;
+    private ChoiceBox airportFilterBy;
     @FXML
-    private ChoiceBox routeFilterDropdown;
+    private ChoiceBox routeFilterBy;
     @FXML
     private ChoiceBox airportSearchBy;
 
@@ -84,19 +84,19 @@ public class GUIController implements Initializable {
         ObservableList<String> filterAirlines = observableArrayList("Countries");
         ObservableList<String> searchAirlines = observableArrayList("Name", "Alias", "Callsign", "IATA", "ICAO");
 
-        airlineFilterDropdown.setItems(filterAirlines);
+        airlineFilterBy.setItems(filterAirlines);
         airlineSearchBy.setItems(searchAirlines);
 
         ObservableList<String> filterAirports = observableArrayList("Countries");
         ObservableList<String> searchAirports = observableArrayList("Name", "City", "IATA", "ICAO", "Timezone", "Total # Routes");
 
-        airportFilterDropdown.setItems(filterAirports);
+        airportFilterBy.setItems(filterAirports);
         airportSearchBy.setItems(searchAirports);
 
         ObservableList<String> filterRoutes = observableArrayList("Departure Location", "Destination", "Equipment");
         ObservableList<String> searchRoutes = observableArrayList("Airline", "Total # Stops", "Source ID", "Destination ID");
 
-        routeFilterDropdown.setItems(filterRoutes);
+        routeFilterBy.setItems(filterRoutes);
         routeSearchBy.setItems(searchRoutes);
     }
 
