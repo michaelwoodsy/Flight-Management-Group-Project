@@ -66,10 +66,11 @@ public class Record {
      * Filters routes by source airport. Returns a new list of routes meeting this criteria.
      * Needs changing from sourceAirport to country. Perhaps countries can be mapped to source airports?
      */
-    public ArrayList<Route> filterRoutesDeparture(String sourceAirport){
+    public ArrayList<Route> filterRoutesDeparture(String keyWord) {
         ArrayList<Route> filteredRoutes = new ArrayList<Route>();
+
         for (Route route: routeList) {
-            if (route.getSourceAirport().equals(sourceAirport)) {
+            if (route.getSourceAirport().toUpperCase().contains(keyWord.toUpperCase())) {
                 filteredRoutes.add(route);
             }
         }
@@ -80,10 +81,11 @@ public class Record {
      * Filters routes by destination airport. Returns a new list of routes meeting this criteria.
      * Needs changing from destAirport to country. Perhaps countries can be mapped to destination airports?
      */
-    public ArrayList<Route> filterRoutesDestination(String destAirport) {
+    public ArrayList<Route> filterRoutesDestination(String keyWord) {
         ArrayList<Route> filteredRoutes = new ArrayList<Route>();
+
         for (Route route: routeList) {
-            if (route.getDestAirport().equals(destAirport)) {
+            if (route.getDestAirport().toUpperCase().contains(keyWord.toUpperCase())) {
                 filteredRoutes.add(route);
             }
         }
@@ -114,10 +116,13 @@ public class Record {
     /**
      * Filters routes by their flight equipment. Returns a new list of routes meeting this criteria.
      */
-    public ArrayList<Route> filterRoutesEquipment(String equipment) {
+    public ArrayList<Route> filterRoutesEquipment(String keyWord) {
         ArrayList<Route> filteredRoutes = new ArrayList<Route>();
+
         for (Route route: routeList) {
-            if (route.getEquipment().equals(equipment)) {
+            if (route.getEquipment() == null) {
+                continue;
+            } else if (route.getEquipment().toUpperCase().contains(keyWord.toUpperCase())) {
                 filteredRoutes.add(route);
             }
         }

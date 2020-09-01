@@ -43,6 +43,8 @@ public class GUIController implements Initializable {
     @FXML
     private TextField airlineFilterCriteria;
     @FXML
+    private TextField routeFilterCriteria;
+    @FXML
     private ChoiceBox airportSortBy;
     @FXML
     private ChoiceBox airlineSortBy;
@@ -106,7 +108,7 @@ public class GUIController implements Initializable {
         airportFilterBy.setItems(filterAirports);
         airportSearchBy.setItems(searchAirports);
 
-        ObservableList<String> filterRoutes = observableArrayList("Departure Location", "Destination", "Equipment");
+        ObservableList<String> filterRoutes = observableArrayList("Source Airport", "Destination Airport", "Equipment");
         ObservableList<String> searchRoutes = observableArrayList("Airline", "Total # Stops", "Source ID", "Destination ID");
 
         routeFilterBy.setItems(filterRoutes);
@@ -143,6 +145,9 @@ public class GUIController implements Initializable {
      * If input is blank, display an error pop-up.
      */
     public void filterAirlines() {
+        airlineActiveBox.setSelected(true);
+        airlineInactiveBox.setSelected(true);
+
         String country = airlineFilterCriteria.getText();
         if (country.isBlank()) {
             System.err.println("No country entered");
@@ -192,7 +197,7 @@ public class GUIController implements Initializable {
         if (routeDirectBox.isSelected()) {
             List<Route> filteredRoutes = record.filterRoutesStops(true, defaultRouteList);
             if (routeIndirectBox.isSelected()) {
-                routeList.setItems(observableArrayList(filteredRoutes));
+                routeList.setItems(observableArrayList(defaultRouteList));
             } else {
                 routeList.setItems(observableArrayList(filteredRoutes));
             }
@@ -203,6 +208,39 @@ public class GUIController implements Initializable {
             } else {
                 routeList.setItems(observableArrayList(new ArrayList<Route>()));
             }
+        }
+    }
+
+    @FXML
+    public void filterRoutes(ActionEvent event) throws IOException {
+
+        routeDirectBox.setSelected(true);
+        routeIndirectBox.setSelected(true);
+
+        if (routeFilterBy.getValue().equals("Source Airport")) {
+            String departure = routeFilterCriteria.getText();
+            if (departure.isBlank()) {
+                System.err.println("No source airport code entered");
+            }
+            ArrayList<Route> filteredRoutes = record.filterRoutesDeparture(departure);
+            routeList.setItems(observableArrayList(filteredRoutes));
+            defaultRouteList = routeList.getItems();
+        } else if (routeFilterBy.getValue().equals("Destination Airport")) {
+            String destination = routeFilterCriteria.getText();
+            if (destination.isBlank()) {
+                System.err.println("No destination airport code entered");
+            }
+            ArrayList<Route> filteredRoutes = record.filterRoutesDestination(destination);
+            routeList.setItems(observableArrayList(filteredRoutes));
+            defaultRouteList = routeList.getItems();
+        } else if (routeFilterBy.getValue().equals("Equipment")) {
+            String equipment = routeFilterCriteria.getText();
+            if (equipment.isBlank()) {
+                System.err.println("No equipment entered");
+            }
+            ArrayList<Route> filteredRoutes = record.filterRoutesEquipment(equipment);
+            routeList.setItems(observableArrayList(filteredRoutes));
+            defaultRouteList = routeList.getItems();
         }
     }
 

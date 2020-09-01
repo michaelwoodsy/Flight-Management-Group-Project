@@ -103,7 +103,7 @@
                               <CheckBox fx:id="routeDirectBox" layoutX="15.0" layoutY="154.0" mnemonicParsing="false" onAction="#filterRouteStops" selected="true" text="Direct Flight" />
                               <CheckBox fx:id="routeIndirectBox" layoutX="115.0" layoutY="154.0" mnemonicParsing="false" onAction="#filterRouteStops" selected="true" text="Has Stops" />
                               <TextField fx:id="routeFilterCriteria" layoutX="5.0" layoutY="113.0" prefHeight="25.0" prefWidth="130.0" />
-                              <Button fx:id="routeFilterButton" layoutX="134.0" layoutY="88.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="60.0" text="FILTER" />
+                              <Button fx:id="routeFilterButton" layoutX="134.0" layoutY="88.0" mnemonicParsing="false" onAction="#filterRoutes" prefHeight="50.0" prefWidth="60.0" text="FILTER" />
                            </children></AnchorPane>
                       <AnchorPane fx:id="routeDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
