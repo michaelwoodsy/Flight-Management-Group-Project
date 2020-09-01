@@ -93,7 +93,7 @@ public class Record {
     /**
      * Filters routes by whether they have stops or not. Returns a new list of routes meeting this criteria.
      */
-    public ArrayList<Route> filterRoutesStops(boolean direct) {
+    public ArrayList<Route> filterRoutesStops(boolean direct, List<Route> routeList) {
         ArrayList<Route> filteredRoutes = new ArrayList<Route>();
         if (direct) {
             for (Route route: routeList) {

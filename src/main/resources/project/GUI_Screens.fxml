@@ -100,8 +100,8 @@
                               <ChoiceBox fx:id="routeFilterBy" layoutX="5.0" layoutY="88.0" prefHeight="25.0" prefWidth="130.0" />
                               <Button fx:id="routeSearchButton" layoutX="134.0" layoutY="17.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="60.0" text="SEARCH" />
                               <Button fx:id="showAllRoutes" layoutX="35.0" layoutY="190.0" mnemonicParsing="false" onAction="#displayAllRoutes" text="SHOW ALL ROUTES" />
-                              <CheckBox fx:id="routeDirectBox" layoutX="15.0" layoutY="154.0" mnemonicParsing="false" selected="true" text="Direct Flight" />
-                              <CheckBox fx:id="routeIndirectBox" layoutX="115.0" layoutY="154.0" mnemonicParsing="false" selected="true" text="Has Stops" />
+                              <CheckBox fx:id="routeDirectBox" layoutX="15.0" layoutY="154.0" mnemonicParsing="false" onAction="#filterRouteStops" selected="true" text="Direct Flight" />
+                              <CheckBox fx:id="routeIndirectBox" layoutX="115.0" layoutY="154.0" mnemonicParsing="false" onAction="#filterRouteStops" selected="true" text="Has Stops" />
                               <TextField fx:id="routeFilterCriteria" layoutX="5.0" layoutY="113.0" prefHeight="25.0" prefWidth="130.0" />
                               <Button fx:id="routeFilterButton" layoutX="134.0" layoutY="88.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="60.0" text="FILTER" />
                            </children></AnchorPane>

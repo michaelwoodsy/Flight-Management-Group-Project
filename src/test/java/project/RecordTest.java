@@ -184,7 +184,7 @@ public class RecordTest {
     public void filterRoutesStopsTest() throws IOException {
         Record testRecord = setUp();
 
-        ArrayList<Route> filteredRouteList = testRecord.filterRoutesStops(true);
+        ArrayList<Route> filteredRouteList = testRecord.filterRoutesStops(true, testRecord.getRouteList());
 
         ArrayList<Route> comparisonRouteList = new ArrayList<Route>();
         comparisonRouteList.add(testRoute1);
@@ -192,7 +192,7 @@ public class RecordTest {
 
         assertEquals(comparisonRouteList, filteredRouteList);
 
-        filteredRouteList = testRecord.filterRoutesStops(false);
+        filteredRouteList = testRecord.filterRoutesStops(false, testRecord.getRouteList());
         comparisonRouteList = new ArrayList<Route>();
         comparisonRouteList.add(testRoute3);
         comparisonRouteList.add(testRoute4);

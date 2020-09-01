@@ -76,12 +76,17 @@ public class GUIController implements Initializable {
     private CheckBox airlineActiveBox;
     @FXML
     private CheckBox airlineInactiveBox;
+    @FXML
+    private CheckBox routeDirectBox;
+    @FXML
+    private CheckBox routeIndirectBox;
 
 
     private Record record = Database.generateRecord();
     private boolean optedIn = false;
     private Loader loader = new Loader();
     private List<Airline> defaultAirlineList = new ArrayList<Airline>();
+    private List<Route> defaultRouteList = new ArrayList<Route>();
 
     /**
      * Stuff to do on setup
@@ -182,7 +187,23 @@ public class GUIController implements Initializable {
     }
 
     @FXML
-    public void inactiveAirlines(ActionEvent event) throws IOException {
+    public void filterRouteStops(ActionEvent event) throws IOException {
+
+        if (routeDirectBox.isSelected()) {
+            List<Route> filteredRoutes = record.filterRoutesStops(true, defaultRouteList);
+            if (routeIndirectBox.isSelected()) {
+                routeList.setItems(observableArrayList(filteredRoutes));
+            } else {
+                routeList.setItems(observableArrayList(filteredRoutes));
+            }
+        } else {
+            if (routeIndirectBox.isSelected()) {
+                List<Route> filteredRoutes = record.filterRoutesStops(false, defaultRouteList);
+                routeList.setItems(observableArrayList(filteredRoutes));
+            } else {
+                routeList.setItems(observableArrayList(new ArrayList<Route>()));
+            }
+        }
     }
 
     @FXML
@@ -233,8 +254,12 @@ public class GUIController implements Initializable {
         defaultAirlineList = airlineList.getItems();
     }
 
+
     public void displayAllRoutes() {
         routeList.setItems(observableArrayList(record.getRouteList()));
+        routeDirectBox.setSelected(true);
+        routeIndirectBox.setSelected(true);
+        defaultRouteList = routeList.getItems();
     }
 
     /**
