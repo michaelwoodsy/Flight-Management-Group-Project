@@ -210,7 +210,7 @@ public class Loader {
         }
 
         boolean active;
-        active = activeString.equals("Y");
+        active = activeString.equals("Y") || activeString.equals("\"Y\"");
 
         return new Airline(id, name, active, country, alias, callSign, iata, icao);
 

@@ -24,10 +24,11 @@ public class Record {
     /**
      * Filters airports by country entered. Returns a new list of airports meeting this criteria.
      */
-    public ArrayList<Airport> filterAirports(String country) {
+    public ArrayList<Airport> filterAirports(String keyWord) {
         ArrayList<Airport> filteredAirports = new ArrayList<Airport>();
+
         for (Airport airport: airportList) {
-            if (airport.getCountry().toLowerCase().equals(country.toLowerCase())) {
+            if (airport.getCountry().toUpperCase().contains(keyWord.toUpperCase())) {
                 filteredAirports.add(airport);
             }
         }
@@ -37,7 +38,7 @@ public class Record {
     /**
      * Filters airlines by whether they're active or not. Returns a new list of airlines meeting this criteria.
      */
-    public ArrayList<Airline> filterAirlines(Boolean active) {
+    public ArrayList<Airline> filterAirlines(Boolean active, List<Airline> airlineList) {
         ArrayList<Airline> filteredAirlines = new ArrayList<Airline>();
         for (Airline airline: airlineList) {
             if (airline.isActive() == active) {
@@ -50,10 +51,11 @@ public class Record {
     /**
      * Filters airlines by country entered. Returns a new list of airlines meeting this criteria.
      */
-    public ArrayList<Airline> filterAirlinesCountry(String country) {
+    public ArrayList<Airline> filterAirlinesCountry(String keyWord) {
         ArrayList<Airline> filteredAirlines = new ArrayList<Airline>();
+
         for (Airline airline: airlineList) {
-            if (airline.getCountry().equals(country)) {
+            if (airline.getCountry().toUpperCase().contains(keyWord.toUpperCase())) {
                 filteredAirlines.add(airline);
             }
         }

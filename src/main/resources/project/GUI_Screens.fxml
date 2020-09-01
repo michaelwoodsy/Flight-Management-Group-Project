@@ -35,13 +35,13 @@
                               <Button fx:id="ariportSearchButton" layoutX="134.0" layoutY="17.0" mnemonicParsing="false" onAction="#filterAirports" prefHeight="50.0" prefWidth="60.0" text="SEARCH" />
                               <Text layoutX="8.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rank by:" />
                               <Button fx:id="showAllAirports" layoutX="35.0" layoutY="190.0" mnemonicParsing="false" onAction="#displayAllAirports" text="SHOW ALL AIRPORTS" />
-                              <Button fx:id="airportMostRoutes" layoutX="100.0" layoutY="157.0" mnemonicParsing="false" onAction="#sortCurrentAirportData" prefHeight="25.0" text="MOST ROUTES" />
+                              <Button fx:id="airportMostRoutes" layoutX="100.0" layoutY="157.0" mnemonicParsing="false" onAction="#mostRoutesButton" prefHeight="25.0" text="MOST ROUTES" />
                               <ChoiceBox fx:id="airportSearchBy" layoutX="5.0" layoutY="17.0" prefHeight="25.0" prefWidth="130.0" />
                               <Text layoutX="8.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Search By:" />
-                              <Button fx:id="airportLeastRoutes" layoutX="5.0" layoutY="157.0" mnemonicParsing="false" prefHeight="25.0" text="LEAST ROUTES" />
+                              <Button fx:id="airportLeastRoutes" layoutX="5.0" layoutY="157.0" mnemonicParsing="false" onAction="#leastRoutesButton" prefHeight="25.0" text="LEAST ROUTES" />
                               <Text layoutX="8.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter By:" />
                               <ChoiceBox fx:id="airportFilterBy" layoutX="5.0" layoutY="88.0" prefHeight="25.0" prefWidth="130.0" />
-                              <Button fx:id="airportFilterButton" layoutX="134.0" layoutY="88.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="60.0" text="FILTER" />
+                              <Button fx:id="airportFilterButton" layoutX="134.0" layoutY="88.0" mnemonicParsing="false" onAction="#filterAirports" prefHeight="50.0" prefWidth="60.0" text="FILTER" />
                               <TextField fx:id="airportFilterCriteria" layoutX="5.0" layoutY="113.0" prefHeight="25.0" prefWidth="130.0" />
                            </children></AnchorPane>
                       <AnchorPane fx:id="airportDetailPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -70,10 +70,10 @@
                               <Text layoutX="8.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter By:" />
                               <Button fx:id="showAllAirlines" layoutX="35.0" layoutY="190.0" mnemonicParsing="false" onAction="#displayAllAirlines" text="SHOW ALL AIRLINES" />
                               <Button fx:id="airlineSearchButton" layoutX="134.0" layoutY="17.0" mnemonicParsing="false" onAction="#filterAirports" prefHeight="50.0" prefWidth="60.0" text="SEARCH" />
-                              <CheckBox fx:id="airlineActiveBox" layoutX="30.0" layoutY="154.0" mnemonicParsing="false" selected="true" text="Active" />
-                              <CheckBox fx:id="airlineInactiveBox" layoutX="110.0" layoutY="154.0" mnemonicParsing="false" selected="true" text="Inactive" />
+                              <CheckBox fx:id="airlineActiveBox" layoutX="30.0" layoutY="154.0" mnemonicParsing="false" onAction="#filterActiveAirlines" selected="true" text="Active" />
+                              <CheckBox fx:id="airlineInactiveBox" layoutX="110.0" layoutY="154.0" mnemonicParsing="false" onAction="#filterActiveAirlines" selected="true" text="Inactive" />
                               <TextField fx:id="airlineFilterCriteria" layoutX="5.0" layoutY="113.0" prefHeight="25.0" prefWidth="130.0" />
-                              <Button fx:id="airlineFilterButton" layoutX="134.0" layoutY="88.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="60.0" text="FILTER" />
+                              <Button fx:id="airlineFilterButton" layoutX="134.0" layoutY="88.0" mnemonicParsing="false" onAction="#filterAirlines" prefHeight="50.0" prefWidth="60.0" text="FILTER" />
                            </children></AnchorPane>
                       <AnchorPane fx:id="airlineDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>

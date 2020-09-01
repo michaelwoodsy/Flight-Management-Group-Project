@@ -39,7 +39,9 @@ public class GUIController implements Initializable {
     @FXML
     private ListView airportDetailList;
     @FXML
-    private TextField airportSearchCriteria;
+    private TextField airportFilterCriteria;
+    @FXML
+    private TextField airlineFilterCriteria;
     @FXML
     private ChoiceBox airportSortBy;
     @FXML
@@ -70,10 +72,16 @@ public class GUIController implements Initializable {
     private ChoiceBox routeFilterBy;
     @FXML
     private ChoiceBox airportSearchBy;
+    @FXML
+    private CheckBox airlineActiveBox;
+    @FXML
+    private CheckBox airlineInactiveBox;
+
 
     private Record record = Database.generateRecord();
     private boolean optedIn = false;
     private Loader loader = new Loader();
+    private List<Airline> defaultAirlineList = new ArrayList<Airline>();
 
     /**
      * Stuff to do on setup
@@ -98,20 +106,83 @@ public class GUIController implements Initializable {
 
         routeFilterBy.setItems(filterRoutes);
         routeSearchBy.setItems(searchRoutes);
+
+        routeSearchBy.getSelectionModel().selectFirst();
+        routeFilterBy.getSelectionModel().selectFirst();
+        airportSearchBy.getSelectionModel().selectFirst();
+        airportFilterBy.getSelectionModel().selectFirst();
+        airlineSearchBy.getSelectionModel().selectFirst();
+        airlineFilterBy.getSelectionModel().selectFirst();
+
     }
 
+    @FXML
     /**
      * Retrieves user input and searches for airports that are located within that country.
      * Displays only those airports in the airport data viewer.
      * If input is blank, display an error pop-up.
      */
     public void filterAirports() {
-        String country = airportSearchCriteria.getText().toLowerCase();
+        String country = airportFilterCriteria.getText();
         if (country.isBlank()) {
             System.err.println("No country entered");
         }
         ArrayList<Airport> filteredAirports = record.filterAirports(country);
         airportList.setItems(observableArrayList(filteredAirports));
+    }
+
+    @FXML
+    /**
+     * Retrieves user input and searches for airlines that are located within that country.
+     * Displays only those airlines in the airlines data viewer.
+     * If input is blank, display an error pop-up.
+     */
+    public void filterAirlines() {
+        String country = airlineFilterCriteria.getText();
+        if (country.isBlank()) {
+            System.err.println("No country entered");
+        }
+        ArrayList<Airline> filteredAirlines = record.filterAirlinesCountry(country);
+        airlineList.setItems(observableArrayList(filteredAirlines));
+        defaultAirlineList = airlineList.getItems();
+    }
+
+    @FXML
+    public void leastRoutesButton(ActionEvent event) throws IOException {
+        List<Airport> currentData = airportList.getItems();
+        List<Airport> rankedAirports = record.rankAirports(false, currentData);
+        airportList.setItems(observableArrayList(rankedAirports));
+    }
+
+    @FXML
+    public void mostRoutesButton(ActionEvent event) throws IOException {
+        List<Airport> currentData = airportList.getItems();
+        List<Airport> rankedAirports = record.rankAirports(true, currentData);
+        airportList.setItems(observableArrayList(rankedAirports));
+    }
+
+    @FXML
+    public void filterActiveAirlines(ActionEvent event) throws IOException {
+
+        if (airlineActiveBox.isSelected()) {
+            List<Airline> filteredAirlines = record.filterAirlines(true, defaultAirlineList);
+            if (airlineInactiveBox.isSelected()) {
+                airlineList.setItems(observableArrayList(defaultAirlineList));
+            } else {
+                airlineList.setItems(observableArrayList(filteredAirlines));
+            }
+        } else {
+            if (airlineInactiveBox.isSelected()) {
+                List<Airline>filteredAirlines = record.filterAirlines(false, defaultAirlineList);
+                airlineList.setItems(observableArrayList(filteredAirlines));
+            } else {
+                airlineList.setItems(observableArrayList(new ArrayList<Airline>()));
+            }
+        }
+    }
+
+    @FXML
+    public void inactiveAirlines(ActionEvent event) throws IOException {
     }
 
     @FXML
@@ -132,7 +203,7 @@ public class GUIController implements Initializable {
             if (file != null) {
                 if (selectFile.getSelectedToggle() == airportRadioButton) {
                     ArrayList<Airport> newAirportList = loader.loadAirportFile(file.getAbsolutePath());
-                    record.addAirports(newAirportList);
+                    record.addAirports(newAirportList);;
                 } else if (selectFile.getSelectedToggle() == airlineRadioButton) {
                     ArrayList<Airline> newAirlineList = loader.loadAirlineFile(file.getAbsolutePath());
                     record.addAirlines(newAirlineList);
@@ -157,6 +228,9 @@ public class GUIController implements Initializable {
 
     public void displayAllAirlines() {
         airlineList.setItems(observableArrayList(record.getAirlineList()));
+        airlineActiveBox.setSelected(true);
+        airlineInactiveBox.setSelected(true);
+        defaultAirlineList = airlineList.getItems();
     }
 
     public void displayAllRoutes() {

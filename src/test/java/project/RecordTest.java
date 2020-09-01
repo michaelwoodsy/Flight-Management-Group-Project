@@ -105,7 +105,7 @@ public class RecordTest {
     public void filterAirlinesTest() throws IOException {
         Record testRecord = setUp();
 
-        ArrayList<Airline> filteredTestAirlineList = testRecord.filterAirlines(true);
+        ArrayList<Airline> filteredTestAirlineList = testRecord.filterAirlines(true, testRecord.getAirlineList());
 
         ArrayList<Airline> comparisonAirlineList = new ArrayList<Airline>();
         comparisonAirlineList.add(testAirline1);
@@ -114,7 +114,7 @@ public class RecordTest {
 
         assertEquals(comparisonAirlineList, filteredTestAirlineList);
 
-        filteredTestAirlineList = testRecord.filterAirlines(false);
+        filteredTestAirlineList = testRecord.filterAirlines(false, testRecord.getAirlineList());
 
         comparisonAirlineList = new ArrayList<Airline>();
         comparisonAirlineList.add(testAirline2);
