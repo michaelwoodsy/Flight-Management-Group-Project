@@ -504,22 +504,23 @@ public class GUIController implements Initializable {
                 numStops = ("Number of stops: " + route.getNumStops());
             }
 
-            routeDetailList.setItems(observableArrayList(airline, numStops));
+            String sourceAirport;
+            if (route.getSourceAirport() == null) {
+                sourceAirport = ("Source Airport Code: Unknown");
+            } else {
+                sourceAirport = ("Source Airport Code: " + route.getSourceAirport());
+            }
+
+            String destAirport;
+            if (route.getDestAirport() == null) {
+                destAirport = ("Destination Airport Code: Unknown");
+            } else {
+                destAirport = ("Destination Airport Code: " + route.getDestAirport());
+            }
+
+            routeDetailList.setItems(observableArrayList(airline, numStops, sourceAirport, destAirport));
 
             if (optedIn) {
-                String sourceAirport;
-                if (route.getSourceAirport() == null) {
-                    sourceAirport = ("Source Airport Code: Unknown");
-                } else {
-                    sourceAirport = ("Source Airport Code: " + route.getSourceAirport());
-                }
-
-                String destAirport;
-                if (route.getDestAirport() == null) {
-                    destAirport = ("Destination Airport Code: Unknown");
-                } else {
-                    destAirport = ("Destination Airport Code: " + route.getDestAirport());
-                }
 
                 String equipment;
                 if (route.getEquipment() == null) {
@@ -535,7 +536,7 @@ public class GUIController implements Initializable {
                     codeshare = "This flight is not a codeshare";
                 }
 
-                routeDetailList.getItems().addAll(sourceAirport, destAirport, equipment, codeshare);
+                routeDetailList.getItems().addAll(equipment, codeshare);
             }
         }
 
