@@ -319,93 +319,96 @@ public class GUIController implements Initializable {
     public void additionalAirportInfo() {
         Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
 
-        String name;
-        if (airport.getName() == null) {
-            name = ("Name: Unknown");
-        } else {
-            name = ("Name: " + airport.getName());
-        }
+        if (airport != null) {
 
-        String city;
-        if (airport.getCity() == null) {
-            if (airport.getCountry() == null) {
-                city = ("Location: Unknown, Unknown");
+            String name;
+            if (airport.getName() == null) {
+                name = ("Name: Unknown");
             } else {
-                city = ("Location: Unknown, " + airport.getCountry());
-            }
-        } else {
-            if (airport.getCountry() == null) {
-                city = ("Location: " + airport.getCity() + ", Unknown");
-            } else {
-                city = ("Location: " + airport.getCity()+ ", " + airport.getCountry());
-            }
-        }
-
-        String risk = ("COVID risk level: " + airport.getRisk());
-
-        String numRoutes;
-        if (airport.getTotalRoutes() < 1) {
-            numRoutes = ("Warning: No flight routes go through this airport");
-        } else {
-            numRoutes = ("A total of " + airport.getTotalRoutes() + " flight routes go through this airport");
-        }
-
-        String timezoneNum;
-        if (airport.getTimezone() == 25) {
-            timezoneNum = "Unknown";
-        } else if (airport.getTimezone() >= 0) {
-            timezoneNum = "+" + airport.getTimezone();
-        } else {
-            timezoneNum = "" + airport.getTimezone();
-        }
-
-        String timezone;
-        if (airport.getTimezoneString() == null) {
-            timezone = ("Timezone: Unknown, " + timezoneNum + " hours");
-        } else {
-            timezone = ("Timezone: " + airport.getTimezoneString() + ", " + timezoneNum + " hours");
-        }
-
-        airportDetailList.setItems(observableArrayList(name, city, risk, numRoutes, timezone));
-
-        if (optedIn) {
-
-            String lat;
-            if (airport.getLatitude() == 360) {
-                lat = ("Latitude: Unknown");
-            } else {
-                lat = ("Latitude: " + airport.getLatitude() + " decimal degrees");
+                name = ("Name: " + airport.getName());
             }
 
-            String lon;
-            if (airport.getLongitude() == 360) {
-                lon = ("Longitude: Unknown");
+            String city;
+            if (airport.getCity() == null) {
+                if (airport.getCountry() == null) {
+                    city = ("Location: Unknown, Unknown");
+                } else {
+                    city = ("Location: Unknown, " + airport.getCountry());
+                }
             } else {
-                lon = ("Longitude: " + airport.getLongitude() + " decimal degrees");
+                if (airport.getCountry() == null) {
+                    city = ("Location: " + airport.getCity() + ", Unknown");
+                } else {
+                    city = ("Location: " + airport.getCity()+ ", " + airport.getCountry());
+                }
             }
 
-            String alt;
-            if (airport.getAltitude() == -1) {
-                alt = ("Altitude: Unknown");
+            String risk = ("COVID risk level: " + airport.getRisk());
+
+            String numRoutes;
+            if (airport.getTotalRoutes() < 1) {
+                numRoutes = ("Warning: No flight routes go through this airport");
             } else {
-                alt = ("Altitude: " + airport.getAltitude() + " feet");
+                numRoutes = ("A total of " + airport.getTotalRoutes() + " flight routes go through this airport");
             }
 
-            String iata;
-            if (airport.getIata() == null) {
-                iata = ("IATA code: Unknown");
+            String timezoneNum;
+            if (airport.getTimezone() == 25) {
+                timezoneNum = "Unknown";
+            } else if (airport.getTimezone() >= 0) {
+                timezoneNum = "+" + airport.getTimezone();
             } else {
-                iata = ("IATA code: " + airport.getIata());
+                timezoneNum = "" + airport.getTimezone();
             }
 
-            String icao;
-            if (airport.getIcao() == null) {
-                icao = ("ICAO code: Unknown");
+            String timezone;
+            if (airport.getTimezoneString() == null) {
+                timezone = ("Timezone: Unknown, " + timezoneNum + " hours");
             } else {
-                icao = ("ICAO code: " + airport.getIcao());
+                timezone = ("Timezone: " + airport.getTimezoneString() + ", " + timezoneNum + " hours");
             }
 
-            airportDetailList.getItems().addAll(icao, iata, lat, lon, alt);
+            airportDetailList.setItems(observableArrayList(name, city, risk, numRoutes, timezone));
+
+            if (optedIn) {
+
+                String lat;
+                if (airport.getLatitude() == 360) {
+                    lat = ("Latitude: Unknown");
+                } else {
+                    lat = ("Latitude: " + airport.getLatitude() + " decimal degrees");
+                }
+
+                String lon;
+                if (airport.getLongitude() == 360) {
+                    lon = ("Longitude: Unknown");
+                } else {
+                    lon = ("Longitude: " + airport.getLongitude() + " decimal degrees");
+                }
+
+                String alt;
+                if (airport.getAltitude() == -1) {
+                    alt = ("Altitude: Unknown");
+                } else {
+                    alt = ("Altitude: " + airport.getAltitude() + " feet");
+                }
+
+                String iata;
+                if (airport.getIata() == null) {
+                    iata = ("IATA code: Unknown");
+                } else {
+                    iata = ("IATA code: " + airport.getIata());
+                }
+
+                String icao;
+                if (airport.getIcao() == null) {
+                    icao = ("ICAO code: Unknown");
+                } else {
+                    icao = ("ICAO code: " + airport.getIcao());
+                }
+
+                airportDetailList.getItems().addAll(icao, iata, lat, lon, alt);
+            }
         }
     }
 
@@ -417,59 +420,62 @@ public class GUIController implements Initializable {
     public void additionalAirlineInfo() {
         Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
 
-        String name;
-        if (airline.getName() == null) {
-            name = ("Name: Unknown");
-        } else {
-            name = ("Name: " + airline.getName());
-        }
+        if (airline != null) {
 
-        String country;
-        if (airline.getCountry() == null) {
-            country = ("Country of Origin: Unknown");
-        } else {
-            country = ("Country of Origin: " + airline.getCountry());
-        }
-
-        String active;
-        if (airline.isActive()) {
-            active = ("This Airline is currently in operation");
-        } else {
-            active = ("This Airline is no longer in operation");
-        }
-
-        String alias;
-        if (airline.getAlias() == null) {
-            alias = ("This airline has no known aliases");
-        } else {
-            alias = ("Airline known as: " + airline.getAlias());
-        }
-
-        airlineDetailList.setItems(observableArrayList(name, country, active, alias));
-
-        if (optedIn) {
-            String iata;
-            if (airline.getIata() == null) {
-                iata = ("IATA code: Unknown");
+            String name;
+            if (airline.getName() == null) {
+                name = ("Name: Unknown");
             } else {
-                iata = ("IATA code: " + airline.getIata());
+                name = ("Name: " + airline.getName());
             }
 
-            String icao;
-            if (airline.getIcao() == null) {
-                icao = ("ICAO code: Unknown");
+            String country;
+            if (airline.getCountry() == null) {
+                country = ("Country of Origin: Unknown");
             } else {
-                icao = ("ICAO code: " + airline.getIcao());
+                country = ("Country of Origin: " + airline.getCountry());
             }
 
-            String callSign;
-            if (airline.getCallSign() == null) {
-                callSign = ("Callsign: Unknown");
+            String active;
+            if (airline.isActive()) {
+                active = ("This Airline is currently in operation");
             } else {
-                callSign = ("Callsign: " + airline.getCallSign());
+                active = ("This Airline is no longer in operation");
             }
 
-            airlineDetailList.getItems().addAll(iata, icao, callSign);
+            String alias;
+            if (airline.getAlias() == null) {
+                alias = ("This airline has no known aliases");
+            } else {
+                alias = ("Airline known as: " + airline.getAlias());
+            }
+
+            airlineDetailList.setItems(observableArrayList(name, country, active, alias));
+
+            if (optedIn) {
+                String iata;
+                if (airline.getIata() == null) {
+                    iata = ("IATA code: Unknown");
+                } else {
+                    iata = ("IATA code: " + airline.getIata());
+                }
+
+                String icao;
+                if (airline.getIcao() == null) {
+                    icao = ("ICAO code: Unknown");
+                } else {
+                    icao = ("ICAO code: " + airline.getIcao());
+                }
+
+                String callSign;
+                if (airline.getCallSign() == null) {
+                    callSign = ("Callsign: Unknown");
+                } else {
+                    callSign = ("Callsign: " + airline.getCallSign());
+                }
+
+                airlineDetailList.getItems().addAll(iata, icao, callSign);
+            }
         }
     }
 
@@ -482,52 +488,55 @@ public class GUIController implements Initializable {
     public void additionalRouteInfo() {
         Route route = (Route) routeList.getSelectionModel().getSelectedItem();
 
-        String airline;
-        if (route.getAirline() == null) {
-            airline = ("Airline Code: Unknown");
-        } else {
-            airline = ("Airline Code: " + route.getAirline());
-        }
+        if (route != null) {
 
-        String numStops;
-        if (route.getNumStops() == -1) {
-            numStops = ("Number of stops: Unknown");
-        } else {
-            numStops = ("Number of stops: " + route.getNumStops());
-        }
-
-        routeDetailList.setItems(observableArrayList(airline, numStops));
-
-        if (optedIn) {
-            String sourceAirport;
-            if (route.getSourceAirport() == null) {
-                sourceAirport = ("Source Airport Code: Unknown");
+            String airline;
+            if (route.getAirline() == null) {
+                airline = ("Airline Code: Unknown");
             } else {
-                sourceAirport = ("Source Airport Code: " + route.getSourceAirport());
+                airline = ("Airline Code: " + route.getAirline());
             }
 
-            String destAirport;
-            if (route.getDestAirport() == null) {
-                destAirport = ("Destination Airport Code: Unknown");
+            String numStops;
+            if (route.getNumStops() == -1) {
+                numStops = ("Number of stops: Unknown");
             } else {
-                destAirport = ("Destination Airport Code: " + route.getDestAirport());
+                numStops = ("Number of stops: " + route.getNumStops());
             }
 
-            String equipment;
-            if (route.getEquipment() == null) {
-                equipment = ("Equipment: Unknown");
-            } else {
-                equipment = ("Equipment: " + route.getEquipment());
-            }
+            routeDetailList.setItems(observableArrayList(airline, numStops));
 
-            String codeshare;
-            if (route.isCodeshare()) {
-                codeshare = "This flight is a codeshare";
-            } else {
-                codeshare = "This flight is not a codeshare";
-            }
+            if (optedIn) {
+                String sourceAirport;
+                if (route.getSourceAirport() == null) {
+                    sourceAirport = ("Source Airport Code: Unknown");
+                } else {
+                    sourceAirport = ("Source Airport Code: " + route.getSourceAirport());
+                }
 
-            routeDetailList.getItems().addAll(sourceAirport, destAirport, equipment, codeshare);
+                String destAirport;
+                if (route.getDestAirport() == null) {
+                    destAirport = ("Destination Airport Code: Unknown");
+                } else {
+                    destAirport = ("Destination Airport Code: " + route.getDestAirport());
+                }
+
+                String equipment;
+                if (route.getEquipment() == null) {
+                    equipment = ("Equipment: Unknown");
+                } else {
+                    equipment = ("Equipment: " + route.getEquipment());
+                }
+
+                String codeshare;
+                if (route.isCodeshare()) {
+                    codeshare = "This flight is a codeshare";
+                } else {
+                    codeshare = "This flight is not a codeshare";
+                }
+
+                routeDetailList.getItems().addAll(sourceAirport, destAirport, equipment, codeshare);
+            }
         }
 
     }

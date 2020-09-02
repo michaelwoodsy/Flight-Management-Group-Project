@@ -195,9 +195,28 @@ public class Airport {
      */
     @Override
     public String toString() {
+        String nameString;
+        if (name == null) {
+            nameString = "Unknown airport, ";
+        } else {
+            nameString = name + ", ";
+        }
 
+        String cityString;
+        if (city == null) {
+            cityString = "located in an unknown city, ";
+        } else {
+            cityString = "located in " + city + ", ";
+        }
 
-        return name + ", located in " + city + ", " + country;
+        String countryString;
+        if (country == null) {
+            countryString = "in an unknown country";
+        } else {
+            countryString = country;
+        }
+
+        return nameString + cityString + countryString;
     }
 
     public void update(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, int timezone, String dst, String timezoneString, String type, String source, int numRoutesSource, int numRoutesDest) {

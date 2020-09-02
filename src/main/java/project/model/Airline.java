@@ -119,7 +119,21 @@ public class Airline {
      */
     @Override
     public String toString() {
-        return name + ", originating from " + country;
+        String nameString;
+        if (name == null) {
+            nameString = "Unknown airline, ";
+        } else {
+            nameString = name + ", ";
+        }
+
+        String countryString;
+        if (country == null) {
+            countryString = "originating from an unknown country";
+        } else {
+            countryString = "originating from " + country;
+        }
+
+        return nameString + countryString;
     }
 
     @Override
