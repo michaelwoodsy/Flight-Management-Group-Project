@@ -169,7 +169,10 @@ public class Loader {
 
         String alias;
         try {
-            alias = airlineData[2];
+            alias = airlineData[2].replaceAll("\"", "");
+            if (alias.equals("\\N")) {
+                alias = null;
+            }
         } catch (Exception e) {
             alias = null;
         }

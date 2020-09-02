@@ -19,6 +19,7 @@ import project.model.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.*;
 
 import static javafx.collections.FXCollections.observableArrayList;
@@ -38,6 +39,8 @@ public class GUIController implements Initializable {
     private ListView airlineDetailList;
     @FXML
     private ListView airportDetailList;
+    @FXML
+    private ListView routeDetailList;
     @FXML
     private TextField airportFilterCriteria;
     @FXML
@@ -72,6 +75,8 @@ public class GUIController implements Initializable {
     private ChoiceBox routeFilterBy;
     @FXML
     private ChoiceBox airportSearchBy;
+    @FXML
+    private CheckBox hobbyCheckBox;
     @FXML
     private CheckBox airlineActiveBox;
     @FXML
@@ -298,6 +303,15 @@ public class GUIController implements Initializable {
         defaultRouteList = routeList.getItems();
     }
 
+    @FXML
+    public void setOptedIn() {
+        if (hobbyCheckBox.isSelected()) {
+            optedIn = true;
+        } else {
+            optedIn = false;
+        }
+    }
+
     /**
      * Extracts the selected airport from the current data in the data viewer, and displays its additional
      * data in the appropriate panel. Displays additional information if the user has opted in.
@@ -305,19 +319,44 @@ public class GUIController implements Initializable {
     public void additionalAirportInfo() {
         Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
         if (airport != null) {
-            String name = "Name: " + airport.getName();
+            String name = ("Name: " + airport.getName());
             String city = String.format("Location: %s, %s", airport.getCity(), airport.getCountry());
-            String risk = String.format("COVID risk: %d", airport.getRisk());
-            String numRoutes = String.format("A total of %d flights go through this airport", airport.getTotalRoutes());
-            String timezone = String.format("Timezone: %s", airport.getTimezoneString());
-            airportDetailList.setItems(observableArrayList(name, city, risk, numRoutes));
+            String risk = String.format("COVID risk level: %d", airport.getRisk());
+
+            String numRoutes;
+            if (airport.getTotalRoutes() < 1) {
+                numRoutes = String.format("Warning: No flight routes go through this airport", airport.getTotalRoutes());
+            } else {
+                numRoutes = String.format("A total of %d flight routes go through this airport", airport.getTotalRoutes());
+            }
+
+            String timezoneNum = "" + airport.getTimezone();
+            if (airport.getTimezone() >= 0) {
+                timezoneNum = "+" + airport.getTimezone();
+            }
+            String timezone = String.format("Timezone: %s, ", airport.getTimezoneString()) + timezoneNum + " hours";
+
+            airportDetailList.setItems(observableArrayList(name, city, risk, numRoutes, timezone));
             if (optedIn) {
-                String lat = String.format("Latitude: %d", airport.getLatitude());
-                String lon = String.format("Longitude: %d", airport.getLongitude());
-                String iata = String.format("IATA code: %s", airport.getIata());
-                String icao = String.format("ICAO code: %s", airport.getIcao());
-                String alt = String.format("Airport's altitude: %s", airport.getAltitude());
-                airportDetailList.getItems().addAll(lat, lon, iata, icao, alt);
+                String lat = ("Latitude: " + airport.getLatitude() + " decimal degrees");
+                String lon = ("Longitude: " + airport.getLongitude() + " decimal degrees");
+
+                String iata;
+                if (airport.getIata() == null || airport.getIata().equals("\\N") || airport.getIata().equals("")) {
+                    iata = ("IATA code: Unknown");
+                } else {
+                    iata = String.format("IATA code: %s", airport.getIata());
+                }
+
+                String icao;
+                if (airport.getIcao() == null || airport.getIcao().equals("\\N") || airport.getIcao().equals("")) {
+                    icao = ("ICAO code: Unknown");
+                } else {
+                    icao = String.format("ICAO code: %s", airport.getIcao());
+                }
+
+                String alt = ("Altitude: " + airport.getAltitude() + " feet");
+                airportDetailList.getItems().addAll(icao, iata, lat, lon, alt);
             }
         }
     }
@@ -333,18 +372,45 @@ public class GUIController implements Initializable {
             if (!airline.isActive()) {
                 activeStatus = " not";
             }
-            String name = String.format("Name: %s", airline.getCountry());
+            String name = String.format("Name: %s", airline.getName());
             String country = String.format("Country of Origin: %s", airline.getCountry());
-            String active = String.format("Airline is%s currently operating", activeStatus);
-            String alias = String.format("Airline also known as %s", airline.getAlias());
+            String active = String.format("This Airline is currently%s in operation", activeStatus);
+
+            String alias;
+            if (airline.getAlias() == null || airline.getAlias().equals("")) {
+                alias = String.format("This airline has no known aliases");
+            } else {
+                alias = String.format("Airline known as: %s", airline.getAlias());
+            }
             airlineDetailList.setItems(observableArrayList(name, country, active, alias));
             if (optedIn) {
-                String iata = String.format("Airline's IATA code: %s", airline.getIata());
-                String icao = String.format("Airline's, ICAO code: %s", airline.getIcao());
-                String callsign = String.format("Airline's callsign: %s", airline.getCallSign());
+                String iata = String.format("IATA code: %s", airline.getIata());
+                String icao = String.format("ICAO code: %s", airline.getIcao());
+                String callsign = String.format("Callsign: %s", airline.getCallSign());
                 airlineDetailList.getItems().addAll(iata, icao, callsign);
             }
         }
+    }
+
+    public void additionalRouteInfo() {
+        Route route = (Route) routeList.getSelectionModel().getSelectedItem();
+
+        String airline = ("Airline Code: " + route.getAirline());
+        String numStops = ("Number of stops: " + route.getNumStops());
+        routeDetailList.setItems(observableArrayList(airline, numStops));
+        if (optedIn) {
+            String sourceAirport = ("Source Airport Code: " + route.getSourceAirport());
+            String destAirport = ("Destination Airport Code: " + route.getDestAirport());
+            String equipment = ("Equipment: " + route.getEquipment());
+            String codeshare;
+            if (route.isCodeshare()) {
+                codeshare = "This flight is a codeshare";
+            } else {
+                codeshare = "This flight is not a codeshare";
+            }
+            routeDetailList.getItems().addAll(sourceAirport, destAirport, equipment, codeshare);
+        }
+
     }
 
     /**

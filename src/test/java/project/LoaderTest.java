@@ -206,7 +206,7 @@ public class LoaderTest {
         Loader loader = new Loader();
         ArrayList<Airline> airlineList = loader.loadAirlineFile("data/airlines.dat");
         for (Airline airline: airlineList) {
-            //System.out.println(airline);
+            System.out.println(airline);
         }
 
     }
