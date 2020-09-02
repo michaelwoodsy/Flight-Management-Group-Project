@@ -111,13 +111,7 @@ public class Loader {
             if (row == null) {
                 breaker = true;
             } else {
-                String[] data = row.split(",");
-
-                // Lazy error handling - deleting the specific pieces of data that cause errors. Needs changing.
-                int errorCheck = Integer.parseInt(data[0]);
-                if (errorCheck == 5674 || errorCheck == 5675 || errorCheck == 5562 || errorCheck == 5881) {
-                    continue;
-                }
+                String[] data = row.split(",(?! )");
                 airportList.add(loadAirport(data));
             }
         }
@@ -150,6 +144,7 @@ public class Loader {
 
     /**
      * Returns an airline class from a line read in airlines.dat.
+     * Invalid ints will be displayed as -1, invalid strings displayed as null
      */
     public Airline loadAirline(String[] airlineData) {
 
@@ -162,15 +157,18 @@ public class Loader {
 
         String name;
         try {
-            name = airlineData[1];
+            name = airlineData[1].replace("\"", "").replace("\\\\", "");
+            if (name.equals("\\N") || name.equals("")) {
+                name = null;
+            }
         } catch (Exception e) {
             name = null;
         }
 
         String alias;
         try {
-            alias = airlineData[2].replaceAll("\"", "");
-            if (alias.equals("\\N")) {
+            alias = airlineData[2].replaceAll("\"", "").replace("\\\\", "");
+            if (alias.equals("\\N") || alias.equals("")) {
                 alias = null;
             }
         } catch (Exception e) {
@@ -179,41 +177,53 @@ public class Loader {
 
         String iata;
         try {
-            iata = airlineData[3];
+            iata = airlineData[3].replace("\"", "").replace("\\\\", "");
+            if (iata.equals("\\N") || iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
+                iata = null;
+            }
         } catch (Exception e) {
             iata = null;
         }
 
         String icao;
         try {
-            icao = airlineData[4];
+            icao = airlineData[4].replace("\"", "").replace("\\\\", "");
+            if (icao.equals("\\N") || icao.equals("") || !icao.matches("[a-zA-Z0-9]*")) {
+                icao = null;
+            }
         } catch (Exception e) {
             icao = null;
         }
 
         String callSign;
         try {
-            callSign = airlineData[5];
+            callSign = airlineData[5].replace("\"", "").replace("\\\\", "");
+            if (callSign.equals("\\N") || callSign.equals("")) {
+                callSign = null;
+            }
         } catch (Exception e) {
             callSign = null;
         }
 
         String country;
         try {
-            country = airlineData[6];
+            country = airlineData[6].replace("\"", "").replace("\\\\", "");
+            if (country.equals("\\N") || country.equals("")) {
+                country = null;
+            }
         } catch (Exception e) {
             country = null;
         }
 
         String activeString;
         try {
-            activeString = airlineData[7];
+            activeString = airlineData[7].replace("\"", "").replace("\\\\", "");
         } catch (Exception e) {
             activeString = "N";
         }
 
         boolean active;
-        active = activeString.equals("Y") || activeString.equals("\"Y\"");
+        active = activeString.equals("Y");
 
         return new Airline(id, name, active, country, alias, callSign, iata, icao);
 
@@ -233,35 +243,50 @@ public class Loader {
 
         String name;
         try {
-            name = airportData[1];
+            name = airportData[1].replaceAll("\"", "").replace("\\\\", "");
+            if (name.equals("\\N") || name.equals("")) {
+                name = null;
+            }
         } catch (Exception e) {
             name = null;
         }
 
         String city;
         try {
-            city = airportData[2];
+            city = airportData[2].replaceAll("\"", "").replace("\\\\", "");
+            if (city.equals("\\N") || city.equals("")) {
+                city = null;
+            }
         } catch (Exception e) {
             city = null;
         }
 
         String country;
         try {
-            country = airportData[3];
+            country = airportData[3].replaceAll("\"", "").replace("\\\\", "");
+            if (country.equals("\\N") || country.equals("")) {
+                country = null;
+            }
         } catch (Exception e) {
             country = null;
         }
 
         String iata;
         try {
-            iata = airportData[4];
+            iata = airportData[4].replaceAll("\"", "").replace("\\\\", "");
+            if (iata.equals("\\N") || iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
+                iata = null;
+            }
         } catch (Exception e) {
             iata = null;
         }
 
         String icao;
         try {
-            icao = airportData[5];
+            icao = airportData[5].replaceAll("\"", "").replace("\\\\", "");
+            if (icao.equals("\\N") || icao.equals("") || !icao.matches("[a-zA-Z0-9]*")) {
+                icao = null;
+            }
         } catch (Exception e) {
             icao = null;
         }
@@ -296,28 +321,40 @@ public class Loader {
 
         String dst;
         try {
-            dst = airportData[10];
+            dst = airportData[10].replaceAll("\"", "").replace("\\\\", "");
+            if (dst.equals("\\N") || dst.equals("")) {
+                dst = null;
+            }
         } catch (Exception e) {
             dst = null;
         }
 
         String timezoneString;
         try {
-            timezoneString = airportData[11];
+            timezoneString = airportData[11].replaceAll("\"", "").replace("\\\\", "");
+            if (timezoneString.equals("\\N") || timezoneString.equals("")) {
+                timezoneString = null;
+            }
         } catch (Exception e) {
             timezoneString = null;
         }
 
         String type;
         try {
-            type = airportData[12];
+            type = airportData[12].replaceAll("\"", "").replace("\\\\", "");
+            if (type.equals("\\N") || type.equals("")) {
+                type = null;
+            }
         } catch (Exception e) {
             type = null;
         }
 
         String source;
         try {
-            source = airportData[13];
+            source = airportData[13].replaceAll("\"", "").replace("\\\\", "");
+            if (source.equals("\\N") || source.equals("")) {
+                source = null;
+            }
         } catch (Exception e) {
             source = null;
         }
@@ -336,7 +373,10 @@ public class Loader {
 
         String airline;
         try {
-            airline = routeData[0];
+            airline = routeData[0].replaceAll("\"", "").replace("\\\\", "");
+            if (airline.equals("\\N") || airline.equals("")) {
+                airline = null;
+            }
         } catch (Exception e) {
             airline = null;
         }
@@ -350,7 +390,10 @@ public class Loader {
 
         String sourceAirport;
         try {
-            sourceAirport = routeData[2];
+            sourceAirport = routeData[2].replaceAll("\"", "").replace("\\\\", "");
+            if (sourceAirport.equals("\\N") || sourceAirport.equals("") || !sourceAirport.matches("[a-zA-Z0-9]*")) {
+                sourceAirport = null;
+            }
         } catch (Exception e) {
             sourceAirport = null;
         }
@@ -364,7 +407,10 @@ public class Loader {
 
         String destAirport;
         try {
-            destAirport = routeData[4];
+            destAirport = routeData[4].replaceAll("\"", "").replace("\\\\", "");
+            if (destAirport.equals("\\N") || destAirport.equals("") || !destAirport.matches("[a-zA-Z0-9]*")) {
+                destAirport = null;
+            }
         } catch (Exception e) {
             destAirport = null;
         }
@@ -378,7 +424,10 @@ public class Loader {
 
         String codeshareString;
         try {
-            codeshareString = routeData[6];
+            codeshareString = routeData[6].replaceAll("\"", "").replace("\\\\", "");
+            if (codeshareString.equals("\\N") || codeshareString.equals("")) {
+                codeshareString = "N";
+            }
         } catch (Exception e) {
             codeshareString = "N";
         }
@@ -392,7 +441,10 @@ public class Loader {
 
         String equipment;
         try {
-            equipment = routeData[8];
+            equipment = routeData[8].replaceAll("\"", "").replace("\\\\", "");
+            if (equipment.equals("\\N") || equipment.equals("")) {
+                equipment = null;
+            }
         } catch (Exception e) {
             equipment = null;
         }

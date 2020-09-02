@@ -51,10 +51,10 @@ public class LoaderTest {
 
         String[] routeData4 = {"", "410", "", "2965", "", "2990", "Y", "0", ""};
         testRoute1 = loader.loadRoute(routeData4);
-        assertEquals(testRoute1.getAirline(), "");
-        assertEquals(testRoute1.getSourceAirport(), "");
-        assertEquals(testRoute1.getDestAirport(), "");
-        assertEquals(testRoute1.getEquipment(), "");
+        assertEquals(testRoute1.getAirline(), null);
+        assertEquals(testRoute1.getSourceAirport(), null);
+        assertEquals(testRoute1.getDestAirport(), null);
+        assertEquals(testRoute1.getEquipment(), null);
     }
 
     @Test
@@ -91,12 +91,12 @@ public class LoaderTest {
         String[] airlineData4 = {"1", "", "", "", "", "", "", "Y"};
         testAirline1 = loader.loadAirline(airlineData4);
 
-        assertEquals(testAirline1.getName(), "");
-        assertEquals(testAirline1.getAlias(), "");
-        assertEquals(testAirline1.getIata(), "");
-        assertEquals(testAirline1.getIcao(), "");
-        assertEquals(testAirline1.getCallSign(), "");
-        assertEquals(testAirline1.getCountry(), "");
+        assertEquals(testAirline1.getName(), null);
+        assertEquals(testAirline1.getAlias(), null);
+        assertEquals(testAirline1.getIata(), null);
+        assertEquals(testAirline1.getIcao(), null);
+        assertEquals(testAirline1.getCallSign(), null);
+        assertEquals(testAirline1.getCountry(), null);
 
     }
 
@@ -142,19 +142,19 @@ public class LoaderTest {
         testAirport1 = loader.loadAirport(airportData3);
 
         assertEquals(testAirport1.getId(), -1);
-        assertEquals(testAirport1.getName(), "");
-        assertEquals(testAirport1.getCity(), "");
-        assertEquals(testAirport1.getCountry(), "");
-        assertEquals(testAirport1.getIata(), "");
-        assertEquals(testAirport1.getIcao(), "");
+        assertEquals(testAirport1.getName(), null);
+        assertEquals(testAirport1.getCity(), null);
+        assertEquals(testAirport1.getCountry(), null);
+        assertEquals(testAirport1.getIata(), null);
+        assertEquals(testAirport1.getIcao(), null);
         assertEquals(testAirport1.getLatitude(), 360, 0);
         assertEquals(testAirport1.getLongitude(), 360, 0);
         assertEquals(testAirport1.getAltitude(), -1);
         assertEquals(testAirport1.getTimezone(), 25, 0);
-        assertEquals(testAirport1.getDst(), "");
-        assertEquals(testAirport1.getTimezoneString(), "");
-        assertEquals(testAirport1.getType(), "");
-        assertEquals(testAirport1.getSource(), "");
+        assertEquals(testAirport1.getDst(), null);
+        assertEquals(testAirport1.getTimezoneString(), null);
+        assertEquals(testAirport1.getType(), null);
+        assertEquals(testAirport1.getSource(), null);
 
     }
 
@@ -165,7 +165,7 @@ public class LoaderTest {
     public void loadRouteFileTest() throws IOException {
         ArrayList<Route> routeList = loader.loadRouteFile("data/routes.dat");
         for (Route route: routeList) {
-            //System.out.println(route);
+            System.out.println(route);
         }
 
     }
@@ -194,7 +194,7 @@ public class LoaderTest {
         Loader loader = new Loader();
         ArrayList<Airport> airportList = loader.loadAirportFile("data/airports.dat");
         for (Airport airport: airportList) {
-            // System.out.println(airport);
+            //System.out.println(airport);
         }
     }
 
@@ -206,7 +206,7 @@ public class LoaderTest {
         Loader loader = new Loader();
         ArrayList<Airline> airlineList = loader.loadAirlineFile("data/airlines.dat");
         for (Airline airline: airlineList) {
-            System.out.println(airline);
+            //System.out.println(airline);
         }
 
     }
