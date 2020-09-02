@@ -140,7 +140,28 @@ public class Route {
      */
     @Override
     public String toString() {
-        return "Route from source airport " + sourceAirport + " to destination airport " + destAirport + " through airline " + airline;
+        String sourceString;
+        if (sourceAirport == null) {
+            sourceString = "an unknown source airport ";
+        } else {
+            sourceString = "source airport " + sourceAirport + " ";
+        }
+
+        String destString;
+        if (destAirport == null) {
+            destString = "to an unknown destination airport ";
+        } else {
+            destString = "to destination airport " + destAirport + " ";
+        }
+
+        String airlineString;
+        if (airline == null) {
+            airlineString = "through an unknown airline";
+        } else {
+            airlineString = "through airline " + airline;
+        }
+
+        return "Route from " + sourceString + destString + airlineString;
     }
 
     @Override

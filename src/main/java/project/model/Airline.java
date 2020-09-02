@@ -119,7 +119,7 @@ public class Airline {
      */
     @Override
     public String toString() {
-        return id + ": " + name + ", originating from " + country;
+        return name + ", originating from " + country;
     }
 
     @Override

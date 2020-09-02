@@ -195,7 +195,9 @@ public class Airport {
      */
     @Override
     public String toString() {
-        return id + ": " + name + ", located in " + city + ", " + country;
+
+
+        return name + ", located in " + city + ", " + country;
     }
 
     public void update(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, int timezone, String dst, String timezoneString, String type, String source, int numRoutesSource, int numRoutesDest) {

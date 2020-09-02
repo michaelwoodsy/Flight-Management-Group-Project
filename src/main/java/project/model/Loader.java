@@ -231,6 +231,9 @@ public class Loader {
 
     /**
      * Returns an airport class from a line read in airports.dat.
+     * (Most) nvalid ints will be displayed as -1, invalid strings displayed as null
+     * Invalid latitudes and longitudes are displayed as 360. This is because these are impossible latitude/longitude values, and correspond to easy error handling.
+     * Invalid timezones displayed as 25. Can't have a +25 hour timezone after all.
      */
     public Airport loadAirport(String[] airportData) {
 
@@ -368,6 +371,7 @@ public class Loader {
 
     /**
      * Returns a route class from a line read in routes.dat.
+     * Invalid ints will be displayed as -1, invalid strings displayed as null
      */
     public Route loadRoute(String[] routeData) {
 
