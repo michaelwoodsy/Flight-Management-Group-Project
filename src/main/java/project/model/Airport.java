@@ -195,26 +195,7 @@ public class Airport {
      */
     @Override
     public String toString() {
-        return "Airport{" +
-                "id=" + id +
-                ", risk=" + risk +
-                ", name='" + name + '\'' +
-                ", city='" + city + '\'' +
-                ", country='" + country + '\'' +
-                ", iata='" + iata + '\'' +
-                ", icao='" + icao + '\'' +
-                ", latitude='" + String.format("%.4f", latitude) + '\'' +
-                ", longitude='" + String.format("%.4f", longitude) + '\'' +
-                ", altitude=" + altitude + '\'' +
-                ", timezone=" + timezone + '\'' +
-                ", dst='" + dst + '\'' +
-                ", timezoneString='" + timezoneString + '\'' +
-                ", type='" + type + '\'' +
-                ", source='" + source + '\'' +
-                ", numRoutesSource=" + numRoutesSource +
-                ", numRoutesDest=" + numRoutesDest +
-                ", totalRoutes=" + totalRoutes +
-                '}';
+        return id + ": " + name + ", located in " + city + ", " + country;
     }
 
     public void update(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, int timezone, String dst, String timezoneString, String type, String source, int numRoutesSource, int numRoutesDest) {

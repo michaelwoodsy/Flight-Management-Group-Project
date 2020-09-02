@@ -140,17 +140,7 @@ public class Route {
      */
     @Override
     public String toString() {
-        return "Route{" +
-                "airline='" + airline + '\'' +
-                ", id=" + id +
-                ", sourceAirport='" + sourceAirport + '\'' +
-                ", sourceID=" + sourceID +
-                ", destAirport='" + destAirport + '\'' +
-                ", destID=" + destID +
-                ", numStops=" + numStops +
-                ", equipment='" + equipment + '\'' +
-                ", codeshare=" + codeshare +
-                '}';
+        return "Route from source airport " + sourceAirport + " to destination airport " + destAirport + " through airline " + airline;
     }
 
     @Override
