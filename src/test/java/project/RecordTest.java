@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class RecordTest {
 
@@ -33,13 +34,16 @@ public class RecordTest {
     Airport testAirport4 = new Airport(104, 500, "Test4", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test4", "Test4", "Test4", "Openflights", 2, 2);
     Airport testAirport5 = new Airport(105, 500, "Test5", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
 
+    Covid testCovid1 = new Covid("AUT","Europe","Austria","15/08/2020",22951,221,725,0,2548.299,80.498,9006400);
+    Covid testCovid2 = new Covid("DEU","Europe","Germany","15/08/2020",222828,1415,9231,6,2659.555,110.176,83783945);
+    Covid testCovid3 = new Covid("MNG","Asia","Mongolia","15/08/2020",298,1,0,0,90.901,0,3278292);
+    Covid testCovid4 = new Covid("NZL","Oceania","New Zealand","15/08/2020",1258,7,22,0,260.875,4.562,4822233);
+    Covid testCovid5 = new Covid("AUS","Oceania","Australia","15/08/2020",22743,385,375,14,891.887,14.706,25499881);
+
     private Loader loader = new Loader();
     private Record testRecord;
 
 
-    /**
-     * Tried to do a @BeforeEach but couldn't, might need changing later
-     */
     @Before
     public void setUp() throws IOException {
 
@@ -76,6 +80,12 @@ public class RecordTest {
         testAirlineList.add(testAirline5);
 
         ArrayList<Covid> testCovidList = new ArrayList<Covid>();
+        testCovidList.add(testCovid1);
+        testCovidList.add(testCovid2);
+        testCovidList.add(testCovid3);
+        testCovidList.add(testCovid4);
+        testCovidList.add(testCovid5);
+        Record.setCovid(testCovidList);
         testRecord = new Record(testFlightList, testRouteList, testAirportList, testAirlineList, testCovidList);
     }
 
@@ -326,6 +336,30 @@ public class RecordTest {
 
         searchResults = testRecord.searchRoutes("air nz");
         assertEquals(8, searchResults.size());
+    }
+
+    @Test
+    public void searchCovidTest() {
+        Covid searchResult = null;
+        try {
+            searchResult = Record.searchCovid("Mongolia");
+            assertEquals("Mongolia", searchResult.getCountry());
+            assertEquals(0.01, searchResult.getRiskDouble(), 0);
+
+            searchResult = Record.searchCovid("Austria");
+            assertEquals("Austria", searchResult.getCountry());
+            assertEquals(0.25, searchResult.getRiskDouble(), 0);
+        } catch (NoSuchFieldException e) {
+            fail("Exception caught when inappropriate");
+        }
+
+        try {
+            searchResult = Record.searchCovid("Australasia");
+            fail("No exception caught when needed");
+        } catch (NoSuchFieldException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     @Test
