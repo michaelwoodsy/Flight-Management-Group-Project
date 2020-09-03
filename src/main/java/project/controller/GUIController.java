@@ -90,8 +90,9 @@ public class GUIController implements Initializable {
     private Record record = Database.generateRecord();
     private boolean optedIn = false;
     private Loader loader = new Loader();
-    private List<Airline> defaultAirlineList = new ArrayList<Airline>();
-    private List<Route> defaultRouteList = new ArrayList<Route>();
+    private List<Airline> defaultAirlineList = new ArrayList<>();
+    private List<Route> defaultRouteList = new ArrayList<>();
+    private Airport lastSelectedAirport = null;
 
     /**
      * Stuff to do on setup
@@ -358,7 +359,7 @@ public class GUIController implements Initializable {
             } else if (airport.getTimezone() >= 0) {
                 timezoneNum = "+" + airport.getTimezone();
             } else {
-                timezoneNum = "" + airport.getTimezone();
+                timezoneNum = "-" + airport.getTimezone();
             }
 
             String timezone;
@@ -368,7 +369,15 @@ public class GUIController implements Initializable {
                 timezone = ("Timezone: " + airport.getTimezoneString() + ", " + timezoneNum + " hours");
             }
 
-            airportDetailList.setItems(observableArrayList(name, city, risk, numRoutes, timezone));
+            //Gets the last selected airport, and calculates the distance between that airport and the currently selected one
+            String distanceString = "No previous airport selected";
+            if (lastSelectedAirport != null) {
+                double distanceValue = airport.distance(lastSelectedAirport);
+                distanceString = String.format("Distance between this airport and last selected airport (%s) is %.2f km", lastSelectedAirport.getName(), distanceValue);
+            }
+            lastSelectedAirport = airport;
+
+            airportDetailList.setItems(observableArrayList(name, city, risk, numRoutes, timezone, distanceString));
 
             if (optedIn) {
 
