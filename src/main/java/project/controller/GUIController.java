@@ -108,7 +108,9 @@ public class GUIController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         WebEngine mapEngine = mapView.getEngine();
-        mapEngine.load("https://www.google.com/maps");
+        mapEngine.load(getClass().getResource("/map.html").toExternalForm());
+
+
 
         WebEngine engine = webView.getEngine();
         engine.load("https://openflights.org/data.html");
