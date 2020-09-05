@@ -91,6 +91,9 @@ public class GUIController implements Initializable {
     @FXML
     private WebView webView;
 
+    @FXML
+    private WebView mapView;
+
     private Record record = Database.generateRecord();
     private boolean optedIn = false;
     private Loader loader = new Loader();
@@ -103,6 +106,9 @@ public class GUIController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        WebEngine mapEngine = mapView.getEngine();
+        mapEngine.load("https://www.google.com/maps");
 
         WebEngine engine = webView.getEngine();
         engine.load("https://openflights.org/data.html");

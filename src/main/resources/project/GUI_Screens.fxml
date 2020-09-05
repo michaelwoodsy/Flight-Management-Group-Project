@@ -103,7 +103,7 @@
       <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                <children>
-                  <WebView fx:id="maps_controller" layoutX="20.0" layoutY="20.0" prefHeight="429.0" prefWidth="314.0" />
+                  <WebView fx:id="mapView" layoutX="20.0" layoutY="20.0" prefHeight="429.0" prefWidth="314.0" />
                   <Pane fx:id="setting_pane" layoutX="531.0" layoutY="20.0" prefHeight="430.0" prefWidth="198.0">
                      <children>
                         <ListView fx:id="setting_controller" layoutX="6.0" layoutY="7.0" prefHeight="417.0" prefWidth="186.0" />
