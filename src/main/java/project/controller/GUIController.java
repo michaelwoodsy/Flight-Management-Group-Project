@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import project.model.*;
@@ -86,6 +88,8 @@ public class GUIController implements Initializable {
     @FXML
     private CheckBox routeIndirectBox;
 
+    @FXML
+    private WebView webView;
 
     private Record record = Database.generateRecord();
     private boolean optedIn = false;
@@ -99,6 +103,9 @@ public class GUIController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
+        WebEngine engine = webView.getEngine();
+        engine.load("https://openflights.org/data.html");
 
         ObservableList<String> filterAirlines = observableArrayList("Countries");
         ObservableList<String> searchAirlines = observableArrayList("Name", "Alias", "Callsign", "IATA", "ICAO");
@@ -549,6 +556,7 @@ public class GUIController implements Initializable {
             }
         }
 
+
     }
 
     /**
@@ -576,5 +584,4 @@ public class GUIController implements Initializable {
             airlineList.setItems((ObservableList) matchingAirlines);
         }
     }
-
 }
