@@ -283,6 +283,7 @@ public class Record {
                 return covid;
             }
         }
+        System.out.println(country);
         throw new NoSuchFieldException("No such country exists in our records");
     }
 
@@ -371,6 +372,7 @@ public class Record {
         try {
             covids = Loader.loadCovidFile("./data/covid.dat");
         } catch (IOException e) {
+            System.out.println("Whoops");
             System.err.println("Could not load file");
         }
         return covids;

@@ -139,7 +139,6 @@ public class GUIController implements Initializable {
         airportFilterBy.getSelectionModel().selectFirst();
         airlineSearchBy.getSelectionModel().selectFirst();
         airlineFilterBy.getSelectionModel().selectFirst();
-
     }
 
     @FXML
