@@ -13,17 +13,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class AirportTest {
-    @Before
-    public void setup() throws IOException {
-        ArrayList<Covid> covidRisks = new ArrayList<>();
-        covidRisks.add(new Covid("Test", "Oceania", "New Zealand", "date", 12, 12, 12, 12, 5321.0, 4122.0, 5000000));
-        covidRisks.add(new Covid("Test", "Oceania", "Australia", "date", 12, 12, 12, 12, 9163.212, 4122.0, 7000000));
-        covidRisks.add(new Covid("Test", "Oceania", "United States", "date", 12, 12, 12, 12, 816437.642, 4122.0, 10000000));
-        ArrayList<String> blankList = new ArrayList<>();
-
-        Record.setCovid(covidRisks);
-    }
-
 
     @Test
     public void distanceTest() {
@@ -63,8 +52,8 @@ public class AirportTest {
         assertNotEquals(testAirport2.getRisk(), 0);
         assertNotEquals(testAirport3.getRisk(), 0);
 
-        assertEquals(0.53, testAirport1.getRisk(), 0);
-        assertEquals(81.64, testAirport2.getRisk(), 0);
-        assertEquals(0.92, testAirport3.getRisk(), 0);
+        assertEquals(0.03, testAirport1.getRisk(), 0);
+        assertEquals(1.61, testAirport2.getRisk(), 0);
+        assertEquals(0.09, testAirport3.getRisk(), 0);
     }
 }

@@ -34,12 +34,6 @@ public class RecordTest {
     Airport testAirport4 = new Airport(104, 500, "Test4", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test4", "Test4", "Test4", "Openflights", 2, 2);
     Airport testAirport5 = new Airport(105, 500, "Test5", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
 
-    Covid testCovid1 = new Covid("AUT","Europe","Austria","15/08/2020",22951,221,725,0,2548.299,80.498,9006400);
-    Covid testCovid2 = new Covid("DEU","Europe","Germany","15/08/2020",222828,1415,9231,6,2659.555,110.176,83783945);
-    Covid testCovid3 = new Covid("MNG","Asia","Mongolia","15/08/2020",298,1,0,0,90.901,0,3278292);
-    Covid testCovid4 = new Covid("NZL","Oceania","New Zealand","15/08/2020",1258,7,22,0,260.875,4.562,4822233);
-    Covid testCovid5 = new Covid("AUS","Oceania","Australia","15/08/2020",22743,385,375,14,891.887,14.706,25499881);
-
     private Loader loader = new Loader();
     private Record testRecord;
 
@@ -79,14 +73,7 @@ public class RecordTest {
         testAirlineList.add(testAirline4);
         testAirlineList.add(testAirline5);
 
-        ArrayList<Covid> testCovidList = new ArrayList<Covid>();
-        testCovidList.add(testCovid1);
-        testCovidList.add(testCovid2);
-        testCovidList.add(testCovid3);
-        testCovidList.add(testCovid4);
-        testCovidList.add(testCovid5);
-        Record.setCovid(testCovidList);
-        testRecord = new Record(testFlightList, testRouteList, testAirportList, testAirlineList, testCovidList);
+        testRecord = new Record(testFlightList, testRouteList, testAirportList, testAirlineList);
     }
 
     @Test
@@ -277,7 +264,7 @@ public class RecordTest {
         testAirport.add(testAirport10);
         testAirport.add(testAirport11);
 
-        testRecord = new Record(null, null, testAirport, null, null);
+        testRecord = new Record(null, null, testAirport, null);
 
         comparisonList.add(testAirport8);
         comparisonList.add(testAirport9);
@@ -322,7 +309,7 @@ public class RecordTest {
         testRouteList.add(testRoute10);
         testRouteList.add(testRoute11);
 
-        testRecord = new Record(null, testRouteList, null, null, null);
+        testRecord = new Record(null, testRouteList, null, null);
 
         comparisonList.add(testRoute9);
         comparisonList.add(testRoute10);
@@ -399,9 +386,7 @@ public class RecordTest {
         testRouteList.add(testRoute5);
         testRouteList.add(testRoute6);
 
-        ArrayList<Covid> testCovidList = new ArrayList<Covid>();
-
-        Record testRecord = new Record(testFlightList, testRouteList, testAirportList, testAirlineList, testCovidList);
+        Record testRecord = new Record(testFlightList, testRouteList, testAirportList, testAirlineList);
         List<Airport> testAirports = testRecord.getAirportList();
 
         testRecord.setNumRoutesDest();

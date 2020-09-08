@@ -10,18 +10,17 @@ import java.util.*;
 
 
 public class Record {
-    private ArrayList<Flight> flightList = new ArrayList<Flight>();
-    private ArrayList<Route> routeList = new ArrayList<Route>();
-    private ArrayList<Airport> airportList = new ArrayList<Airport>();
-    private ArrayList<Airline> airlineList = new ArrayList<Airline>();
-    private static ArrayList<Covid> covidList = new ArrayList<Covid>();
+    private ArrayList<Flight> flightList;
+    private ArrayList<Route> routeList;
+    private ArrayList<Airport> airportList;
+    private ArrayList<Airline> airlineList;
+    private static ArrayList<Covid> covidList = setCovid();
 
-    public Record(ArrayList<Flight> flightList, ArrayList<Route> routeList, ArrayList<Airport> airportList, ArrayList<Airline> airlineList, ArrayList<Covid> covidList) {
+    public Record(ArrayList<Flight> flightList, ArrayList<Route> routeList, ArrayList<Airport> airportList, ArrayList<Airline> airlineList) {
         this.flightList = flightList;
         this.routeList = routeList;
         this.airportList = airportList;
         this.airlineList = airlineList;
-        //this.covidList = covidList;
     }
 
     /**
@@ -367,8 +366,14 @@ public class Record {
     /**
      * Not sure if we'll even need this function. Incomplete.
      */
-    public static void setCovid(ArrayList<Covid> newCovidList) {
-        covidList = newCovidList;
+    public static ArrayList<Covid> setCovid() {
+        ArrayList<Covid> covids = null;
+        try {
+            covids = Loader.loadCovidFile("./data/covid.dat");
+        } catch (IOException e) {
+            System.err.println("Could not load file");
+        }
+        return covids;
     }
 
     public ArrayList<Flight> getFlightList() {

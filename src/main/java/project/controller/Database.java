@@ -415,7 +415,7 @@ public class Database {
             ArrayList<Route> routes = getAllRoutes();
             ArrayList<Flight> flights = new ArrayList<Flight>();
             ArrayList<Covid> covid = new ArrayList<>();
-            Record record = new Record(flights, routes, airports, airlines, covid);
+            Record record = new Record(flights, routes, airports, airlines);
             return record;
         }
     }

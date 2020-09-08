@@ -459,7 +459,7 @@ public class Loader {
         return new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
 
     }
-    public ArrayList<Covid> loadCovidFile(String path) throws IOException {
+    public static ArrayList<Covid> loadCovidFile(String path) throws IOException {
 
         ArrayList<Covid> covidList = new ArrayList<Covid>();
 
@@ -480,7 +480,7 @@ public class Loader {
         return covidList;
     }
 
-    public Covid loadCovid(String[] covidData) {
+    public static Covid loadCovid(String[] covidData) {
         // for numeric values, if they are not valid they are set to a default of 0.
         // for string values, if they contain illegal characters are set to null
         //e.g. if total_cases is missing or is not numeric, then it is set to 0
@@ -511,14 +511,14 @@ public class Loader {
 
         String location;
         try {
-            if (covidData[2].matches("[A-Za-z]+")){
+            if (covidData[2].matches("[A-Za-z ]+")){
                 location = covidData[2];
             }
             else{
-                location = null;
+                location = "Unknown";
             }
         }catch (Exception e){
-            location = null;
+            location = "Unknown";
         }
 
         String date;
