@@ -94,6 +94,69 @@ public class GUIController implements Initializable {
     @FXML
     private WebView mapView;
 
+    @FXML
+    private TextField airportID;
+    @FXML
+    private TextField airportName;
+    @FXML
+    private TextField airportCity;
+    @FXML
+    private TextField airportCountry;
+    @FXML
+    private TextField airportIATA;
+    @FXML
+    private TextField airportICAO;
+    @FXML
+    private TextField airportType;
+    @FXML
+    private TextField airportTimezone;
+    @FXML
+    private TextField airportDST;
+    @FXML
+    private TextField airportSource;
+    @FXML
+    private TextField airportLatitude;
+    @FXML
+    private TextField airportLongitude;
+    @FXML
+    private TextField airportAltitude;
+
+    @FXML
+    private TextField airlineID;
+    @FXML
+    private TextField airlineName;
+    @FXML
+    private TextField airlineAlias;
+    @FXML
+    private TextField airlineCallsign;
+    @FXML
+    private TextField airlineIATA;
+    @FXML
+    private TextField airlineICAO;
+    @FXML
+    private TextField airlineCountry;
+    @FXML
+    private CheckBox airlineActive;
+
+    @FXML
+    private TextField routeAirline;
+    @FXML
+    private TextField routeAirlineID;
+    @FXML
+    private TextField routeSource;
+    @FXML
+    private TextField routeSourceID;
+    @FXML
+    private TextField routeDest;
+    @FXML
+    private TextField routeDestID;
+    @FXML
+    private TextField routeEquipment;
+    @FXML
+    private TextField routeStops;
+    @FXML
+    private CheckBox routeCodeShare;
+
     private Record record = Database.generateRecord();
     private boolean optedIn = false;
     private Loader loader = new Loader();
@@ -139,7 +202,6 @@ public class GUIController implements Initializable {
         airportFilterBy.getSelectionModel().selectFirst();
         airlineSearchBy.getSelectionModel().selectFirst();
         airlineFilterBy.getSelectionModel().selectFirst();
-
     }
 
     @FXML
@@ -268,7 +330,7 @@ public class GUIController implements Initializable {
      * Can't handle errors yet, and doesn't have the option to append data to new record yet.
      * Also doesn't have confirmation on when files are successfully loaded.
      */
-    public void addButton(ActionEvent event) throws IOException {
+    public void addFileButton(ActionEvent event) throws IOException {
 
         if (newTab.getSelectionModel().getSelectedIndex() == 3) {
             FileChooser loadFile = new FileChooser();
@@ -294,7 +356,87 @@ public class GUIController implements Initializable {
                 }
             }
         }
+    }
 
+    @FXML
+    /**
+     * Can't handle errors yet, and doesn't have the option to append data to new record yet.
+     * Also doesn't have confirmation on when files are successfully loaded.
+     */
+    public void addAirportButton(ActionEvent event) throws IOException {
+        int id = Integer.parseInt(airportID.getText());
+        String name = airportName.getText();
+        String city = airportCity.getText();
+        String country = airportCountry.getText();
+        String iata = airportIATA.getText();
+        String icao = airportICAO.getText();
+        double latitude = Double.parseDouble(airportLatitude.getText());
+        double longitude = Double.parseDouble(airportLongitude.getText());
+        int altitude = Integer.parseInt(airportAltitude.getText());
+        double timezone = Double.parseDouble(airportTimezone.getText());
+        String dst = null;
+        String timezoneString = null;
+        String type = airportType.getText();
+        String source = airportSource.getText();
+        int numRoutesSource = 0;
+        int numRoutesDest = 0;
+        int risk = 0;
+
+        Airport newAirport = new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
+        ArrayList<Airport> newAirportList = new ArrayList<Airport>();
+        newAirportList.add(newAirport);
+        record.addAirports(newAirportList);
+    }
+
+    @FXML
+    /**
+     * Can't handle errors yet, and doesn't have the option to append data to new record yet.
+     * Also doesn't have confirmation on when files are successfully loaded.
+     */
+    public void addAirlineButton(ActionEvent event) throws IOException {
+        int id = Integer.parseInt(airlineID.getText());
+        String name = airlineName.getText();
+        boolean active = true;
+        if (airlineActive.isSelected()) {
+            active = true;
+        } else {
+            active = false;
+        }
+        String country = airlineCountry.getText();
+        String alias = airlineAlias.getText();
+        String callSign = airlineCallsign.getText();
+        String iata = airlineIATA.getText();
+        String icao = airlineICAO.getText();
+
+        Airline newAirline = new Airline(id, name, active, country, alias, callSign, iata, icao);
+        ArrayList<Airline> newAirlineList = new ArrayList<Airline>();
+        newAirlineList.add(newAirline);
+        record.addAirlines(newAirlineList);
+    }
+
+    @FXML
+    /**
+     * Can't handle errors yet, and doesn't have the option to append data to new record yet.
+     * Also doesn't have confirmation on when files are successfully loaded.
+     */
+    public void addRouteButton(ActionEvent event) throws IOException {
+        String airline = routeAirline.getText();
+        int id = Integer.parseInt(routeAirlineID.getText());
+        String sourceAirport = routeSource.getText();
+        int sourceID = Integer.parseInt(routeSourceID.getText());
+        String destAirport = routeDest.getText();
+        int destID = Integer.parseInt(routeDestID.getText());
+        int numStops = Integer.parseInt(routeStops.getText());
+        String equipment = routeEquipment.getText();
+        boolean codeshare = false;
+        if (routeCodeShare.isSelected()) {
+            codeshare = true;
+        }
+
+        Route newRoute = new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
+        ArrayList<Route> newRouteList = new ArrayList<Route>();
+        newRouteList.add(newRoute);
+        record.addRoutes(newRouteList);
     }
 
     /**
