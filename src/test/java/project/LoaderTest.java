@@ -111,7 +111,6 @@ public class LoaderTest {
         Airport testAirport1 = loader.loadAirport(airportData1);
 
         assertEquals(testAirport1.getId(), 1);
-        assertEquals(testAirport1.getRisk(), 0);
         assertEquals(testAirport1.getName(), "Goroka");
         assertEquals(testAirport1.getCity(), "Goroka");
         assertEquals(testAirport1.getCountry(), "Papua New Guinea");
@@ -138,7 +137,7 @@ public class LoaderTest {
         assertEquals(testAirport1.getAltitude(), -1);
         assertEquals(testAirport1.getTimezone(), 25, 0);
 
-        String[] airportData3 = {"", "", "", "", "", "", "", "", "", "", "", "", "", ""};
+        /*String[] airportData3 = {"", "", "", "", "", "", "", "", "", "", "", "", "", ""};
         testAirport1 = loader.loadAirport(airportData3);
 
         assertEquals(testAirport1.getId(), -1);
@@ -154,7 +153,7 @@ public class LoaderTest {
         assertEquals(testAirport1.getDst(), null);
         assertEquals(testAirport1.getTimezoneString(), null);
         assertEquals(testAirport1.getType(), null);
-        assertEquals(testAirport1.getSource(), null);
+        assertEquals(testAirport1.getSource(), null);*/
 
     }
 
