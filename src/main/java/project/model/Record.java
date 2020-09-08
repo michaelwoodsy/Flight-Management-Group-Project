@@ -14,14 +14,14 @@ public class Record {
     private ArrayList<Route> routeList = new ArrayList<Route>();
     private ArrayList<Airport> airportList = new ArrayList<Airport>();
     private ArrayList<Airline> airlineList = new ArrayList<Airline>();
-    private ArrayList<Covid> covidList = new ArrayList<Covid>();
+    private static ArrayList<Covid> covidList = new ArrayList<Covid>();
 
     public Record(ArrayList<Flight> flightList, ArrayList<Route> routeList, ArrayList<Airport> airportList, ArrayList<Airline> airlineList, ArrayList<Covid> covidList) {
         this.flightList = flightList;
         this.routeList = routeList;
         this.airportList = airportList;
         this.airlineList = airlineList;
-        this.covidList = covidList;
+        //this.covidList = covidList;
     }
 
     /**
@@ -274,6 +274,20 @@ public class Record {
     }
 
     /**
+     * Searches the current COVID list for a country, and returns the the COVID object that is of that country
+     * @param country The country who's COVID stats we are looking for
+     * @return The COVID object that contains the stats of the requested country
+     */
+    public static Covid searchCovid(String country) throws NoSuchFieldException {
+        for (Covid covid : covidList) {
+            if (covid.getCountry().toLowerCase().equals(country.toLowerCase())) {
+                return covid;
+            }
+        }
+        throw new NoSuchFieldException("No such country exists in our records");
+    }
+
+    /**
      * Iterates through the list of airports and list of routes and adds 1 to the numRoutesSource attribute
      * of each airport based on how many routes begin at that airport.
      */
@@ -353,8 +367,8 @@ public class Record {
     /**
      * Not sure if we'll even need this function. Incomplete.
      */
-    public void addCovid(ArrayList<Covid> newCovidList) {
-        this.covidList.addAll(newCovidList);
+    public static void setCovid(ArrayList<Covid> newCovidList) {
+        covidList = newCovidList;
     }
 
     public ArrayList<Flight> getFlightList() {

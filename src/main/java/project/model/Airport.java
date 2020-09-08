@@ -5,7 +5,7 @@ import java.util.Objects;
 
 public class Airport {
     private int id;
-    private int risk;
+    private double risk;
     private String name;
     private String city;
     private String country;
@@ -25,7 +25,6 @@ public class Airport {
 
     public Airport(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, double timezone, String dst, String timezoneString, String type, String source, int numRoutesSource, int numRoutesDest) {
         this.id = id;
-        this.risk = risk;
         this.name = name;
         this.city = city;
         this.country = country;
@@ -42,6 +41,7 @@ public class Airport {
         this.numRoutesSource = numRoutesSource;
         this.numRoutesDest = numRoutesDest;
         this.totalRoutes = this.numRoutesDest + this.numRoutesSource;
+        this.determineCovidRisk();
     }
 
     public int getId() {
@@ -52,7 +52,7 @@ public class Airport {
         this.id = id;
     }
 
-    public int getRisk() {
+    public double getRisk() {
         return risk;
     }
 
@@ -318,5 +318,18 @@ public class Airport {
     @Override
     public int hashCode() {
         return Objects.hash(getId(), getName(), getCity(), getCountry(), getIata(), getIcao(), getLatitude(), getLongitude(), getAltitude(), getTimezone(), getDst(), getTimezoneString(), getType(), getSource());
+    }
+
+    /**
+     * Gets the covid statistics for the airport's country from the record class, and sets the airport's risk accordingly
+     */
+    public void determineCovidRisk() {
+        try {
+            Covid covidStats = Record.searchCovid(this.country);
+            double riskDouble = covidStats.getRiskDouble();
+            this.risk = riskDouble;
+        } catch (NoSuchFieldException e) {
+            System.err.println(e.getMessage());
+        }
     }
 }

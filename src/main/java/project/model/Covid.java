@@ -1,5 +1,7 @@
 package project.model;
 
+import org.apache.commons.math3.util.Precision;
+
 public class Covid {
     private String iso_code;
     private String continent;
@@ -79,6 +81,10 @@ public class Covid {
         + " " + total_deaths + " " + new_deaths + " " + total_cases_per_million + " " + total_deaths_per_million + " " + population;
     }
 
+    public String getCountry() {
+        return this.location;
+    }
+
     public String get_risk(){
         double percentage = (float)(this.total_cases * 100.00) / this.population;
         //values that determine the severity of the risk will change! just a placeholder.
@@ -97,5 +103,14 @@ public class Covid {
         else{
             return "Extreme risk";
         }
+    }
+
+    /**
+     * Gets the percentage of the population that have cases of COVID-19
+     * @return The percentage of one million citizens that have cases of COVID-19
+     */
+    public double getRiskDouble() {
+        double percentWithCases = (this.total_cases_per_million/1000000)*100;
+        return Precision.round(percentWithCases, 2);
     }
 }

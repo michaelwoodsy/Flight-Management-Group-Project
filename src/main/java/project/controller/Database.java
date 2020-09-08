@@ -104,7 +104,7 @@ public class Database {
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
             pstmt.setInt(1, airport.getId());
-            pstmt.setInt(2, airport.getRisk());
+            pstmt.setDouble(2, airport.getRisk());
             pstmt.setInt(3, airport.getAltitude());
             pstmt.setInt(4, airport.getNumRoutesSource());
             pstmt.setInt(5, airport.getNumRoutesDest());
