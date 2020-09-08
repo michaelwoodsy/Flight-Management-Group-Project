@@ -165,7 +165,7 @@ public class LoaderTest {
     public void loadRouteFileTest() throws IOException {
         ArrayList<Route> routeList = loader.loadRouteFile("data/routes.dat");
         for (Route route: routeList) {
-            System.out.println(route);
+            //System.out.println(route);
         }
 
     }
