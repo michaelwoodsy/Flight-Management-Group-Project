@@ -355,6 +355,10 @@ public class GUIController implements Initializable {
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
                     Flight newFlight = loader.loadFlightFile(file.getAbsolutePath());
                     record.addFlights(newFlight);
+                    Parent root = FXMLLoader.load(getClass().getResource("../Flight_Screen.fxml"));
+                    Stage stage = new Stage();
+                    stage.setScene(new Scene(root, 750, 500));
+                    stage.show();
                 }
             }
         }
@@ -734,4 +738,5 @@ public class GUIController implements Initializable {
             airlineList.setItems((ObservableList) matchingAirlines);
         }
     }
+
 }
