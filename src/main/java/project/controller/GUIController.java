@@ -111,6 +111,8 @@ public class GUIController implements Initializable {
     @FXML
     private TextField airportTimezone;
     @FXML
+    private TextField airportTimezoneString;
+    @FXML
     private TextField airportDST;
     @FXML
     private TextField airportSource;
@@ -374,8 +376,8 @@ public class GUIController implements Initializable {
         double longitude = Double.parseDouble(airportLongitude.getText());
         int altitude = Integer.parseInt(airportAltitude.getText());
         double timezone = Double.parseDouble(airportTimezone.getText());
-        String dst = null;
-        String timezoneString = null;
+        String dst = airportDST.getText();
+        String timezoneString = airportTimezoneString.getText();
         String type = airportType.getText();
         String source = airportSource.getText();
         int numRoutesSource = 0;
@@ -396,11 +398,9 @@ public class GUIController implements Initializable {
     public void addAirlineButton(ActionEvent event) throws IOException {
         int id = Integer.parseInt(airlineID.getText());
         String name = airlineName.getText();
-        boolean active = true;
+        boolean active = false;
         if (airlineActive.isSelected()) {
             active = true;
-        } else {
-            active = false;
         }
         String country = airlineCountry.getText();
         String alias = airlineAlias.getText();
