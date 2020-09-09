@@ -219,13 +219,10 @@ public class Airport {
         return nameString + cityString + countryString;
     }
 
-    public void update(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, int timezone, String dst, String timezoneString, String type, String source, int numRoutesSource, int numRoutesDest) {
+    public void update(int id, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, int timezone, String dst, String timezoneString, String type, String source, int numRoutesSource, int numRoutesDest) {
 
         if (id != this.id) {
             setId(id);
-        }
-        if (risk != this.risk) {
-            setRisk(risk);
         }
         if (!name.equals(this.name)) {
             setName(name);

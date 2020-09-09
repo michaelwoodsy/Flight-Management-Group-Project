@@ -5,6 +5,7 @@ import project.model.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
@@ -111,7 +112,7 @@ public class LoaderTest {
         Airport testAirport1 = loader.loadAirport(airportData1);
 
         assertEquals(testAirport1.getId(), 1);
-        assertEquals(testAirport1.getRisk(), 0);
+        assertEquals(testAirport1.getRisk(), 0, 0);
         assertEquals(testAirport1.getName(), "Goroka");
         assertEquals(testAirport1.getCity(), "Goroka");
         assertEquals(testAirport1.getCountry(), "Papua New Guinea");
@@ -164,9 +165,9 @@ public class LoaderTest {
      */
     public void loadRouteFileTest() throws IOException {
         ArrayList<Route> routeList = loader.loadRouteFile("data/routes.dat");
-        for (Route route: routeList) {
-            System.out.println(route);
-        }
+//        for (Route route: routeList) {
+//            System.out.println(route);
+//        }
 
     }
 
@@ -192,10 +193,11 @@ public class LoaderTest {
      */
     public void loadAirportFileTest() throws IOException {
         Loader loader = new Loader();
+        Record record = new Record(null, null, null, null); //initialise the COVID lists
         ArrayList<Airport> airportList = loader.loadAirportFile("data/airports.dat");
-        for (Airport airport: airportList) {
-            //System.out.println(airport);
-        }
+//        for (Airport airport: airportList) {
+//            System.out.println(airport);
+//        }
     }
 
     @Test
@@ -215,7 +217,7 @@ public class LoaderTest {
 
     public void loadCovidFileTest() throws IOException{
         // checks that covid file doesnt fail
-        ArrayList<Covid> covid_list = loader.loadCovidFile("data/covid.dat");
+        Hashtable<String, Covid> covid_list = loader.loadCovidFile("data/covid.dat");
 //        for(Covid covid: covid_list){
 //            System.out.println(covid.print_country_data());
 //        }
@@ -226,7 +228,7 @@ public class LoaderTest {
     public void testCovid() throws IOException {
         //runs test file with missing attributes to ensure loader wont crash
         // test file contains missing values and illegal values, to test that checks work correctly
-        ArrayList<Covid> covid_list = loader.loadCovidFile("data/covid_test.dat");
+        Hashtable<String, Covid> covid_list = loader.loadCovidFile("data/covid_test.dat");
 
 //        for(Covid covid: covid_list){
 //            System.out.println(covid.print_country_data());

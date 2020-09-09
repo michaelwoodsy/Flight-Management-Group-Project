@@ -14,7 +14,7 @@ public class Record {
     private ArrayList<Route> routeList;
     private ArrayList<Airport> airportList;
     private ArrayList<Airline> airlineList;
-    private static ArrayList<Covid> covidList = setCovid();
+    private static Hashtable<String, Covid> covidDict = setCovid();
 
     public Record(ArrayList<Flight> flightList, ArrayList<Route> routeList, ArrayList<Airport> airportList, ArrayList<Airline> airlineList) {
         this.flightList = flightList;
@@ -278,13 +278,15 @@ public class Record {
      * @return The COVID object that contains the stats of the requested country
      */
     public static Covid searchCovid(String country) throws NoSuchFieldException {
-        for (Covid covid : covidList) {
-            if (covid.getCountry().toLowerCase().equals(country.toLowerCase())) {
-                return covid;
-            }
+        if (country == null) {
+            return new Covid(null, null, 0, 0, 0 );
         }
-        System.out.println(country);
-        throw new NoSuchFieldException("No such country exists in our records");
+        if (covidDict.get(country) != null) {
+            return covidDict.get(country);
+        } else {
+            System.out.println(country);
+            throw new NoSuchFieldException("No such country exists in our records");
+        }
     }
 
     /**
@@ -367,15 +369,15 @@ public class Record {
     /**
      * Not sure if we'll even need this function. Incomplete.
      */
-    public static ArrayList<Covid> setCovid() {
-        ArrayList<Covid> covids = null;
+    public static Hashtable<String, Covid> setCovid() {
+        Hashtable<String, Covid> covidDict = null;
+
         try {
-            covids = Loader.loadCovidFile("./data/covid.dat");
+            covidDict = Loader.loadCovidFile("./data/covid.dat");
         } catch (IOException e) {
-            System.out.println("Whoops");
             System.err.println("Could not load file");
         }
-        return covids;
+        return covidDict;
     }
 
     public ArrayList<Flight> getFlightList() {
@@ -393,4 +395,5 @@ public class Record {
     public ArrayList<Airline> getAirlineList() {
         return airlineList;
     }
+
 }

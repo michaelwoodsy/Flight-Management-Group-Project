@@ -29,11 +29,11 @@ public class DataUnitTests {
     public void airportUpdate() {
         Airport testAirport = new Airport(101, 9001, "Christchurch International Airport", "Christchurch", "New Zealand", "BX45", "C9845", 40.0, 40.0, 40, 5, "Y", "NZST", "Default", "Openflights", 46, 45);
         assertEquals("Christchurch International Airport", testAirport.getName());
-        assertEquals(9001, testAirport.getRisk());
+        assertEquals(0.03, testAirport.getRisk(), 0);
 
-        testAirport.update(101, 500, "Christchurch Domestic Airport", "Christchurch", "New Zealand", "BX45", "C9845", 40.1, 40.1, 40, 5, "Y", "NZST", "Y", "Openflights", 46, 45);
+        testAirport.update(101, "Christchurch Domestic Airport", "Christchurch", "New Zealand", "BX45", "C9845", 40.1, 40.1, 40, 5, "Y", "NZST", "Y", "Openflights", 46, 45);
         assertEquals("Christchurch Domestic Airport", testAirport.getName());
-        assertEquals(500, testAirport.getRisk());
+        assertEquals(0.03, testAirport.getRisk(), 0);
     }
 
     @Test
