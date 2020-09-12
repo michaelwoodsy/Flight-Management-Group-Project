@@ -164,6 +164,7 @@
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
                                           <Label text="ID:" />
@@ -180,19 +181,21 @@
                                           <TextField fx:id="airportIATA" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                                           <TextField fx:id="airportICAO" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                           <TextField fx:id="airportType" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                          <Label text="Timezone Offset:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                          <Label text="DST:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                          <Label text="Source:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                          <Label text="Latitude:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                          <Label text="Longitude:" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                          <Label text="Altitude:" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                          <TextField fx:id="airportTimezone" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                          <TextField fx:id="airportDST" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                          <TextField fx:id="airportSource" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                          <TextField fx:id="airportLatitude" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                          <TextField fx:id="airportLongitude" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                          <TextField fx:id="airportAltitude" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                                          <Button fx:id="addAirportButton" mnemonicParsing="false" onAction="#addAirportButton" text="Add" GridPane.columnIndex="3" GridPane.rowIndex="7" />
                                           <Label text="Timezone:" GridPane.columnIndex="2" />
-                                          <Label text="DST:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                          <Label text="Source:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                          <Label text="Latitude:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                          <Label text="Longitude:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                          <Label text="Altitude" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                          <TextField fx:id="airportTimezone" GridPane.columnIndex="3" />
-                                          <TextField fx:id="airportDST" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                          <TextField fx:id="airportSource" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                          <TextField fx:id="airportLatitude" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                          <TextField fx:id="airportLongitude" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                                          <TextField fx:id="airportAltitude" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                                          <Button fx:id="addAirportButton" mnemonicParsing="false" onAction="#addAirportButton" text="Add" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                                          <TextField fx:id="airportTimezoneString" GridPane.columnIndex="3" />
                                        </children>
                                        <padding>
                                           <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />

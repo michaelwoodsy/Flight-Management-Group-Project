@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class Loader {
 
@@ -459,10 +460,12 @@ public class Loader {
         return new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
 
     }
-    public static ArrayList<Covid> loadCovidFile(String path) throws IOException {
 
-        ArrayList<Covid> covidList = new ArrayList<Covid>();
 
+    public static Hashtable<String, Covid> loadCovidFile(String path) throws IOException {
+
+        Hashtable<String, Covid> covidDict = new Hashtable<>();
+        Covid currentCovid;
 
         BufferedReader dataReader = new BufferedReader(new FileReader(path));
 
@@ -473,11 +476,12 @@ public class Loader {
                 breaker = true;
             } else {
                 String[] data = row.split(",");
-                covidList.add(loadCovid(data));
+                currentCovid = loadCovid(data);
+                covidDict.put(currentCovid.getCountry(), currentCovid);
             }
         }
         dataReader.close();
-        return covidList;
+        return covidDict;
     }
 
     public static Covid loadCovid(String[] covidData) {
@@ -485,33 +489,9 @@ public class Loader {
         // for string values, if they contain illegal characters are set to null
         //e.g. if total_cases is missing or is not numeric, then it is set to 0
         //e.g. if continent is Asi3a (invalid), it is set to null
-        String Iso_code;
-        try {
-            if (covidData[0].matches("[A-Za-z]+")){
-                Iso_code = covidData[0];
-            }
-            else {
-                Iso_code = null;
-            }
-        }catch (Exception e){
-            Iso_code = null;
-        }
-
-        String continent;
-        try {
-            if (covidData[1].matches("[A-Za-z]+")){
-                continent = covidData[1];
-            }
-            else {
-                continent = null;
-            }
-        }catch (Exception e){
-            continent = null;
-        }
-
         String location;
         try {
-            if (covidData[2].matches("[A-Za-z ]+")){
+            if (covidData[2].matches("[A-Za-z '-]+")){
                 location = covidData[2];
             }
             else{
@@ -534,38 +514,13 @@ public class Loader {
             date = null;
         }
 
-        int total_cases;
-        try {
-            total_cases = Integer.parseInt(covidData[4]);
-        }catch (Exception e){
-            total_cases = 0;
-        }
-
-        int new_cases;
-        try {
-            new_cases = Integer.parseInt(covidData[5]);
-        }catch (Exception e){
-            new_cases = 0;
-        }
-
-        int total_deaths;
-        try {
-            total_deaths = Integer.parseInt(covidData[6]);
-        }catch (Exception e){
-            total_deaths = 0;
-        }
-        int new_deaths;
-        try {
-            new_deaths = Integer.parseInt(covidData[7]);
-        }catch (Exception e){
-            new_deaths = 0;
-        }
         float total_cases_per_million;
         try {
             total_cases_per_million = Float.parseFloat(covidData[8]);
         }catch (Exception e){
             total_cases_per_million = 0;
         }
+
         float total_deaths_per_million;
         try {
             total_deaths_per_million = Float.parseFloat(covidData[9]);
@@ -580,8 +535,7 @@ public class Loader {
             population = 0;
         }
 
-        Covid newCovid = new Covid(Iso_code, continent, location, date, total_cases, new_cases, total_deaths,
-                new_deaths, total_cases_per_million, total_deaths_per_million, population);
+        Covid newCovid = new Covid(location, date, total_cases_per_million, total_deaths_per_million, population);
         return newCovid;
 
     }
