@@ -163,6 +163,7 @@ public class Loader {
     /**
      * Returns a list of airports by reading a comma-separated data file.
      */
+    /*
     public ArrayList<Airport> loadAirportFile(String path) throws IOException {
 
         ArrayList<Airport> airportList = new ArrayList<Airport>();
@@ -184,26 +185,10 @@ public class Loader {
         return airportList;
     }
 
-    /**
-     * Checks if loaded airport file is right format.
      */
-    public boolean loadAirportErrorCheck(String path) throws IOException {
 
-        BufferedReader dataReader = new BufferedReader(new FileReader(path));
 
-        String row = dataReader.readLine();
-        if (row == null) {
-            return false;
-        } else {
-            String[] data = row.split(",");
-            if (data.length >= 12  && data.length <= 14) {
-                return true;
-            }
-        }
-
-        dataReader.close();
-        return false;
-    }
+    /*
 
     /**
      * Returns a list of routes by reading a comma-separated data file.
@@ -229,6 +214,7 @@ public class Loader {
         dataReader.close();
         return routeList;
     }
+
 
 
      */

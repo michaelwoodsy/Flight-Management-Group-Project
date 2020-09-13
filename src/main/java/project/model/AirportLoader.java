@@ -1,5 +1,10 @@
 package project.model;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class AirportLoader {
     /**
      * Returns an airport class from a line read in airports.dat.
@@ -139,5 +144,49 @@ public class AirportLoader {
         int risk = 0; // Placeholder until we decide how we're doing the covid stuff.
 
         return new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
+    }
+    /**
+     * Checks if loaded airport file is right format.
+     */
+    public boolean loadAirportErrorCheck(String path) throws IOException {
+
+        BufferedReader dataReader = new BufferedReader(new FileReader(path));
+
+        String row = dataReader.readLine();
+        if (row == null) {
+            return false;
+        } else {
+            String[] data = row.split(",");
+            if (data.length >= 12  && data.length <= 14) {
+                return true;
+            }
+        }
+
+        dataReader.close();
+        return false;
+    }
+
+    /**
+     * Returns a list of airports by reading a comma-separated data file.
+     */
+    public ArrayList<Airport> loadAirportFile(String path) throws IOException {
+
+        ArrayList<Airport> airportList = new ArrayList<Airport>();
+
+        BufferedReader dataReader = new BufferedReader(new FileReader(path));
+
+        boolean breaker = false;
+        while (!breaker) {
+            String row = dataReader.readLine();
+            if (row == null) {
+                breaker = true;
+            } else {
+                String[] data = row.split(",(?! )");
+                AirportLoader airportLoad = new AirportLoader();
+                airportList.add(airportLoad.loadAirport(data));
+            }
+        }
+        dataReader.close();
+        return airportList;
     }
 }

@@ -176,6 +176,7 @@ public class GUIController implements Initializable {
     private RouteLoader routeLoad = new RouteLoader();
     private AirportLoader airportLoad = new AirportLoader();
 
+
     private List<Airline> defaultAirlineList = new ArrayList<>();
     private List<Route> defaultRouteList = new ArrayList<>();
     private Airport lastSelectedAirport = null;
@@ -457,13 +458,13 @@ public class GUIController implements Initializable {
                 DialogBoxes.fileFormatInfo(goodFile, false, null);
                 if (!goodFile) {return;}
                 if (selectFile.getSelectedToggle() == airportRadioButton) {
-                    boolean airportCheck = loader.loadAirportErrorCheck(file.getAbsolutePath());
+                    boolean airportCheck = airportLoad.loadAirportErrorCheck(file.getAbsolutePath());
                     DialogBoxes.fileFormatInfo(airportCheck, true, "airport");
                     if (!airportCheck) {return;}
 
                     addFileHelper();
 
-                    ArrayList<Airport> newAirportList = loader.loadAirportFile(file.getAbsolutePath());
+                    ArrayList<Airport> newAirportList = airportLoad.loadAirportFile(file.getAbsolutePath());
                     currentRecord.addAirports(newAirportList);
                     hideAllTables();
                     if (Airport.getNumMissingCovid() > 0) {

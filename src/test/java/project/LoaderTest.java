@@ -196,9 +196,9 @@ public class LoaderTest {
      * Manual testing. Not gonna bother to type out the entire data files as an ArrayList of classes. Functions work.
      */
     public void loadAirportFileTest() throws IOException {
-        Loader loader = new Loader();
+        AirportLoader airportLoad = new AirportLoader();
         Record record = new Record(null, null, null, null); //initialise the COVID lists
-        ArrayList<Airport> airportList = loader.loadAirportFile("data/airports.dat");
+        ArrayList<Airport> airportList = airportLoad.loadAirportFile("data/airports.dat");
 //        for (Airport airport: airportList) {
 //            System.out.println(airport);
 //        }

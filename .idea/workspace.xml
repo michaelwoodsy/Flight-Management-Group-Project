@@ -19,14 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="route loader class (breaking up loader class)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/project/model/AirportLoader.java" afterDir="false" />
+    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Airport loader class (breaking up loader class)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/AirportLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/AirportLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Record.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/covidLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/CovidLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/routeLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/RouteLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/project/LoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/LoaderTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -213,13 +210,6 @@
       <workItem from="1598399542678" duration="403000" />
       <workItem from="1598579267242" duration="6020000" />
       <workItem from="1599645132833" duration="1118000" />
-    </task>
-    <task id="LOCAL-00004" summary="Adding maven scaffolding">
-      <created>1595983043858</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1595983043858</updated>
     </task>
     <task id="LOCAL-00005" summary="Adding maven scaffolding">
       <created>1595983643862</created>
@@ -557,7 +547,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599999553826</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Airport loader class (breaking up loader class)">
+      <created>1599999940556</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1599999940556</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -589,7 +586,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="edited covid risk class" />
     <MESSAGE value="added a covid_test file, that has missing attributes to test that laoder wont crash with missing input" />
     <MESSAGE value="Searching Airports using keywords (searchAirports method), done 3 tests (more tests maybe?) and drafted documentation for method." />
     <MESSAGE value="Search route function added. No testing yet." />
@@ -614,7 +610,8 @@
     <MESSAGE value="Will now not load files unless in correct format" />
     <MESSAGE value="covid loader class (breaking up loader class)" />
     <MESSAGE value="route loader class (breaking up loader class)" />
-    <option name="LAST_COMMIT_MESSAGE" value="route loader class (breaking up loader class)" />
+    <MESSAGE value="Airport loader class (breaking up loader class)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Airport loader class (breaking up loader class)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
@@ -663,7 +660,7 @@
     <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1598488559645" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599965898599" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597981987286" />
-    <state width="1877" height="143" key="GridCell.Tab.0.bottom" timestamp="1599999886170">
+    <state width="1877" height="143" key="GridCell.Tab.0.bottom" timestamp="1599999925798">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
@@ -672,9 +669,9 @@
     <state width="746" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599646251663" />
     <state width="1621" height="172" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966906" />
     <state width="1877" height="216" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599618939284" />
-    <state width="1877" height="143" key="GridCell.Tab.0.bottom/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599999886170" />
+    <state width="1877" height="143" key="GridCell.Tab.0.bottom/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599999925798" />
     <state width="1877" height="420" key="GridCell.Tab.0.bottom/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
-    <state width="1877" height="143" key="GridCell.Tab.0.center" timestamp="1599999886170">
+    <state width="1877" height="143" key="GridCell.Tab.0.center" timestamp="1599999925798">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
@@ -683,9 +680,9 @@
     <state width="746" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1599646251663" />
     <state width="1621" height="172" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966904" />
     <state width="1877" height="216" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599618939284" />
-    <state width="1877" height="143" key="GridCell.Tab.0.center/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599999886170" />
+    <state width="1877" height="143" key="GridCell.Tab.0.center/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599999925798" />
     <state width="1877" height="420" key="GridCell.Tab.0.center/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
-    <state width="1877" height="143" key="GridCell.Tab.0.left" timestamp="1599999886170">
+    <state width="1877" height="143" key="GridCell.Tab.0.left" timestamp="1599999925798">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
@@ -694,9 +691,9 @@
     <state width="746" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1599646251663" />
     <state width="1621" height="172" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966899" />
     <state width="1877" height="216" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599618939283" />
-    <state width="1877" height="143" key="GridCell.Tab.0.left/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599999886170" />
+    <state width="1877" height="143" key="GridCell.Tab.0.left/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599999925798" />
     <state width="1877" height="420" key="GridCell.Tab.0.left/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751130" />
-    <state width="1877" height="143" key="GridCell.Tab.0.right" timestamp="1599999886170">
+    <state width="1877" height="143" key="GridCell.Tab.0.right" timestamp="1599999925798">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
@@ -705,7 +702,7 @@
     <state width="746" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1599646251663" />
     <state width="1621" height="172" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966905" />
     <state width="1877" height="216" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599618939284" />
-    <state width="1877" height="143" key="GridCell.Tab.0.right/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599999886170" />
+    <state width="1877" height="143" key="GridCell.Tab.0.right/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599999925798" />
     <state width="1877" height="420" key="GridCell.Tab.0.right/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
     <state width="1326" height="281" key="GridCell.Tab.1.bottom" timestamp="1599956952055">
       <screen x="0" y="0" width="1368" height="872" />
