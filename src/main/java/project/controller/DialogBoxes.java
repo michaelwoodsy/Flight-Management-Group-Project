@@ -24,7 +24,7 @@ public class DialogBoxes {
     }
 
 
-    public static void fileFormatInfo(boolean check, boolean displayGoodLoad) {
+    public static void fileFormatInfo(boolean check, boolean displayGoodLoad, String dataType) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("File Status");
         String body = "";
@@ -34,7 +34,7 @@ public class DialogBoxes {
         } else if (check) {
             return;
         } else {
-            body = "Incorrect file type";
+            body = String.format("Data laid out incorrectly, or is not %s data", dataType);
         }
         alert.setContentText(body);
         alert.showAndWait();

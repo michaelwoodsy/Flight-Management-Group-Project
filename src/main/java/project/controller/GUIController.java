@@ -1,9 +1,5 @@
 package project.controller;
 
-import com.sun.glass.ui.CommonDialogs;
-import javafx.application.Application;
-import javafx.beans.InvalidationListener;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,19 +8,15 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import project.model.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.*;
 
 import static javafx.collections.FXCollections.observableArrayList;
@@ -347,11 +339,11 @@ public class GUIController implements Initializable {
 
             if (file != null) {
                 boolean goodFile = loader.errorHandler(file);
-                DialogBoxes.fileFormatInfo(goodFile, false);
+                DialogBoxes.fileFormatInfo(goodFile, false, null);
                 if (!goodFile) {return;}
                 if (selectFile.getSelectedToggle() == airportRadioButton) {
                     boolean airportCheck = loader.loadAirportErrorCheck(file.getAbsolutePath());
-                    DialogBoxes.fileFormatInfo(airportCheck, true);
+                    DialogBoxes.fileFormatInfo(airportCheck, true, "airport");
                     if (!airportCheck) {return;}
 
                     ArrayList<Airport> newAirportList = loader.loadAirportFile(file.getAbsolutePath());
@@ -362,7 +354,7 @@ public class GUIController implements Initializable {
                     }
                 } else if (selectFile.getSelectedToggle() == airlineRadioButton) {
                     boolean airlineCheck = loader.loadAirlineErrorCheck(file.getAbsolutePath());
-                    DialogBoxes.fileFormatInfo(airlineCheck, true);
+                    DialogBoxes.fileFormatInfo(airlineCheck, true, "airline");
                     if (!airlineCheck) {return;}
 
                     ArrayList<Airline> newAirlineList = loader.loadAirlineFile(file.getAbsolutePath());
@@ -370,7 +362,7 @@ public class GUIController implements Initializable {
                     displayAllAirlines();
                 } else if (selectFile.getSelectedToggle() == routeRadioButton) {
                     boolean routeCheck = loader.loadRouteErrorCheck(file.getAbsolutePath());
-                    DialogBoxes.fileFormatInfo(routeCheck, true);
+                    DialogBoxes.fileFormatInfo(routeCheck, true, "route");
                     if (!routeCheck) {return;}
 
                     ArrayList<Route> newRouteList = loader.loadRouteFile(file.getAbsolutePath());
@@ -378,7 +370,7 @@ public class GUIController implements Initializable {
                     displayAllRoutes();
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
                     boolean flightCheck = loader.loadFlightErrorCheck(file.getAbsolutePath());
-                    DialogBoxes.fileFormatInfo(flightCheck, true);
+                    DialogBoxes.fileFormatInfo(flightCheck, true, "flight");
                     if (!flightCheck) {return;}
 
                     Flight newFlight = loader.loadFlightFile(file.getAbsolutePath());
@@ -397,7 +389,7 @@ public class GUIController implements Initializable {
      * Can't handle errors yet, and doesn't have the option to append data to new record yet.
      * Also doesn't have confirmation on when files are successfully loaded.
      */
-    public void addAirportButton(ActionEvent event) throws IOException {
+    public void addAirportButton() {
         int id = Integer.parseInt(airportID.getText());
         String name = airportName.getText();
         String city = airportCity.getText();
