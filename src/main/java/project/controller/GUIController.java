@@ -171,7 +171,10 @@ public class GUIController implements Initializable {
     private ArrayList<Record> recordList;
     private Record currentRecord;
     private boolean optedIn = false;
+
     private Loader loader = new Loader();
+    private routeLoader routeLoad = new routeLoader();
+
     private List<Airline> defaultAirlineList = new ArrayList<>();
     private List<Route> defaultRouteList = new ArrayList<>();
     private Airport lastSelectedAirport = null;
@@ -476,13 +479,13 @@ public class GUIController implements Initializable {
                     currentRecord.addAirlines(newAirlineList);
                     hideAllTables();
                 } else if (selectFile.getSelectedToggle() == routeRadioButton) {
-                    boolean routeCheck = loader.loadRouteErrorCheck(file.getAbsolutePath());
+                    boolean routeCheck = routeLoad.loadRouteErrorCheck(file.getAbsolutePath());
                     DialogBoxes.fileFormatInfo(routeCheck, true, "route");
                     if (!routeCheck) {return;}
 
                     addFileHelper();
 
-                    ArrayList<Route> newRouteList = loader.loadRouteFile(file.getAbsolutePath());
+                    ArrayList<Route> newRouteList = routeLoad.loadRouteFile(file.getAbsolutePath());
                     currentRecord.addRoutes(newRouteList);
                     hideAllTables();
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {

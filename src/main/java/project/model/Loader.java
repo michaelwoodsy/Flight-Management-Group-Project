@@ -207,6 +207,7 @@ public class Loader {
     /**
      * Returns a list of routes by reading a comma-separated data file.
      */
+    /*
     public ArrayList<Route> loadRouteFile(String path) throws IOException {
 
         ArrayList<Route> routeList = new ArrayList<Route>();
@@ -228,9 +229,12 @@ public class Loader {
         return routeList;
     }
 
+
+     */
     /**
      * Checks if loaded route file is right format.
      */
+    /*
     public boolean loadRouteErrorCheck(String path) throws IOException {
 
         BufferedReader dataReader = new BufferedReader(new FileReader(path));
@@ -248,6 +252,8 @@ public class Loader {
         dataReader.close();
         return false;
     }
+
+     */
 
     /**
      * Returns an airline class from a line read in airlines.dat.

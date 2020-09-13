@@ -1,5 +1,10 @@
 package project.model;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class routeLoader {
     /**
      * Returns a route class from a line read in routes.dat.
@@ -90,5 +95,50 @@ public class routeLoader {
 
         return new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
 
+    }
+
+    /**
+     * Returns a list of routes by reading a comma-separated data file.
+     */
+    public ArrayList<Route> loadRouteFile(String path) throws IOException {
+
+        ArrayList<Route> routeList = new ArrayList<Route>();
+
+        BufferedReader dataReader = new BufferedReader(new FileReader(path));
+
+        boolean breaker = false;
+        while (!breaker) {
+            String row = dataReader.readLine();
+            if (row == null) {
+                breaker = true;
+            } else {
+                String[] data = row.split(",");
+                routeLoader routeLoad = new routeLoader();
+                routeList.add(routeLoad.loadRoute(data));
+            }
+        }
+        dataReader.close();
+        return routeList;
+    }
+
+    /**
+     * Checks if loaded route file is right format.
+     */
+    public boolean loadRouteErrorCheck(String path) throws IOException {
+
+        BufferedReader dataReader = new BufferedReader(new FileReader(path));
+
+        String row = dataReader.readLine();
+        if (row == null) {
+            return false;
+        } else {
+            String[] data = row.split(",");
+            if (data.length == 9) {
+                return true;
+            }
+        }
+
+        dataReader.close();
+        return false;
     }
 }

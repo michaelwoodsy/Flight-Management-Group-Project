@@ -13,6 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class LoaderTest {
     private final Loader loader = new Loader();
     private final routeLoader routeLoad = new routeLoader();
+    private final covidLoader covidLoad = new covidLoader();
 
     @Test
     /**
@@ -166,7 +167,7 @@ public class LoaderTest {
      * Manual testing. Not gonna bother to type out the entire data files as an ArrayList of classes. Functions work.
      */
     public void loadRouteFileTest() throws IOException {
-        ArrayList<Route> routeList = loader.loadRouteFile("data/routes.dat");
+        ArrayList<Route> routeList = routeLoad.loadRouteFile("data/routes.dat");
 //        for (Route route: routeList) {
 //            System.out.println(route);
 //        }
@@ -214,7 +215,7 @@ public class LoaderTest {
         }
 
     }
-    covidLoader covidLoad = new covidLoader();
+
     @Test
 
     public void loadCovidFileTest() throws IOException{
