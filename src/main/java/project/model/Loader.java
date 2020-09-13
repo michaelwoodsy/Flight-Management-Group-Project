@@ -565,7 +565,7 @@ public class Loader {
         return new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
 
     }
-
+    /*
 
     public static Hashtable<String, Covid> loadCovidFile(String path) throws IOException {
 
@@ -644,4 +644,7 @@ public class Loader {
         return newCovid;
 
     }
+
+     */
+    covidLoader covid = new covidLoader();
 }
