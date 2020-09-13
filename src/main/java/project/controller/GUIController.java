@@ -1,9 +1,5 @@
 package project.controller;
 
-import com.sun.glass.ui.CommonDialogs;
-import javafx.application.Application;
-import javafx.beans.InvalidationListener;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,8 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
@@ -23,7 +17,6 @@ import project.model.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.text.DecimalFormat;
 import java.util.*;
 import javafx.stage.Modality;
 
@@ -163,8 +156,6 @@ public class GUIController implements Initializable {
     private TextField routeStops;
     @FXML
     private CheckBox routeCodeShare;
-    @FXML
-    private Text fileText;
     @FXML
     private ChoiceBox recordSelectAirport;
     @FXML
@@ -457,77 +448,48 @@ public class GUIController implements Initializable {
 
             if (file != null) {
                 boolean goodFile = loader.errorHandler(file);
-                if (!goodFile) {
-                    fileText.setText("Incorrect file format");
-                    fileText.setFill(Color.RED);
-                    fileText.setVisible(true);
-                    return;
-                }
+                DialogBoxes.fileFormatInfo(goodFile, false, null);
+                if (!goodFile) {return;}
                 if (selectFile.getSelectedToggle() == airportRadioButton) {
                     boolean airportCheck = loader.loadAirportErrorCheck(file.getAbsolutePath());
-                    if (!airportCheck) {
-                        fileText.setText("Incorrect file format");
-                        fileText.setFill(Color.RED);
-                        fileText.setVisible(true);
-                        return;
-                    }
+                    DialogBoxes.fileFormatInfo(airportCheck, true, "airport");
+                    if (!airportCheck) {return;}
 
                     addFileHelper();
 
-                    fileText.setText("File loaded successfully");
-                    fileText.setFill(Color.DARKGREEN);
-                    fileText.setVisible(true);
                     ArrayList<Airport> newAirportList = loader.loadAirportFile(file.getAbsolutePath());
                     currentRecord.addAirports(newAirportList);
+                    displayAllAirports();
                     if (Airport.getNumMissingCovid() > 0) {
                         DialogBoxes.missingCovidInfoBox();
                     }
                 } else if (selectFile.getSelectedToggle() == airlineRadioButton) {
                     boolean airlineCheck = loader.loadAirlineErrorCheck(file.getAbsolutePath());
-                    if (!airlineCheck) {
-                        fileText.setText("Incorrect file format");
-                        fileText.setFill(Color.RED);
-                        fileText.setVisible(true);
-                        return;
-                    }
+                    DialogBoxes.fileFormatInfo(airlineCheck, true, "airline");
+                    if (!airlineCheck) {return;}
 
                     addFileHelper();
 
-                    fileText.setText("File loaded successfully");
-                    fileText.setFill(Color.DARKGREEN);
-                    fileText.setVisible(true);
                     ArrayList<Airline> newAirlineList = loader.loadAirlineFile(file.getAbsolutePath());
                     currentRecord.addAirlines(newAirlineList);
+                    displayAllAirlines();
                 } else if (selectFile.getSelectedToggle() == routeRadioButton) {
                     boolean routeCheck = loader.loadRouteErrorCheck(file.getAbsolutePath());
-                    if (!routeCheck) {
-                        fileText.setText("Incorrect file format");
-                        fileText.setFill(Color.RED);
-                        fileText.setVisible(true);
-                        return;
-                    }
+                    DialogBoxes.fileFormatInfo(routeCheck, true, "route");
+                    if (!routeCheck) {return;}
 
                     addFileHelper();
 
-                    fileText.setText("File loaded successfully");
-                    fileText.setFill(Color.DARKGREEN);
-                    fileText.setVisible(true);
                     ArrayList<Route> newRouteList = loader.loadRouteFile(file.getAbsolutePath());
                     currentRecord.addRoutes(newRouteList);
+                    displayAllRoutes();
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
                     boolean flightCheck = loader.loadFlightErrorCheck(file.getAbsolutePath());
-                    if (!flightCheck) {
-                        fileText.setText("Incorrect file format");
-                        fileText.setFill(Color.RED);
-                        fileText.setVisible(true);
-                        return;
-                    }
+                    DialogBoxes.fileFormatInfo(flightCheck, true, "flight");
+                    if (!flightCheck) {return;}
 
                     addFileHelper();
 
-                    fileText.setText("File loaded successfully");
-                    fileText.setFill(Color.DARKGREEN);
-                    fileText.setVisible(true);
                     Flight newFlight = loader.loadFlightFile(file.getAbsolutePath());
                     currentRecord.addFlights(newFlight);
                     Parent root = FXMLLoader.load(getClass().getResource("../Flight_Screen.fxml"));
@@ -544,7 +506,7 @@ public class GUIController implements Initializable {
      * Can't handle errors yet, and doesn't have the option to append data to new record yet.
      * Also doesn't have confirmation on when files are successfully loaded.
      */
-    public void addAirportButton(ActionEvent event) throws IOException {
+    public void addAirportButton() {
         int id = Integer.parseInt(airportID.getText());
         String name = airportName.getText();
         String city = airportCity.getText();

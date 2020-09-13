@@ -24,4 +24,22 @@ public class DialogBoxes {
     }
 
 
+    public static void fileFormatInfo(boolean check, boolean displayGoodLoad, String dataType) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("File Status");
+        String body = "";
+        if (check && displayGoodLoad) {
+            body = "File loaded successfully";
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+        } else if (check) {
+            return;
+        } else {
+            body = String.format("Data laid out incorrectly, or is not %s data", dataType);
+        }
+        alert.setContentText(body);
+        alert.showAndWait();
+    }
+
+    public static void blankTextField() {}
+
 }

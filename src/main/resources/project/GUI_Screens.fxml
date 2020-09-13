@@ -305,9 +305,7 @@
                                     <RadioButton fx:id="airlineRadioButton" layoutX="43.0" layoutY="73.0" mnemonicParsing="false" text="Airline" toggleGroup="$selectFile" />
                                     <RadioButton fx:id="routeRadioButton" layoutX="43.0" layoutY="113.0" mnemonicParsing="false" text="Route" toggleGroup="$selectFile" />
                                     <RadioButton fx:id="flightRadioButton" layoutX="43.0" layoutY="153.0" mnemonicParsing="false" text="Flight" toggleGroup="$selectFile" />
-                                    <Button fx:id="addFileButton" layoutX="505.0" layoutY="350.0" mnemonicParsing="false" onAction="#addFileButton" text="Add to" />
-                                    <Text fx:id="fileText" fill="#45a329" layoutX="478.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File loaded successfully" textAlignment="CENTER" visible="false" />
-                                    <ChoiceBox fx:id="recordDropdown" layoutX="558.0" layoutY="350.0" prefWidth="150.0" />
+                                    <Button fx:id="addFileButton" layoutX="520.0" layoutY="350.0" mnemonicParsing="false" onAction="#addFileButton" text="Add" />
                                  </children></AnchorPane>
                           </content>
                         </Tab>

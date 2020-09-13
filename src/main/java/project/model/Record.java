@@ -1,10 +1,5 @@
 package project.model;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-
 import java.io.*;
 import java.util.*;
 
@@ -246,7 +241,10 @@ public class Record {
 
 
     /**
-     * Search by airline name. Might need changing.
+     * Finds routes where the value of the route's 'attribute' matches 'keyword'
+     * @param keyWord The value of the route's attributes that we are searching for
+     * @param attribute The attribute of the routes to be compared
+     * @return A list of routes which have a value of 'attribute' that matches the keyword
      */
     public ArrayList<Route> searchRoutes(String keyWord, String attribute) {
         ArrayList<Route> searchResult = new ArrayList<Route>();
@@ -400,7 +398,7 @@ public class Record {
     }
 
     /**
-     * Not sure if we'll even need this function. Incomplete.
+     * Prompts the loading of a pre-installed covid file
      */
     public static Hashtable<String, Covid> setCovid() {
         Hashtable<String, Covid> covidDict = null;
