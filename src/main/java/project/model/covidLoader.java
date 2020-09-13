@@ -9,7 +9,7 @@ public class covidLoader {
 
 
 
-    public static Hashtable<String, Covid> loadCovidFile(String path) throws IOException {
+    public Hashtable<String, Covid> loadCovidFile(String path) throws IOException {
 
         Hashtable<String, Covid> covidDict = new Hashtable<>();
         Covid currentCovid;
@@ -31,7 +31,7 @@ public class covidLoader {
         return covidDict;
     }
 
-    public static Covid loadCovid(String[] covidData) {
+    public Covid loadCovid(String[] covidData) {
         // for numeric values, if they are not valid they are set to a default of 0.
         // for string values, if they contain illegal characters are set to null
         //e.g. if total_cases is missing or is not numeric, then it is set to 0
