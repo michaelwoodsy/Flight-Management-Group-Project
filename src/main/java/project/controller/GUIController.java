@@ -224,8 +224,8 @@ public class GUIController implements Initializable {
         recordSelectRoute.setItems(observableArrayList(currentRecord.getName()));
         recordSelectRoute.getSelectionModel().selectFirst();
 
-        //recordDropdown.setItems(observableArrayList(currentRecord.getName(), "New Record"));
-        //recordDropdown.getSelectionModel().selectFirst();
+        recordDropdown.setItems(observableArrayList(currentRecord.getName(), "New Record"));
+        recordDropdown.getSelectionModel().selectFirst();
 
         WebEngine mapEngine = mapView.getEngine();
         mapEngine.load(getClass().getResource("/map.html").toExternalForm());
