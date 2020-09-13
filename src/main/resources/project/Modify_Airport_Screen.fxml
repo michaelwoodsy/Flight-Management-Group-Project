@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <GridPane hgap="25.0" layoutX="52.0" layoutY="63.0" prefHeight="415.0" prefWidth="603.0" vgap="25.0">
@@ -57,7 +56,7 @@
             <TextField fx:id="airportLatitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="4" />
             <TextField fx:id="airportLongitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="5" />
             <TextField fx:id="airportAltitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-            <Button fx:id="modifyAirport" mnemonicParsing="false" text="Modify" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Button fx:id="modifyAirportButton" mnemonicParsing="false" text="Modify" GridPane.columnIndex="3" GridPane.rowIndex="7" />
             <Label text="Timezone:" GridPane.columnIndex="2" />
             <TextField fx:id="airportTimezoneStringMod" GridPane.columnIndex="3" />
          </children>

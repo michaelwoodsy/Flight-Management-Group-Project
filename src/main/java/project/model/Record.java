@@ -401,6 +401,24 @@ public class Record {
         this.flightList.addAll(uniqueElements);
     }
 
+    public void modifyAirport(Airport oldAirport, Airport newAirport) {
+        if (this.airportList.contains(oldAirport)) {
+            this.airportList.set(airportList.indexOf(oldAirport), newAirport);
+        }
+    }
+
+    public void modifyAirline(Airline oldAirline, Airline newAirline) {
+        if (this.airlineList.contains(oldAirline)) {
+            this.airlineList.set(airlineList.indexOf(oldAirline), newAirline);
+        }
+    }
+
+    public void modifyRoute(Route oldRoute, Route newRoute) {
+        if (this.routeList.contains(oldRoute)) {
+            this.routeList.set(routeList.indexOf(oldRoute), newRoute);
+        }
+    }
+
     public void removeAirports(Airport airport) {
         if (this.airportList.contains(airport)) {
             this.airportList.remove(airport);
