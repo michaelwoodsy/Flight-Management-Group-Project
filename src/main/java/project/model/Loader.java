@@ -1,12 +1,33 @@
 package project.model;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Loader {
+
+    /**
+     * Ensures loaded file is correct file format.
+     */
+    public boolean errorHandler(File file) {
+        String extension = "";
+
+        int i = file.getAbsolutePath().lastIndexOf('.');
+        int p = Math.max(file.getAbsolutePath().lastIndexOf('/'), file.getAbsolutePath().lastIndexOf('\\'));
+
+        if (i > p) {
+            extension = file.getAbsolutePath().substring(i+1);
+        }
+        if (!extension.equals("dat") && !extension.equals("csv")) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
 
     /**
      * Returns a list of airlines by reading a comma-separated data file.
@@ -29,6 +50,27 @@ public class Loader {
         }
         dataReader.close();
         return airlineList;
+    }
+
+    /**
+     * Checks if loaded airline file is right format.
+     */
+    public boolean loadAirlineErrorCheck(String path) throws IOException {
+
+        BufferedReader dataReader = new BufferedReader(new FileReader(path));
+
+        String row = dataReader.readLine();
+        if (row == null) {
+                return false;
+        } else {
+            String[] data = row.split(",");
+            if (data.length == 8) {
+                return true;
+            }
+        }
+
+        dataReader.close();
+        return false;
     }
 
     public Flight loadFlightFile(String path) throws IOException {
@@ -98,6 +140,27 @@ public class Loader {
     }
 
     /**
+     * Checks if loaded airport file is right format.
+     */
+    public boolean loadFlightErrorCheck(String path) throws IOException {
+
+        BufferedReader dataReader = new BufferedReader(new FileReader(path));
+
+        String row = dataReader.readLine();
+        if (row == null) {
+            return false;
+        } else {
+            String[] data = row.split(",");
+            if (data.length == 5) {
+                return true;
+            }
+        }
+
+        dataReader.close();
+        return false;
+    }
+
+    /**
      * Returns a list of airports by reading a comma-separated data file.
      */
     public ArrayList<Airport> loadAirportFile(String path) throws IOException {
@@ -121,6 +184,27 @@ public class Loader {
     }
 
     /**
+     * Checks if loaded airport file is right format.
+     */
+    public boolean loadAirportErrorCheck(String path) throws IOException {
+
+        BufferedReader dataReader = new BufferedReader(new FileReader(path));
+
+        String row = dataReader.readLine();
+        if (row == null) {
+            return false;
+        } else {
+            String[] data = row.split(",");
+            if (data.length >= 12  && data.length <= 14) {
+                return true;
+            }
+        }
+
+        dataReader.close();
+        return false;
+    }
+
+    /**
      * Returns a list of routes by reading a comma-separated data file.
      */
     public ArrayList<Route> loadRouteFile(String path) throws IOException {
@@ -141,6 +225,27 @@ public class Loader {
         }
         dataReader.close();
         return routeList;
+    }
+
+    /**
+     * Checks if loaded route file is right format.
+     */
+    public boolean loadRouteErrorCheck(String path) throws IOException {
+
+        BufferedReader dataReader = new BufferedReader(new FileReader(path));
+
+        String row = dataReader.readLine();
+        if (row == null) {
+            return false;
+        } else {
+            String[] data = row.split(",");
+            if (data.length == 9) {
+                return true;
+            }
+        }
+
+        dataReader.close();
+        return false;
     }
 
     /**

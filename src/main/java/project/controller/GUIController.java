@@ -343,16 +343,43 @@ public class GUIController implements Initializable {
 
 
             if (file != null) {
+                boolean goodFile = loader.errorHandler(file);
+                if (!goodFile) {
+                    // Some code here
+                    return;
+                }
                 if (selectFile.getSelectedToggle() == airportRadioButton) {
+                    boolean airportCheck = loader.loadAirportErrorCheck(file.getAbsolutePath());
+                    if (!airportCheck) {
+                        // Some code here
+                        return;
+                    }
                     ArrayList<Airport> newAirportList = loader.loadAirportFile(file.getAbsolutePath());
                     record.addAirports(newAirportList);;
                 } else if (selectFile.getSelectedToggle() == airlineRadioButton) {
+                    boolean airlineCheck = loader.loadAirlineErrorCheck(file.getAbsolutePath());
+                    if (!airlineCheck) {
+                        // Some code here
+                        return;
+                    }
+
                     ArrayList<Airline> newAirlineList = loader.loadAirlineFile(file.getAbsolutePath());
                     record.addAirlines(newAirlineList);
                 } else if (selectFile.getSelectedToggle() == routeRadioButton) {
+                    boolean routeCheck = loader.loadRouteErrorCheck(file.getAbsolutePath());
+                    if (!routeCheck) {
+                        // Some code here
+                        return;
+                    }
+
                     ArrayList<Route> newRouteList = loader.loadRouteFile(file.getAbsolutePath());
                     record.addRoutes(newRouteList);
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
+                    boolean flightCheck = loader.loadFlightErrorCheck(file.getAbsolutePath());
+                    if (!flightCheck) {
+                        // Some code here
+                        return;
+                    }
                     Flight newFlight = loader.loadFlightFile(file.getAbsolutePath());
                     record.addFlights(newFlight);
                     Parent root = FXMLLoader.load(getClass().getResource("../Flight_Screen.fxml"));
