@@ -10,10 +10,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Manual merging">
+    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Added multiple records functionality, ability to choice which record to load data into, and to load data into new records">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,13 +198,6 @@
       <workItem from="1598399542678" duration="403000" />
       <workItem from="1598579267242" duration="6020000" />
       <workItem from="1599645132833" duration="1118000" />
-    </task>
-    <task id="LOCAL-00005" summary="Adding maven scaffolding">
-      <created>1595983643862</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1595983643862</updated>
     </task>
     <task id="LOCAL-00006" summary="Adding maven scaffolding">
       <created>1595983894275</created>
@@ -543,7 +535,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599965393654</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="Added multiple records functionality, ability to choice which record to load data into, and to load data into new records">
+      <created>1599967884906</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1599967884907</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -575,7 +574,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Searching Airports using keywords (searchAirports method), done 3 tests (more tests maybe?) and drafted documentation for method." />
     <MESSAGE value="Search route function added. No testing yet." />
     <MESSAGE value="Fixes here and there, adding filechooser to GUI" />
     <MESSAGE value="Added to settings panel, in map GUI" />
@@ -600,7 +598,8 @@
     <MESSAGE value="Adding ability to select records" />
     <MESSAGE value="Merge" />
     <MESSAGE value="Manual merging" />
-    <option name="LAST_COMMIT_MESSAGE" value="Manual merging" />
+    <MESSAGE value="Added multiple records functionality, ability to choice which record to load data into, and to load data into new records" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added multiple records functionality, ability to choice which record to load data into, and to load data into new records" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
@@ -649,45 +648,45 @@
     <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1598488559645" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599289090887" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597981987286" />
-    <state width="1326" height="228" key="GridCell.Tab.0.bottom" timestamp="1599967528632">
+    <state width="1326" height="228" key="GridCell.Tab.0.bottom" timestamp="1599968413941">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
     <state width="1237" height="164" key="GridCell.Tab.0.bottom/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="1326" height="228" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1599967528632" />
+    <state width="1326" height="228" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1599968413941" />
     <state width="746" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599646251663" />
     <state width="1621" height="172" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966906" />
     <state width="1877" height="216" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599618939284" />
     <state width="1877" height="145" key="GridCell.Tab.0.bottom/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599292489564" />
     <state width="1877" height="420" key="GridCell.Tab.0.bottom/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
-    <state width="1326" height="228" key="GridCell.Tab.0.center" timestamp="1599967528632">
+    <state width="1326" height="228" key="GridCell.Tab.0.center" timestamp="1599968413941">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
     <state width="1237" height="164" key="GridCell.Tab.0.center/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="1326" height="228" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1599967528632" />
+    <state width="1326" height="228" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1599968413941" />
     <state width="746" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1599646251663" />
     <state width="1621" height="172" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966904" />
     <state width="1877" height="216" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599618939284" />
     <state width="1877" height="145" key="GridCell.Tab.0.center/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599292489564" />
     <state width="1877" height="420" key="GridCell.Tab.0.center/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
-    <state width="1326" height="228" key="GridCell.Tab.0.left" timestamp="1599967528632">
+    <state width="1326" height="228" key="GridCell.Tab.0.left" timestamp="1599968413941">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
     <state width="1237" height="164" key="GridCell.Tab.0.left/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="1326" height="228" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1599967528632" />
+    <state width="1326" height="228" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1599968413941" />
     <state width="746" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1599646251663" />
     <state width="1621" height="172" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966899" />
     <state width="1877" height="216" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599618939283" />
     <state width="1877" height="145" key="GridCell.Tab.0.left/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599292489564" />
     <state width="1877" height="420" key="GridCell.Tab.0.left/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751130" />
-    <state width="1326" height="228" key="GridCell.Tab.0.right" timestamp="1599967528632">
+    <state width="1326" height="228" key="GridCell.Tab.0.right" timestamp="1599968413941">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
     <state width="1237" height="164" key="GridCell.Tab.0.right/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="1326" height="228" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1599967528632" />
+    <state width="1326" height="228" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1599968413941" />
     <state width="746" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1599646251663" />
     <state width="1621" height="172" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966905" />
     <state width="1877" height="216" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599618939284" />
@@ -713,14 +712,14 @@
     </state>
     <state width="1326" height="281" key="GridCell.Tab.1.right/0.0.1368.872@0.0.1368.872" timestamp="1599956952055" />
     <state width="1493" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1597545878362" />
-    <state x="234" y="109" key="MergeDialog" timestamp="1599964633881">
+    <state x="132" y="33" key="MergeDialog" timestamp="1599968225504">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="234" y="109" key="MergeDialog/0.0.1368.872@0.0.1368.872" timestamp="1599964633881" />
-    <state x="426" y="236" key="MultipleFileMergeDialog" timestamp="1599964633887">
+    <state x="132" y="33" key="MergeDialog/0.0.1368.872@0.0.1368.872" timestamp="1599968225504" />
+    <state x="426" y="236" key="MultipleFileMergeDialog" timestamp="1599968225511">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="426" y="236" key="MultipleFileMergeDialog/0.0.1368.872@0.0.1368.872" timestamp="1599964633887" />
+    <state x="426" y="236" key="MultipleFileMergeDialog/0.0.1368.872@0.0.1368.872" timestamp="1599968225511" />
     <state x="598" y="281" key="MultipleFileMergeDialog/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1597555339490" />
     <state x="625" y="224" key="NewModule_or_Project.wizard" timestamp="1599289106004">
       <screen x="0" y="0" width="1920" height="1040" />
@@ -757,10 +756,10 @@
       <screen x="0" y="0" width="1280" height="688" />
     </state>
     <state x="0" y="0" width="587" height="688" key="find.popup/0.0.1280.688@0.0.1280.688" timestamp="1597793063974" />
-    <state x="243" y="301" key="git4idea.merge.GitPullDialog" timestamp="1599964485306">
+    <state x="243" y="301" key="git4idea.merge.GitPullDialog" timestamp="1599967890289">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="243" y="301" key="git4idea.merge.GitPullDialog/0.0.1368.872@0.0.1368.872" timestamp="1599964485306" />
+    <state x="243" y="301" key="git4idea.merge.GitPullDialog/0.0.1368.872@0.0.1368.872" timestamp="1599967890289" />
     <state x="137" y="9" key="new project wizard" timestamp="1599290359334">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
