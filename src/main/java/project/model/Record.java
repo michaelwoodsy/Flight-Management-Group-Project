@@ -401,6 +401,23 @@ public class Record {
         this.flightList.addAll(uniqueElements);
     }
 
+    public void removeAirports(Airport airport) {
+        if (this.airportList.contains(airport)) {
+            this.airportList.remove(airport);
+        }
+    }
+
+    public void removeAirlines(Airline airlines) {
+        if (this.airlineList.contains(airlines)) {
+            this.airlineList.remove(airlines);
+        }
+    }
+
+    public void removeRoutes(Route route) {
+        if (this.routeList.contains(route)) {
+            this.routeList.remove(route);
+        }
+    }
     /**
      * Prompts the loading of a pre-installed covid file
      */
@@ -408,7 +425,8 @@ public class Record {
         Hashtable<String, Covid> covidDict = null;
 
         try {
-            covidDict = Loader.loadCovidFile("./data/covid.dat");
+            CovidLoader covidLoad = new CovidLoader();
+            covidDict = covidLoad.loadCovidFile("./data/covid.dat");
         } catch (IOException e) {
             System.err.println("Could not load file");
         }

@@ -32,6 +32,7 @@ public class Loader {
     /**
      * Returns a list of airlines by reading a comma-separated data file.
      */
+    /*
     public ArrayList<Airline> loadAirlineFile(String path) throws IOException {
 
         ArrayList<Airline> airlineList = new ArrayList<Airline>();
@@ -52,9 +53,14 @@ public class Loader {
         return airlineList;
     }
 
+
+     */
+
+
     /**
      * Checks if loaded airline file is right format.
      */
+    /*
     public boolean loadAirlineErrorCheck(String path) throws IOException {
 
         BufferedReader dataReader = new BufferedReader(new FileReader(path));
@@ -73,6 +79,8 @@ public class Loader {
         return false;
     }
 
+     */
+/*
     public Flight loadFlightFile(String path) throws IOException {
 
         ArrayList<String> statuses = new ArrayList<String>();
@@ -139,9 +147,12 @@ public class Loader {
         return new Flight(latitudes, longitudes, altitudes, locations, statuses, risk);
     }
 
+ */
+
     /**
      * Checks if loaded airport file is right format.
      */
+    /*
     public boolean loadFlightErrorCheck(String path) throws IOException {
 
         BufferedReader dataReader = new BufferedReader(new FileReader(path));
@@ -160,9 +171,12 @@ public class Loader {
         return false;
     }
 
+     */
+
     /**
      * Returns a list of airports by reading a comma-separated data file.
      */
+    /*
     public ArrayList<Airport> loadAirportFile(String path) throws IOException {
 
         ArrayList<Airport> airportList = new ArrayList<Airport>();
@@ -176,37 +190,23 @@ public class Loader {
                 breaker = true;
             } else {
                 String[] data = row.split(",(?! )");
-                airportList.add(loadAirport(data));
+                AirportLoader airportLoad = new AirportLoader();
+                airportList.add(airportLoad.loadAirport(data));
             }
         }
         dataReader.close();
         return airportList;
     }
 
-    /**
-     * Checks if loaded airport file is right format.
      */
-    public boolean loadAirportErrorCheck(String path) throws IOException {
 
-        BufferedReader dataReader = new BufferedReader(new FileReader(path));
 
-        String row = dataReader.readLine();
-        if (row == null) {
-            return false;
-        } else {
-            String[] data = row.split(",");
-            if (data.length >= 12  && data.length <= 14) {
-                return true;
-            }
-        }
-
-        dataReader.close();
-        return false;
-    }
+    /*
 
     /**
      * Returns a list of routes by reading a comma-separated data file.
      */
+    /*
     public ArrayList<Route> loadRouteFile(String path) throws IOException {
 
         ArrayList<Route> routeList = new ArrayList<Route>();
@@ -220,16 +220,21 @@ public class Loader {
                 breaker = true;
             } else {
                 String[] data = row.split(",");
-                routeList.add(loadRoute(data));
+                routeLoader routeLoad = new routeLoader();
+                routeList.add(routeLoad.loadRoute(data));
             }
         }
         dataReader.close();
         return routeList;
     }
 
+
+
+     */
     /**
      * Checks if loaded route file is right format.
      */
+    /*
     public boolean loadRouteErrorCheck(String path) throws IOException {
 
         BufferedReader dataReader = new BufferedReader(new FileReader(path));
@@ -248,10 +253,13 @@ public class Loader {
         return false;
     }
 
+     */
+
     /**
      * Returns an airline class from a line read in airlines.dat.
      * Invalid ints will be displayed as -1, invalid strings displayed as null
      */
+    /*
     public Airline loadAirline(String[] airlineData) {
 
         int id;
@@ -335,12 +343,15 @@ public class Loader {
 
     }
 
+     */
+
     /**
      * Returns an airport class from a line read in airports.dat.
      * (Most) nvalid ints will be displayed as -1, invalid strings displayed as null
      * Invalid latitudes and longitudes are displayed as 360. This is because these are impossible latitude/longitude values, and correspond to easy error handling.
      * Invalid timezones displayed as 25. Can't have a +25 hour timezone after all.
      */
+    /*
     public Airport loadAirport(String[] airportData) {
 
         int id;
@@ -475,10 +486,13 @@ public class Loader {
         return new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
     }
 
+     */
+
     /**
      * Returns a route class from a line read in routes.dat.
      * Invalid ints will be displayed as -1, invalid strings displayed as null
      */
+    /*
     public Route loadRoute(String[] routeData) {
 
         String airline;
@@ -566,6 +580,8 @@ public class Loader {
 
     }
 
+     */
+    /*
 
     public static Hashtable<String, Covid> loadCovidFile(String path) throws IOException {
 
@@ -608,7 +624,7 @@ public class Loader {
 
         String date;
         try {
-            //checks date doesn't contain invalid characters
+            //checks date doesn't contain invalid Characters
             if (covidData[3].matches("[0-9/]+")){
                 date = covidData[3];
             }
@@ -644,4 +660,6 @@ public class Loader {
         return newCovid;
 
     }
+
+     */
 }

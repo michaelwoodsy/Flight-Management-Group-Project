@@ -5,6 +5,8 @@ import javafx.scene.layout.Region;
 import project.model.Airport;
 import project.model.Covid;
 
+import java.util.ArrayList;
+
 public class DialogBoxes {
 
     public static void missingCovidInfoBox() {
@@ -67,4 +69,13 @@ public class DialogBoxes {
         alert.showAndWait();
     }
 
+    public static void newDataError(ArrayList<String> errors) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        String errorString = "";
+        for (int i = 0; i < errors.size(); i++) {
+            errorString += errors.get(i) + '\n';
+        }
+        alert.setContentText(errorString);
+        alert.showAndWait();
+    }
 }

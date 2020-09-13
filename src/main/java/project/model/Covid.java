@@ -41,11 +41,11 @@ public class Covid {
         this.population = population;
     }
 
-    //just used for the checking that loader works of the loader
+/*    //just used for the checking that loader works of the loader
     public String print_country_data(){
         return location + " " +  date + " " + total_cases_per_million + " " + total_deaths_per_million + " " + population;
     }
-
+*/
     public String getCountry() {
         return this.location;
     }
