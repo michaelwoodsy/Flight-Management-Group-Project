@@ -22,6 +22,7 @@ public class Airport {
     private int numRoutesSource;
     private int numRoutesDest;
     private int totalRoutes;
+    private static int numMissingCovid;
 
     public Airport(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, double timezone, String dst, String timezoneString, String type, String source, int numRoutesSource, int numRoutesDest) {
         this.id = id;
@@ -44,6 +45,10 @@ public class Airport {
         this.determineCovidRisk();
     }
 
+    public static int getNumMissingCovid() {
+        return numMissingCovid;
+    }
+
     public int getId() {
         return id;
     }
@@ -54,10 +59,6 @@ public class Airport {
 
     public double getRisk() {
         return risk;
-    }
-
-    public void setRisk(int risk) {
-        this.risk = risk;
     }
 
     public String getName() {
@@ -326,7 +327,11 @@ public class Airport {
             double riskDouble = covidStats.getRiskDouble();
             this.risk = riskDouble;
         } catch (NoSuchFieldException e) {
-            System.err.println(e.getMessage());
+            this.risk = 0;
+            numMissingCovid += 1;
+            if (!Covid.missingCountries.contains(this.country)) {
+                Covid.missingCountries.add(this.country);
+            }
         }
     }
 }

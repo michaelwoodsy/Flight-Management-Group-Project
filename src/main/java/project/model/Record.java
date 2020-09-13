@@ -240,11 +240,28 @@ public class Record {
     /**
      * Search by airline name. Might need changing.
      */
-    public ArrayList<Route> searchRoutes(String keyWord) {
+    public ArrayList<Route> searchRoutes(String keyWord, String attribute) {
         ArrayList<Route> searchResult = new ArrayList<Route>();
 
         for (Route route: routeList) {
-            if (route.getAirline().toUpperCase().contains(keyWord.toUpperCase())) {
+            boolean match = false;
+            if (attribute == "airline") {
+                match = route.getAirline().toUpperCase().contains(keyWord.toUpperCase());
+            } else if (attribute == "total # stops") {
+                match = Integer.toString(route.getNumStops()).equals(keyWord);
+            } else if (attribute == "source id") {
+                match = Integer.toString(route.getSourceID()).equals(keyWord);
+            } else if (attribute == "destination id") {
+                match = Integer.toString(route.getDestID()).equals(keyWord);
+            } else if (attribute == "source airport") {
+                match = route.getSourceAirport().toLowerCase().contains(keyWord.toLowerCase());
+            } else if (attribute == "destination airport") {
+                match = route.getDestAirport().toLowerCase().contains(keyWord.toLowerCase());
+            } else if (attribute == "equipment") {
+                match = route.getEquipment().toLowerCase().contains(keyWord.toLowerCase());
+            }
+
+            if (match) {
                 searchResult.add(route);
             }
         }
@@ -293,7 +310,6 @@ public class Record {
         if (covidDict.get(country) != null) {
             return covidDict.get(country);
         } else {
-            System.out.println(country);
             throw new NoSuchFieldException("No such country exists in our records");
         }
     }

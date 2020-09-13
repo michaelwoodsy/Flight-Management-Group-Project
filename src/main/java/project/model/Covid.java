@@ -2,12 +2,15 @@ package project.model;
 
 import org.apache.commons.math3.util.Precision;
 
+import java.util.ArrayList;
+
 public class Covid {
     private String location;
     private String date;
     private double total_cases_per_million;
     private double total_deaths_per_million;
     private int population;
+    public static ArrayList<String> missingCountries = new ArrayList<>();
 
     public Covid(String location, String date, double total_cases_per_million, double total_deaths_per_million,
                  int population) {
