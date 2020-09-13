@@ -404,8 +404,12 @@ public class GUIController implements Initializable {
             recordSelectAirport.getItems().add(currentRecord.getName());
             recordSelectAirline.getItems().add(currentRecord.getName());
             recordSelectRoute.getItems().add(currentRecord.getName());
-            recordDropdown.setItems(recordSelectRoute.getItems());
-            recordDropdown.getItems().add("New Record");
+            ArrayList<String> recordNames = new ArrayList<String>();
+            for (Record records: recordList) {
+                recordNames.add(records.getName());
+            }
+            recordNames.add("New Record");
+            recordDropdown.setItems(observableArrayList(recordNames));
 
             recordSelectAirline.getSelectionModel().select(currentRecord);
             recordSelectAirport.getSelectionModel().select(currentRecord);
