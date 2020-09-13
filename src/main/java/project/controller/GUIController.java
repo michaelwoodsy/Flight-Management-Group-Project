@@ -175,6 +175,7 @@ public class GUIController implements Initializable {
     private Loader loader = new Loader();
     private RouteLoader routeLoad = new RouteLoader();
     private AirportLoader airportLoad = new AirportLoader();
+    private AirlineLoader airlineLoad = new AirlineLoader();
 
 
     private List<Airline> defaultAirlineList = new ArrayList<>();
@@ -471,13 +472,13 @@ public class GUIController implements Initializable {
                         DialogBoxes.missingCovidInfoBox();
                     }
                 } else if (selectFile.getSelectedToggle() == airlineRadioButton) {
-                    boolean airlineCheck = loader.loadAirlineErrorCheck(file.getAbsolutePath());
+                    boolean airlineCheck = airlineLoad.loadAirlineErrorCheck(file.getAbsolutePath());
                     DialogBoxes.fileFormatInfo(airlineCheck, true, "airline");
                     if (!airlineCheck) {return;}
 
                     addFileHelper();
 
-                    ArrayList<Airline> newAirlineList = loader.loadAirlineFile(file.getAbsolutePath());
+                    ArrayList<Airline> newAirlineList = airlineLoad.loadAirlineFile(file.getAbsolutePath());
                     currentRecord.addAirlines(newAirlineList);
                     hideAllTables();
                 } else if (selectFile.getSelectedToggle() == routeRadioButton) {

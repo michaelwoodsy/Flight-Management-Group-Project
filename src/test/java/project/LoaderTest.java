@@ -15,6 +15,7 @@ public class LoaderTest {
     private final RouteLoader routeLoad = new RouteLoader();
     private final CovidLoader covidLoad = new CovidLoader();
     private final AirportLoader AirportLoad = new AirportLoader();
+    private final AirlineLoader airlineLoad = new AirlineLoader();
 
     @Test
     /**
@@ -69,7 +70,7 @@ public class LoaderTest {
     public void loadIndividualAirlineTest() {
 
         String[] airlineData1 = {"1", "Private flight", "alias", "iata", "icao", "callsign", "country", "Y"};
-        Airline testAirline1 = loader.loadAirline(airlineData1);
+        Airline testAirline1 = airlineLoad.loadAirline(airlineData1);
 
         assertEquals(testAirline1.getId(), 1);
         assertEquals(testAirline1.getName(), "Private flight");
@@ -81,19 +82,19 @@ public class LoaderTest {
         assertTrue(testAirline1.isActive());
 
         String[] airlineData2 = {"1a", "Private flight", "alias", "iata", "icao", "callsign", "country", "N"};
-        testAirline1 = loader.loadAirline(airlineData2);
+        testAirline1 = airlineLoad.loadAirline(airlineData2);
 
         assertEquals(testAirline1.getId(), -1);
         assertFalse(testAirline1.isActive());
 
         String[] airlineData3 = {"", "Private flight", "alias", "iata", "icao", "callsign", "country", ""};
-        testAirline1 = loader.loadAirline(airlineData3);
+        testAirline1 = airlineLoad.loadAirline(airlineData3);
 
         assertEquals(testAirline1.getId(), -1);
         assertFalse(testAirline1.isActive());
 
         String[] airlineData4 = {"1", "", "", "", "", "", "", "Y"};
-        testAirline1 = loader.loadAirline(airlineData4);
+        testAirline1 = airlineLoad.loadAirline(airlineData4);
 
         assertEquals(testAirline1.getName(), null);
         assertEquals(testAirline1.getAlias(), null);
@@ -210,7 +211,7 @@ public class LoaderTest {
      */
     public void loadAirlineFileTest() throws IOException {
         Loader loader = new Loader();
-        ArrayList<Airline> airlineList = loader.loadAirlineFile("data/airlines.dat");
+        ArrayList<Airline> airlineList = airlineLoad.loadAirlineFile("data/airlines.dat");
         for (Airline airline: airlineList) {
             //System.out.println(airline);
         }

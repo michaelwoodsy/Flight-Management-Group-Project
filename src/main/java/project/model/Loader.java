@@ -32,6 +32,7 @@ public class Loader {
     /**
      * Returns a list of airlines by reading a comma-separated data file.
      */
+    /*
     public ArrayList<Airline> loadAirlineFile(String path) throws IOException {
 
         ArrayList<Airline> airlineList = new ArrayList<Airline>();
@@ -52,9 +53,14 @@ public class Loader {
         return airlineList;
     }
 
+
+     */
+
+
     /**
      * Checks if loaded airline file is right format.
      */
+    /*
     public boolean loadAirlineErrorCheck(String path) throws IOException {
 
         BufferedReader dataReader = new BufferedReader(new FileReader(path));
@@ -72,6 +78,8 @@ public class Loader {
         dataReader.close();
         return false;
     }
+
+     */
 
     public Flight loadFlightFile(String path) throws IOException {
 
@@ -246,6 +254,7 @@ public class Loader {
      * Returns an airline class from a line read in airlines.dat.
      * Invalid ints will be displayed as -1, invalid strings displayed as null
      */
+    /*
     public Airline loadAirline(String[] airlineData) {
 
         int id;
@@ -328,6 +337,8 @@ public class Loader {
         return new Airline(id, name, active, country, alias, callSign, iata, icao);
 
     }
+
+     */
 
     /**
      * Returns an airport class from a line read in airports.dat.
