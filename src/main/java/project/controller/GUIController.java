@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
@@ -161,6 +162,28 @@ public class GUIController implements Initializable {
 
     @FXML
     private Button modifyRouteWindowButton;
+
+    @FXML
+    private Pane modifyAirlinePane;
+    @FXML
+    private Label modifyAirlineLabel;
+    @FXML
+    private TextField airlineNameMod;
+    @FXML
+    private TextField airlineAliasMod;
+    @FXML
+    private TextField airlineCallsignMod;
+    @FXML
+    private TextField airlineIATAMod;
+    @FXML
+    private TextField airlineICAOMod;
+    @FXML
+    private TextField airlineCountryMod;
+    @FXML
+    private CheckBox airlineActiveMod;
+
+    @FXML
+    private SplitPane airlineSplitPane;
 
     @FXML
     private Button modifyAirportWindowButton;
@@ -1062,27 +1085,142 @@ public class GUIController implements Initializable {
         }
 
 
+
+
+    }
+
+    /**
+     *
+     * Modifying Airlines is working but not the best way to code
+     * Using Panes rather than windows
+     *
+     */
+
+    @FXML
+    public void deleteAirlineButton(ActionEvent event) throws IOException {
+        Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
+        currentRecord.removeAirlines(airline);
+        modifyAirlinePane.setVisible(false);
+        modifyAirlineWindowButton.setVisible(false);
+        airlineSplitPane.setVisible(true);
+        airlineList.setVisible(true);
+        displayAllAirlines();
+        additionalAirlineInfo();
+    }
+
+    @FXML
+    public void modifyAirlineButton(ActionEvent event) throws IOException {
+        ArrayList<String> errors = new ArrayList<>();
+        Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
+
+        int id = airline.getId();
+
+        String name;
+        try {
+            name = airlineNameMod.getText().trim();
+            if (name.equals("")) {
+                errors.add("Invalid Airline Name");
+            }
+        } catch (Exception e) {
+            name = null;
+        }
+
+        boolean active = false;
+        if (airlineActiveMod.isSelected()) {
+            active = true;
+        }
+
+        String country;
+        try {
+            country = airlineCountryMod.getText().trim();
+            if (country.equals("")) {
+                errors.add("Invalid Country Name");
+            }
+        } catch (Exception e) {
+            country = null;
+        }
+
+        String alias;
+        try {
+            alias = airlineAliasMod.getText().trim();
+        } catch (Exception e) {
+            alias = null;
+        }
+
+        String callSign;
+        try {
+            callSign = airlineCallsignMod.getText().trim();
+        } catch (Exception e) {
+            callSign = null;
+        }
+
+        String iata;
+        try {
+            iata = airlineIATAMod.getText().trim();
+            if (iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
+                iata = null;
+            }
+        } catch (Exception e) {
+            iata = null;
+        }
+
+        String icao;
+        try {
+            icao = airlineICAOMod.getText().trim();
+            if (icao.equals("") || !icao.matches("[a-zA-Z0-9]*")) {
+                icao = null;
+            }
+        } catch (Exception e) {
+            icao = null;
+        }
+
+        if (errors.size() == 0) {
+            Airline newAirline = new Airline(id, name, active, country, alias, callSign, iata, icao);
+            currentRecord.modifyAirline(airline, newAirline);
+            modifyAirlinePane.setVisible(false);
+            modifyAirlineWindowButton.setVisible(false);
+            airlineSplitPane.setVisible(true);
+            airlineList.setVisible(true);
+            displayAllAirlines();
+            additionalAirlineInfo();
+        } else {
+            DialogBoxes.newDataError(errors);
+        }
+
+    }
+
+    @FXML
+    public void modifyAirlineWindowButton(ActionEvent event) throws IOException {
+        Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
+        airlineSplitPane.setVisible(false);
+        airlineList.setVisible(false);
+        modifyAirlineLabel.setText("Modify Airline (" + airline.getId() + ")");
+        airlineNameMod.setText(airline.getName());
+        airlineAliasMod.setText(airline.getAlias());
+        airlineCallsignMod.setText(airline.getCallSign());
+        airlineIATAMod.setText(airline.getIata());
+        airlineICAOMod.setText(airline.getIcao());
+        airlineCountryMod.setText(airline.getCountry());
+        airlineActiveMod.setSelected(airline.isActive());
+        modifyAirlinePane.setVisible(true);
+    }
+
+    /**
+     * work in progress
+     * These open a new window but isn't working the way I want it to :(
+     *
+     */
+    @FXML
+    public void modifyRouteWindowButton(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../Modify_Route_Screen.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, 750, 500));
+        stage.show();
     }
 
     @FXML
     public void modifyAirportWindowButton(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../Modify_Airport_Screen.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root, 750, 500));
-        stage.show();
-    }
-
-    @FXML
-    public void modifyAirlineWindowButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../Modify_Airline_Screen.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root, 750, 500));
-        stage.show();
-    }
-
-    @FXML
-    public void modifyRouteWindowButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../Modify_Route_Screen.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root, 750, 500));
         stage.show();
