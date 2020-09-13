@@ -1,10 +1,5 @@
 package project.model;
 
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-
 import java.io.*;
 import java.util.*;
 
@@ -15,6 +10,23 @@ public class Record {
     private ArrayList<Airport> airportList;
     private ArrayList<Airline> airlineList;
     private static Hashtable<String, Covid> covidDict = setCovid();
+    private String name;
+
+    public Record(String name) {
+        this.flightList = new ArrayList<Flight>();
+        this.routeList = new ArrayList<Route>();
+        this.airportList = new ArrayList<Airport>();
+        this.airlineList = new ArrayList<Airline>();
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Record(ArrayList<Flight> flightList, ArrayList<Route> routeList, ArrayList<Airport> airportList, ArrayList<Airline> airlineList) {
         this.flightList = flightList;
@@ -174,21 +186,23 @@ public class Record {
      */
     public List<Airport> searchAirports(String keyword, String attribute) {
         List<Airport> searchResult = new ArrayList<Airport>();
-
         for (Airport airport: airportList) {
             boolean airportMatches = false;
-            if (attribute == "name") {
-                airportMatches = airport.getName().toUpperCase().contains(keyword.toUpperCase());
-            } else if (attribute == "city") {
-                airportMatches = airport.getCity().toUpperCase().contains(keyword.toUpperCase());
-            } else if (attribute == "total # routes") {
-                airportMatches = (Integer.toString(airport.getTotalRoutes()) == keyword);
-            } else if (attribute == "iata") {
-                airportMatches = airport.getIata() == keyword;
-            } else if (attribute == "icao") {
-                airportMatches = airport.getIcao() == keyword;
-            } else if (attribute == "timezone") {
-                airportMatches = airport.getTimezoneString() == keyword;
+            if (attribute.equals("country")) {
+                airportMatches = airport.getCountry().toLowerCase().contains(keyword.toLowerCase());
+            } else if (attribute.equals("name")) {
+                airportMatches = airport.getName().toLowerCase().contains(keyword.toLowerCase());
+            } else if (attribute.equals("city")) {
+                airportMatches = airport.getCity().toLowerCase().contains(keyword.toLowerCase());
+            } else if (attribute.equals("total # routes")) {
+                airportMatches = (Integer.toString(airport.getTotalRoutes()).equals(keyword));
+            } else if (attribute.equals("iata")) {
+                System.out.println(airport.getIata());
+                airportMatches = airport.getIata().toLowerCase().contains(keyword.toLowerCase());
+            } else if (attribute.equals("icao")) {
+                airportMatches = airport.getIcao().toLowerCase().contains(keyword.toLowerCase());
+            } else if (attribute.equals("timezone")) {
+                airportMatches = airport.getTimezoneString().equals(keyword);
             }
 
             if (airportMatches) {
@@ -208,16 +222,18 @@ public class Record {
        List<Airline> searchResult = new ArrayList<Airline>();
        for (Airline airline: airlineList) {
            boolean airlineMatches = false;
-           if (attribute == "name") {
-               airlineMatches = airline.getName().toUpperCase().contains(keyword.toUpperCase());
-           } else if (attribute == "alias") {
-               airlineMatches = airline.getAlias().toUpperCase().contains(keyword.toUpperCase());
-           } else if (attribute == "iata") {
-               airlineMatches = airline.getIata() == keyword;
-           } else if (attribute == "icao") {
-               airlineMatches = airline.getIcao() == keyword;
-           } else if (attribute == "callsign") {
-               airlineMatches = airline.getCallSign() == keyword;
+           if (attribute.equals("name")) {
+               airlineMatches = airline.getName().toLowerCase().contains(keyword.toUpperCase());
+           } else if (attribute.equals("alias")) {
+               airlineMatches = airline.getAlias().toLowerCase().contains(keyword.toUpperCase());
+           } else if (attribute.equals("iata")) {
+               airlineMatches = airline.getIata().toLowerCase().contains(keyword);
+           } else if (attribute.equals("icao")) {
+               airlineMatches = airline.getIcao().toLowerCase().contains(keyword);
+           } else if (attribute.equals("callsign")) {
+               airlineMatches = airline.getCallSign().toLowerCase().contains(keyword);
+           } else if (attribute.equals("country")) {
+               airlineMatches = airline.getCountry().toLowerCase().contains(keyword.toLowerCase());
            }
 
            if (airlineMatches) {
@@ -229,26 +245,29 @@ public class Record {
 
 
     /**
-     * Search by airline name. Might need changing.
+     * Finds routes where the value of the route's 'attribute' matches 'keyword'
+     * @param keyWord The value of the route's attributes that we are searching for
+     * @param attribute The attribute of the routes to be compared
+     * @return A list of routes which have a value of 'attribute' that matches the keyword
      */
     public ArrayList<Route> searchRoutes(String keyWord, String attribute) {
         ArrayList<Route> searchResult = new ArrayList<Route>();
 
         for (Route route: routeList) {
             boolean match = false;
-            if (attribute == "airline") {
-                match = route.getAirline().toUpperCase().contains(keyWord.toUpperCase());
-            } else if (attribute == "total # stops") {
+            if (attribute.equals("airline")) {
+                match = route.getAirline().toLowerCase().contains(keyWord.toLowerCase());
+            } else if (attribute.equals("total # stops")) {
                 match = Integer.toString(route.getNumStops()).equals(keyWord);
-            } else if (attribute == "source id") {
+            } else if (attribute.equals("source id")) {
                 match = Integer.toString(route.getSourceID()).equals(keyWord);
-            } else if (attribute == "destination id") {
+            } else if (attribute.equals("destination id")) {
                 match = Integer.toString(route.getDestID()).equals(keyWord);
-            } else if (attribute == "source airport") {
+            } else if (attribute.equals("source airport")) {
                 match = route.getSourceAirport().toLowerCase().contains(keyWord.toLowerCase());
-            } else if (attribute == "destination airport") {
+            } else if (attribute.equals("destination airport")) {
                 match = route.getDestAirport().toLowerCase().contains(keyWord.toLowerCase());
-            } else if (attribute == "equipment") {
+            } else if (attribute.equals("equipment")) {
                 match = route.getEquipment().toLowerCase().contains(keyWord.toLowerCase());
             }
 
@@ -383,7 +402,7 @@ public class Record {
     }
 
     /**
-     * Not sure if we'll even need this function. Incomplete.
+     * Prompts the loading of a pre-installed covid file
      */
     public static Hashtable<String, Covid> setCovid() {
         Hashtable<String, Covid> covidDict = null;
