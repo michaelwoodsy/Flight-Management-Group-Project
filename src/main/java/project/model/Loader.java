@@ -80,7 +80,7 @@ public class Loader {
     }
 
      */
-
+/*
     public Flight loadFlightFile(String path) throws IOException {
 
         ArrayList<String> statuses = new ArrayList<String>();
@@ -147,9 +147,12 @@ public class Loader {
         return new Flight(latitudes, longitudes, altitudes, locations, statuses, risk);
     }
 
+ */
+
     /**
      * Checks if loaded airport file is right format.
      */
+    /*
     public boolean loadFlightErrorCheck(String path) throws IOException {
 
         BufferedReader dataReader = new BufferedReader(new FileReader(path));
@@ -167,6 +170,8 @@ public class Loader {
         dataReader.close();
         return false;
     }
+
+     */
 
     /**
      * Returns a list of airports by reading a comma-separated data file.

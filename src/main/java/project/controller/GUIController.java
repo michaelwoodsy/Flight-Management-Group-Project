@@ -176,6 +176,7 @@ public class GUIController implements Initializable {
     private RouteLoader routeLoad = new RouteLoader();
     private AirportLoader airportLoad = new AirportLoader();
     private AirlineLoader airlineLoad = new AirlineLoader();
+    private FlightLoader flightLoad = new FlightLoader();
 
 
     private List<Airline> defaultAirlineList = new ArrayList<>();
@@ -492,13 +493,13 @@ public class GUIController implements Initializable {
                     currentRecord.addRoutes(newRouteList);
                     hideAllTables();
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
-                    boolean flightCheck = loader.loadFlightErrorCheck(file.getAbsolutePath());
+                    boolean flightCheck = flightLoad.loadFlightErrorCheck(file.getAbsolutePath());
                     DialogBoxes.fileFormatInfo(flightCheck, true, "flight");
                     if (!flightCheck) {return;}
 
                     addFileHelper();
 
-                    Flight newFlight = loader.loadFlightFile(file.getAbsolutePath());
+                    Flight newFlight = flightLoad.loadFlightFile(file.getAbsolutePath());
                     currentRecord.addFlights(newFlight);
                     Parent root = FXMLLoader.load(getClass().getResource("../Flight_Screen.fxml"));
                     Stage stage = new Stage();

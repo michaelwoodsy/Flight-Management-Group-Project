@@ -35,14 +35,15 @@ public class RecordTest {
     Airport testAirport5 = new Airport(105, 500, "Test5", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
 
     private Loader loader = new Loader();
+    private FlightLoader flightLoad = new FlightLoader();
     private Record testRecord;
 
 
     @Before
     public void setUp() throws IOException {
 
-        Flight testFlight1 = loader.loadFlightFile("data/flight.csv");
-        Flight testFlight2 = loader.loadFlightFile("data/flighttest.csv");
+        Flight testFlight1 = flightLoad.loadFlightFile("data/flight.csv");
+        Flight testFlight2 = flightLoad.loadFlightFile("data/flighttest.csv");
 
         ArrayList<Flight> testFlightList = new ArrayList<>();
         testFlightList.add(testFlight1);
@@ -479,7 +480,7 @@ public class RecordTest {
 
         ArrayList<Flight> testFlightList = new ArrayList<>();
 
-        testRecord.addFlights(loader.loadFlightFile("data/flight.csv"));
+        testRecord.addFlights(flightLoad.loadFlightFile("data/flight.csv"));
 
         assertEquals(2, testRecord.getFlightList().size());
     }

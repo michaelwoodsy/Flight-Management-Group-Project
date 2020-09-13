@@ -80,13 +80,13 @@ public class DataUnitTests {
     @Test
     public void flightEquals() throws IOException {
 
-        Loader loader = new Loader();
-        Flight testFlight1 = loader.loadFlightFile("data/flight.csv");
-        Flight testFlight2 = loader.loadFlightFile("data/flight.csv");
+        FlightLoader flightLoad = new FlightLoader();
+        Flight testFlight1 = flightLoad.loadFlightFile("data/flight.csv");
+        Flight testFlight2 = flightLoad.loadFlightFile("data/flight.csv");
 
         assertTrue(testFlight1.equals(testFlight2));
 
-        testFlight2 = loader.loadFlightFile("data/flighttest.csv");
+        testFlight2 = flightLoad.loadFlightFile("data/flighttest.csv");
 
         assertFalse(testFlight2.equals(testFlight1));
     }

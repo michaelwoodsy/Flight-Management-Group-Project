@@ -16,6 +16,7 @@ public class LoaderTest {
     private final CovidLoader covidLoad = new CovidLoader();
     private final AirportLoader AirportLoad = new AirportLoader();
     private final AirlineLoader airlineLoad = new AirlineLoader();
+    private final FlightLoader flightLoad = new FlightLoader();
 
     @Test
     /**
@@ -182,7 +183,7 @@ public class LoaderTest {
      */
     public void loadFlightFileTest() throws IOException {
 
-        Flight flight = loader.loadFlightFile("data/flighttest.csv");
+        Flight flight = flightLoad.loadFlightFile("data/flighttest.csv");
 
         System.out.println(flight.getStatus());
         System.out.println(flight.getLocations());
