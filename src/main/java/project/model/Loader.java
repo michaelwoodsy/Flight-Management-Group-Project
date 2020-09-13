@@ -220,7 +220,8 @@ public class Loader {
                 breaker = true;
             } else {
                 String[] data = row.split(",");
-                routeList.add(loadRoute(data));
+                routeLoader routeLoad = new routeLoader();
+                routeList.add(routeLoad.loadRoute(data));
             }
         }
         dataReader.close();
@@ -479,6 +480,7 @@ public class Loader {
      * Returns a route class from a line read in routes.dat.
      * Invalid ints will be displayed as -1, invalid strings displayed as null
      */
+    /*
     public Route loadRoute(String[] routeData) {
 
         String airline;
@@ -565,6 +567,8 @@ public class Loader {
         return new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
 
     }
+
+     */
     /*
 
     public static Hashtable<String, Covid> loadCovidFile(String path) throws IOException {
@@ -646,5 +650,4 @@ public class Loader {
     }
 
      */
-    covidLoader covid = new covidLoader();
 }

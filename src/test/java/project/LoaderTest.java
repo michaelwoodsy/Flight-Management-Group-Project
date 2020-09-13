@@ -12,6 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 public class LoaderTest {
     private final Loader loader = new Loader();
+    private final routeLoader routeLoad = new routeLoader();
 
     @Test
     /**
@@ -21,7 +22,7 @@ public class LoaderTest {
     public void loadIndividualRouteTest() {
 
         String[] routeData1 = {"2B", "410", "AER", "2965", "KZN", "2990", "Y", "0", "CR2"};
-        Route testRoute1 = loader.loadRoute(routeData1);
+        Route testRoute1 = routeLoad.loadRoute(routeData1);
 
         assertEquals(testRoute1.getAirline(), "2B");
         assertEquals(testRoute1.getSourceAirport(), "AER");
@@ -34,7 +35,7 @@ public class LoaderTest {
         assertEquals(testRoute1.getNumStops(), 0);
 
         String[] routeData2 = {"2B", "410a", "AER", "2965a", "KZN", "2990a", "N", "0a", "CR2"};
-        testRoute1 = loader.loadRoute(routeData2);
+        testRoute1 = routeLoad.loadRoute(routeData2);
 
         assertEquals(testRoute1.getId(), -1);
         assertEquals(testRoute1.getSourceID(), -1);
@@ -43,7 +44,7 @@ public class LoaderTest {
         assertFalse(testRoute1.isCodeshare());
 
         String[] routeData3 = {"2B", "", "AER", "", "KZN", "", "", "", "CR2"};
-        testRoute1 = loader.loadRoute(routeData3);
+        testRoute1 = routeLoad.loadRoute(routeData3);
         assertFalse(testRoute1.isCodeshare());
         assertEquals(testRoute1.getId(), -1);
         assertEquals(testRoute1.getSourceID(), -1);
@@ -51,7 +52,7 @@ public class LoaderTest {
         assertEquals(testRoute1.getNumStops(), -1);
 
         String[] routeData4 = {"", "410", "", "2965", "", "2990", "Y", "0", ""};
-        testRoute1 = loader.loadRoute(routeData4);
+        testRoute1 = routeLoad.loadRoute(routeData4);
         assertEquals(testRoute1.getAirline(), null);
         assertEquals(testRoute1.getSourceAirport(), null);
         assertEquals(testRoute1.getDestAirport(), null);
