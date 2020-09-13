@@ -15,6 +15,15 @@ public class Record {
     private ArrayList<Airport> airportList;
     private ArrayList<Airline> airlineList;
     private static Hashtable<String, Covid> covidDict = setCovid();
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Record(ArrayList<Flight> flightList, ArrayList<Route> routeList, ArrayList<Airport> airportList, ArrayList<Airline> airlineList) {
         this.flightList = flightList;
