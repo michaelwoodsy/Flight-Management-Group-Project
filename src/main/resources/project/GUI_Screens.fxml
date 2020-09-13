@@ -42,6 +42,11 @@
                               <ChoiceBox fx:id="recordSelectAirport" layoutX="5.0" layoutY="23.0" prefHeight="25.0" prefWidth="130.0" />
                               <Text layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
                               <Button fx:id="airportSelectButton" layoutX="134.0" layoutY="23.0" mnemonicParsing="false" onAction="#airportSelect" prefHeight="25.0" prefWidth="60.0" text="SELECT" />
+                              <Text layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Text>
                            </children></AnchorPane>
                       <AnchorPane fx:id="airportDetailPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
@@ -72,6 +77,11 @@
                               <ChoiceBox fx:id="recordSelectAirline" layoutX="5.0" layoutY="23.0" prefHeight="25.0" prefWidth="130.0" />
                               <Text layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
                               <Button fx:id="airlineSelectButton" layoutX="134.0" layoutY="23.0" mnemonicParsing="false" onAction="#airlineSelect" prefHeight="25.0" prefWidth="60.0" text="SELECT" />
+                              <Text layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Text>
                            </children></AnchorPane>
                       <AnchorPane fx:id="airlineDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
@@ -101,6 +111,11 @@
                               <ChoiceBox fx:id="recordSelectRoute" layoutX="5.0" layoutY="23.0" prefHeight="25.0" prefWidth="130.0" />
                               <Text layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
                               <Button fx:id="routeSelectButton" layoutX="134.0" layoutY="23.0" mnemonicParsing="false" onAction="#routeSelect" prefHeight="25.0" prefWidth="60.0" text="SELECT" />
+                              <Text layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Text>
                            </children></AnchorPane>
                       <AnchorPane fx:id="routeDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>

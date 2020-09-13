@@ -394,6 +394,9 @@ public class GUIController implements Initializable {
         }
     }
 
+    /**
+     * Helper function to addFileButton, used to handle updating of records.
+     */
     public void addFileHelper() {
 
         if (recordDropdown.getValue() == "New Record") {
@@ -411,9 +414,9 @@ public class GUIController implements Initializable {
             recordNames.add("New Record");
             recordDropdown.setItems(observableArrayList(recordNames));
 
-            recordSelectAirline.getSelectionModel().select(currentRecord);
-            recordSelectAirport.getSelectionModel().select(currentRecord);
-            recordSelectRoute.getSelectionModel().select(currentRecord);
+            recordSelectAirline.getSelectionModel().select(recordList.size() - 1);
+            recordSelectAirport.getSelectionModel().select(recordList.size() - 1);
+            recordSelectRoute.getSelectionModel().select(recordList.size() - 1);
             recordDropdown.getSelectionModel().select(recordList.size() - 1);
 
             return;
@@ -449,7 +452,6 @@ public class GUIController implements Initializable {
 
             File file = loadFile.showOpenDialog(null);
 
-
             if (file != null) {
                 boolean goodFile = loader.errorHandler(file);
                 DialogBoxes.fileFormatInfo(goodFile, false, null);
@@ -463,7 +465,7 @@ public class GUIController implements Initializable {
 
                     ArrayList<Airport> newAirportList = loader.loadAirportFile(file.getAbsolutePath());
                     currentRecord.addAirports(newAirportList);
-                    displayAllAirports();
+                    hideAllTables();
                     if (Airport.getNumMissingCovid() > 0) {
                         DialogBoxes.missingCovidInfoBox();
                     }
@@ -476,7 +478,7 @@ public class GUIController implements Initializable {
 
                     ArrayList<Airline> newAirlineList = loader.loadAirlineFile(file.getAbsolutePath());
                     currentRecord.addAirlines(newAirlineList);
-                    displayAllAirlines();
+                    hideAllTables();
                 } else if (selectFile.getSelectedToggle() == routeRadioButton) {
                     boolean routeCheck = loader.loadRouteErrorCheck(file.getAbsolutePath());
                     DialogBoxes.fileFormatInfo(routeCheck, true, "route");
@@ -486,7 +488,7 @@ public class GUIController implements Initializable {
 
                     ArrayList<Route> newRouteList = loader.loadRouteFile(file.getAbsolutePath());
                     currentRecord.addRoutes(newRouteList);
-                    displayAllRoutes();
+                    hideAllTables();
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
                     boolean flightCheck = loader.loadFlightErrorCheck(file.getAbsolutePath());
                     DialogBoxes.fileFormatInfo(flightCheck, true, "flight");
@@ -589,10 +591,19 @@ public class GUIController implements Initializable {
      */
     public void displayAllAirports() {
         airportList.setItems(observableArrayList(currentRecord.getAirportList()));
+        recordSelectAirport.getSelectionModel().select(currentRecord.getName());
+
+    }
+
+    public void hideAllTables() {
+        routeList.setItems(observableArrayList());
+        airlineList.setItems(observableArrayList());
+        airportList.setItems(observableArrayList());
     }
 
     public void displayAllAirlines() {
         airlineList.setItems(observableArrayList(currentRecord.getAirlineList()));
+        recordSelectAirline.getSelectionModel().select(currentRecord.getName());
         airlineActiveBox.setSelected(true);
         airlineInactiveBox.setSelected(true);
         defaultAirlineList = airlineList.getItems();
@@ -601,6 +612,7 @@ public class GUIController implements Initializable {
 
     public void displayAllRoutes() {
         routeList.setItems(observableArrayList(currentRecord.getRouteList()));
+        recordSelectRoute.getSelectionModel().select(currentRecord.getName());
         routeDirectBox.setSelected(true);
         routeIndirectBox.setSelected(true);
         defaultRouteList = routeList.getItems();
