@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
     </expand>
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Will now not load files unless in correct format">
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" afterDir="false" />
+    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Creating modify windows for airport, airline and route and making buttons to be able to open them and error handling for adding new airports, airlines and routes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/project/Modify_Route_Screen.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/Modify_Route_Screen.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +48,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.1.4\plugins\maven\lib\maven3" />
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2\plugins\maven\lib\maven3" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -184,7 +180,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -206,13 +202,7 @@
       <workItem from="1598399542678" duration="403000" />
       <workItem from="1598579267242" duration="6020000" />
       <workItem from="1599645132833" duration="1118000" />
-    </task>
-    <task id="LOCAL-00001" summary="Testing pushing">
-      <created>1595977595204</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1595977595204</updated>
+      <workItem from="1599998078222" duration="128000" />
     </task>
     <task id="LOCAL-00002" summary="Testing pushing">
       <created>1595979780681</created>
@@ -550,7 +540,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599957412050</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="Creating modify windows for airport, airline and route and making buttons to be able to open them and error handling for adding new airports, airlines and routes">
+      <created>1599997960029</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1599997960031</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -582,7 +579,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="covid.dat file added" />
     <MESSAGE value="fixed covid loader and wrote a test that checks if loading was successful" />
     <MESSAGE value="edited covid risk class" />
     <MESSAGE value="added a covid_test file, that has missing attributes to test that laoder wont crash with missing input" />
@@ -607,7 +603,8 @@
     <MESSAGE value="added place holder google maps for mapView" />
     <MESSAGE value="Worked on GUI Controller Class, specifically being able to add individual airports, routes and airlines." />
     <MESSAGE value="Will now not load files unless in correct format" />
-    <option name="LAST_COMMIT_MESSAGE" value="Will now not load files unless in correct format" />
+    <MESSAGE value="Creating modify windows for airport, airline and route and making buttons to be able to open them and error handling for adding new airports, airlines and routes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating modify windows for airport, airline and route and making buttons to be able to open them and error handling for adding new airports, airlines and routes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
@@ -656,7 +653,7 @@
     <state x="465" y="154" key="FileChooserDialogImpl/0.0.1368.872@0.0.1368.872" timestamp="1598488559645" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599965898599" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597981987286" />
-    <state width="1002" height="142" key="GridCell.Tab.0.bottom" timestamp="1599966670480">
+    <state width="1877" height="216" key="GridCell.Tab.0.bottom" timestamp="1599997989820">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
@@ -664,10 +661,10 @@
     <state width="1326" height="228" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1599958419594" />
     <state width="746" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1599646251663" />
     <state width="1621" height="172" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966906" />
-    <state width="1877" height="216" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599618939284" />
+    <state width="1877" height="216" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1599997989820" />
     <state width="1002" height="142" key="GridCell.Tab.0.bottom/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599966670480" />
     <state width="1877" height="420" key="GridCell.Tab.0.bottom/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
-    <state width="1002" height="142" key="GridCell.Tab.0.center" timestamp="1599966670479">
+    <state width="1877" height="216" key="GridCell.Tab.0.center" timestamp="1599997989820">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
@@ -675,10 +672,10 @@
     <state width="1326" height="228" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1599958419594" />
     <state width="746" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1599646251663" />
     <state width="1621" height="172" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966904" />
-    <state width="1877" height="216" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599618939284" />
+    <state width="1877" height="216" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1599997989820" />
     <state width="1002" height="142" key="GridCell.Tab.0.center/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599966670479" />
     <state width="1877" height="420" key="GridCell.Tab.0.center/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
-    <state width="1002" height="142" key="GridCell.Tab.0.left" timestamp="1599966670478">
+    <state width="1877" height="216" key="GridCell.Tab.0.left" timestamp="1599997989820">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
@@ -686,10 +683,10 @@
     <state width="1326" height="228" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1599958419594" />
     <state width="746" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1599646251663" />
     <state width="1621" height="172" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966899" />
-    <state width="1877" height="216" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599618939283" />
+    <state width="1877" height="216" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1599997989820" />
     <state width="1002" height="142" key="GridCell.Tab.0.left/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599966670478" />
     <state width="1877" height="420" key="GridCell.Tab.0.left/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751130" />
-    <state width="1002" height="142" key="GridCell.Tab.0.right" timestamp="1599966670479">
+    <state width="1877" height="216" key="GridCell.Tab.0.right" timestamp="1599997989820">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
@@ -697,7 +694,7 @@
     <state width="1326" height="228" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1599958419594" />
     <state width="746" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1599646251663" />
     <state width="1621" height="172" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1598263966905" />
-    <state width="1877" height="216" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599618939284" />
+    <state width="1877" height="216" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1599997989820" />
     <state width="1002" height="142" key="GridCell.Tab.0.right/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599966670479" />
     <state width="1877" height="420" key="GridCell.Tab.0.right/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
     <state width="1326" height="281" key="GridCell.Tab.1.bottom" timestamp="1599956952055">
@@ -734,23 +731,23 @@
     <state x="155" y="0" key="SettingsEditor/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597622967066" />
     <state x="166" y="12" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1595997449081" />
     <state x="233" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598425220256" />
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1599957418171">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state x="390" y="203" key="Vcs.Push.Dialog.v2" timestamp="1599998098535">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1599957418171" />
     <state x="312" y="160" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1598581356049" />
     <state x="338" y="208" key="Vcs.Push.Dialog.v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017372267" />
-    <state x="390" y="203" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1599598633256" />
+    <state x="390" y="203" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1599998098535" />
     <state x="408" y="329" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1595980153516">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="408" y="329" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1368.872@0.0.1368.872" timestamp="1595980153516" />
-    <state x="692" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599598150069">
+    <state x="692" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1599998125232">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="493" y="351" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1368.872@0.0.1368.872" timestamp="1595982886240" />
     <state x="600" y="430" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017354998" />
-    <state x="692" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1599598150069" />
+    <state x="692" y="418" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1599998125232" />
     <state x="1920" y="248" width="1657" height="716" maximized="true" key="dock-window-1" timestamp="1597983024945">
       <screen x="1920" y="0" width="1664" height="1082" />
     </state>
