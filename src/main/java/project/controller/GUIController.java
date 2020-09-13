@@ -212,6 +212,7 @@ public class GUIController implements Initializable {
         ObservableList<String> filterAirlines = observableArrayList("Countries");
         ObservableList<String> searchAirlines = observableArrayList("Name", "Alias", "Callsign", "IATA", "ICAO");
 
+        // Commented out some code related to the original search button. Now needs to be integrated into the filter button.
         airlineFilterBy.setItems(filterAirlines);
         //airlineSearchBy.setItems(searchAirlines);
 
@@ -402,6 +403,43 @@ public class GUIController implements Initializable {
         }
     }
 
+    public void addFileHelper() {
+
+        if (recordDropdown.getValue() == "New Record") {
+            Record record = new Record("Record " + (recordList.size() + 1));
+            recordList.add(record);
+            currentRecord = record;
+
+            recordSelectAirport.getItems().add(currentRecord.getName());
+            recordSelectAirline.getItems().add(currentRecord.getName());
+            recordSelectRoute.getItems().add(currentRecord.getName());
+            recordDropdown.setItems(recordSelectRoute.getItems());
+            recordDropdown.getItems().add("New Record");
+
+            recordSelectAirline.getSelectionModel().select(currentRecord);
+            recordSelectAirport.getSelectionModel().select(currentRecord);
+            recordSelectRoute.getSelectionModel().select(currentRecord);
+            recordDropdown.getSelectionModel().select(recordList.size() - 1);
+
+            return;
+        }
+
+        int index = 0;
+        for (Record record: recordList) {
+            if (recordDropdown.getValue() == record.getName()) {
+                index = recordList.indexOf(record);
+                break;
+            }
+        }
+
+        recordSelectAirline.getSelectionModel().select(index);
+        recordSelectAirport.getSelectionModel().select(index);
+        recordSelectRoute.getSelectionModel().select(index);
+        recordDropdown.getSelectionModel().select(index);
+
+        currentRecord = recordList.get(index);
+    }
+
     @FXML
     /**
      * Can't handle errors yet, and doesn't have the option to append data to new record yet.
@@ -434,6 +472,8 @@ public class GUIController implements Initializable {
                         return;
                     }
 
+                    addFileHelper();
+
                     fileText.setText("File loaded successfully");
                     fileText.setFill(Color.DARKGREEN);
                     fileText.setVisible(true);
@@ -451,6 +491,8 @@ public class GUIController implements Initializable {
                         return;
                     }
 
+                    addFileHelper();
+
                     fileText.setText("File loaded successfully");
                     fileText.setFill(Color.DARKGREEN);
                     fileText.setVisible(true);
@@ -465,6 +507,8 @@ public class GUIController implements Initializable {
                         return;
                     }
 
+                    addFileHelper();
+
                     fileText.setText("File loaded successfully");
                     fileText.setFill(Color.DARKGREEN);
                     fileText.setVisible(true);
@@ -478,6 +522,8 @@ public class GUIController implements Initializable {
                         fileText.setVisible(true);
                         return;
                     }
+
+                    addFileHelper();
 
                     fileText.setText("File loaded successfully");
                     fileText.setFill(Color.DARKGREEN);
