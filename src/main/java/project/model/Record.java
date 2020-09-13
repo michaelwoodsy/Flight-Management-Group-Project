@@ -401,6 +401,41 @@ public class Record {
         this.flightList.addAll(uniqueElements);
     }
 
+    public void modifyAirport(Airport oldAirport, Airport newAirport) {
+        if (this.airportList.contains(oldAirport)) {
+            this.airportList.set(airportList.indexOf(oldAirport), newAirport);
+        }
+    }
+
+    public void modifyAirline(Airline oldAirline, Airline newAirline) {
+        if (this.airlineList.contains(oldAirline)) {
+            this.airlineList.set(airlineList.indexOf(oldAirline), newAirline);
+        }
+    }
+
+    public void modifyRoute(Route oldRoute, Route newRoute) {
+        if (this.routeList.contains(oldRoute)) {
+            this.routeList.set(routeList.indexOf(oldRoute), newRoute);
+        }
+    }
+
+    public void removeAirports(Airport airport) {
+        if (this.airportList.contains(airport)) {
+            this.airportList.remove(airport);
+        }
+    }
+
+    public void removeAirlines(Airline airlines) {
+        if (this.airlineList.contains(airlines)) {
+            this.airlineList.remove(airlines);
+        }
+    }
+
+    public void removeRoutes(Route route) {
+        if (this.routeList.contains(route)) {
+            this.routeList.remove(route);
+        }
+    }
     /**
      * Prompts the loading of a pre-installed covid file
      */
@@ -408,7 +443,8 @@ public class Record {
         Hashtable<String, Covid> covidDict = null;
 
         try {
-            covidDict = Loader.loadCovidFile("./data/covid.dat");
+            CovidLoader covidLoad = new CovidLoader();
+            covidDict = covidLoad.loadCovidFile("./data/covid.dat");
         } catch (IOException e) {
             System.err.println("Could not load file");
         }

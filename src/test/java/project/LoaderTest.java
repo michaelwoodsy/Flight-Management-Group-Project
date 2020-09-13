@@ -12,6 +12,11 @@ import static org.junit.Assert.assertEquals;
 
 public class LoaderTest {
     private final Loader loader = new Loader();
+    private final RouteLoader routeLoad = new RouteLoader();
+    private final CovidLoader covidLoad = new CovidLoader();
+    private final AirportLoader AirportLoad = new AirportLoader();
+    private final AirlineLoader airlineLoad = new AirlineLoader();
+    private final FlightLoader flightLoad = new FlightLoader();
 
     @Test
     /**
@@ -21,7 +26,7 @@ public class LoaderTest {
     public void loadIndividualRouteTest() {
 
         String[] routeData1 = {"2B", "410", "AER", "2965", "KZN", "2990", "Y", "0", "CR2"};
-        Route testRoute1 = loader.loadRoute(routeData1);
+        Route testRoute1 = routeLoad.loadRoute(routeData1);
 
         assertEquals(testRoute1.getAirline(), "2B");
         assertEquals(testRoute1.getSourceAirport(), "AER");
@@ -34,7 +39,7 @@ public class LoaderTest {
         assertEquals(testRoute1.getNumStops(), 0);
 
         String[] routeData2 = {"2B", "410a", "AER", "2965a", "KZN", "2990a", "N", "0a", "CR2"};
-        testRoute1 = loader.loadRoute(routeData2);
+        testRoute1 = routeLoad.loadRoute(routeData2);
 
         assertEquals(testRoute1.getId(), -1);
         assertEquals(testRoute1.getSourceID(), -1);
@@ -43,7 +48,7 @@ public class LoaderTest {
         assertFalse(testRoute1.isCodeshare());
 
         String[] routeData3 = {"2B", "", "AER", "", "KZN", "", "", "", "CR2"};
-        testRoute1 = loader.loadRoute(routeData3);
+        testRoute1 = routeLoad.loadRoute(routeData3);
         assertFalse(testRoute1.isCodeshare());
         assertEquals(testRoute1.getId(), -1);
         assertEquals(testRoute1.getSourceID(), -1);
@@ -51,7 +56,7 @@ public class LoaderTest {
         assertEquals(testRoute1.getNumStops(), -1);
 
         String[] routeData4 = {"", "410", "", "2965", "", "2990", "Y", "0", ""};
-        testRoute1 = loader.loadRoute(routeData4);
+        testRoute1 = routeLoad.loadRoute(routeData4);
         assertEquals(testRoute1.getAirline(), null);
         assertEquals(testRoute1.getSourceAirport(), null);
         assertEquals(testRoute1.getDestAirport(), null);
@@ -66,7 +71,7 @@ public class LoaderTest {
     public void loadIndividualAirlineTest() {
 
         String[] airlineData1 = {"1", "Private flight", "alias", "iata", "icao", "callsign", "country", "Y"};
-        Airline testAirline1 = loader.loadAirline(airlineData1);
+        Airline testAirline1 = airlineLoad.loadAirline(airlineData1);
 
         assertEquals(testAirline1.getId(), 1);
         assertEquals(testAirline1.getName(), "Private flight");
@@ -78,19 +83,19 @@ public class LoaderTest {
         assertTrue(testAirline1.isActive());
 
         String[] airlineData2 = {"1a", "Private flight", "alias", "iata", "icao", "callsign", "country", "N"};
-        testAirline1 = loader.loadAirline(airlineData2);
+        testAirline1 = airlineLoad.loadAirline(airlineData2);
 
         assertEquals(testAirline1.getId(), -1);
         assertFalse(testAirline1.isActive());
 
         String[] airlineData3 = {"", "Private flight", "alias", "iata", "icao", "callsign", "country", ""};
-        testAirline1 = loader.loadAirline(airlineData3);
+        testAirline1 = airlineLoad.loadAirline(airlineData3);
 
         assertEquals(testAirline1.getId(), -1);
         assertFalse(testAirline1.isActive());
 
         String[] airlineData4 = {"1", "", "", "", "", "", "", "Y"};
-        testAirline1 = loader.loadAirline(airlineData4);
+        testAirline1 = airlineLoad.loadAirline(airlineData4);
 
         assertEquals(testAirline1.getName(), null);
         assertEquals(testAirline1.getAlias(), null);
@@ -109,7 +114,7 @@ public class LoaderTest {
     public void loadIndividualAirportTest() {
 
         String[] airportData1 = {"1", "Goroka", "Goroka", "Papua New Guinea", "GKA", "AYGA", "-6.081689", "145.391881", "5282", "10", "U", "Pacific/Port_Moresby", "type", "source"};
-        Airport testAirport1 = loader.loadAirport(airportData1);
+        Airport testAirport1 = AirportLoad.loadAirport(airportData1);
 
         assertEquals(testAirport1.getId(), 1);
         assertEquals(testAirport1.getName(), "Goroka");
@@ -130,7 +135,7 @@ public class LoaderTest {
         assertEquals(testAirport1.getTotalRoutes(), 0);
 
         String[] airportData2 = {"1a", "Goroka", "Goroka", "Papua New Guinea", "GKA", "AYGA", "-6.081689a", "145.391881a", "5282a", "10a", "U", "Pacific/Port_Moresby", "type", "source"};
-        testAirport1 = loader.loadAirport(airportData2);
+        testAirport1 = AirportLoad.loadAirport(airportData2);
 
         assertEquals(testAirport1.getId(), -1);
         assertEquals(testAirport1.getLatitude(), 360, 0);
@@ -165,7 +170,7 @@ public class LoaderTest {
      * Manual testing. Not gonna bother to type out the entire data files as an ArrayList of classes. Functions work.
      */
     public void loadRouteFileTest() throws IOException {
-        ArrayList<Route> routeList = loader.loadRouteFile("data/routes.dat");
+        ArrayList<Route> routeList = routeLoad.loadRouteFile("data/routes.dat");
 //        for (Route route: routeList) {
 //            System.out.println(route);
 //        }
@@ -178,7 +183,7 @@ public class LoaderTest {
      */
     public void loadFlightFileTest() throws IOException {
 
-        Flight flight = loader.loadFlightFile("data/flighttest.csv");
+        Flight flight = flightLoad.loadFlightFile("data/flighttest.csv");
 
         System.out.println(flight.getStatus());
         System.out.println(flight.getLocations());
@@ -193,9 +198,9 @@ public class LoaderTest {
      * Manual testing. Not gonna bother to type out the entire data files as an ArrayList of classes. Functions work.
      */
     public void loadAirportFileTest() throws IOException {
-        Loader loader = new Loader();
+        AirportLoader airportLoad = new AirportLoader();
         Record record = new Record(null, null, null, null); //initialise the COVID lists
-        ArrayList<Airport> airportList = loader.loadAirportFile("data/airports.dat");
+        ArrayList<Airport> airportList = airportLoad.loadAirportFile("data/airports.dat");
 //        for (Airport airport: airportList) {
 //            System.out.println(airport);
 //        }
@@ -207,7 +212,7 @@ public class LoaderTest {
      */
     public void loadAirlineFileTest() throws IOException {
         Loader loader = new Loader();
-        ArrayList<Airline> airlineList = loader.loadAirlineFile("data/airlines.dat");
+        ArrayList<Airline> airlineList = airlineLoad.loadAirlineFile("data/airlines.dat");
         for (Airline airline: airlineList) {
             //System.out.println(airline);
         }
@@ -218,7 +223,8 @@ public class LoaderTest {
 
     public void loadCovidFileTest() throws IOException{
         // checks that covid file doesnt fail
-        Hashtable<String, Covid> covid_list = loader.loadCovidFile("data/covid.dat");
+
+        Hashtable<String, Covid> covid_list = covidLoad.loadCovidFile("data/covid.dat");
 //        for(Covid covid: covid_list){
 //            System.out.println(covid.print_country_data());
 //        }
@@ -229,7 +235,7 @@ public class LoaderTest {
     public void testCovid() throws IOException {
         //runs test file with missing attributes to ensure loader wont crash
         // test file contains missing values and illegal values, to test that checks work correctly
-        Hashtable<String, Covid> covid_list = loader.loadCovidFile("data/covid_test.dat");
+        Hashtable<String, Covid> covid_list = covidLoad.loadCovidFile("data/covid_test.dat");
 
 //        for(Covid covid: covid_list){
 //            System.out.println(covid.print_country_data());

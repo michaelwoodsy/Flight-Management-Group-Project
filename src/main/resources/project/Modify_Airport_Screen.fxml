@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane hgap="25.0" layoutX="52.0" layoutY="63.0" prefHeight="415.0" prefWidth="603.0" vgap="25.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="ID:" />
+            <Label text="Name:" GridPane.rowIndex="1" />
+            <Label text="City:" GridPane.rowIndex="2" />
+            <Label text="Country:" GridPane.rowIndex="3" />
+            <Label text="IATA:" GridPane.rowIndex="4" />
+            <Label text="ICAO:" GridPane.rowIndex="5" />
+            <Label text="Type:" GridPane.rowIndex="6" />
+            <TextField fx:id="airportIDMod" GridPane.columnIndex="1" />
+            <TextField fx:id="airportNameMod" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="airportCityMod" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="airportCountryMod" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField fx:id="airportIATAMod" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="airportICAOMod" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField fx:id="airportTypeMod" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label prefHeight="17.0" prefWidth="74.0" text="Timezone Offset:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <Label text="DST:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <Label text="Source:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label text="Latitude:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <Label text="Longitude:" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Label text="Altitude:" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <TextField fx:id="airportTimezoneMod" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField fx:id="airportDSTMod" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <TextField fx:id="airportSourceMod" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <TextField fx:id="airportLatitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <TextField fx:id="airportLongitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <TextField fx:id="airportAltitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <Button fx:id="modifyAirportButton" mnemonicParsing="false" text="Modify" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <Label text="Timezone:" GridPane.columnIndex="2" />
+            <TextField fx:id="airportTimezoneStringMod" GridPane.columnIndex="3" />
+         </children>
+         <padding>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+         </padding>
+      </GridPane>
+      <Label layoutX="52.0" layoutY="18.0" prefHeight="35.0" prefWidth="203.0" text="Modify Airports">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button layoutX="655.0" layoutY="36.0" mnemonicParsing="false" text="Delete " />
+   </children>
+</AnchorPane>
