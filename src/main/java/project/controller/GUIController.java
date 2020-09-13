@@ -159,6 +159,15 @@ public class GUIController implements Initializable {
     @FXML
     private ChoiceBox recordSelectRoute;
 
+    @FXML
+    private Button modifyRouteWindowButton;
+
+    @FXML
+    private Button modifyAirportWindowButton;
+
+    @FXML
+    private Button modifyAirlineWindowButton;
+
     private ArrayList<Record> recordList;
     private Record currentRecord;
     private boolean optedIn = false;
@@ -502,29 +511,112 @@ public class GUIController implements Initializable {
     public void addAirportButton() {
         addFileHelper();
 
-        int id = Integer.parseInt(airportID.getText());
-        String name = airportName.getText();
-        String city = airportCity.getText();
-        String country = airportCountry.getText();
-        String iata = airportIATA.getText();
-        String icao = airportICAO.getText();
-        double latitude = Double.parseDouble(airportLatitude.getText());
-        double longitude = Double.parseDouble(airportLongitude.getText());
-        int altitude = Integer.parseInt(airportAltitude.getText());
-        double timezone = Double.parseDouble(airportTimezone.getText());
-        String dst = airportDST.getText();
-        String timezoneString = airportTimezoneString.getText();
-        String type = airportType.getText();
-        String source = airportSource.getText();
+        ArrayList<String> errors = new ArrayList<String>();
+
+        int id = 0;
+        try {
+            id = Integer.parseInt(airportID.getText().trim());
+            if (id <= currentRecord.getAirportList().size()) {
+                errors.add("Invalid ID (Must be greater than " + currentRecord.getAirportList().size() + ")");
+            }
+        } catch (Exception e) {
+            errors.add("Invalid ID");
+        }
+
+        String name = airportName.getText().trim();
+        if (name.equals("") || !name.matches("^[a-zA-Z]*$")) {
+            errors.add("Invalid Airport Name");
+        }
+
+        String city = airportCity.getText().trim();
+        if (city.equals("") || !city.matches("^[a-zA-Z]*$")) {
+            errors.add("Invalid City Name");
+        }
+
+        String country = airportCountry.getText().trim();
+        if (country.equals("") || !country.matches("^[a-zA-Z]*$")) {
+            errors.add("Invalid Country Name");
+        }
+
+        String iata = airportIATA.getText().trim();
+        if (iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
+            errors.add("Invalid IATA Code");
+        }
+
+        String icao = airportICAO.getText().trim();
+        if (iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
+            errors.add("Invalid ICAO Code");
+        }
+
+        double latitude = 0;
+        try {
+            latitude = Double.parseDouble(airportLatitude.getText().trim());
+            if (latitude < 0 || latitude > 360) {
+                errors.add("Invalid Latitude (Must be lesser than 360)");
+            }
+        } catch (Exception e) {
+            errors.add("Invalid Latitude");
+        }
+
+        double longitude = 0;
+        try {
+            longitude = Double.parseDouble(airportLongitude.getText().trim());
+            if (longitude < 0 || longitude > 360) {
+                errors.add("Invalid Longitude (Must be lesser than 360)");
+            }
+        } catch (Exception e) {
+            errors.add("Invalid Longitude");
+        }
+
+        int altitude = 0;
+        try {
+            altitude = Integer.parseInt(airportAltitude.getText().trim());
+        } catch (Exception e) {
+            errors.add("Invalid Altitude");
+        }
+
+        double timezone = 0;
+        try {
+            timezone = Double.parseDouble(airportTimezone.getText().trim());
+            if (timezone < 0 || timezone > 25) {
+                errors.add("Invalid Timezone Number(Must be less than 25)");
+            }
+        } catch (Exception e) {
+            errors.add("Invalid Timezone Number");
+        }
+
+        String dst = airportDST.getText().trim();
+        if (dst.equals("")) {
+            errors.add("Invalid DST");
+        }
+
+        String timezoneString = airportTimezoneString.getText().trim();
+        if (dst.equals("")) {
+            errors.add("Invalid Timezone Name");
+        }
+
+        String type = airportType.getText().trim();
+        if (type.equals("")) {
+            type = null;
+        }
+
+        String source = airportSource.getText().trim();
+        if (source.equals("")) {
+            source = null;
+        }
+
         int numRoutesSource = 0;
         int numRoutesDest = 0;
         int risk = 0;
 
-        Airport newAirport = new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
-        ArrayList<Airport> newAirportList = new ArrayList<Airport>();
-        newAirportList.add(newAirport);
-        currentRecord.addAirports(newAirportList);
-
+        if (errors.size() == 0) {
+            Airport newAirport = new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
+            ArrayList<Airport> newAirportList = new ArrayList<Airport>();
+            newAirportList.add(newAirport);
+            currentRecord.addAirports(newAirportList);
+        } else {
+            DialogBoxes.newDataError(errors);
+        }
         hideAllTables();
     }
 
@@ -535,23 +627,61 @@ public class GUIController implements Initializable {
      */
     public void addAirlineButton(ActionEvent event) throws IOException {
         addFileHelper();
+        ArrayList<String> errors = new ArrayList<>();
 
-        int id = Integer.parseInt(airlineID.getText());
-        String name = airlineName.getText();
+        int id = 0;
+        try {
+            id = Integer.parseInt(airlineID.getText().trim());
+            if (id <= currentRecord.getAirlineList().size()) {
+                errors.add("Invalid ID (Must be greater than " + currentRecord.getAirlineList().size() + ")");
+            }
+        } catch (Exception e) {
+            errors.add("Invalid ID");
+        }
+
+        String name = airlineName.getText().trim();
+        if (name.equals("")) {
+            errors.add("Invalid Airline Name");
+        }
+
         boolean active = false;
         if (airlineActive.isSelected()) {
             active = true;
         }
-        String country = airlineCountry.getText();
-        String alias = airlineAlias.getText();
-        String callSign = airlineCallsign.getText();
-        String iata = airlineIATA.getText();
-        String icao = airlineICAO.getText();
 
-        Airline newAirline = new Airline(id, name, active, country, alias, callSign, iata, icao);
-        ArrayList<Airline> newAirlineList = new ArrayList<Airline>();
-        newAirlineList.add(newAirline);
-        currentRecord.addAirlines(newAirlineList);
+        String country = airlineCountry.getText().trim();
+        if (country.equals("") || !country.matches("^[a-zA-Z]*$")) {
+            errors.add("Invalid Country Name");
+        }
+
+        String alias = airlineAlias.getText().trim();
+        if (name.equals("")) {
+            alias = null;
+        }
+
+        String callSign = airlineCallsign.getText().trim();
+        if (name.equals("")) {
+            callSign = null;
+        }
+
+        String iata = airlineIATA.getText().trim();
+        if (iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
+            errors.add("Invalid IATA Code");
+        }
+
+        String icao = airlineICAO.getText().trim();
+        if (icao.equals("") || !icao.matches("[a-zA-Z0-9]*")) {
+            errors.add("Invalid ICAO Code");
+        }
+
+        if (errors.size() == 0) {
+            Airline newAirline = new Airline(id, name, active, country, alias, callSign, iata, icao);
+            ArrayList<Airline> newAirlineList = new ArrayList<Airline>();
+            newAirlineList.add(newAirline);
+            currentRecord.addAirlines(newAirlineList);
+        } else {
+            DialogBoxes.newDataError(errors);
+        }
 
         hideAllTables();
     }
@@ -563,24 +693,79 @@ public class GUIController implements Initializable {
      */
     public void addRouteButton(ActionEvent event) throws IOException {
         addFileHelper();
+        ArrayList<String> errors = new ArrayList<>();
 
-        String airline = routeAirline.getText();
-        int id = Integer.parseInt(routeAirlineID.getText());
-        String sourceAirport = routeSource.getText();
-        int sourceID = Integer.parseInt(routeSourceID.getText());
-        String destAirport = routeDest.getText();
-        int destID = Integer.parseInt(routeDestID.getText());
-        int numStops = Integer.parseInt(routeStops.getText());
-        String equipment = routeEquipment.getText();
+
+        String airline = routeAirline.getText().trim();
+        if (airline.equals("")) {
+            errors.add("Invalid Airline Name");
+        }
+
+        int id = 0;
+        try {
+            id = Integer.parseInt(routeAirlineID.getText().trim());
+            if  (!(id >= 0 && id <= currentRecord.getAirlineList().size())) {
+                errors.add("Invalid Airline ID (Must be within 0 and " + currentRecord.getAirlineList().size() + ")");
+            }
+        } catch (Exception e) {
+            errors.add("Invalid Airline ID");
+        }
+
+        String sourceAirport = routeSource.getText().trim();
+        if (sourceAirport.equals("")) {
+            errors.add("Invalid Source Airport Name");
+        }
+
+        int sourceID = 0;
+        try {
+            sourceID = Integer.parseInt(routeSourceID.getText().trim());
+            if  (!(sourceID >= 0 && sourceID <= currentRecord.getAirportList().size())) {
+                errors.add("Invalid Source Airport ID (Must be within 0 and " + currentRecord.getAirportList().size() + ")");
+            }
+        } catch (Exception e) {
+            errors.add("Invalid Source Airport ID");
+        }
+
+        String destAirport = routeDest.getText().trim();
+        if (destAirport.equals("")) {
+            errors.add("Invalid Destination Airport Name");
+        }
+
+        int destID = 0;
+        try {
+            destID = Integer.parseInt(routeDestID.getText().trim());
+            if  (!(destID >= 0 && destID <= currentRecord.getAirportList().size())) {
+                errors.add("Invalid Destination Airport ID (Must be within 0 and " + currentRecord.getAirportList().size() + ")");
+            }
+        } catch (Exception e) {
+            errors.add("Invalid Destination Airport ID");
+        }
+
+        int numStops = 0;
+        try {
+            numStops = Integer.parseInt(routeStops.getText().trim());
+        } catch (Exception e) {
+            errors.add("Invalid Number of Stops");
+        }
+
+        String equipment = routeEquipment.getText().trim();
+        if (equipment.equals("")) {
+            errors.add("Invalid Equipment Name");
+        }
+
         boolean codeshare = false;
         if (routeCodeShare.isSelected()) {
             codeshare = true;
         }
 
-        Route newRoute = new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
-        ArrayList<Route> newRouteList = new ArrayList<Route>();
-        newRouteList.add(newRoute);
-        currentRecord.addRoutes(newRouteList);
+        if (errors.size() == 0) {
+            Route newRoute = new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
+            ArrayList<Route> newRouteList = new ArrayList<Route>();
+            newRouteList.add(newRoute);
+            currentRecord.addRoutes(newRouteList);
+        } else {
+            DialogBoxes.newDataError(errors);
+        }
 
         hideAllTables();
     }
@@ -694,6 +879,7 @@ public class GUIController implements Initializable {
             lastSelectedAirport = airport;
 
             airportDetailList.setItems(observableArrayList(name, city, risk, numRoutes, timezone, distanceString));
+            modifyAirportWindowButton.setVisible(true);
 
             if (optedIn) {
 
@@ -733,6 +919,7 @@ public class GUIController implements Initializable {
                 }
 
                 airportDetailList.getItems().addAll(icao, iata, lat, lon, alt);
+
             }
         }
     }
@@ -776,6 +963,7 @@ public class GUIController implements Initializable {
             }
 
             airlineDetailList.setItems(observableArrayList(name, country, active, alias));
+            modifyAirlineWindowButton.setVisible(true);
 
             if (optedIn) {
                 String iata;
@@ -844,6 +1032,7 @@ public class GUIController implements Initializable {
             }
 
             routeDetailList.setItems(observableArrayList(airline, numStops, sourceAirport, destAirport));
+            modifyRouteWindowButton.setVisible(true);
 
             if (optedIn) {
 
@@ -868,6 +1057,27 @@ public class GUIController implements Initializable {
 
     }
 
+    @FXML
+    public void modifyAirportWindowButton(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../Modify_Airport_Screen.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, 750, 500));
+        stage.show();
+    }
 
+    @FXML
+    public void modifyAirlineWindowButton(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../Modify_Airline_Screen.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, 750, 500));
+        stage.show();
+    }
 
+    @FXML
+    public void modifyRouteWindowButton(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../Modify_Route_Screen.fxml"));
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, 750, 500));
+        stage.show();
+    }
 }

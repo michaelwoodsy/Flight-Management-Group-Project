@@ -401,6 +401,23 @@ public class Record {
         this.flightList.addAll(uniqueElements);
     }
 
+    public void removeAirports(Airport airport) {
+        if (this.airportList.contains(airport)) {
+            this.airportList.remove(airport);
+        }
+    }
+
+    public void removeAirlines(Airline airlines) {
+        if (this.airlineList.contains(airlines)) {
+            this.airlineList.remove(airlines);
+        }
+    }
+
+    public void removeRoutes(Route route) {
+        if (this.routeList.contains(route)) {
+            this.routeList.remove(route);
+        }
+    }
     /**
      * Prompts the loading of a pre-installed covid file
      */

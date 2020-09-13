@@ -50,7 +50,8 @@
                            </children></AnchorPane>
                       <AnchorPane fx:id="airportDetailPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <ListView fx:id="airportDetailList" layoutX="-1.0" prefHeight="221.0" prefWidth="200.0" />
+                              <ListView fx:id="airportDetailList" layoutX="-1.0" prefHeight="185.0" prefWidth="200.0" />
+                              <Button fx:id="modifyAirportWindowButton" layoutX="72.0" layoutY="185.0" mnemonicParsing="false" onAction="#modifyAirportWindowButton" text="Modify" visible="false" />
                            </children></AnchorPane>
                     </items>
                   </SplitPane>
@@ -85,7 +86,8 @@
                            </children></AnchorPane>
                       <AnchorPane fx:id="airlineDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <ListView fx:id="airlineDetailList" layoutX="-1.0" prefHeight="221.0" prefWidth="200.0" />
+                              <ListView fx:id="airlineDetailList" layoutX="-1.0" prefHeight="185.0" prefWidth="200.0" />
+                              <Button fx:id="modifyAirlineWindowButton" layoutX="73.0" layoutY="185.0" mnemonicParsing="false" onAction="#modifyAirlineWindowButton" text="Modify" visible="false" />
                            </children></AnchorPane>
                     </items>
                   </SplitPane>
@@ -119,7 +121,8 @@
                            </children></AnchorPane>
                       <AnchorPane fx:id="routeDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
-                              <ListView fx:id="routeDetailList" layoutX="-1.0" prefHeight="221.0" prefWidth="200.0" />
+                              <ListView fx:id="routeDetailList" layoutX="-1.0" prefHeight="185.0" prefWidth="200.0" />
+                              <Button fx:id="modifyRouteWindowButton" layoutX="73.0" layoutY="185.0" mnemonicParsing="false" onAction="#modifyRouteWindowButton" text="Modify" visible="false" />
                            </children></AnchorPane>
                     </items>
                   </SplitPane>
