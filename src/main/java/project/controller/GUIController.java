@@ -12,6 +12,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
@@ -158,6 +160,8 @@ public class GUIController implements Initializable {
     private TextField routeStops;
     @FXML
     private CheckBox routeCodeShare;
+    @FXML
+    private Text fileText;
 
     private Record record = Database.generateRecord();
     private boolean optedIn = false;
@@ -345,41 +349,65 @@ public class GUIController implements Initializable {
             if (file != null) {
                 boolean goodFile = loader.errorHandler(file);
                 if (!goodFile) {
-                    // Some code here
+                    fileText.setText("Incorrect file format");
+                    fileText.setFill(Color.RED);
+                    fileText.setVisible(true);
                     return;
                 }
                 if (selectFile.getSelectedToggle() == airportRadioButton) {
                     boolean airportCheck = loader.loadAirportErrorCheck(file.getAbsolutePath());
                     if (!airportCheck) {
-                        // Some code here
+                        fileText.setText("Incorrect file format");
+                        fileText.setFill(Color.RED);
+                        fileText.setVisible(true);
                         return;
                     }
+
+                    fileText.setText("File loaded successfully");
+                    fileText.setFill(Color.DARKGREEN);
+                    fileText.setVisible(true);
                     ArrayList<Airport> newAirportList = loader.loadAirportFile(file.getAbsolutePath());
                     record.addAirports(newAirportList);;
                 } else if (selectFile.getSelectedToggle() == airlineRadioButton) {
                     boolean airlineCheck = loader.loadAirlineErrorCheck(file.getAbsolutePath());
                     if (!airlineCheck) {
-                        // Some code here
+                        fileText.setText("Incorrect file format");
+                        fileText.setFill(Color.RED);
+                        fileText.setVisible(true);
                         return;
                     }
 
+                    fileText.setText("File loaded successfully");
+                    fileText.setFill(Color.DARKGREEN);
+                    fileText.setVisible(true);
                     ArrayList<Airline> newAirlineList = loader.loadAirlineFile(file.getAbsolutePath());
                     record.addAirlines(newAirlineList);
                 } else if (selectFile.getSelectedToggle() == routeRadioButton) {
                     boolean routeCheck = loader.loadRouteErrorCheck(file.getAbsolutePath());
                     if (!routeCheck) {
-                        // Some code here
+                        fileText.setText("Incorrect file format");
+                        fileText.setFill(Color.RED);
+                        fileText.setVisible(true);
                         return;
                     }
 
+                    fileText.setText("File loaded successfully");
+                    fileText.setFill(Color.DARKGREEN);
+                    fileText.setVisible(true);
                     ArrayList<Route> newRouteList = loader.loadRouteFile(file.getAbsolutePath());
                     record.addRoutes(newRouteList);
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
                     boolean flightCheck = loader.loadFlightErrorCheck(file.getAbsolutePath());
                     if (!flightCheck) {
-                        // Some code here
+                        fileText.setText("Incorrect file format");
+                        fileText.setFill(Color.RED);
+                        fileText.setVisible(true);
                         return;
                     }
+
+                    fileText.setText("File loaded successfully");
+                    fileText.setFill(Color.DARKGREEN);
+                    fileText.setVisible(true);
                     Flight newFlight = loader.loadFlightFile(file.getAbsolutePath());
                     record.addFlights(newFlight);
                     Parent root = FXMLLoader.load(getClass().getResource("../Flight_Screen.fxml"));

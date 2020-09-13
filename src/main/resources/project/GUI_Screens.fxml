@@ -309,6 +309,7 @@
                                     <RadioButton fx:id="routeRadioButton" layoutX="43.0" layoutY="113.0" mnemonicParsing="false" text="Route" toggleGroup="$selectFile" />
                                     <RadioButton fx:id="flightRadioButton" layoutX="43.0" layoutY="153.0" mnemonicParsing="false" text="Flight" toggleGroup="$selectFile" />
                                     <Button fx:id="addFileButton" layoutX="520.0" layoutY="350.0" mnemonicParsing="false" onAction="#addFileButton" text="Add" />
+                                    <Text fx:id="fileText" fill="#43a428" layoutX="478.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File loaded successfully" textAlignment="CENTER" visible="false" />
                                  </children></AnchorPane>
                           </content>
                         </Tab>
