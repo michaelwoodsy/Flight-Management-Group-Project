@@ -20,6 +20,7 @@ public class GUIApplication extends Application {
     public void start(Stage primaryStage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../GUI_Screens.fxml"));
         primaryStage.setScene(new Scene(root, 750, 500));
+        primaryStage.setTitle("PlaneSonar25");
         primaryStage.show();
     }
 
