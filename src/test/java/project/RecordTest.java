@@ -285,7 +285,7 @@ public class RecordTest {
 
     @Test
     public void searchRoutesTest() throws IOException {
-        ArrayList<Route> searchResults = testRecord.searchRoutes("NZ");
+        ArrayList<Route> searchResults = testRecord.searchRoutes("NZ", "airline");
         assertEquals(testRecord.getRouteList(), searchResults);
 
         ArrayList<Route> testRouteList = new ArrayList<>();
@@ -295,7 +295,7 @@ public class RecordTest {
         Route testRoute8 = new Route("AIR NZL", 501, "NZCH", 411, "WLG", 511, 0, "DXa34", false);
         Route testRoute9 = new Route("ubereats", 502, "NZAA", 411, "SYD", 511, 2, "DXa34", false);
         Route testRoute10 = new Route("frubereats", 503, "NZCH", 411, "SYD", 511, 1, "DXa34", false);
-        Route testRoute11 = new Route("frubercheats", 504, "NZWN", 411, "SYD", 511, 1, "DXa34", false);
+        Route testRoute11 = new Route("frubercheats", 504, "NZWN", 411, "SYD", 511, 1, "Big PlaNE", false);
 
         testRouteList.add(testRoute1);
         testRouteList.add(testRoute2);
@@ -315,14 +315,19 @@ public class RecordTest {
         comparisonList.add(testRoute10);
         comparisonList.add(testRoute11);
 
-        searchResults = testRecord.searchRoutes("uber");
+        searchResults = testRecord.searchRoutes("uber", "airline");
         assertEquals(comparisonList, searchResults);
 
-        searchResults = testRecord.searchRoutes("auckland");
+        searchResults = testRecord.searchRoutes("auckland", "airline");
         assertEquals(0, searchResults.size());
 
-        searchResults = testRecord.searchRoutes("air nz");
+        searchResults = testRecord.searchRoutes("NZCH", "source airport");
+        assertEquals(4, searchResults.size());
+
+        searchResults = testRecord.searchRoutes("air nz", "airline");
         assertEquals(8, searchResults.size());
+
+        searchResults = testRecord.searchRoutes("big plane", "equipment");
     }
 
     @Test

@@ -448,7 +448,7 @@ public class GUIController implements Initializable {
         int risk = 0;
 
         Airport newAirport = new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
-        ArrayList<Airport> newAirportList = new ArrayList<Airport>();
+        ArrayList<Airport> newAirportList = new ArrayList<>();
         newAirportList.add(newAirport);
         record.addAirports(newAirportList);
     }
