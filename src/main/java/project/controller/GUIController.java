@@ -40,15 +40,11 @@ public class GUIController implements Initializable {
     @FXML
     private ListView routeDetailList;
     @FXML
-    private TextField airportFilterCriteria;
-    @FXML
-    private TextField airlineFilterCriteria;
-    @FXML
     private TextField airportSearchCriteria;
     @FXML
     private TextField airlineSearchCriteria;
     @FXML
-    private TextField routeFilterCriteria;
+    private TextField routeSearchCriteria;
     @FXML
     private ChoiceBox airlineSearchBy;
     @FXML
@@ -189,8 +185,8 @@ public class GUIController implements Initializable {
         recordSelectRoute.setItems(observableArrayList(currentRecord.getName()));
         recordSelectRoute.getSelectionModel().selectFirst();
 
-        recordDropdown.setItems(observableArrayList(currentRecord.getName(), "New Record"));
-        recordDropdown.getSelectionModel().selectFirst();
+        //recordDropdown.setItems(observableArrayList(currentRecord.getName(), "New Record"));
+        //recordDropdown.getSelectionModel().selectFirst();
 
         WebEngine mapEngine = mapView.getEngine();
         mapEngine.load(getClass().getResource("/map.html").toExternalForm());
@@ -200,30 +196,18 @@ public class GUIController implements Initializable {
         WebEngine engine = webView.getEngine();
         engine.load("https://openflights.org/data.html");
 
-        ObservableList<String> filterAirlines = observableArrayList("Countries");
-        ObservableList<String> searchAirlines = observableArrayList("Name", "Alias", "Callsign", "IATA", "ICAO");
+        ObservableList<String> airlineSearchOptions = observableArrayList("Country", "Name", "Alias", "Callsign", "IATA", "ICAO");
+        airlineSearchBy.setItems(airlineSearchOptions);
 
-        airlineFilterBy.setItems(filterAirlines);
-        //airlineSearchBy.setItems(searchAirlines);
+        ObservableList<String> airportSearchOptions = observableArrayList("Country", "Name", "City", "IATA", "ICAO", "Timezone", "Total # Routes");
+        airportSearchBy.setItems(airportSearchOptions);
 
-        ObservableList<String> filterAirports = observableArrayList("Countries");
-        ObservableList<String> searchAirports = observableArrayList("Name", "City", "IATA", "ICAO", "Timezone", "Total # Routes");
+        ObservableList<String> routeSearchOptions = observableArrayList("Source Airport", "Destination Airport", "Equipment", "Airline", "Total # Stops", "Source ID", "Destination ID");
+        routeSearchBy.setItems(routeSearchOptions);
 
-        airportFilterBy.setItems(filterAirports);
-        //airportSearchBy.setItems(searchAirports);
-
-        ObservableList<String> filterRoutes = observableArrayList("Source Airport", "Destination Airport", "Equipment");
-        ObservableList<String> searchRoutes = observableArrayList("Airline", "Total # Stops", "Source ID", "Destination ID");
-
-        routeFilterBy.setItems(filterRoutes);
-        //routeSearchBy.setItems(searchRoutes);
-
-        //routeSearchBy.getSelectionModel().selectFirst();
-        routeFilterBy.getSelectionModel().selectFirst();
-        //airportSearchBy.getSelectionModel().selectFirst();
-        airportFilterBy.getSelectionModel().selectFirst();
-        //airlineSearchBy.getSelectionModel().selectFirst();
-        airlineFilterBy.getSelectionModel().selectFirst();
+        routeSearchBy.getSelectionModel().selectFirst();
+        airportSearchBy.getSelectionModel().selectFirst();
+        airlineSearchBy.getSelectionModel().selectFirst();
     }
 
     @FXML
@@ -273,38 +257,75 @@ public class GUIController implements Initializable {
 
     @FXML
     /**
-     * Retrieves user input and searches for airports that are located within that country.
+     * Retrieves user input and searches for airports that match the provided criteria in the selected attribute.
      * Displays only those airports in the airport data viewer.
      * If input is blank, display an error pop-up.
      */
-    public void filterAirports() {
-
-        String country = airportFilterCriteria.getText();
-        if (country.isBlank()) {
-            System.err.println("No country entered");
+    public void searchAirports() {
+        String searchCategory = (String) airportSearchBy.getSelectionModel().getSelectedItem();
+        String searchCriteria = airportSearchCriteria.getText().toLowerCase();
+        if (!searchCriteria.isBlank()) {
+            List<Airport> matchingAirports = currentRecord.searchAirports(searchCriteria.toLowerCase(), searchCategory.toLowerCase());
+            if (matchingAirports.size() == 0) {
+                DialogBoxes.noneReturned("airports");
+            } else {
+                airportList.setItems(observableArrayList(matchingAirports));
+            }
+        } else {
+            DialogBoxes.blankTextField(false);
         }
-        ArrayList<Airport> filteredAirports = currentRecord.filterAirports(country);
-        airportList.setItems(observableArrayList(filteredAirports));
     }
 
-    @FXML
     /**
-     * Retrieves user input and searches for airlines that are located within that country.
+     * Retrieves user input and searches for airlines that match the provided criteria in the selected attribute.
      * Displays only those airlines in the airlines data viewer.
      * If input is blank, display an error pop-up.
      */
-    public void filterAirlines() {
+    public void searchAirlines() {
         airlineActiveBox.setSelected(true);
         airlineInactiveBox.setSelected(true);
 
-        String country = airlineFilterCriteria.getText();
-        if (country.isBlank()) {
-            System.err.println("No country entered");
+        String searchCategory = (String) airlineSearchBy.getSelectionModel().getSelectedItem();
+        String searchCriteria = airlineSearchCriteria.getText().toLowerCase();
+        if (!searchCriteria.isBlank()) {
+            List<Airline> matchingAirlines = currentRecord.searchAirlines(searchCriteria.toLowerCase(), searchCategory.toLowerCase());
+            if (matchingAirlines.size() == 0) {
+                DialogBoxes.noneReturned("airlines");
+            } else {
+                airlineList.setItems(observableArrayList(matchingAirlines));
+                defaultAirlineList = airlineList.getItems();
+            }
+        } else {
+            DialogBoxes.blankTextField(false);
         }
-        ArrayList<Airline> filteredAirlines = currentRecord.filterAirlinesCountry(country);
-        airlineList.setItems(observableArrayList(filteredAirlines));
-        defaultAirlineList = airlineList.getItems();
     }
+
+    /**
+     * Retrieves user input, and searches for routes that match the provided criteria in the selected attribute.
+     * Displays only those routes in the route data viewer.
+     * If input is blank, an error pop-up is displayed.
+     */
+    @FXML
+    public void searchRoutes() {
+        routeDirectBox.setSelected(true);
+        routeIndirectBox.setSelected(true);
+
+        String searchCategory = (String) routeSearchBy.getSelectionModel().getSelectedItem();
+        String searchCriteria = routeSearchCriteria.getText().toLowerCase();
+        if (!searchCriteria.isBlank()) {
+            List<Route> matchingRoutes = currentRecord.searchRoutes(searchCriteria.toLowerCase(), searchCategory.toLowerCase());
+            if (matchingRoutes.size() == 0) {
+                DialogBoxes.noneReturned("routes");
+            } else {
+                routeList.setItems(observableArrayList(matchingRoutes));
+                defaultRouteList = routeList.getItems();
+            }
+        } else {
+            DialogBoxes.blankTextField(false);
+        }
+    }
+
+
 
     @FXML
     public void leastRoutesButton(ActionEvent event) throws IOException {
@@ -357,39 +378,6 @@ public class GUIController implements Initializable {
             } else {
                 routeList.setItems(observableArrayList(new ArrayList<Route>()));
             }
-        }
-    }
-
-    @FXML
-    public void filterRoutes(ActionEvent event) throws IOException {
-
-        routeDirectBox.setSelected(true);
-        routeIndirectBox.setSelected(true);
-
-        if (routeFilterBy.getValue().equals("Source Airport")) {
-            String departure = routeFilterCriteria.getText();
-            if (departure.isBlank()) {
-                System.err.println("No source airport code entered");
-            }
-            ArrayList<Route> filteredRoutes = currentRecord.filterRoutesDeparture(departure);
-            routeList.setItems(observableArrayList(filteredRoutes));
-            defaultRouteList = routeList.getItems();
-        } else if (routeFilterBy.getValue().equals("Destination Airport")) {
-            String destination = routeFilterCriteria.getText();
-            if (destination.isBlank()) {
-                System.err.println("No destination airport code entered");
-            }
-            ArrayList<Route> filteredRoutes = currentRecord.filterRoutesDestination(destination);
-            routeList.setItems(observableArrayList(filteredRoutes));
-            defaultRouteList = routeList.getItems();
-        } else if (routeFilterBy.getValue().equals("Equipment")) {
-            String equipment = routeFilterCriteria.getText();
-            if (equipment.isBlank()) {
-                System.err.println("No equipment entered");
-            }
-            ArrayList<Route> filteredRoutes = currentRecord.filterRoutesEquipment(equipment);
-            routeList.setItems(observableArrayList(filteredRoutes));
-            defaultRouteList = routeList.getItems();
         }
     }
 
@@ -804,30 +792,6 @@ public class GUIController implements Initializable {
 
     }
 
-    /**
-     * Retrieves the user's inputs, and searches for airports that match the provided criteria.
-     * Does nothing if the textfield is empty.
-     */
-    public void searchForAirport() {
-        String searchCategory = (String) airportSearchBy.getSelectionModel().getSelectedItem();
-        String searchCriteria = airportSearchCriteria.getText().toLowerCase();
-        if (!searchCriteria.isBlank()) {
-            List<Airport> matchingAirports = currentRecord.searchAirports(searchCriteria, searchCategory);
-            airportList.setItems((ObservableList) matchingAirports);
-        }
-    }
 
-    /**
-     * Retrieves the user's inputs, and searches for airlines that match the provided criteria in the selected attribute.
-     * Does nothing if the textfield is empty.
-     */
-    public void searchForAirline() {
-        String searchCategory = (String) airlineSearchBy.getSelectionModel().getSelectedItem();
-        String searchCriteria = airlineSearchCriteria.getText().toLowerCase();
-        if (!searchCriteria.isBlank()) {
-            List<Airline> matchingAirlines = currentRecord.searchAirlines(searchCriteria, searchCategory);
-            airlineList.setItems((ObservableList) matchingAirlines);
-        }
-    }
 
 }
