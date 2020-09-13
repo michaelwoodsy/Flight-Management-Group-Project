@@ -176,7 +176,8 @@ public class Loader {
                 breaker = true;
             } else {
                 String[] data = row.split(",(?! )");
-                airportList.add(loadAirport(data));
+                AirportLoader airportLoad = new AirportLoader();
+                airportList.add(airportLoad.loadAirport(data));
             }
         }
         dataReader.close();
@@ -348,6 +349,7 @@ public class Loader {
      * Invalid latitudes and longitudes are displayed as 360. This is because these are impossible latitude/longitude values, and correspond to easy error handling.
      * Invalid timezones displayed as 25. Can't have a +25 hour timezone after all.
      */
+    /*
     public Airport loadAirport(String[] airportData) {
 
         int id;
@@ -481,6 +483,8 @@ public class Loader {
 
         return new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
     }
+
+     */
 
     /**
      * Returns a route class from a line read in routes.dat.

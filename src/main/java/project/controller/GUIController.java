@@ -173,7 +173,8 @@ public class GUIController implements Initializable {
     private boolean optedIn = false;
 
     private Loader loader = new Loader();
-    private routeLoader routeLoad = new routeLoader();
+    private RouteLoader routeLoad = new RouteLoader();
+    private AirportLoader airportLoad = new AirportLoader();
 
     private List<Airline> defaultAirlineList = new ArrayList<>();
     private List<Route> defaultRouteList = new ArrayList<>();

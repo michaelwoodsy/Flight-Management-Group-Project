@@ -425,7 +425,7 @@ public class Record {
         Hashtable<String, Covid> covidDict = null;
 
         try {
-            covidLoader covidLoad = new covidLoader();
+            CovidLoader covidLoad = new CovidLoader();
             covidDict = covidLoad.loadCovidFile("./data/covid.dat");
         } catch (IOException e) {
             System.err.println("Could not load file");

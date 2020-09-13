@@ -12,8 +12,9 @@ import static org.junit.Assert.assertEquals;
 
 public class LoaderTest {
     private final Loader loader = new Loader();
-    private final routeLoader routeLoad = new routeLoader();
-    private final covidLoader covidLoad = new covidLoader();
+    private final RouteLoader routeLoad = new RouteLoader();
+    private final CovidLoader covidLoad = new CovidLoader();
+    private final AirportLoader AirportLoad = new AirportLoader();
 
     @Test
     /**
@@ -111,7 +112,7 @@ public class LoaderTest {
     public void loadIndividualAirportTest() {
 
         String[] airportData1 = {"1", "Goroka", "Goroka", "Papua New Guinea", "GKA", "AYGA", "-6.081689", "145.391881", "5282", "10", "U", "Pacific/Port_Moresby", "type", "source"};
-        Airport testAirport1 = loader.loadAirport(airportData1);
+        Airport testAirport1 = AirportLoad.loadAirport(airportData1);
 
         assertEquals(testAirport1.getId(), 1);
         assertEquals(testAirport1.getName(), "Goroka");
@@ -132,7 +133,7 @@ public class LoaderTest {
         assertEquals(testAirport1.getTotalRoutes(), 0);
 
         String[] airportData2 = {"1a", "Goroka", "Goroka", "Papua New Guinea", "GKA", "AYGA", "-6.081689a", "145.391881a", "5282a", "10a", "U", "Pacific/Port_Moresby", "type", "source"};
-        testAirport1 = loader.loadAirport(airportData2);
+        testAirport1 = AirportLoad.loadAirport(airportData2);
 
         assertEquals(testAirport1.getId(), -1);
         assertEquals(testAirport1.getLatitude(), 360, 0);

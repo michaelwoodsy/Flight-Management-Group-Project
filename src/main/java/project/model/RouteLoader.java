@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class routeLoader {
+public class RouteLoader {
     /**
      * Returns a route class from a line read in routes.dat.
      * Invalid ints will be displayed as -1, invalid strings displayed as null
@@ -113,7 +113,7 @@ public class routeLoader {
                 breaker = true;
             } else {
                 String[] data = row.split(",");
-                routeLoader routeLoad = new routeLoader();
+                RouteLoader routeLoad = new RouteLoader();
                 routeList.add(routeLoad.loadRoute(data));
             }
         }
