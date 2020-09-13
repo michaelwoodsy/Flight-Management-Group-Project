@@ -42,6 +42,11 @@
                               <ChoiceBox fx:id="recordSelectAirport" layoutX="5.0" layoutY="23.0" prefHeight="25.0" prefWidth="130.0" />
                               <Text layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
                               <Button fx:id="airportSelectButton" layoutX="134.0" layoutY="23.0" mnemonicParsing="false" onAction="#airportSelect" prefHeight="25.0" prefWidth="60.0" text="SELECT" />
+                              <Text layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Text>
                            </children></AnchorPane>
                       <AnchorPane fx:id="airportDetailPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
@@ -72,6 +77,11 @@
                               <ChoiceBox fx:id="recordSelectAirline" layoutX="5.0" layoutY="23.0" prefHeight="25.0" prefWidth="130.0" />
                               <Text layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
                               <Button fx:id="airlineSelectButton" layoutX="134.0" layoutY="23.0" mnemonicParsing="false" onAction="#airlineSelect" prefHeight="25.0" prefWidth="60.0" text="SELECT" />
+                              <Text layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Text>
                            </children></AnchorPane>
                       <AnchorPane fx:id="airlineDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
@@ -101,6 +111,11 @@
                               <ChoiceBox fx:id="recordSelectRoute" layoutX="5.0" layoutY="23.0" prefHeight="25.0" prefWidth="130.0" />
                               <Text layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
                               <Button fx:id="routeSelectButton" layoutX="134.0" layoutY="23.0" mnemonicParsing="false" onAction="#routeSelect" prefHeight="25.0" prefWidth="60.0" text="SELECT" />
+                              <Text layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
+                                 <font>
+                                    <Font size="9.0" />
+                                 </font>
+                              </Text>
                            </children></AnchorPane>
                       <AnchorPane fx:id="routeDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
@@ -190,7 +205,7 @@
                                           <TextField fx:id="airportLatitude" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                                           <TextField fx:id="airportLongitude" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                                           <TextField fx:id="airportAltitude" GridPane.columnIndex="3" GridPane.rowIndex="6" />
-                                          <Button fx:id="addAirportButton" mnemonicParsing="false" onAction="#addAirportButton" text="Add" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+                                          <Button fx:id="addAirportButton" mnemonicParsing="false" onAction="#addAirportButton" text="Add to" GridPane.columnIndex="3" GridPane.rowIndex="7" />
                                           <Label text="Timezone:" GridPane.columnIndex="2" />
                                           <TextField fx:id="airportTimezoneString" GridPane.columnIndex="3" />
                                        </children>
@@ -241,7 +256,7 @@
                                           <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                        </padding>
                                     </GridPane>
-                                    <Button fx:id="addAirlineButton" layoutX="520.0" layoutY="350.0" mnemonicParsing="false" onAction="#addAirlineButton" text="Add" />
+                                    <Button fx:id="addAirlineButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addAirlineButton" text="Add to" />
                                  </children></AnchorPane>
                         </content>
                       </Tab>
@@ -290,7 +305,7 @@
                                           <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                        </padding>
                                     </GridPane>
-                                    <Button fx:id="addRouteButton" layoutX="520.0" layoutY="350.0" mnemonicParsing="false" onAction="#addRouteButton" text="Add" />
+                                    <Button fx:id="addRouteButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addRouteButton" text="Add to" />
                                  </children></AnchorPane>
                           </content>
                         </Tab>
@@ -306,12 +321,12 @@
                                     <RadioButton fx:id="routeRadioButton" layoutX="43.0" layoutY="113.0" mnemonicParsing="false" text="Route" toggleGroup="$selectFile" />
                                     <RadioButton fx:id="flightRadioButton" layoutX="43.0" layoutY="153.0" mnemonicParsing="false" text="Flight" toggleGroup="$selectFile" />
                                     <Button fx:id="addFileButton" layoutX="520.0" layoutY="350.0" mnemonicParsing="false" onAction="#addFileButton" text="Add" />
-                                    <Button fx:id="addFileButton" layoutX="505.0" layoutY="350.0" mnemonicParsing="false" onAction="#addFileButton" text="Add to" />
                                  </children></AnchorPane>
                           </content>
                         </Tab>
                     </tabs>
                   </TabPane>
+                   <ChoiceBox fx:id="recordDropdown" layoutX="572.0" layoutY="408.0" prefWidth="150.0" />
                </children></AnchorPane>
          </content>
       </Tab>

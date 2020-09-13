@@ -381,6 +381,50 @@ public class GUIController implements Initializable {
         }
     }
 
+    /**
+     * Helper function to addFileButton, used to handle updating of records.
+     */
+    public void addFileHelper() {
+
+        if (recordDropdown.getValue() == "New Record") {
+            Record record = new Record("Record " + (recordList.size() + 1));
+            recordList.add(record);
+            currentRecord = record;
+
+            recordSelectAirport.getItems().add(currentRecord.getName());
+            recordSelectAirline.getItems().add(currentRecord.getName());
+            recordSelectRoute.getItems().add(currentRecord.getName());
+            ArrayList<String> recordNames = new ArrayList<String>();
+            for (Record records: recordList) {
+                recordNames.add(records.getName());
+            }
+            recordNames.add("New Record");
+            recordDropdown.setItems(observableArrayList(recordNames));
+
+            recordSelectAirline.getSelectionModel().select(recordList.size() - 1);
+            recordSelectAirport.getSelectionModel().select(recordList.size() - 1);
+            recordSelectRoute.getSelectionModel().select(recordList.size() - 1);
+            recordDropdown.getSelectionModel().select(recordList.size() - 1);
+
+            return;
+        }
+
+        int index = 0;
+        for (Record record: recordList) {
+            if (recordDropdown.getValue() == record.getName()) {
+                index = recordList.indexOf(record);
+                break;
+            }
+        }
+
+        recordSelectAirline.getSelectionModel().select(index);
+        recordSelectAirport.getSelectionModel().select(index);
+        recordSelectRoute.getSelectionModel().select(index);
+        recordDropdown.getSelectionModel().select(index);
+
+        currentRecord = recordList.get(index);
+    }
+
     @FXML
     /**
      * Can't handle errors yet, and doesn't have the option to append data to new record yet.
@@ -395,7 +439,6 @@ public class GUIController implements Initializable {
 
             File file = loadFile.showOpenDialog(null);
 
-
             if (file != null) {
                 boolean goodFile = loader.errorHandler(file);
                 DialogBoxes.fileFormatInfo(goodFile, false, null);
@@ -405,9 +448,11 @@ public class GUIController implements Initializable {
                     DialogBoxes.fileFormatInfo(airportCheck, true, "airport");
                     if (!airportCheck) {return;}
 
+                    addFileHelper();
+
                     ArrayList<Airport> newAirportList = loader.loadAirportFile(file.getAbsolutePath());
                     currentRecord.addAirports(newAirportList);
-                    displayAllAirports();
+                    hideAllTables();
                     if (Airport.getNumMissingCovid() > 0) {
                         DialogBoxes.missingCovidInfoBox();
                     }
@@ -416,21 +461,27 @@ public class GUIController implements Initializable {
                     DialogBoxes.fileFormatInfo(airlineCheck, true, "airline");
                     if (!airlineCheck) {return;}
 
+                    addFileHelper();
+
                     ArrayList<Airline> newAirlineList = loader.loadAirlineFile(file.getAbsolutePath());
                     currentRecord.addAirlines(newAirlineList);
-                    displayAllAirlines();
+                    hideAllTables();
                 } else if (selectFile.getSelectedToggle() == routeRadioButton) {
                     boolean routeCheck = loader.loadRouteErrorCheck(file.getAbsolutePath());
                     DialogBoxes.fileFormatInfo(routeCheck, true, "route");
                     if (!routeCheck) {return;}
 
+                    addFileHelper();
+
                     ArrayList<Route> newRouteList = loader.loadRouteFile(file.getAbsolutePath());
                     currentRecord.addRoutes(newRouteList);
-                    displayAllRoutes();
+                    hideAllTables();
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
                     boolean flightCheck = loader.loadFlightErrorCheck(file.getAbsolutePath());
                     DialogBoxes.fileFormatInfo(flightCheck, true, "flight");
                     if (!flightCheck) {return;}
+
+                    addFileHelper();
 
                     Flight newFlight = loader.loadFlightFile(file.getAbsolutePath());
                     currentRecord.addFlights(newFlight);
@@ -449,6 +500,8 @@ public class GUIController implements Initializable {
      * Also doesn't have confirmation on when files are successfully loaded.
      */
     public void addAirportButton() {
+        addFileHelper();
+
         int id = Integer.parseInt(airportID.getText());
         String name = airportName.getText();
         String city = airportCity.getText();
@@ -471,6 +524,8 @@ public class GUIController implements Initializable {
         ArrayList<Airport> newAirportList = new ArrayList<Airport>();
         newAirportList.add(newAirport);
         currentRecord.addAirports(newAirportList);
+
+        hideAllTables();
     }
 
     @FXML
@@ -479,6 +534,8 @@ public class GUIController implements Initializable {
      * Also doesn't have confirmation on when files are successfully loaded.
      */
     public void addAirlineButton(ActionEvent event) throws IOException {
+        addFileHelper();
+
         int id = Integer.parseInt(airlineID.getText());
         String name = airlineName.getText();
         boolean active = false;
@@ -495,6 +552,8 @@ public class GUIController implements Initializable {
         ArrayList<Airline> newAirlineList = new ArrayList<Airline>();
         newAirlineList.add(newAirline);
         currentRecord.addAirlines(newAirlineList);
+
+        hideAllTables();
     }
 
     @FXML
@@ -503,6 +562,8 @@ public class GUIController implements Initializable {
      * Also doesn't have confirmation on when files are successfully loaded.
      */
     public void addRouteButton(ActionEvent event) throws IOException {
+        addFileHelper();
+
         String airline = routeAirline.getText();
         int id = Integer.parseInt(routeAirlineID.getText());
         String sourceAirport = routeSource.getText();
@@ -520,6 +581,8 @@ public class GUIController implements Initializable {
         ArrayList<Route> newRouteList = new ArrayList<Route>();
         newRouteList.add(newRoute);
         currentRecord.addRoutes(newRouteList);
+
+        hideAllTables();
     }
 
     /**
@@ -527,10 +590,22 @@ public class GUIController implements Initializable {
      */
     public void displayAllAirports() {
         airportList.setItems(observableArrayList(currentRecord.getAirportList()));
+        recordSelectAirport.getSelectionModel().select(currentRecord.getName());
+
+    }
+
+    public void hideAllTables() {
+        routeList.setItems(observableArrayList());
+        airlineList.setItems(observableArrayList());
+        airportList.setItems(observableArrayList());
+        airportDetailList.setItems(observableArrayList());
+        airlineDetailList.setItems(observableArrayList());
+        routeDetailList.setItems(observableArrayList());
     }
 
     public void displayAllAirlines() {
         airlineList.setItems(observableArrayList(currentRecord.getAirlineList()));
+        recordSelectAirline.getSelectionModel().select(currentRecord.getName());
         airlineActiveBox.setSelected(true);
         airlineInactiveBox.setSelected(true);
         defaultAirlineList = airlineList.getItems();
@@ -539,6 +614,7 @@ public class GUIController implements Initializable {
 
     public void displayAllRoutes() {
         routeList.setItems(observableArrayList(currentRecord.getRouteList()));
+        recordSelectRoute.getSelectionModel().select(currentRecord.getName());
         routeDirectBox.setSelected(true);
         routeIndirectBox.setSelected(true);
         defaultRouteList = routeList.getItems();

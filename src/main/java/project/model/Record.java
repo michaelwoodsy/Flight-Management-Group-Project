@@ -12,6 +12,14 @@ public class Record {
     private static Hashtable<String, Covid> covidDict = setCovid();
     private String name;
 
+    public Record(String name) {
+        this.flightList = new ArrayList<Flight>();
+        this.routeList = new ArrayList<Route>();
+        this.airportList = new ArrayList<Airport>();
+        this.airlineList = new ArrayList<Airline>();
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
