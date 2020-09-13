@@ -513,6 +513,8 @@ public class GUIController implements Initializable {
      * Also doesn't have confirmation on when files are successfully loaded.
      */
     public void addAirportButton() {
+        addFileHelper();
+
         int id = Integer.parseInt(airportID.getText());
         String name = airportName.getText();
         String city = airportCity.getText();
@@ -535,6 +537,8 @@ public class GUIController implements Initializable {
         ArrayList<Airport> newAirportList = new ArrayList<Airport>();
         newAirportList.add(newAirport);
         currentRecord.addAirports(newAirportList);
+
+        hideAllTables();
     }
 
     @FXML
@@ -543,6 +547,8 @@ public class GUIController implements Initializable {
      * Also doesn't have confirmation on when files are successfully loaded.
      */
     public void addAirlineButton(ActionEvent event) throws IOException {
+        addFileHelper();
+
         int id = Integer.parseInt(airlineID.getText());
         String name = airlineName.getText();
         boolean active = false;
@@ -559,6 +565,8 @@ public class GUIController implements Initializable {
         ArrayList<Airline> newAirlineList = new ArrayList<Airline>();
         newAirlineList.add(newAirline);
         currentRecord.addAirlines(newAirlineList);
+
+        hideAllTables();
     }
 
     @FXML
@@ -567,6 +575,8 @@ public class GUIController implements Initializable {
      * Also doesn't have confirmation on when files are successfully loaded.
      */
     public void addRouteButton(ActionEvent event) throws IOException {
+        addFileHelper();
+
         String airline = routeAirline.getText();
         int id = Integer.parseInt(routeAirlineID.getText());
         String sourceAirport = routeSource.getText();
@@ -584,6 +594,8 @@ public class GUIController implements Initializable {
         ArrayList<Route> newRouteList = new ArrayList<Route>();
         newRouteList.add(newRoute);
         currentRecord.addRoutes(newRouteList);
+
+        hideAllTables();
     }
 
     /**
@@ -599,6 +611,9 @@ public class GUIController implements Initializable {
         routeList.setItems(observableArrayList());
         airlineList.setItems(observableArrayList());
         airportList.setItems(observableArrayList());
+        airportDetailList.setItems(observableArrayList());
+        airlineDetailList.setItems(observableArrayList());
+        routeDetailList.setItems(observableArrayList());
     }
 
     public void displayAllAirlines() {
