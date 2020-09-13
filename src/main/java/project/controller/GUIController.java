@@ -72,8 +72,6 @@ public class GUIController implements Initializable {
     @FXML
     private RadioButton flightRadioButton;
     @FXML
-    private ChoiceBox recordDropdown;
-    @FXML
     private ChoiceBox airlineFilterBy;
     @FXML
     private ChoiceBox airportFilterBy;
@@ -164,15 +162,8 @@ public class GUIController implements Initializable {
     private CheckBox routeCodeShare;
     @FXML
     private Text fileText;
-    @FXML
-    private ChoiceBox recordSelectAirport;
-    @FXML
-    private ChoiceBox recordSelectAirline;
-    @FXML
-    private ChoiceBox recordSelectRoute;
 
-    private ArrayList<Record> recordList;
-    private Record currentRecord;
+    private Record record = Database.generateRecord();
     private boolean optedIn = false;
     private Loader loader = new Loader();
     private List<Airline> defaultAirlineList = new ArrayList<>();
@@ -184,21 +175,6 @@ public class GUIController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        recordList = new ArrayList<Record>();
-        currentRecord = Database.generateRecord();
-        currentRecord.setName("Record 1");
-        recordList.add(currentRecord);
-
-        recordSelectAirport.setItems(observableArrayList(currentRecord.getName()));
-        recordSelectAirport.getSelectionModel().selectFirst();
-        recordSelectAirline.setItems(observableArrayList(currentRecord.getName()));
-        recordSelectAirline.getSelectionModel().selectFirst();
-        recordSelectRoute.setItems(observableArrayList(currentRecord.getName()));
-        recordSelectRoute.getSelectionModel().selectFirst();
-
-        recordDropdown.setItems(observableArrayList(currentRecord.getName(), "New Record"));
-        recordDropdown.getSelectionModel().selectFirst();
 
         WebEngine mapEngine = mapView.getEngine();
         mapEngine.load(getClass().getResource("/map.html").toExternalForm());
@@ -212,71 +188,26 @@ public class GUIController implements Initializable {
         ObservableList<String> searchAirlines = observableArrayList("Name", "Alias", "Callsign", "IATA", "ICAO");
 
         airlineFilterBy.setItems(filterAirlines);
-        //airlineSearchBy.setItems(searchAirlines);
+        airlineSearchBy.setItems(searchAirlines);
 
         ObservableList<String> filterAirports = observableArrayList("Countries");
         ObservableList<String> searchAirports = observableArrayList("Name", "City", "IATA", "ICAO", "Timezone", "Total # Routes");
 
         airportFilterBy.setItems(filterAirports);
-        //airportSearchBy.setItems(searchAirports);
+        airportSearchBy.setItems(searchAirports);
 
         ObservableList<String> filterRoutes = observableArrayList("Source Airport", "Destination Airport", "Equipment");
         ObservableList<String> searchRoutes = observableArrayList("Airline", "Total # Stops", "Source ID", "Destination ID");
 
         routeFilterBy.setItems(filterRoutes);
-        //routeSearchBy.setItems(searchRoutes);
+        routeSearchBy.setItems(searchRoutes);
 
-        //routeSearchBy.getSelectionModel().selectFirst();
+        routeSearchBy.getSelectionModel().selectFirst();
         routeFilterBy.getSelectionModel().selectFirst();
-        //airportSearchBy.getSelectionModel().selectFirst();
+        airportSearchBy.getSelectionModel().selectFirst();
         airportFilterBy.getSelectionModel().selectFirst();
-        //airlineSearchBy.getSelectionModel().selectFirst();
+        airlineSearchBy.getSelectionModel().selectFirst();
         airlineFilterBy.getSelectionModel().selectFirst();
-    }
-
-    @FXML
-    public void routeSelect() {
-        int index = 0;
-        for (Record record: recordList) {
-            if (recordSelectRoute.getValue() == record.getName()) {
-                index = recordList.indexOf(record);
-                break;
-            }
-        }
-        recordSelectAirport.getSelectionModel().select(index);
-        recordSelectAirline.getSelectionModel().select(index);
-
-        currentRecord = recordList.get(index);
-    }
-
-    @FXML
-    public void airportSelect() {
-        int index = 0;
-        for (Record record: recordList) {
-            if (recordSelectAirport.getValue() == record.getName()) {
-                index = recordList.indexOf(record);
-                break;
-            }
-        }
-        recordSelectRoute.getSelectionModel().select(index);
-        recordSelectAirline.getSelectionModel().select(index);
-
-        currentRecord = recordList.get(index);
-    }
-
-    @FXML
-    public void airlineSelect() {
-        int index = 0;
-        for (Record record: recordList) {
-            if (recordSelectAirline.getValue() == record.getName()) {
-                index = recordList.indexOf(record);
-                break;
-            }
-        }
-        recordSelectAirport.getSelectionModel().select(index);
-        recordSelectRoute.getSelectionModel().select(index);
-
-        currentRecord = recordList.get(index);
     }
 
     @FXML
@@ -286,12 +217,11 @@ public class GUIController implements Initializable {
      * If input is blank, display an error pop-up.
      */
     public void filterAirports() {
-
         String country = airportFilterCriteria.getText();
         if (country.isBlank()) {
             System.err.println("No country entered");
         }
-        ArrayList<Airport> filteredAirports = currentRecord.filterAirports(country);
+        ArrayList<Airport> filteredAirports = record.filterAirports(country);
         airportList.setItems(observableArrayList(filteredAirports));
     }
 
@@ -309,7 +239,7 @@ public class GUIController implements Initializable {
         if (country.isBlank()) {
             System.err.println("No country entered");
         }
-        ArrayList<Airline> filteredAirlines = currentRecord.filterAirlinesCountry(country);
+        ArrayList<Airline> filteredAirlines = record.filterAirlinesCountry(country);
         airlineList.setItems(observableArrayList(filteredAirlines));
         defaultAirlineList = airlineList.getItems();
     }
@@ -317,14 +247,14 @@ public class GUIController implements Initializable {
     @FXML
     public void leastRoutesButton(ActionEvent event) throws IOException {
         List<Airport> currentData = airportList.getItems();
-        List<Airport> rankedAirports = currentRecord.rankAirports(false, currentData);
+        List<Airport> rankedAirports = record.rankAirports(false, currentData);
         airportList.setItems(observableArrayList(rankedAirports));
     }
 
     @FXML
     public void mostRoutesButton(ActionEvent event) throws IOException {
         List<Airport> currentData = airportList.getItems();
-        List<Airport> rankedAirports = currentRecord.rankAirports(true, currentData);
+        List<Airport> rankedAirports = record.rankAirports(true, currentData);
         airportList.setItems(observableArrayList(rankedAirports));
     }
 
@@ -332,7 +262,7 @@ public class GUIController implements Initializable {
     public void filterActiveAirlines(ActionEvent event) throws IOException {
 
         if (airlineActiveBox.isSelected()) {
-            List<Airline> filteredAirlines = currentRecord.filterAirlines(true, defaultAirlineList);
+            List<Airline> filteredAirlines = record.filterAirlines(true, defaultAirlineList);
             if (airlineInactiveBox.isSelected()) {
                 airlineList.setItems(observableArrayList(defaultAirlineList));
             } else {
@@ -340,7 +270,7 @@ public class GUIController implements Initializable {
             }
         } else {
             if (airlineInactiveBox.isSelected()) {
-                List<Airline>filteredAirlines = currentRecord.filterAirlines(false, defaultAirlineList);
+                List<Airline>filteredAirlines = record.filterAirlines(false, defaultAirlineList);
                 airlineList.setItems(observableArrayList(filteredAirlines));
             } else {
                 airlineList.setItems(observableArrayList(new ArrayList<Airline>()));
@@ -352,7 +282,7 @@ public class GUIController implements Initializable {
     public void filterRouteStops(ActionEvent event) throws IOException {
 
         if (routeDirectBox.isSelected()) {
-            List<Route> filteredRoutes = currentRecord.filterRoutesStops(true, defaultRouteList);
+            List<Route> filteredRoutes = record.filterRoutesStops(true, defaultRouteList);
             if (routeIndirectBox.isSelected()) {
                 routeList.setItems(observableArrayList(defaultRouteList));
             } else {
@@ -360,7 +290,7 @@ public class GUIController implements Initializable {
             }
         } else {
             if (routeIndirectBox.isSelected()) {
-                List<Route> filteredRoutes = currentRecord.filterRoutesStops(false, defaultRouteList);
+                List<Route> filteredRoutes = record.filterRoutesStops(false, defaultRouteList);
                 routeList.setItems(observableArrayList(filteredRoutes));
             } else {
                 routeList.setItems(observableArrayList(new ArrayList<Route>()));
@@ -379,7 +309,7 @@ public class GUIController implements Initializable {
             if (departure.isBlank()) {
                 System.err.println("No source airport code entered");
             }
-            ArrayList<Route> filteredRoutes = currentRecord.filterRoutesDeparture(departure);
+            ArrayList<Route> filteredRoutes = record.filterRoutesDeparture(departure);
             routeList.setItems(observableArrayList(filteredRoutes));
             defaultRouteList = routeList.getItems();
         } else if (routeFilterBy.getValue().equals("Destination Airport")) {
@@ -387,7 +317,7 @@ public class GUIController implements Initializable {
             if (destination.isBlank()) {
                 System.err.println("No destination airport code entered");
             }
-            ArrayList<Route> filteredRoutes = currentRecord.filterRoutesDestination(destination);
+            ArrayList<Route> filteredRoutes = record.filterRoutesDestination(destination);
             routeList.setItems(observableArrayList(filteredRoutes));
             defaultRouteList = routeList.getItems();
         } else if (routeFilterBy.getValue().equals("Equipment")) {
@@ -395,7 +325,7 @@ public class GUIController implements Initializable {
             if (equipment.isBlank()) {
                 System.err.println("No equipment entered");
             }
-            ArrayList<Route> filteredRoutes = currentRecord.filterRoutesEquipment(equipment);
+            ArrayList<Route> filteredRoutes = record.filterRoutesEquipment(equipment);
             routeList.setItems(observableArrayList(filteredRoutes));
             defaultRouteList = routeList.getItems();
         }
@@ -437,7 +367,10 @@ public class GUIController implements Initializable {
                     fileText.setFill(Color.DARKGREEN);
                     fileText.setVisible(true);
                     ArrayList<Airport> newAirportList = loader.loadAirportFile(file.getAbsolutePath());
-                    currentRecord.addAirports(newAirportList);;
+                    record.addAirports(newAirportList);
+                    if (Airport.getNumMissingCovid() > 0) {
+                        DialogBoxes.missingCovidInfoBox();
+                    }
                 } else if (selectFile.getSelectedToggle() == airlineRadioButton) {
                     boolean airlineCheck = loader.loadAirlineErrorCheck(file.getAbsolutePath());
                     if (!airlineCheck) {
@@ -451,7 +384,7 @@ public class GUIController implements Initializable {
                     fileText.setFill(Color.DARKGREEN);
                     fileText.setVisible(true);
                     ArrayList<Airline> newAirlineList = loader.loadAirlineFile(file.getAbsolutePath());
-                    currentRecord.addAirlines(newAirlineList);
+                    record.addAirlines(newAirlineList);
                 } else if (selectFile.getSelectedToggle() == routeRadioButton) {
                     boolean routeCheck = loader.loadRouteErrorCheck(file.getAbsolutePath());
                     if (!routeCheck) {
@@ -465,7 +398,7 @@ public class GUIController implements Initializable {
                     fileText.setFill(Color.DARKGREEN);
                     fileText.setVisible(true);
                     ArrayList<Route> newRouteList = loader.loadRouteFile(file.getAbsolutePath());
-                    currentRecord.addRoutes(newRouteList);
+                    record.addRoutes(newRouteList);
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
                     boolean flightCheck = loader.loadFlightErrorCheck(file.getAbsolutePath());
                     if (!flightCheck) {
@@ -479,7 +412,7 @@ public class GUIController implements Initializable {
                     fileText.setFill(Color.DARKGREEN);
                     fileText.setVisible(true);
                     Flight newFlight = loader.loadFlightFile(file.getAbsolutePath());
-                    currentRecord.addFlights(newFlight);
+                    record.addFlights(newFlight);
                     Parent root = FXMLLoader.load(getClass().getResource("../Flight_Screen.fxml"));
                     Stage stage = new Stage();
                     stage.setScene(new Scene(root, 750, 500));
@@ -516,7 +449,7 @@ public class GUIController implements Initializable {
         Airport newAirport = new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
         ArrayList<Airport> newAirportList = new ArrayList<Airport>();
         newAirportList.add(newAirport);
-        currentRecord.addAirports(newAirportList);
+        record.addAirports(newAirportList);
     }
 
     @FXML
@@ -540,7 +473,7 @@ public class GUIController implements Initializable {
         Airline newAirline = new Airline(id, name, active, country, alias, callSign, iata, icao);
         ArrayList<Airline> newAirlineList = new ArrayList<Airline>();
         newAirlineList.add(newAirline);
-        currentRecord.addAirlines(newAirlineList);
+        record.addAirlines(newAirlineList);
     }
 
     @FXML
@@ -565,18 +498,18 @@ public class GUIController implements Initializable {
         Route newRoute = new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
         ArrayList<Route> newRouteList = new ArrayList<Route>();
         newRouteList.add(newRoute);
-        currentRecord.addRoutes(newRouteList);
+        record.addRoutes(newRouteList);
     }
 
     /**
      * Makes the airport data viewer display every airport in the current record.
      */
     public void displayAllAirports() {
-        airportList.setItems(observableArrayList(currentRecord.getAirportList()));
+        airportList.setItems(observableArrayList(record.getAirportList()));
     }
 
     public void displayAllAirlines() {
-        airlineList.setItems(observableArrayList(currentRecord.getAirlineList()));
+        airlineList.setItems(observableArrayList(record.getAirlineList()));
         airlineActiveBox.setSelected(true);
         airlineInactiveBox.setSelected(true);
         defaultAirlineList = airlineList.getItems();
@@ -584,7 +517,7 @@ public class GUIController implements Initializable {
 
 
     public void displayAllRoutes() {
-        routeList.setItems(observableArrayList(currentRecord.getRouteList()));
+        routeList.setItems(observableArrayList(record.getRouteList()));
         routeDirectBox.setSelected(true);
         routeIndirectBox.setSelected(true);
         defaultRouteList = routeList.getItems();
@@ -846,7 +779,7 @@ public class GUIController implements Initializable {
         String searchCategory = (String) airportSearchBy.getSelectionModel().getSelectedItem();
         String searchCriteria = airportSearchCriteria.getText().toLowerCase();
         if (!searchCriteria.isBlank()) {
-            List<Airport> matchingAirports = currentRecord.searchAirports(searchCriteria, searchCategory);
+            List<Airport> matchingAirports = record.searchAirports(searchCriteria, searchCategory);
             airportList.setItems((ObservableList) matchingAirports);
         }
     }
@@ -859,7 +792,7 @@ public class GUIController implements Initializable {
         String searchCategory = (String) airlineSearchBy.getSelectionModel().getSelectedItem();
         String searchCriteria = airlineSearchCriteria.getText().toLowerCase();
         if (!searchCriteria.isBlank()) {
-            List<Airline> matchingAirlines = currentRecord.searchAirlines(searchCriteria, searchCategory);
+            List<Airline> matchingAirlines = record.searchAirlines(searchCriteria, searchCategory);
             airlineList.setItems((ObservableList) matchingAirlines);
         }
     }
