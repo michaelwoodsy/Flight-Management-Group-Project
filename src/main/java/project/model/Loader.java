@@ -608,7 +608,7 @@ public class Loader {
 
         String date;
         try {
-            //checks date doesn't contain invalid characters
+            //checks date doesn't contain invalid Characters
             if (covidData[3].matches("[0-9/]+")){
                 date = covidData[3];
             }
