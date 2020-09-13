@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import project.model.*;
 
@@ -345,7 +346,10 @@ public class GUIController implements Initializable {
             if (file != null) {
                 if (selectFile.getSelectedToggle() == airportRadioButton) {
                     ArrayList<Airport> newAirportList = loader.loadAirportFile(file.getAbsolutePath());
-                    record.addAirports(newAirportList);;
+                    record.addAirports(newAirportList);
+                    if (Airport.getNumMissingCovid() > 0) {
+                        DialogBoxes.missingCovidInfoBox();
+                    }
                 } else if (selectFile.getSelectedToggle() == airlineRadioButton) {
                     ArrayList<Airline> newAirlineList = loader.loadAirlineFile(file.getAbsolutePath());
                     record.addAirlines(newAirlineList);

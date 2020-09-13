@@ -284,7 +284,6 @@ public class Record {
         if (covidDict.get(country) != null) {
             return covidDict.get(country);
         } else {
-            System.out.println(country);
             throw new NoSuchFieldException("No such country exists in our records");
         }
     }

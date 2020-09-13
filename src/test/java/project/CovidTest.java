@@ -8,8 +8,8 @@ public class CovidTest {
     @Test
     public void riskTest(){
         Covid country1 = new Covid("Bolivia","15/08/2020",826.408,332.733,11673029);
-        Covid country2 = new Covid("Bolivia","15/08/2020",8263.408,332.733,100000);
-        Covid country3 = new Covid("Bolivia","15/08/2020",10123.412,332.733,100000);
+        Covid country2 = new Covid("Bolivia","15/08/2020",4263.408,332.733,100000);
+        Covid country3 = new Covid("Bolivia","15/08/2020",9123.412,332.733,100000);
         Covid country4 = new Covid("Bolivia","15/08/2020",25232.412,332.733,100000);
         Covid country5 = new Covid("Bolivia","15/08/2020",1000000,332.733,100000);
 
