@@ -323,7 +323,7 @@
                                     <RadioButton fx:id="airlineRadioButton" layoutX="43.0" layoutY="73.0" mnemonicParsing="false" text="Airline" toggleGroup="$selectFile" />
                                     <RadioButton fx:id="routeRadioButton" layoutX="43.0" layoutY="113.0" mnemonicParsing="false" text="Route" toggleGroup="$selectFile" />
                                     <RadioButton fx:id="flightRadioButton" layoutX="43.0" layoutY="153.0" mnemonicParsing="false" text="Flight" toggleGroup="$selectFile" />
-                                    <Button fx:id="addFileButton" layoutX="520.0" layoutY="350.0" mnemonicParsing="false" onAction="#addFileButton" text="Add" />
+                                    <Button fx:id="addFileButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addFileButton" text="Add to" />
                                  </children></AnchorPane>
                           </content>
                         </Tab>
