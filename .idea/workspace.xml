@@ -109,19 +109,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="CovidTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="repository" />
       <extension name="coverage">
@@ -790,19 +777,5 @@
     <state x="481" y="109" width="941" height="807" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1599597470989" />
     <state x="483" y="110" width="944" height="807" key="search.everywhere.popup/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1599283742100" />
     <state x="481" y="109" width="941" height="807" key="search.everywhere.popup/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598331234255" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/test/java/project/RecordTest.java</url>
-          <line>73</line>
-          <properties class="project.RecordTest">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
