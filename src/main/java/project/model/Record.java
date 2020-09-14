@@ -103,10 +103,9 @@ public class Record {
                 airportMatches = airport.getCity().toLowerCase().contains(keyword.toLowerCase());
             } else if (attribute.equals("total # routes")) {
                 airportMatches = (Integer.toString(airport.getTotalRoutes()).equals(keyword));
-            } else if (attribute.equals("iata")) {
-                System.out.println(airport.getIata());
+            } else if (attribute.equals("iata") && !(airport.getIata() == null)) {
                 airportMatches = airport.getIata().toLowerCase().contains(keyword.toLowerCase());
-            } else if (attribute.equals("icao")) {
+            } else if (attribute.equals("icao") && !(airport.getIcao() == null)) {
                 airportMatches = airport.getIcao().toLowerCase().contains(keyword.toLowerCase());
             } else if (attribute.equals("timezone")) {
                 airportMatches = airport.getTimezoneString().equals(keyword);
@@ -130,9 +129,9 @@ public class Record {
        for (Airline airline: airlineList) {
            boolean airlineMatches = false;
            if (attribute.equals("name")) {
-               airlineMatches = airline.getName().toLowerCase().contains(keyword.toUpperCase());
+               airlineMatches = airline.getName().toLowerCase().contains(keyword.toLowerCase());
            } else if (attribute.equals("alias")) {
-               airlineMatches = airline.getAlias().toLowerCase().contains(keyword.toUpperCase());
+               airlineMatches = airline.getAlias().toLowerCase().contains(keyword.toLowerCase());
            } else if (attribute.equals("iata")) {
                airlineMatches = airline.getIata().toLowerCase().contains(keyword);
            } else if (attribute.equals("icao")) {

@@ -230,11 +230,11 @@ public class RecordTest {
         ArrayList<Route> testRouteList = new ArrayList<>();
         ArrayList<Route> comparisonList = new ArrayList<>();
 
-        Route testRoute7 = new Route("Air NZL", 500, "NZWN", 411, "NZCH", 511, 0, "DXa134", false);
+        Route testRoute7 = new Route("Air NZL", 500, "NZWN", 411, "NZCH", 511, 0, "DXaMIDDLE34", false);
         Route testRoute8 = new Route("AIR NZL", 501, "NZCH", 411, "WLG", 511, 0, "DXa34", false);
-        Route testRoute9 = new Route("ubereats", 502, "NZAA", 411, "SYD", 511, 2, "DXa34", false);
-        Route testRoute10 = new Route("frubereats", 503, "NZCH", 411, "SYD", 511, 1, "DXa34", false);
-        Route testRoute11 = new Route("frubercheats", 504, "NZWN", 411, "SYD", 511, 1, "Big PlaNE", false);
+        Route testRoute9 = new Route("ubereats", 502, "NZAA", 411, "LAX", 511, 2, "DXa34ter", false);
+        Route testRoute10 = new Route("frubereats", 503, "NZCH", 411, "ENG", 511, 1, "FRONTDXa34BACK", false);
+        Route testRoute11 = new Route("frubercheats", 504, "NZWN", 411, "FAP", 511, 1, "Big PlaNE", false);
 
         testRouteList.add(testRoute1);
         testRouteList.add(testRoute2);
@@ -278,10 +278,13 @@ public class RecordTest {
         comparisonRouteList.add(testRoute4);
         comparisonRouteList.add(testRoute5);
         comparisonRouteList.add(testRoute6);
+        comparisonRouteList.add(testRoute8);
+        comparisonRouteList.add(testRoute9);
+        comparisonRouteList.add(testRoute10);
 
         assertEquals(comparisonRouteList, filteredRouteList);
 
-        filteredRouteList = testRecord.searchRoutes("SYD", "destination");
+        filteredRouteList = testRecord.searchRoutes("SYD", "destination airport");
         comparisonRouteList = new ArrayList<Route>();
         comparisonRouteList.add(testRoute3);
         comparisonRouteList.add(testRoute4);
