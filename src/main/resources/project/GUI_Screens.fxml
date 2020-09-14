@@ -21,7 +21,6 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.web.WebView?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controller.GUIController">
    <children>
       <TabPane layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE">
@@ -197,7 +196,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <CheckBox fx:id="additional_information_checkbox" layoutX="27.0" layoutY="87.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="150.0" text="Additional Information" />
+                              <CheckBox fx:id="extraInfoBox" layoutX="27.0" layoutY="87.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="150.0" text="Additional Information" />
                               <CheckBox fx:id="restore_defaullts_checkbox" layoutX="27.0" layoutY="123.0" mnemonicParsing="false" text="Restore Defaults" />
                            </children>
                         </Pane>

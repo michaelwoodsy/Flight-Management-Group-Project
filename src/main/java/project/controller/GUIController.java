@@ -19,7 +19,6 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
-import javafx.stage.Modality;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
@@ -65,15 +64,7 @@ public class GUIController implements Initializable {
     @FXML
     private ChoiceBox recordDropdown;
     @FXML
-    private ChoiceBox airlineFilterBy;
-    @FXML
-    private ChoiceBox airportFilterBy;
-    @FXML
-    private ChoiceBox routeFilterBy;
-    @FXML
     private ChoiceBox airportSearchBy;
-    @FXML
-    private CheckBox hobbyCheckBox;
     @FXML
     private CheckBox airlineActiveBox;
     @FXML
@@ -82,6 +73,8 @@ public class GUIController implements Initializable {
     private CheckBox routeDirectBox;
     @FXML
     private CheckBox routeIndirectBox;
+    @FXML
+    private CheckBox extraInfoBox;
 
     @FXML
     private WebView webView;
@@ -837,7 +830,7 @@ public class GUIController implements Initializable {
 
     @FXML
     public void setOptedIn() {
-        if (hobbyCheckBox.isSelected()) {
+        if (extraInfoBox.isSelected()) {
             optedIn = true;
         } else {
             optedIn = false;

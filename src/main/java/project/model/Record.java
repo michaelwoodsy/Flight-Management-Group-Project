@@ -36,6 +36,19 @@ public class Record {
     }
 
     /**
+     * Filters airlines by whether they're active or not. Returns a new list of airlines meeting this criteria.
+     */
+    public ArrayList<Airline> filterAirlines(Boolean active, List<Airline> airlineList) {
+        ArrayList<Airline> filteredAirlines = new ArrayList<Airline>();
+        for (Airline airline: airlineList) {
+            if (airline.isActive() == active) {
+                filteredAirlines.add(airline);
+            }
+        }
+        return filteredAirlines;
+    }
+
+    /**
      * Filters routes by whether they have stops or not. Returns a new list of routes meeting this criteria.
      */
     public ArrayList<Route> filterRoutesStops(boolean direct, List<Route> routeList) {
@@ -71,15 +84,6 @@ public class Record {
         return rankedAirports;
     }
 
-    /**
-     * Search by Keyword. Might need changing...
-     * To search airports, input a key word(string)
-     * Searches through list of Airports and checks whether it contains the key word
-     * e.g. keyWord = "land", results = "Zealand", "orLANDdo"...
-     *
-     * @param keyWord The key word(string) to be searched
-     * @return searchResult, a list of Airport containing key word in Airport name
-     */
 
     /**
      * Finds airports where the value of the airport's 'attribute' matches 'keyword'

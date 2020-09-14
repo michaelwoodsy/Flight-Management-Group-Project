@@ -78,33 +78,10 @@ public class RecordTest {
     }
 
     @Test
-    public void filterAirportsTest() throws IOException {
-
-        ArrayList<Airport> filteredTestAirportList = testRecord.filterAirports("New Zealand");
-
-        ArrayList<Airport> comparisonAirportList = new ArrayList<>();
-
-        comparisonAirportList.add(testAirport1);
-        comparisonAirportList.add(testAirport2);
-        comparisonAirportList.add(testAirport5);
-
-        assertEquals(comparisonAirportList, filteredTestAirportList);
-
-        filteredTestAirportList = testRecord.filterAirports("Australia");
-
-        comparisonAirportList = new ArrayList<Airport>();
-        comparisonAirportList.add(testAirport3);
-        comparisonAirportList.add(testAirport4);
-
-        assertEquals(comparisonAirportList, filteredTestAirportList);
-    }
-
-    @Test
-    public void filterAirlinesTest() throws IOException {
-
+    public void filterAirlinesTest() {
         ArrayList<Airline> filteredTestAirlineList = testRecord.filterAirlines(true, testRecord.getAirlineList());
 
-        ArrayList<Airline> comparisonAirlineList = new ArrayList<Airline>();
+        ArrayList<Airline> comparisonAirlineList = new ArrayList<>();
         comparisonAirlineList.add(testAirline1);
         comparisonAirlineList.add(testAirline3);
         comparisonAirlineList.add(testAirline5);
@@ -113,65 +90,11 @@ public class RecordTest {
 
         filteredTestAirlineList = testRecord.filterAirlines(false, testRecord.getAirlineList());
 
-        comparisonAirlineList = new ArrayList<Airline>();
+        comparisonAirlineList = new ArrayList<>();
         comparisonAirlineList.add(testAirline2);
         comparisonAirlineList.add(testAirline4);
 
         assertEquals(comparisonAirlineList, filteredTestAirlineList);
-
-    }
-
-    @Test
-    public void filterAirlinesCountryTest() throws IOException {
-
-        ArrayList<Airline> filteredTestAirlineList = testRecord.filterAirlinesCountry("New Zealand");
-
-        ArrayList<Airline> comparisonAirlineList = new ArrayList<Airline>();
-        comparisonAirlineList.add(testAirline1);
-        comparisonAirlineList.add(testAirline2);
-        comparisonAirlineList.add(testAirline4);
-
-        assertEquals(comparisonAirlineList, filteredTestAirlineList);
-
-        filteredTestAirlineList = testRecord.filterAirlinesCountry("Australia");
-
-        comparisonAirlineList = new ArrayList<Airline>();
-        comparisonAirlineList.add(testAirline3);
-
-        assertEquals(comparisonAirlineList, filteredTestAirlineList);
-    }
-
-    @Test
-    public void filterRoutesDepartureTest() throws IOException {
-
-        ArrayList<Route> filteredRouteList = testRecord.filterRoutesDeparture("NZWN");
-
-        ArrayList<Route> comparisonRouteList = new ArrayList<Route>();
-        comparisonRouteList.add(testRoute1);
-        comparisonRouteList.add(testRoute5);
-
-        assertEquals(comparisonRouteList, filteredRouteList);
-
-        filteredRouteList = testRecord.filterRoutesDeparture("NZCH");
-
-        comparisonRouteList = new ArrayList<Route>();
-        comparisonRouteList.add(testRoute2);
-        comparisonRouteList.add(testRoute4);
-
-        assertEquals(comparisonRouteList, filteredRouteList);
-    }
-
-    @Test
-    public void filterRoutesDestinationTest() throws IOException {
-
-        ArrayList<Route> filteredRouteList = testRecord.filterRoutesDestination("SYD");
-
-        ArrayList<Route> comparisonRouteList = new ArrayList<Route>();
-        comparisonRouteList.add(testRoute3);
-        comparisonRouteList.add(testRoute4);
-        comparisonRouteList.add(testRoute5);
-
-        assertEquals(comparisonRouteList, filteredRouteList);
     }
 
     @Test
@@ -194,21 +117,6 @@ public class RecordTest {
 
         assertEquals(comparisonRouteList, filteredRouteList);
 
-    }
-
-    @Test
-    public void filterRoutesEquipmentTest() throws IOException {
-
-        ArrayList<Route> filteredRouteList = testRecord.filterRoutesEquipment("DXa34");
-
-        ArrayList<Route> comparisonRouteList = new ArrayList<Route>();
-        comparisonRouteList.add(testRoute2);
-        comparisonRouteList.add(testRoute3);
-        comparisonRouteList.add(testRoute4);
-        comparisonRouteList.add(testRoute5);
-        comparisonRouteList.add(testRoute6);
-
-        assertEquals(comparisonRouteList, filteredRouteList);
     }
 
     @Test
@@ -239,6 +147,36 @@ public class RecordTest {
         comparisonAirportList.add(testAirport5);
 
         assertEquals(comparisonAirportList, rankedAirports);
+
+    }
+
+    @Test
+    public void searchAirlinesTest() {
+        List<Airline> airlineList = testRecord.searchAirlines("New Zealand", "country");
+
+        ArrayList<Airline> expectedList = new ArrayList<>();
+        expectedList.add(testAirline1);
+        expectedList.add(testAirline2);
+        expectedList.add(testAirline4);
+
+        assertEquals(expectedList, airlineList);
+
+        airlineList = testRecord.searchAirlines("Mongolia", "country");
+
+        assertEquals(airlineList, new ArrayList<>());
+
+        airlineList = testRecord.searchAirlines("test", "name");
+        List<Airline> secondAirlineList = testRecord.searchAirlines("Test1", "name");
+        List<Airline> invalidList = testRecord.searchAirlines("Good Name", "name");
+
+        expectedList.add(2, testAirline3);
+        expectedList.add(testAirline5);
+        ArrayList<Airline> secondExpectedList = new ArrayList<>();
+        secondExpectedList.add(testAirline1);
+
+        assertEquals(expectedList, airlineList);
+        assertEquals(secondExpectedList, secondAirlineList);
+        assertEquals(new ArrayList<>(), invalidList);
 
     }
 
@@ -329,6 +267,27 @@ public class RecordTest {
         assertEquals(8, searchResults.size());
 
         searchResults = testRecord.searchRoutes("big plane", "equipment");
+        assertEquals(1, searchResults.size());
+        assertEquals(testRoute11, searchResults.get(0));
+
+        ArrayList<Route> filteredRouteList = testRecord.searchRoutes("DXa34", "equipment");
+
+        ArrayList<Route> comparisonRouteList = new ArrayList<Route>();
+        comparisonRouteList.add(testRoute2);
+        comparisonRouteList.add(testRoute3);
+        comparisonRouteList.add(testRoute4);
+        comparisonRouteList.add(testRoute5);
+        comparisonRouteList.add(testRoute6);
+
+        assertEquals(comparisonRouteList, filteredRouteList);
+
+        filteredRouteList = testRecord.searchRoutes("SYD", "destination");
+        comparisonRouteList = new ArrayList<Route>();
+        comparisonRouteList.add(testRoute3);
+        comparisonRouteList.add(testRoute4);
+        comparisonRouteList.add(testRoute5);
+
+        assertEquals(comparisonRouteList, filteredRouteList);
     }
 
     @Test
