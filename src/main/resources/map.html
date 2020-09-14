@@ -32,6 +32,10 @@
             zoom: 5
         });
 
+        displayRoute(dest1, dest2);
+    }
+
+    function displayRoute(dest1, dest2) {
         marker1 = new google.maps.Marker({
             position: {lat: dest1[0], lng:  dest1[1]},
             map: map
