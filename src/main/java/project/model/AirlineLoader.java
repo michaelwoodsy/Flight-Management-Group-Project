@@ -12,71 +12,86 @@ public class AirlineLoader {
      */
     public Airline loadAirline(String[] airlineData) {
 
+        int numUnknown = 0;
+
         int id;
         try {
             id = Integer.parseInt(airlineData[0]);
         } catch (Exception e) {
             id = -1;
+            numUnknown += 1;
         }
 
         String name;
         try {
             name = airlineData[1].replace("\"", "").replace("\\\\", "");
             if (name.equals("\\N") || name.equals("")) {
-                name = null;
+                name = "Unknown";
+                numUnknown += 3;
             }
         } catch (Exception e) {
-            name = null;
+            name = "Unknown";
+            numUnknown += 3;
         }
 
         String alias;
         try {
             alias = airlineData[2].replaceAll("\"", "").replace("\\\\", "");
             if (alias.equals("\\N") || alias.equals("")) {
-                alias = null;
+                alias = "None";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            alias = null;
+            alias = "None";
+            numUnknown += 1;
         }
 
         String iata;
         try {
             iata = airlineData[3].replace("\"", "").replace("\\\\", "");
             if (iata.equals("\\N") || iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
-                iata = null;
+                iata = "Unknown";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            iata = null;
+            iata = "Unknown";
+            numUnknown += 1;
         }
 
         String icao;
         try {
             icao = airlineData[4].replace("\"", "").replace("\\\\", "");
             if (icao.equals("\\N") || icao.equals("") || !icao.matches("[a-zA-Z0-9]*")) {
-                icao = null;
+                icao = "Unknown";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            icao = null;
+            icao = "Unknown";
+            numUnknown += 1;
         }
 
         String callSign;
         try {
             callSign = airlineData[5].replace("\"", "").replace("\\\\", "");
             if (callSign.equals("\\N") || callSign.equals("")) {
-                callSign = null;
+                callSign = "Unknown";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            callSign = null;
+            callSign = "Unknown";
+            numUnknown += 1;
         }
 
         String country;
         try {
             country = airlineData[6].replace("\"", "").replace("\\\\", "");
             if (country.equals("\\N") || country.equals("")) {
-                country = null;
+                country = "Unknown";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            country = null;
+            country = "Unknown";
+            numUnknown += 1;
         }
 
         String activeString;
@@ -89,7 +104,11 @@ public class AirlineLoader {
         boolean active;
         active = activeString.equals("Y");
 
-        return new Airline(id, name, active, country, alias, callSign, iata, icao);
+        if (numUnknown < 5) {
+            return new Airline(id, name, active, country, alias, callSign, iata, icao);
+        } else {
+            return null;
+        }
 
     }
     /**
@@ -129,7 +148,10 @@ public class AirlineLoader {
                 breaker = true;
             } else {
                 String[] data = row.split(",");
-                airlineList.add(loadAirline(data));
+                Airline airline = loadAirline(data);
+                if (airline != null) {
+                    airlineList.add(airline);
+                }
             }
         }
         dataReader.close();

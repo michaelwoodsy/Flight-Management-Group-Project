@@ -196,7 +196,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <CheckBox fx:id="extraInfoBox" layoutX="27.0" layoutY="87.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="150.0" text="Additional Information" />
+                              <CheckBox fx:id="extraInfoBox" layoutX="27.0" layoutY="87.0" mnemonicParsing="false" onAction="#setOptedIn" prefHeight="17.0" prefWidth="150.0" text="Additional Information" />
                               <CheckBox fx:id="restore_defaullts_checkbox" layoutX="27.0" layoutY="123.0" mnemonicParsing="false" text="Restore Defaults" />
                            </children>
                         </Pane>

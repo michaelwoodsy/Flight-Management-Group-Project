@@ -459,8 +459,7 @@ public class GUIController implements Initializable {
 
     @FXML
     /**
-     * Can't handle errors yet, and doesn't have the option to append data to new record yet.
-     * Also doesn't have confirmation on when files are successfully loaded.
+     * Can't handle errors yet, and doesn't have the option to append data to new record yet
      */
     public void addFileButton(ActionEvent event) throws IOException {
 
@@ -846,52 +845,26 @@ public class GUIController implements Initializable {
 
         if (airport != null) {
 
-            String name;
-            if (airport.getName() == null) {
-                name = ("Name: Unknown");
-            } else {
-                name = ("Name: " + airport.getName());
-            }
-
-            String city;
-            if (airport.getCity() == null) {
-                if (airport.getCountry() == null) {
-                    city = ("Location: Unknown, Unknown");
-                } else {
-                    city = ("Location: Unknown, " + airport.getCountry());
-                }
-            } else {
-                if (airport.getCountry() == null) {
-                    city = ("Location: " + airport.getCity() + ", Unknown");
-                } else {
-                    city = ("Location: " + airport.getCity()+ ", " + airport.getCountry());
-                }
-            }
-
+            String name = String.format("Name: %s", airport.getName());
+            String location = String.format("Location: %s, %s", airport.getCity(), airport.getCountry());
             String risk = ("COVID risk level: " + airport.getRisk());
 
-            String numRoutes;
+            String numRoutes = ("A total of " + airport.getTotalRoutes() + " flight routes go through this airport");
             if (airport.getTotalRoutes() < 1) {
-                numRoutes = ("Warning: No flight routes go through this airport");
-            } else {
-                numRoutes = ("A total of " + airport.getTotalRoutes() + " flight routes go through this airport");
+                DialogBoxes.noRoutes();
             }
 
             String timezoneNum;
             if (airport.getTimezone() == 25) {
                 timezoneNum = "Unknown";
-            } else if (airport.getTimezone() >= 0) {
-                timezoneNum = "+" + airport.getTimezone();
             } else {
-                timezoneNum = "-" + airport.getTimezone();
+                timezoneNum = Double.toString(airport.getTimezone());
+                if (airport.getTimezone() > 0) {
+                    timezoneNum = "+" + timezoneNum;
+                }
             }
 
-            String timezone;
-            if (airport.getTimezoneString() == null) {
-                timezone = ("Timezone: Unknown, " + timezoneNum + " hours");
-            } else {
-                timezone = ("Timezone: " + airport.getTimezoneString() + ", " + timezoneNum + " hours");
-            }
+            String timezone = String.format("Timezone: %s, %s hours", airport.getTimezoneString(), timezoneNum);
 
             //Gets the last selected airport, and calculates the distance between that airport and the currently selected one
             String distanceString = "No previous airport selected";
@@ -901,7 +874,7 @@ public class GUIController implements Initializable {
             }
             lastSelectedAirport = airport;
 
-            airportDetailList.setItems(observableArrayList(name, city, risk, numRoutes, timezone, distanceString));
+            airportDetailList.setItems(observableArrayList(name, location, risk, numRoutes, timezone, distanceString));
             modifyAirportWindowButton.setVisible(true);
 
             if (optedIn) {
@@ -927,19 +900,8 @@ public class GUIController implements Initializable {
                     alt = ("Altitude: " + airport.getAltitude() + " feet");
                 }
 
-                String iata;
-                if (airport.getIata() == null) {
-                    iata = ("IATA code: Unknown");
-                } else {
-                    iata = ("IATA code: " + airport.getIata());
-                }
-
-                String icao;
-                if (airport.getIcao() == null) {
-                    icao = ("ICAO code: Unknown");
-                } else {
-                    icao = ("ICAO code: " + airport.getIcao());
-                }
+                String iata = String.format("IATA code: %s", airport.getIata());
+                String icao = String.format("ICAO code: %s", airport.getIcao());
 
                 airportDetailList.getItems().addAll(icao, iata, lat, lon, alt);
 
@@ -957,58 +919,25 @@ public class GUIController implements Initializable {
 
         if (airline != null) {
 
-            String name;
-            if (airline.getName() == null) {
-                name = ("Name: Unknown");
-            } else {
-                name = ("Name: " + airline.getName());
-            }
+            String name = String.format("Name: %s", airline.getName());
 
-            String country;
-            if (airline.getCountry() == null) {
-                country = ("Country of Origin: Unknown");
-            } else {
-                country = ("Country of Origin: " + airline.getCountry());
-            }
+            String country = String.format("Country of Origin: %s", airline.getCountry());
 
-            String active;
-            if (airline.isActive()) {
-                active = ("This Airline is currently in operation");
-            } else {
-                active = ("This Airline is no longer in operation");
+            String airlineIsActive = "";
+            if (!airline.isActive()) {
+                airlineIsActive = " not";
             }
+            String active = String.format("This Airline is%s currently in operation", airlineIsActive);
 
-            String alias;
-            if (airline.getAlias() == null) {
-                alias = ("This airline has no known aliases");
-            } else {
-                alias = ("Airline known as: " + airline.getAlias());
-            }
+            String alias = String.format("Known aliases for this airline: %s", airline.getAlias());
 
             airlineDetailList.setItems(observableArrayList(name, country, active, alias));
             modifyAirlineWindowButton.setVisible(true);
 
             if (optedIn) {
-                String iata;
-                if (airline.getIata() == null) {
-                    iata = ("IATA code: Unknown");
-                } else {
-                    iata = ("IATA code: " + airline.getIata());
-                }
-
-                String icao;
-                if (airline.getIcao() == null) {
-                    icao = ("ICAO code: Unknown");
-                } else {
-                    icao = ("ICAO code: " + airline.getIcao());
-                }
-
-                String callSign;
-                if (airline.getCallSign() == null) {
-                    callSign = ("Callsign: Unknown");
-                } else {
-                    callSign = ("Callsign: " + airline.getCallSign());
-                }
+                String iata = String.format("IATA code: %s", airline.getIata());
+                String icao = String.format("ICAO code: %s", airline.getIcao());
+                String callSign = String.format("Callsign: %s", airline.getCallSign());
 
                 airlineDetailList.getItems().addAll(iata, icao, callSign);
             }
@@ -1026,12 +955,7 @@ public class GUIController implements Initializable {
 
         if (route != null) {
 
-            String airline;
-            if (route.getAirline() == null) {
-                airline = ("Airline Code: Unknown");
-            } else {
-                airline = ("Airline Code: " + route.getAirline());
-            }
+            String airline = String.format("Airline Code: %s", route.getAirline());
 
             String numStops;
             if (route.getNumStops() == -1) {
@@ -1040,46 +964,24 @@ public class GUIController implements Initializable {
                 numStops = ("Number of stops: " + route.getNumStops());
             }
 
-            String sourceAirport;
-            if (route.getSourceAirport() == null) {
-                sourceAirport = ("Source Airport Code: Unknown");
-            } else {
-                sourceAirport = ("Source Airport Code: " + route.getSourceAirport());
-            }
-
-            String destAirport;
-            if (route.getDestAirport() == null) {
-                destAirport = ("Destination Airport Code: Unknown");
-            } else {
-                destAirport = ("Destination Airport Code: " + route.getDestAirport());
-            }
+            String sourceAirport = String.format("Source Airport Code: %s", route.getSourceAirport());
+            String destAirport = String.format("Destination Airport Code: %s", route.getDestAirport());
 
             routeDetailList.setItems(observableArrayList(airline, numStops, sourceAirport, destAirport));
             modifyRouteWindowButton.setVisible(true);
 
             if (optedIn) {
 
-                String equipment;
-                if (route.getEquipment() == null) {
-                    equipment = ("Equipment: Unknown");
-                } else {
-                    equipment = ("Equipment: " + route.getEquipment());
+                String equipment = String.format("Equipment: %s", route.getEquipment());
+                String isACodeshare = "";
+                if (!route.isCodeshare()) {
+                    isACodeshare = " not";
                 }
-
-                String codeshare;
-                if (route.isCodeshare()) {
-                    codeshare = "This flight is a codeshare";
-                } else {
-                    codeshare = "This flight is not a codeshare";
-                }
+                String codeshare = String.format("This flight is%s a codeshare", isACodeshare);
 
                 routeDetailList.getItems().addAll(equipment, codeshare);
             }
         }
-
-
-
-
     }
 
     /**

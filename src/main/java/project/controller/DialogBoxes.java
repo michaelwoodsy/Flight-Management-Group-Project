@@ -76,6 +76,17 @@ public class DialogBoxes {
             errorString += errors.get(i) + '\n';
         }
         alert.setContentText(errorString);
+        alert.setHeaderText(null);
+        alert.setTitle("ERRORS WITH DATA");
+        alert.showAndWait();
+    }
+
+    public static void noRoutes() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        String bodyText = "The airport you have selected does not have any flights either in or out of it.\nHave you considered adding some?";
+        alert.setContentText(bodyText);
+        alert.setHeaderText(null);
+        alert.setTitle("AIRPORT MISSING ROUTES");
         alert.showAndWait();
     }
 }

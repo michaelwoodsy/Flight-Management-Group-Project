@@ -12,14 +12,18 @@ public class RouteLoader {
      */
     public Route loadRoute(String[] routeData) {
 
+        int numUnknown = 0;
+
         String airline;
         try {
             airline = routeData[0].replaceAll("\"", "").replace("\\\\", "");
             if (airline.equals("\\N") || airline.equals("")) {
-                airline = null;
+                airline = "Unknown";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            airline = null;
+            airline = "Unknown";
+            numUnknown += 1;
         }
 
         int id;
@@ -27,16 +31,19 @@ public class RouteLoader {
             id = Integer.parseInt(routeData[1]);
         } catch (Exception e) {
             id = -1;
+            numUnknown += 1;
         }
 
         String sourceAirport;
         try {
             sourceAirport = routeData[2].replaceAll("\"", "").replace("\\\\", "");
             if (sourceAirport.equals("\\N") || sourceAirport.equals("") || !sourceAirport.matches("[a-zA-Z0-9]*")) {
-                sourceAirport = null;
+                sourceAirport = "Unknown";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            sourceAirport = null;
+            sourceAirport = "Unknown";
+            numUnknown += 1;
         }
 
         int sourceID;
@@ -44,16 +51,19 @@ public class RouteLoader {
             sourceID = Integer.parseInt(routeData[3]);
         } catch (Exception e) {
             sourceID = -1;
+            numUnknown += 1;
         }
 
         String destAirport;
         try {
             destAirport = routeData[4].replaceAll("\"", "").replace("\\\\", "");
             if (destAirport.equals("\\N") || destAirport.equals("") || !destAirport.matches("[a-zA-Z0-9]*")) {
-                destAirport = null;
+                destAirport = "Unknown";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            destAirport = null;
+            destAirport = "Unknown";
+            numUnknown += 1;
         }
 
         int destID;
@@ -61,6 +71,7 @@ public class RouteLoader {
             destID = Integer.parseInt(routeData[5]);
         } catch (Exception e) {
             destID = -1;
+            numUnknown += 1;
         }
 
         String codeshareString;
@@ -78,22 +89,29 @@ public class RouteLoader {
             numStops = Integer.parseInt(routeData[7]);
         } catch (Exception e) {
             numStops = -1;
+            numUnknown += 1;
         }
 
         String equipment;
         try {
             equipment = routeData[8].replaceAll("\"", "").replace("\\\\", "");
             if (equipment.equals("\\N") || equipment.equals("")) {
-                equipment = null;
+                equipment = "Unknown";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            equipment = null;
+            equipment = "Unknown";
+            numUnknown += 1;
         }
 
         boolean codeshare;
         codeshare = codeshareString.equals("Y");
 
-        return new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
+        if (numUnknown < 5) {
+            return new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
+        } else {
+            return null;
+        }
 
     }
 
@@ -114,7 +132,10 @@ public class RouteLoader {
             } else {
                 String[] data = row.split(",");
                 RouteLoader routeLoad = new RouteLoader();
-                routeList.add(routeLoad.loadRoute(data));
+                Route route = routeLoad.loadRoute(data);
+                if (route != null){
+                    routeList.add(route);
+                }
             }
         }
         dataReader.close();
