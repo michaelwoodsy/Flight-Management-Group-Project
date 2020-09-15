@@ -14,6 +14,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -309,29 +311,56 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <WebView fx:id="mapView" layoutX="20.0" layoutY="20.0" prefHeight="429.0" prefWidth="314.0" />
-                        <Pane fx:id="setting_pane" layoutX="531.0" layoutY="20.0" prefHeight="430.0" prefWidth="198.0">
-                           <children>
-                              <ListView fx:id="setting_controller" layoutX="6.0" layoutY="7.0" prefHeight="417.0" prefWidth="186.0" />
-                              <Label fx:id="settingLabel" alignment="CENTER" layoutX="43.0" layoutY="29.0" prefHeight="26.0" prefWidth="114.0" text="Settings:" textAlignment="CENTER">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <CheckBox fx:id="extraInfoBox" layoutX="27.0" layoutY="87.0" mnemonicParsing="false" onAction="#setOptedIn" prefHeight="17.0" prefWidth="150.0" text="Additional Information" />
-                              <CheckBox fx:id="restore_defaullts_checkbox" layoutX="27.0" layoutY="123.0" mnemonicParsing="false" text="Restore Defaults" />
-                           </children>
-                        </Pane>
-                        <Pane fx:id="information_pane" layoutX="340.0" layoutY="20.0" prefHeight="427.0" prefWidth="189.0">
-                           <children>
-                              <ListView fx:id="information_control" layoutX="8.0" layoutY="9.0" prefHeight="414.0" prefWidth="176.0" />
-                           </children>
-                        </Pane>
+                        <WebView fx:id="mapView" layoutX="20.0" layoutY="20.0" prefHeight="429.0" prefWidth="498.0" />
                         <Text layoutX="221.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Map is still in development, will be completed next update">
                            <font>
                               <Font name="System Bold Italic" size="12.0" />
                            </font>
                         </Text>
+                        <TabPane fx:id="mapTabView" layoutX="530.0" layoutY="20.0" prefHeight="430.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="Routes">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <ImageView fx:id="DepartureIcon" fitHeight="73.0" fitWidth="84.0" layoutX="14.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../departure.png" />
+                                             </image>
+                                          </ImageView>
+                                          <ImageView fx:id="ArrivalIIcon" fitHeight="72.0" fitWidth="71.0" layoutX="15.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../arrival.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label fx:id="departureLabel" layoutX="100.0" layoutY="31.0" prefHeight="43.0" prefWidth="68.0" text="AKL">
+                                             <font>
+                                                <Font name="System Bold" size="29.0" />
+                                             </font>
+                                          </Label>
+                                          <Label fx:id="arricalLabel" layoutX="100.0" layoutY="98.0" prefHeight="43.0" prefWidth="69.0" text="CHC">
+                                             <font>
+                                                <Font name="System Bold" size="29.0" />
+                                             </font>
+                                          </Label>
+                                       </children></AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="Settings">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <Text layoutX="18.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Settings" textAlignment="CENTER" wrappingWidth="164.13671875">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
                      </children>
                   </AnchorPane>
                </content>
@@ -542,7 +571,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Accordion>
+      <Accordion visible="false">
         <panes>
           <TitledPane animated="false" text="untitled 1" />
           <TitledPane animated="false" text="untitled 2" />
