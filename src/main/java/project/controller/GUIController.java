@@ -155,7 +155,31 @@ public class GUIController implements Initializable {
 
     @FXML
     private Button modifyRouteWindowButton;
+    @FXML
+    private Pane modifyRoutePane;
+    @FXML
+    private SplitPane routeSplitPane;
+    @FXML
+    private TextField routeAirlineMod;
+    @FXML
+    private TextField routeAirlineIDMod;
+    @FXML
+    private TextField routeSourceMod;
+    @FXML
+    private TextField routeSourceIDMod;
+    @FXML
+    private TextField routeDestMod;
+    @FXML
+    private TextField routeDestIDMod;
+    @FXML
+    private TextField routeEquipmentMod;
+    @FXML
+    private TextField routeStopsMod;
+    @FXML
+    private CheckBox routeCodeShareMod;
 
+    @FXML
+    private Button modifyAirlineWindowButton;
     @FXML
     private Pane modifyAirlinePane;
     @FXML
@@ -174,15 +198,43 @@ public class GUIController implements Initializable {
     private TextField airlineCountryMod;
     @FXML
     private CheckBox airlineActiveMod;
-
     @FXML
     private SplitPane airlineSplitPane;
 
     @FXML
-    private Button modifyAirportWindowButton;
-
+    private SplitPane airportSplitPane;
     @FXML
-    private Button modifyAirlineWindowButton;
+    private Button modifyAirportWindowButton;
+    @FXML
+    private Pane modifyAirportPane;
+    @FXML
+    private Label modifyAirportLabel;
+    @FXML
+    private TextField airportNameMod;
+    @FXML
+    private TextField airportCityMod;
+    @FXML
+    private TextField airportCountryMod;
+    @FXML
+    private TextField airportIATAMod;
+    @FXML
+    private TextField airportICAOMod;
+    @FXML
+    private TextField airportTypeMod;
+    @FXML
+    private TextField airportTimezoneMod;
+    @FXML
+    private TextField airportTimezoneStringMod;
+    @FXML
+    private TextField airportDSTMod;
+    @FXML
+    private TextField airportSourceMod;
+    @FXML
+    private TextField airportLatitudeMod;
+    @FXML
+    private TextField airportLongitudeMod;
+    @FXML
+    private TextField airportAltitudeMod;
 
     private ArrayList<Record> recordList;
     private Record currentRecord;
@@ -548,17 +600,17 @@ public class GUIController implements Initializable {
         }
 
         String name = airportName.getText().trim();
-        if (name.equals("") || !name.matches("^[a-zA-Z]*$")) {
+        if (name.equals("")) {
             errors.add("Invalid Airport Name");
         }
 
         String city = airportCity.getText().trim();
-        if (city.equals("") || !city.matches("^[a-zA-Z]*$")) {
+        if (city.equals("")) {
             errors.add("Invalid City Name");
         }
 
         String country = airportCountry.getText().trim();
-        if (country.equals("") || !country.matches("^[a-zA-Z]*$")) {
+        if (country.equals("")) {
             errors.add("Invalid Country Name");
         }
 
@@ -575,8 +627,8 @@ public class GUIController implements Initializable {
         double latitude = 0;
         try {
             latitude = Double.parseDouble(airportLatitude.getText().trim());
-            if (latitude < 0 || latitude > 360) {
-                errors.add("Invalid Latitude (Must be lesser than 360)");
+            if (latitude < -90 || latitude > +90) {
+                errors.add("Invalid Latitude (Must be between -90 and +90)");
             }
         } catch (Exception e) {
             errors.add("Invalid Latitude");
@@ -585,8 +637,8 @@ public class GUIController implements Initializable {
         double longitude = 0;
         try {
             longitude = Double.parseDouble(airportLongitude.getText().trim());
-            if (longitude < 0 || longitude > 360) {
-                errors.add("Invalid Longitude (Must be lesser than 360)");
+            if (longitude < -180 || longitude > 180) {
+                errors.add("Invalid Longitude (Must be between -180 and +180)");
             }
         } catch (Exception e) {
             errors.add("Invalid Longitude");
@@ -602,8 +654,8 @@ public class GUIController implements Initializable {
         double timezone = 0;
         try {
             timezone = Double.parseDouble(airportTimezone.getText().trim());
-            if (timezone < 0 || timezone > 25) {
-                errors.add("Invalid Timezone Number(Must be less than 25)");
+            if (timezone < -5 || timezone > 25) {
+                errors.add("Invalid Timezone Number(Must be between -5 and +25)");
             }
         } catch (Exception e) {
             errors.add("Invalid Timezone Number");
@@ -621,12 +673,12 @@ public class GUIController implements Initializable {
 
         String type = airportType.getText().trim();
         if (type.equals("")) {
-            type = null;
+            type = "Unknown";
         }
 
         String source = airportSource.getText().trim();
         if (source.equals("")) {
-            source = null;
+            source = "Unknown";
         }
 
         int numRoutesSource = 0;
@@ -674,18 +726,18 @@ public class GUIController implements Initializable {
         }
 
         String country = airlineCountry.getText().trim();
-        if (country.equals("") || !country.matches("^[a-zA-Z]*$")) {
+        if (country.equals("")) {
             errors.add("Invalid Country Name");
         }
 
         String alias = airlineAlias.getText().trim();
         if (name.equals("")) {
-            alias = null;
+            alias = "Unknown";
         }
 
         String callSign = airlineCallsign.getText().trim();
         if (name.equals("")) {
-            callSign = null;
+            callSign = "Unknown";
         }
 
         String iata = airlineIATA.getText().trim();
@@ -994,6 +1046,22 @@ public class GUIController implements Initializable {
      */
 
     @FXML
+    public void modifyAirlineWindowButton(ActionEvent event) throws IOException {
+        Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
+        airlineSplitPane.setVisible(false);
+        airlineList.setVisible(false);
+        modifyAirlineLabel.setText("Modify Airline (ID: " + airline.getId() + ")");
+        airlineNameMod.setText(airline.getName());
+        airlineAliasMod.setText(airline.getAlias());
+        airlineCallsignMod.setText(airline.getCallSign());
+        airlineIATAMod.setText(airline.getIata());
+        airlineICAOMod.setText(airline.getIcao());
+        airlineCountryMod.setText(airline.getCountry());
+        airlineActiveMod.setSelected(airline.isActive());
+        modifyAirlinePane.setVisible(true);
+    }
+
+    @FXML
     public void deleteAirlineButton(ActionEvent event) throws IOException {
         Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
         currentRecord.removeAirlines(airline);
@@ -1019,7 +1087,7 @@ public class GUIController implements Initializable {
                 errors.add("Invalid Airline Name");
             }
         } catch (Exception e) {
-            name = null;
+            name = "Unknown";
         }
 
         boolean active = false;
@@ -1034,41 +1102,41 @@ public class GUIController implements Initializable {
                 errors.add("Invalid Country Name");
             }
         } catch (Exception e) {
-            country = null;
+            country = "Unknown";
         }
 
         String alias;
         try {
             alias = airlineAliasMod.getText().trim();
         } catch (Exception e) {
-            alias = null;
+            alias = "Unknown";
         }
 
         String callSign;
         try {
             callSign = airlineCallsignMod.getText().trim();
         } catch (Exception e) {
-            callSign = null;
+            callSign = "Unknown";
         }
 
         String iata;
         try {
             iata = airlineIATAMod.getText().trim();
             if (iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
-                iata = null;
+                iata = "Unknown";
             }
         } catch (Exception e) {
-            iata = null;
+            iata = "Unknown";
         }
 
         String icao;
         try {
             icao = airlineICAOMod.getText().trim();
             if (icao.equals("") || !icao.matches("[a-zA-Z0-9]*")) {
-                icao = null;
+                icao = "Unknown";
             }
         } catch (Exception e) {
-            icao = null;
+            icao = "Unknown";
         }
 
         if (errors.size() == 0) {
@@ -1086,21 +1154,7 @@ public class GUIController implements Initializable {
 
     }
 
-    @FXML
-    public void modifyAirlineWindowButton(ActionEvent event) throws IOException {
-        Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
-        airlineSplitPane.setVisible(false);
-        airlineList.setVisible(false);
-        modifyAirlineLabel.setText("Modify Airline (" + airline.getId() + ")");
-        airlineNameMod.setText(airline.getName());
-        airlineAliasMod.setText(airline.getAlias());
-        airlineCallsignMod.setText(airline.getCallSign());
-        airlineIATAMod.setText(airline.getIata());
-        airlineICAOMod.setText(airline.getIcao());
-        airlineCountryMod.setText(airline.getCountry());
-        airlineActiveMod.setSelected(airline.isActive());
-        modifyAirlinePane.setVisible(true);
-    }
+
 
     /**
      * work in progress
@@ -1109,17 +1163,242 @@ public class GUIController implements Initializable {
      */
     @FXML
     public void modifyRouteWindowButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../Modify_Route_Screen.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root, 750, 500));
-        stage.show();
+        Route route = (Route) routeList.getSelectionModel().getSelectedItem();
+        routeSplitPane.setVisible(false);
+        routeList.setVisible(false);
+        routeAirlineMod.setText(route.getAirline());
+        routeAirlineIDMod.setText(String.valueOf(route.getId()));
+        routeSourceMod.setText(route.getSourceAirport());
+        routeSourceIDMod.setText(String.valueOf(route.getSourceID()));
+        routeDestMod.setText(route.getDestAirport());
+        routeDestIDMod.setText(String.valueOf(route.getDestID()));
+        routeEquipmentMod.setText(route.getEquipment());
+        routeStopsMod.setText(String.valueOf(route.getNumStops()));
+        routeCodeShareMod.setSelected(route.isCodeshare());
+        modifyRoutePane.setVisible(true);
+    }
+
+    @FXML
+    public void deleteRouteButton(ActionEvent event) throws IOException {
+        Route route = (Route) routeList.getSelectionModel().getSelectedItem();
+        currentRecord.removeRoutes(route);
+        modifyRoutePane.setVisible(false);
+        modifyRouteWindowButton.setVisible(false);
+        routeSplitPane.setVisible(true);
+        routeList.setVisible(true);
+        displayAllRoutes();
+        additionalRouteInfo();
+    }
+
+    @FXML
+    public void modifyRouteButton(ActionEvent event) throws IOException {
+        ArrayList<String> errors = new ArrayList<>();
+        Route route = (Route) routeList.getSelectionModel().getSelectedItem();
+
+        String airline = routeAirlineMod.getText().trim();
+        if (airline.equals("")) {
+            errors.add("Invalid Airline Name");
+        }
+
+        int id = 0;
+        try {
+            id = Integer.parseInt(routeAirlineIDMod.getText().trim());
+        } catch (Exception e) {
+            errors.add("Invalid Airline ID");
+        }
+
+        String sourceAirport = routeSourceMod.getText().trim();
+        if (sourceAirport.equals("")) {
+            errors.add("Invalid Source Airport Name");
+        }
+
+        int sourceID = 0;
+        try {
+            sourceID = Integer.parseInt(routeSourceIDMod.getText().trim());
+        } catch (Exception e) {
+            errors.add("Invalid Source Airport ID");
+        }
+
+        String destAirport = routeDestMod.getText().trim();
+        if (destAirport.equals("")) {
+            errors.add("Invalid Destination Airport Name");
+        }
+
+        int destID = 0;
+        try {
+            destID = Integer.parseInt(routeDestIDMod.getText().trim());
+        } catch (Exception e) {
+            errors.add("Invalid Destination Airport ID");
+        }
+
+        int numStops = 0;
+        try {
+            numStops = Integer.parseInt(routeStopsMod.getText().trim());
+        } catch (Exception e) {
+            errors.add("Invalid Number of Stops");
+        }
+
+        String equipment = routeEquipmentMod.getText().trim();
+        if (equipment.equals("")) {
+            errors.add("Invalid Equipment Name");
+        }
+
+        boolean codeshare = false;
+        if (routeCodeShareMod.isSelected()) {
+            codeshare = true;
+        }
+
+        if (errors.size() == 0) {
+            Route newRoute = new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
+            currentRecord.modifyRoute(route, newRoute);
+            modifyRoutePane.setVisible(false);
+            modifyRouteWindowButton.setVisible(false);
+            routeSplitPane.setVisible(true);
+            routeList.setVisible(true);
+            displayAllRoutes();
+        } else {
+            DialogBoxes.newDataError(errors);
+        }
     }
 
     @FXML
     public void modifyAirportWindowButton(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../Modify_Airport_Screen.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root, 750, 500));
-        stage.show();
+        Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
+        airportSplitPane.setVisible(false);
+        airportList.setVisible(false);
+        modifyAirportLabel.setText("Modify Airport (ID: " + airport.getId() + ")");
+        airportNameMod.setText(airport.getName());
+        airportCityMod.setText(airport.getCity());
+        airportCountryMod.setText(airport.getCountry());
+        airportIATAMod.setText(airport.getIata());
+        airportICAOMod.setText(airport.getIcao());
+        airportTypeMod.setText(airport.getType());
+        airportSourceMod.setText(airport.getSource());
+        airportTimezoneStringMod.setText(airport.getTimezoneString());
+        airportTimezoneMod.setText(String.valueOf(airport.getTimezone()));
+        airportDSTMod.setText(airport.getDst());
+        airportLatitudeMod.setText(String.valueOf(airport.getLatitude()));
+        airportLongitudeMod.setText(String.valueOf(airport.getLongitude()));
+        airportAltitudeMod.setText(String.valueOf(airport.getAltitude()));
+        modifyAirportPane.setVisible(true);
+    }
+
+    @FXML
+    public void deleteAirportButton(ActionEvent event) throws IOException {
+        Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
+        currentRecord.removeAirports(airport);
+        modifyAirportPane.setVisible(false);
+        modifyAirportWindowButton.setVisible(false);
+        airportSplitPane.setVisible(true);
+        airportList.setVisible(true);
+        displayAllAirports();
+        additionalAirportInfo();
+    }
+
+    @FXML
+    public void modifyAirportButton(ActionEvent event) throws IOException {
+        ArrayList<String> errors = new ArrayList<>();
+        Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
+
+        int id = airport.getId();
+
+        String name = airportNameMod.getText().trim();
+        if (name.equals("")) {
+            errors.add("Invalid Airport Name");
+        }
+
+        String city = airportCityMod.getText().trim();
+        if (city.equals("")) {
+            errors.add("Invalid City Name");
+        }
+
+        String country = airportCountryMod.getText().trim();
+        if (country.equals("")) {
+            errors.add("Invalid Country Name");
+        }
+
+        String iata = airportIATAMod.getText().trim();
+        if (iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
+            errors.add("Invalid IATA Code");
+        }
+
+        String icao = airportICAOMod.getText().trim();
+        if (iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
+            errors.add("Invalid ICAO Code");
+        }
+
+        double latitude = 0;
+        try {
+            latitude = Double.parseDouble(airportLatitudeMod.getText().trim());
+            if (latitude < -90 || latitude > 90) {
+                errors.add("Invalid Latitude (Must be between -90 and +90)");
+            }
+        } catch (Exception e) {
+            errors.add("Invalid Latitude");
+        }
+
+        double longitude = 0;
+        try {
+            longitude = Double.parseDouble(airportLongitudeMod.getText().trim());
+            if (longitude < -180 || longitude > 180) {
+                errors.add("Invalid Longitude (Must be between -180 and +180)");
+            }
+        } catch (Exception e) {
+            errors.add("Invalid Longitude");
+        }
+
+        int altitude = 0;
+        try {
+            altitude = Integer.parseInt(airportAltitudeMod.getText().trim());
+        } catch (Exception e) {
+            errors.add("Invalid Altitude");
+        }
+
+        double timezone = 0;
+        try {
+            timezone = Double.parseDouble(airportTimezoneMod.getText().trim());
+            if (timezone < -5 || timezone > 25) {
+                errors.add("Invalid Timezone Number(Must be between -5 and +25)");
+            }
+        } catch (Exception e) {
+            errors.add("Invalid Timezone Number");
+        }
+
+        String dst = airportDSTMod.getText().trim();
+        if (dst.equals("")) {
+            errors.add("Invalid DST");
+        }
+
+        String timezoneString = airportTimezoneStringMod.getText().trim();
+        if (dst.equals("")) {
+            errors.add("Invalid Timezone Name");
+        }
+
+        String type = airportTypeMod.getText().trim();
+        if (type.equals("")) {
+            type = "Unknown";
+        }
+
+        String source = airportSourceMod.getText().trim();
+        if (source.equals("")) {
+            source = "Unknown";
+        }
+
+        int numRoutesSource = 0;
+        int numRoutesDest = 0;
+        int risk = 0;
+
+        if (errors.size() == 0) {
+            Airport newAirport = new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
+            currentRecord.modifyAirport(airport, newAirport);
+            modifyAirportPane.setVisible(false);
+            modifyAirportWindowButton.setVisible(false);
+            airportSplitPane.setVisible(true);
+            airportList.setVisible(true);
+            displayAllAirlines();
+            additionalAirlineInfo();
+        } else {
+            DialogBoxes.newDataError(errors);
+        }
     }
 }
