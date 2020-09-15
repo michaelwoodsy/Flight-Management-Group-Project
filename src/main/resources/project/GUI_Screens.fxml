@@ -295,6 +295,16 @@
                   </AnchorPane>
                </content>
             </Tab>
+            <Tab fx:id="flight_tab" text="Flights">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ListView fx:id="flightList" layoutX="14.0" layoutY="9.0" onMouseClicked="#additionalAirportInfo" prefHeight="450.0" prefWidth="500.0" />
+                        <Button layoutX="571.0" layoutY="58.0" mnemonicParsing="false" onAction="#displayAllFlights" text="SHOW_ALL_FLIGHTS" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
             <Tab fx:id="map_tab" text="Map">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">

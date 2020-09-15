@@ -34,6 +34,8 @@ public class GUIController implements Initializable {
     @FXML
     private ListView routeList;
     @FXML
+    private ListView flightList;
+    @FXML
     private ListView airlineDetailList;
     @FXML
     private ListView airportDetailList;
@@ -571,10 +573,7 @@ public class GUIController implements Initializable {
 
                     Flight newFlight = flightLoad.loadFlightFile(file.getAbsolutePath());
                     currentRecord.addFlights(newFlight);
-                    Parent root = FXMLLoader.load(getClass().getResource("../Flight_Screen.fxml"));
-                    Stage stage = new Stage();
-                    stage.setScene(new Scene(root, 750, 500));
-                    stage.show();
+                    hideAllTables();
                 }
             }
         }
@@ -860,6 +859,7 @@ public class GUIController implements Initializable {
         routeList.setItems(observableArrayList());
         airlineList.setItems(observableArrayList());
         airportList.setItems(observableArrayList());
+        flightList.setItems(observableArrayList());
         airportDetailList.setItems(observableArrayList());
         airlineDetailList.setItems(observableArrayList());
         routeDetailList.setItems(observableArrayList());
@@ -880,6 +880,10 @@ public class GUIController implements Initializable {
         routeDirectBox.setSelected(true);
         routeIndirectBox.setSelected(true);
         defaultRouteList = routeList.getItems();
+    }
+
+    public void displayAllFlights() {
+        flightList.setItems(observableArrayList(currentRecord.getFlightList()));
     }
 
     @FXML
