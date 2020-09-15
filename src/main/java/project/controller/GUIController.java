@@ -294,6 +294,7 @@ public class GUIController implements Initializable {
         routeSearchBy.getSelectionModel().selectFirst();
         airportSearchBy.getSelectionModel().selectFirst();
         airlineSearchBy.getSelectionModel().selectFirst();
+        DialogBoxes.welcomeBox();
     }
 
     @FXML

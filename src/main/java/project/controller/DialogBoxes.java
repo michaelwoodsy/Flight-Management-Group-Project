@@ -89,4 +89,24 @@ public class DialogBoxes {
         alert.setTitle("AIRPORT MISSING ROUTES");
         alert.showAndWait();
     }
+
+    /**
+     * A dialog box that displays on GUI bootup, to inform users that our calculations are approximate only.
+     */
+    public static void welcomeBox() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        String headerText = "Welcome to PlaneSonar25! Thank you for using our app.";
+        String bodyText = "Our app handles some sensitive information surrounding COVID infection rates, and the risks that" +
+                " a country's airport poses to your health. As such, we see it as our duty to notify you that these risks are calculated " +
+                "using the WHO's COVID case data for each country, and that these risks are purely approximations, and should not " +
+                "be used to fully inform your chances of infection in a country. Our risk matrix for countries is as follows:\n" +
+                "Extremely Low: Less than 0.1% of the population have cases\nLow: Less than 0.5% of the population have cases\n " +
+                "Medium: Less than 1% of the population have cases\nHigh: Less than 5% of the population have cases\n" +
+                "Extreme: More than 5% of the population have cases\nRemember to social distance when you can, and stay safe.";
+        alert.setTitle("WELCOME");
+        alert.setHeaderText(headerText);
+        alert.setContentText(bodyText);
+        alert.showAndWait();
+    }
 }
