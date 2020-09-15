@@ -79,7 +79,10 @@ public class GUIController implements Initializable {
     private CheckBox extraInfoBox;
 
     @FXML
-    private WebView webView;
+    private WebView OpenFlightsWebView;
+
+    @FXML
+    private WebView CovidDataWebView;
 
     @FXML
     private WebView mapView;
@@ -281,8 +284,11 @@ public class GUIController implements Initializable {
 
 
 
-        WebEngine engine = webView.getEngine();
-        engine.load("https://openflights.org/data.html");
+        WebEngine OpenFlightsWebEngine = OpenFlightsWebView.getEngine();
+        OpenFlightsWebEngine.load("https://openflights.org/data.html");
+
+        WebEngine CovidWebEngine = CovidDataWebView.getEngine();
+        CovidWebEngine.load("https://ourworldindata.org/coronavirus-source-data");
 
         ObservableList<String> airlineSearchOptions = observableArrayList("Country", "Name", "Alias", "Callsign", "IATA", "ICAO");
         airlineSearchBy.setItems(airlineSearchOptions);
