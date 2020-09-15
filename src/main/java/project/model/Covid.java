@@ -63,10 +63,10 @@ public class Covid {
             return "Medium";
         }
         else if (percentage <= 5){
-            return "High Risk";
+            return "High";
         }
         else{
-            return "Extreme risk";
+            return "Extreme";
         }
     }
 

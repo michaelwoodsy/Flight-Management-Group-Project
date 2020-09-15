@@ -14,61 +14,74 @@ public class AirportLoader {
      */
     public Airport loadAirport(String[] airportData) {
 
+        int numUnknown = 0;
+
         int id;
         try {
             id = Integer.parseInt(airportData[0]);
         } catch (Exception e) {
             id = -1;
+            numUnknown += 1;
         }
 
         String name;
         try {
             name = airportData[1].replaceAll("\"", "").replace("\\\\", "");
             if (name.equals("\\N") || name.equals("")) {
-                name = null;
+                name = "Unknown";
+                numUnknown += 3;
             }
         } catch (Exception e) {
-            name = null;
+            name = "Unknown";
+            numUnknown += 3;
         }
 
         String city;
         try {
             city = airportData[2].replaceAll("\"", "").replace("\\\\", "");
             if (city.equals("\\N") || city.equals("")) {
-                city = null;
+                city = "Unknown";
+                numUnknown += 3;
             }
         } catch (Exception e) {
-            city = null;
+            city = "Unknown";
+            numUnknown += 3;
         }
 
         String country;
         try {
             country = airportData[3].replaceAll("\"", "").replace("\\\\", "");
             if (country.equals("\\N") || country.equals("")) {
-                country = null;
+                country = "Unknown";
+                numUnknown += 3;
             }
         } catch (Exception e) {
-            country = null;
+            country = "Unknown";
+            numUnknown += 3;
         }
 
         String iata;
         try {
             iata = airportData[4].replaceAll("\"", "").replace("\\\\", "");
             if (iata.equals("\\N") || iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
-                iata = null;
+                iata = "Unknown";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            iata = null;
+            iata = "Unknown";
+            numUnknown += 1;
         }
 
         String icao;
         try {
             icao = airportData[5].replaceAll("\"", "").replace("\\\\", "");
             if (icao.equals("\\N") || icao.equals("") || !icao.matches("[a-zA-Z0-9]*")) {
-                icao = null;
+                icao = "Unknown";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            icao = null;
+            icao = "Unknown";
+            numUnknown += 1;
         }
 
         double latitude;
@@ -76,6 +89,7 @@ public class AirportLoader {
             latitude = Double.parseDouble(airportData[6]);
         } catch (Exception e) {
             latitude = 360; // Latitudes can't be this big, used for error catching when calculating distances.
+            numUnknown += 1;
         }
 
         double longitude;
@@ -83,6 +97,7 @@ public class AirportLoader {
             longitude = Double.parseDouble(airportData[7]);
         } catch (Exception e) {
             longitude = 360; // Longitudes can't be this big, used for error catching when calculating distances.
+            numUnknown += 1;
         }
 
         int altitude;
@@ -90,6 +105,7 @@ public class AirportLoader {
             altitude = Integer.parseInt(airportData[8]);
         } catch (Exception e) {
             altitude = -1;
+            numUnknown += 1;
         }
 
         double timezone;
@@ -97,53 +113,67 @@ public class AirportLoader {
             timezone = Double.parseDouble(airportData[9]);
         } catch (Exception e) {
             timezone = 25; // Timezones can't be this far ahead, used for error catching.
+            numUnknown += 1;
         }
 
         String dst;
         try {
             dst = airportData[10].replaceAll("\"", "").replace("\\\\", "");
             if (dst.equals("\\N") || dst.equals("")) {
-                dst = null;
+                dst = "Unknown";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            dst = null;
+            dst = "Unknown";
+            numUnknown += 1;
         }
 
         String timezoneString;
         try {
             timezoneString = airportData[11].replaceAll("\"", "").replace("\\\\", "");
             if (timezoneString.equals("\\N") || timezoneString.equals("")) {
-                timezoneString = null;
+                timezoneString = "Unknown";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            timezoneString = null;
+            timezoneString = "Unknown";
+            numUnknown += 1;
         }
 
         String type;
         try {
             type = airportData[12].replaceAll("\"", "").replace("\\\\", "");
             if (type.equals("\\N") || type.equals("")) {
-                type = null;
+                type = "Unknown";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            type = null;
+            type = "Unknown";
+            numUnknown += 1;
         }
 
         String source;
         try {
             source = airportData[13].replaceAll("\"", "").replace("\\\\", "");
             if (source.equals("\\N") || source.equals("")) {
-                source = null;
+                source = "Unknown";
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            source = null;
+            source = "Unknown";
+            numUnknown += 1;
         }
 
         int numRoutesSource = 0; // Placeholder, is altered through another function in Record (needs list routes to work).
         int numRoutesDest = 0; // Same as above.
-        int risk = 0; // Placeholder until we decide how we're doing the covid stuff.
+        int risk = 0; //Generated within the airport class itself, using COVID statistics
 
-        return new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
+        //If there are too many errors, don't add the airport to the file
+        if (numUnknown < 9) {
+            return new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
+        } else {
+            return null;
+        }
     }
     /**
      * Checks if loaded airport file is right format.
@@ -183,7 +213,11 @@ public class AirportLoader {
             } else {
                 String[] data = row.split(",(?! )");
                 AirportLoader airportLoad = new AirportLoader();
-                airportList.add(airportLoad.loadAirport(data));
+                Airport airport = airportLoad.loadAirport(data);
+                //Only add the airport if enough attributes are present
+                if (airport != null) {
+                    airportList.add(airport);
+                }
             }
         }
         dataReader.close();

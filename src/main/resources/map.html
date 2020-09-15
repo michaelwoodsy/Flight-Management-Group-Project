@@ -14,28 +14,73 @@
             height: 100%;
         }
     </style>
+
 </head>
 <body>
 <div id="map"></div>
 <script>
     var map;
+    var dest1 = [-43.4876, 172.5374]
+    var dest2 = [-37.0082, 174.7850]
+
     var marker1;
     var marker2;
     var path;
 
+    var marker_icon = 'https://maps.google.com/mapfiles/kml/pal2/icon56.png'
 
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: -43.5225, lng:  172.5794},
-            zoom: 15
+            center: {lat: dest1[0], lng:  dest1[1]},
+            zoom: 5
         });
 
-        new google.maps.Marker({
-            position: {lat: -43.5225, lng:  172.5794},
+
+        displayRoute(dest1, dest2);
+    }
+
+    function displayRoute(dest1, dest2) {
+        marker1 = new google.maps.Marker({
+            position: {lat: dest1[0], lng:  dest1[1]},
+            icon: marker_icon,
             map: map,
-            title: '\u0048\u0061\u0072\u0061\u006d\u0062\u0065'
+            title: 'Christchurch  International Airport'
         });
+
+        marker2 = new google.maps.Marker({
+            position: {lat: dest2[0], lng:  dest2[1]},
+            map: map,
+            title: 'Auckland  International Airport',
+            icon: marker_icon
+
+        });
+
+        var flightPlanCoordinates = [
+            {lat: dest1[0], lng: dest1[1]},
+            {lat: dest2[0], lng: dest2[1]}
+        ];
+
+        var flightPath = new google.maps.Polyline({
+            path: flightPlanCoordinates,
+            geodesic: true,
+            strokeColor: 'Blue',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+        });
+
+        flightPath.setMap(map);
+        repositionMap(flightPath);
+    }
+
+    function repositionMap(flightPath) {
+    <!-- automatically scale the map between the two points -->
+        var bounds = new google.maps.LatLngBounds();
+
+        bounds.extend(marker1.position);
+        bounds.extend(marker2.position);
+
+        map.fitBounds(bounds);
     }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCnLNKAJheX6CeDKX7tqtTtSBpcpGcRDBg&callback=initMap"

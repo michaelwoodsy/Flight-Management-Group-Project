@@ -36,20 +36,6 @@ public class Record {
     }
 
     /**
-     * Filters airports by country entered. Returns a new list of airports meeting this criteria.
-     */
-    public ArrayList<Airport> filterAirports(String keyWord) {
-        ArrayList<Airport> filteredAirports = new ArrayList<Airport>();
-
-        for (Airport airport: airportList) {
-            if (airport.getCountry().toUpperCase().contains(keyWord.toUpperCase())) {
-                filteredAirports.add(airport);
-            }
-        }
-        return filteredAirports;
-    }
-
-    /**
      * Filters airlines by whether they're active or not. Returns a new list of airlines meeting this criteria.
      */
     public ArrayList<Airline> filterAirlines(Boolean active, List<Airline> airlineList) {
@@ -60,50 +46,6 @@ public class Record {
             }
         }
         return filteredAirlines;
-    }
-
-    /**
-     * Filters airlines by country entered. Returns a new list of airlines meeting this criteria.
-     */
-    public ArrayList<Airline> filterAirlinesCountry(String keyWord) {
-        ArrayList<Airline> filteredAirlines = new ArrayList<Airline>();
-
-        for (Airline airline: airlineList) {
-            if (airline.getCountry().toUpperCase().contains(keyWord.toUpperCase())) {
-                filteredAirlines.add(airline);
-            }
-        }
-        return filteredAirlines;
-    }
-
-    /**
-     * Filters routes by source airport. Returns a new list of routes meeting this criteria.
-     * Needs changing from sourceAirport to country. Perhaps countries can be mapped to source airports?
-     */
-    public ArrayList<Route> filterRoutesDeparture(String keyWord) {
-        ArrayList<Route> filteredRoutes = new ArrayList<Route>();
-
-        for (Route route: routeList) {
-            if (route.getSourceAirport().toUpperCase().contains(keyWord.toUpperCase())) {
-                filteredRoutes.add(route);
-            }
-        }
-        return filteredRoutes;
-    }
-
-    /**
-     * Filters routes by destination airport. Returns a new list of routes meeting this criteria.
-     * Needs changing from destAirport to country. Perhaps countries can be mapped to destination airports?
-     */
-    public ArrayList<Route> filterRoutesDestination(String keyWord) {
-        ArrayList<Route> filteredRoutes = new ArrayList<Route>();
-
-        for (Route route: routeList) {
-            if (route.getDestAirport().toUpperCase().contains(keyWord.toUpperCase())) {
-                filteredRoutes.add(route);
-            }
-        }
-        return filteredRoutes;
     }
 
     /**
@@ -128,22 +70,6 @@ public class Record {
     }
 
     /**
-     * Filters routes by their flight equipment. Returns a new list of routes meeting this criteria.
-     */
-    public ArrayList<Route> filterRoutesEquipment(String keyWord) {
-        ArrayList<Route> filteredRoutes = new ArrayList<Route>();
-
-        for (Route route: routeList) {
-            if (route.getEquipment() == null) {
-                continue;
-            } else if (route.getEquipment().toUpperCase().contains(keyWord.toUpperCase())) {
-                filteredRoutes.add(route);
-            }
-        }
-        return filteredRoutes;
-    }
-
-    /**
      * Ranks airports based on the number of routes they have.
      * Can be either ascending or descending order depending on the reverse parameter.
      * Returns new, sorted list of airports (doesn't override original airportList).
@@ -158,25 +84,6 @@ public class Record {
         return rankedAirports;
     }
 
-    /**
-     * Search by Keyword. Might need changing...
-     * To search airports, input a key word(string)
-     * Searches through list of Airports and checks whether it contains the key word
-     * e.g. keyWord = "land", results = "Zealand", "orLANDdo"...
-     *
-     * @param keyWord The key word(string) to be searched
-     * @return searchResult, a list of Airport containing key word in Airport name
-     */
-    public ArrayList<Airport> searchAirports(String keyWord) {
-        ArrayList<Airport> searchResult = new ArrayList<Airport>();
-
-        for (Airport airport: airportList) {
-            if (airport.getName().toUpperCase().contains(keyWord.toUpperCase())) {
-                searchResult.add(airport);
-            }
-        }
-        return searchResult;
-    }
 
     /**
      * Finds airports where the value of the airport's 'attribute' matches 'keyword'
@@ -196,10 +103,9 @@ public class Record {
                 airportMatches = airport.getCity().toLowerCase().contains(keyword.toLowerCase());
             } else if (attribute.equals("total # routes")) {
                 airportMatches = (Integer.toString(airport.getTotalRoutes()).equals(keyword));
-            } else if (attribute.equals("iata")) {
-                System.out.println(airport.getIata());
+            } else if (attribute.equals("iata") && !(airport.getIata() == null)) {
                 airportMatches = airport.getIata().toLowerCase().contains(keyword.toLowerCase());
-            } else if (attribute.equals("icao")) {
+            } else if (attribute.equals("icao") && !(airport.getIcao() == null)) {
                 airportMatches = airport.getIcao().toLowerCase().contains(keyword.toLowerCase());
             } else if (attribute.equals("timezone")) {
                 airportMatches = airport.getTimezoneString().equals(keyword);
@@ -223,9 +129,9 @@ public class Record {
        for (Airline airline: airlineList) {
            boolean airlineMatches = false;
            if (attribute.equals("name")) {
-               airlineMatches = airline.getName().toLowerCase().contains(keyword.toUpperCase());
+               airlineMatches = airline.getName().toLowerCase().contains(keyword.toLowerCase());
            } else if (attribute.equals("alias")) {
-               airlineMatches = airline.getAlias().toLowerCase().contains(keyword.toUpperCase());
+               airlineMatches = airline.getAlias().toLowerCase().contains(keyword.toLowerCase());
            } else if (attribute.equals("iata")) {
                airlineMatches = airline.getIata().toLowerCase().contains(keyword);
            } else if (attribute.equals("icao")) {
@@ -314,7 +220,7 @@ public class Record {
      * @return The COVID object that contains the stats of the requested country
      */
     public static Covid searchCovid(String country) throws NoSuchFieldException {
-        if (country == null) {
+        if (country == null || country.toLowerCase().equals("unknown country")) {
             return new Covid(null, null, 0, 0, 0 );
         }
         if (covidDict.get(country) != null) {
