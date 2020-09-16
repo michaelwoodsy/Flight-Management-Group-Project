@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -14,13 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="GUI Controller Class modifying and deleting method for airline (pane) version">
-      <change beforePath="$PROJECT_DIR$/data/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/data/database.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/project/CovidTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/CovidTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/project/LoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/LoaderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Data.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Record.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Covid.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Covid.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/CovidLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/CovidLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Loader.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -188,7 +182,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="false" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
