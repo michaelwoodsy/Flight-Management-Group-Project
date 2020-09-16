@@ -152,6 +152,8 @@ public class GUIController implements Initializable {
     @FXML
     private ChoiceBox recordSelectRoute;
     @FXML
+    private ChoiceBox recordSelectFlight;
+    @FXML
     private Button modifyRouteWindowButton;
     @FXML
     private Pane modifyRoutePane;
@@ -272,6 +274,8 @@ public class GUIController implements Initializable {
         recordSelectAirline.getSelectionModel().selectFirst();
         recordSelectRoute.setItems(observableArrayList(currentRecord.getName()));
         recordSelectRoute.getSelectionModel().selectFirst();
+        recordSelectFlight.setItems(observableArrayList(currentRecord.getName()));
+        recordSelectFlight.getSelectionModel().selectFirst();
 
         recordDropdown.setItems(observableArrayList(currentRecord.getName(), "New Record"));
         recordDropdown.getSelectionModel().selectFirst();
@@ -317,6 +321,7 @@ public class GUIController implements Initializable {
         }
         recordSelectAirport.getSelectionModel().select(index);
         recordSelectAirline.getSelectionModel().select(index);
+        recordSelectFlight.getSelectionModel().select(index);
 
         currentRecord = recordList.get(index);
     }
@@ -336,6 +341,7 @@ public class GUIController implements Initializable {
         }
         recordSelectRoute.getSelectionModel().select(index);
         recordSelectAirline.getSelectionModel().select(index);
+        recordSelectFlight.getSelectionModel().select(index);
 
         currentRecord = recordList.get(index);
     }
@@ -355,6 +361,27 @@ public class GUIController implements Initializable {
         }
         recordSelectAirport.getSelectionModel().select(index);
         recordSelectRoute.getSelectionModel().select(index);
+        recordSelectFlight.getSelectionModel().select(index);
+
+        currentRecord = recordList.get(index);
+    }
+
+    /**
+     * Finds the index of the selected flight in the recordList and then selects
+     * this given flight.
+     */
+    @FXML
+    public void flightSelect() {
+        int index = 0;
+        for (Record record: recordList) {
+            if (recordSelectFlight.getValue() == record.getName()) {
+                index = recordList.indexOf(record);
+                break;
+            }
+        }
+        recordSelectAirport.getSelectionModel().select(index);
+        recordSelectRoute.getSelectionModel().select(index);
+        recordSelectAirline.getSelectionModel().select(index);
 
         currentRecord = recordList.get(index);
     }
@@ -525,6 +552,7 @@ public class GUIController implements Initializable {
             recordSelectAirport.getItems().add(currentRecord.getName());
             recordSelectAirline.getItems().add(currentRecord.getName());
             recordSelectRoute.getItems().add(currentRecord.getName());
+            recordSelectFlight.getItems().add(currentRecord.getName());
             ArrayList<String> recordNames = new ArrayList<String>();
             for (Record records: recordList) {
                 recordNames.add(records.getName());
@@ -535,6 +563,7 @@ public class GUIController implements Initializable {
             recordSelectAirline.getSelectionModel().select(recordList.size() - 1);
             recordSelectAirport.getSelectionModel().select(recordList.size() - 1);
             recordSelectRoute.getSelectionModel().select(recordList.size() - 1);
+            recordSelectFlight.getSelectionModel().select(recordList.size() - 1);
             recordDropdown.getSelectionModel().select(recordList.size() - 1);
 
             return;
@@ -551,6 +580,7 @@ public class GUIController implements Initializable {
         recordSelectAirline.getSelectionModel().select(index);
         recordSelectAirport.getSelectionModel().select(index);
         recordSelectRoute.getSelectionModel().select(index);
+        recordSelectFlight.getSelectionModel().select(index);
         recordDropdown.getSelectionModel().select(index);
 
         currentRecord = recordList.get(index);
@@ -972,6 +1002,7 @@ public class GUIController implements Initializable {
      */
     public void displayAllFlights() {
         flightList.setItems(observableArrayList(currentRecord.getFlightList()));
+        recordSelectFlight.getSelectionModel().select(currentRecord.getName());
     }
 
     /**
