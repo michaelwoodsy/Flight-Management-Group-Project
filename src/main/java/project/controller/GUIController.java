@@ -254,8 +254,6 @@ public class GUIController implements Initializable {
     private List<Route> defaultRouteList = new ArrayList<>();
     private Airport lastSelectedAirport = null;
 
-    WebEngine mapEngine;
-
     /**
      * Stuff to do on setup
      */
