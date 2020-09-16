@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -12,7 +11,6 @@
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -348,7 +346,7 @@
                                     <Font name="System Bold" size="25.0" />
                                  </font>
                               </Label>
-                              <CheckBox fx:id="AdditionalInfoCheckBox" layoutX="34.0" layoutY="57.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="155.0" text="Additional information" />
+                              <CheckBox fx:id="extraInfoBox" layoutX="34.0" layoutY="57.0" mnemonicParsing="false" onAction="#setOptedIn" prefHeight="40.0" prefWidth="155.0" text="Additional information" />
                               <Button fx:id="defaultsButton" layoutX="54.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Restore Defaults" />
                            </children>
                         </Pane>
@@ -586,11 +584,5 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
-      <Accordion visible="false">
-        <panes>
-          <TitledPane animated="false" text="untitled 1" />
-          <TitledPane animated="false" text="untitled 2" />
-        </panes>
-      </Accordion>
    </children>
 </AnchorPane>
