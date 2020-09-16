@@ -668,11 +668,20 @@ public class GUIController implements Initializable {
         String iata = airportIATA.getText().trim();
         if (iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
             errors.add("Invalid IATA Code");
+        } else if (iata.length() != 3) {
+            errors.add("Airport IATA codes must be 3 letters long");
+        } else if (currentRecord.searchAirports(iata, "iata").size() != 0) {
+            //Check if any airports in the current record have the same
+            errors.add("New IATA Code matches an existing airport");
         }
 
         String icao = airportICAO.getText().trim();
-        if (iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
+        if (icao.equals("") || !icao.matches("[a-zA-Z0-9]*")) {
             errors.add("Invalid ICAO Code");
+        } else if (icao.length() != 4) {
+            errors.add("Airport ICAO codes must be 4 letters long");
+        } else if (currentRecord.searchAirports(icao, "icao").size() != 0) {
+            errors.add("New ICAO Code matches an existing airport");
         }
 
         double latitude = 0;
@@ -796,14 +805,20 @@ public class GUIController implements Initializable {
             callSign = "Unknown";
         }
 
+        //As one IATA airline code can be assigned to multiple airlines, uniqueness does not need to be verified here
         String iata = airlineIATA.getText().trim();
         if (iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
             errors.add("Invalid IATA Code");
         }
 
+        //Each ICAO code is unique to an airline, hence uniqueness needs to be verified here
         String icao = airlineICAO.getText().trim();
         if (icao.equals("") || !icao.matches("[a-zA-Z0-9]*")) {
             errors.add("Invalid ICAO Code");
+        } else if (icao.length() != 3) {
+            errors.add("Airline ICAO codes must be 3 letters long");
+        } else if (currentRecord.searchAirlines(icao.toLowerCase(), "icao").size() != 0) {
+            errors.add("New ICAO code matches an existing airline");
         }
 
         if (errors.size() == 0) {
