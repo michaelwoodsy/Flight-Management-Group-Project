@@ -7,8 +7,6 @@ import java.util.Hashtable;
 
 public class CovidLoader {
 
-
-
     public Hashtable<String, Covid> loadCovidFile(String path) throws IOException {
 
         Hashtable<String, Covid> covidDict = new Hashtable<>();
