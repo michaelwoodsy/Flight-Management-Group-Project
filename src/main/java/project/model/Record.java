@@ -103,9 +103,9 @@ public class Record {
                 airportMatches = airport.getCity().toLowerCase().contains(keyword.toLowerCase());
             } else if (attribute.equals("total # routes")) {
                 airportMatches = (Integer.toString(airport.getTotalRoutes()).equals(keyword));
-            } else if (attribute.equals("iata") && !(airport.getIata() == null)) {
+            } else if (attribute.equals("iata")) {
                 airportMatches = airport.getIata().toLowerCase().contains(keyword.toLowerCase());
-            } else if (attribute.equals("icao") && !(airport.getIcao() == null)) {
+            } else if (attribute.equals("icao")) {
                 airportMatches = airport.getIcao().toLowerCase().contains(keyword.toLowerCase());
             } else if (attribute.equals("timezone")) {
                 airportMatches = airport.getTimezoneString().equals(keyword);
@@ -220,7 +220,7 @@ public class Record {
      * @return The COVID object that contains the stats of the requested country
      */
     public static Covid searchCovid(String country) throws NoSuchFieldException {
-        if (country == null || country.toLowerCase().equals("unknown country")) {
+        if (country.toLowerCase().equals("unknown")) {
             return new Covid(null, null, 0, 0, 0 );
         }
         if (covidDict.get(country) != null) {

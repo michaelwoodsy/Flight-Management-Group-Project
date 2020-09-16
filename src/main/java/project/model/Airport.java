@@ -6,6 +6,7 @@ import java.util.Objects;
 public class Airport {
     private int id;
     private double risk;
+    private String riskString;
     private String name;
     private String city;
     private String country;
@@ -60,6 +61,8 @@ public class Airport {
     public double getRisk() {
         return risk;
     }
+
+    public String getRiskString() { return riskString; }
 
     public String getName() {
         return name;
@@ -326,6 +329,7 @@ public class Airport {
             Covid covidStats = Record.searchCovid(this.country);
             double riskDouble = covidStats.getRiskDouble();
             this.risk = riskDouble;
+            this.riskString = covidStats.getRiskString();
         } catch (NoSuchFieldException e) {
             this.risk = 0;
             numMissingCovid += 1;
