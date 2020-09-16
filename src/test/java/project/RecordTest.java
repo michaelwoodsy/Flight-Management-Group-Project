@@ -317,7 +317,8 @@ public class RecordTest {
 
     }
 
-    @Test
+    // Commented out as we won't be using this numRoutes function
+    /**
     public void setNumRoutesTest() {
 
         ArrayList<Airline> testAirlineList = new ArrayList<Airline>();
@@ -365,6 +366,7 @@ public class RecordTest {
         assertEquals(0, testRecord.rankAirports(true, testAirports).get(5).getTotalRoutes());
 
     }
+     */
 
     @Test
     public void searchFlightsTest() throws IOException {

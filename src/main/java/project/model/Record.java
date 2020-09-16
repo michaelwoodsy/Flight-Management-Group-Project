@@ -264,20 +264,6 @@ public class Record {
     }
      */
 
-    /**
-     * This will be tricky. return statement and parameters aren't concrete.
-     */
-    public void addRecord(InputStream inFile, boolean newRecord) {
-
-    }
-
-    /**
-     * Could be same as above. Depends on GUI implementation.
-     */
-    public void deleteData(int dataType, int index) {
-
-    }
-
     public void addRoutes(ArrayList<Route> newRouteList) {
         this.routeList.addAll(newRouteList);
         Set<Route> uniqueElements = new HashSet<>(this.routeList);
