@@ -10,10 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="GUI Controller Class modifying and deleting method for airline (pane) version">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/controller/DialogBoxes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/controller/DialogBoxes.java" afterDir="false" />
-    </list>
+    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Code cleanups" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -204,13 +201,6 @@
       <workItem from="1599645132833" duration="1118000" />
       <workItem from="1600054102886" duration="1479000" />
       <workItem from="1600132001134" duration="3022000" />
-    </task>
-    <task id="LOCAL-00012" summary="Airport loader and class and test fixes.">
-      <created>1597719769877</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1597719769877</updated>
     </task>
     <task id="LOCAL-00013" summary="Added individual loader class tests.">
       <created>1597809877034</created>
@@ -548,7 +538,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600169349817</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="Code cleanups">
+      <created>1600218729544</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1600218729544</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -580,7 +577,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Added more tests for empty strings in loadIndividualRouteTest" />
     <MESSAGE value="Added more extensive test for empty strings and invalid value type in loadIndividualAirlineTest" />
     <MESSAGE value="GUI additions, check controller class. most notably, initialise method for stuff on startup" />
     <MESSAGE value="Added all neccessary boxes to cover filtering and searching" />
@@ -605,7 +601,8 @@
     <MESSAGE value="Commented out .css file and removed unused xtml files" />
     <MESSAGE value="changed map layout, made map bigger and added a route and settings tab. also icons are now stored locally." />
     <MESSAGE value="MAPS api automatic scaling has been commented out (buggy in embedded map) manual scaling and position added (Place holder until bug fixed), map controls blocked" />
-    <option name="LAST_COMMIT_MESSAGE" value="MAPS api automatic scaling has been commented out (buggy in embedded map) manual scaling and position added (Place holder until bug fixed), map controls blocked" />
+    <MESSAGE value="Code cleanups" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code cleanups" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
@@ -732,10 +729,10 @@
     <state x="155" y="0" key="SettingsEditor/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597622967066" />
     <state x="166" y="12" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1595997449081" />
     <state x="233" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598425220256" />
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1600138387571">
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1600218745568">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1600138387571" />
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1600218745568" />
     <state x="312" y="160" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1598581356049" />
     <state x="338" y="208" key="Vcs.Push.Dialog.v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017372267" />
     <state x="390" y="203" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1599598633256" />
@@ -761,10 +758,10 @@
       <screen x="0" y="0" width="1280" height="688" />
     </state>
     <state x="0" y="0" width="587" height="688" key="find.popup/0.0.1280.688@0.0.1280.688" timestamp="1597793063974" />
-    <state x="243" y="301" key="git4idea.merge.GitPullDialog" timestamp="1599006705627">
+    <state x="243" y="301" key="git4idea.merge.GitPullDialog" timestamp="1600223025810">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="243" y="301" key="git4idea.merge.GitPullDialog/0.0.1368.872@0.0.1368.872" timestamp="1599006705627" />
+    <state x="243" y="301" key="git4idea.merge.GitPullDialog/0.0.1368.872@0.0.1368.872" timestamp="1600223025810" />
     <state x="137" y="9" key="new project wizard" timestamp="1599290359334">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

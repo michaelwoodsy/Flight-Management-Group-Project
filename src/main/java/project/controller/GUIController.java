@@ -266,7 +266,7 @@ public class GUIController implements Initializable {
         //Allows generation of a record from the database
         //Full implementation will come in Phase 3
         //currentRecord = Database.generateRecord();
-        currentRecord.setName("Record 1");
+        currentRecord = new Record("Record 1");
         recordList.add(currentRecord);
 
         recordSelectAirport.setItems(observableArrayList(currentRecord.getName()));
