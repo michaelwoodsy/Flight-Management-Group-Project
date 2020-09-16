@@ -98,43 +98,6 @@ public class Route {
         this.codeshare = codeshare;
     }
 
-    public void update(String airline, int id, String sourceAirport, int sourceID, String destAirport, int destID, int numStops, String equipment, boolean codeshare) {
-        if (!airline.equals(this.airline)) {
-            setAirline(airline);
-        }
-        if (id != this.id) {
-            setId(id);
-        }
-        if (!sourceAirport.equals(this.sourceAirport)) {
-            setSourceAirport(sourceAirport);
-        }
-
-        if (sourceID != this.sourceID) {
-            setSourceID(sourceID);
-        }
-
-        if (!destAirport.equals(this.destAirport)) {
-            setDestAirport(destAirport);
-        }
-
-        if (destID != this.destID) {
-            setDestID(destID);
-        }
-
-        if (numStops != this.numStops) {
-            setNumStops(numStops);
-        }
-
-        if (!equipment.equals(this.equipment)) {
-            setEquipment(equipment);
-        }
-
-        if (codeshare != this.codeshare) {
-            setCodeshare(codeshare);
-        }
-
-    }
-
     /**
      * Placeholder until we've decided what the format should be for routes.
      */

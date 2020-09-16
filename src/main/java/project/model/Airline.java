@@ -23,33 +23,6 @@ public class Airline {
         setIcao(icao);
     }
 
-    public void update(int id, String name, boolean active, String country, String alias, String callSign, String iata, String icao) {
-        if (id != this.id) {
-            setId(id);
-        }
-        if (!name.equals(this.name)) {
-            setName(name);
-        }
-        if (active != this.active) {
-            setActive(active);
-        }
-        if (!country.equals(this.country)) {
-            setCountry(country);
-        }
-        if (!alias.equals(this.alias)) {
-            setAlias(alias);
-        }
-        if (!callSign.equals(this.callSign)) {
-            setCallSign(callSign);
-        }
-        if (!iata.equals(this.iata)) {
-            setIata(iata);
-        }
-        if (!icao.equals(this.icao)) {
-            setIcao(icao);
-        }
-    }
-
     public void setId(int id) {
         this.id = id;
     }

@@ -126,13 +126,6 @@ public class Flight {
         }
     }
 
-    /**
-     * Placeholder function for update
-     */
-    public void update() {
-        risk = 0;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

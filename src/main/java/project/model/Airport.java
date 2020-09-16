@@ -223,58 +223,6 @@ public class Airport {
         return nameString + cityString + countryString;
     }
 
-    public void update(int id, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, int timezone, String dst, String timezoneString, String type, String source, int numRoutesSource, int numRoutesDest) {
-
-        if (id != this.id) {
-            setId(id);
-        }
-        if (!name.equals(this.name)) {
-            setName(name);
-        }
-        if (!city.equals(this.city)) {
-            setCity(city);
-        }
-        if (!country.equals(this.country)) {
-            setCountry(country);
-        }
-        if (!iata.equals(this.iata)) {
-            setIata(iata);
-        }
-        if (!icao.equals(this.icao)) {
-            setIcao(icao);
-        }
-        if (latitude != this.latitude) {
-            setLatitude(latitude);
-        }
-        if (longitude != this.longitude) {
-            setLongitude(longitude);
-        }
-        if (altitude != this.altitude) {
-            setAltitude(altitude);
-        }
-        if (timezone != this.timezone) {
-            setTimezone(timezone);
-        }
-        if (!dst.equals(this.dst)) {
-            setDst(dst);
-        }
-        if (!timezoneString.equals(this.timezoneString)) {
-            setTimezoneString(timezoneString);
-        }
-        if (!type.equals(this.type)) {
-            setType(type);
-        }
-        if (!source.equals(this.source)) {
-            setSource(source);
-        }
-        if (numRoutesSource != this.numRoutesSource) {
-            setNumRoutesSource(numRoutesSource);
-        }
-        if (numRoutesDest != this.numRoutesDest) {
-            setNumRoutesDest(numRoutesDest);
-        }
-    }
-
     public double distance(Airport destAirport) {
         double lat1 = this.latitude;
         double lat2 = destAirport.latitude;
