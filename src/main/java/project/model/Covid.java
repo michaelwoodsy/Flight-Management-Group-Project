@@ -5,6 +5,10 @@ import org.apache.commons.math3.util.Precision;
 import java.util.ArrayList;
 
 public class Covid {
+    /**
+     * Covid data initialisation with getters and setter methods.
+     * A covid risk function that determines countries risk e.g. Low, Medium, High
+     */
     private String location;
     private String date;
     private double total_cases_per_million;
