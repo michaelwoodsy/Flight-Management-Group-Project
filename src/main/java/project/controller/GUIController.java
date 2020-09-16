@@ -489,9 +489,10 @@ public class GUIController implements Initializable {
     }
 
     /**
-     * Filters the airline
-     * @param event
-     * @throws IOException
+     * Filters the airlines shown in the list view based on whether they are active or not
+     *
+     * @param event User selects whether the airlines should filter active or inactive flights.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
      */
     @FXML
     public void filterActiveAirlines(ActionEvent event) throws IOException {
@@ -514,10 +515,12 @@ public class GUIController implements Initializable {
     }
 
     /**
-     * Filters the route list view.
+     * Filters the route list view based on whether the routes are a direct flight or have
+     * multiple stops.
      *
-     * @param event
-     * @throws IOException
+     * @param event User selects whether the routes should filter direct routes or routes
+     *              with multiple stops
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
      */
     @FXML
     public void filterRouteStops(ActionEvent event) throws IOException {
@@ -962,6 +965,10 @@ public class GUIController implements Initializable {
 
     }
 
+    /**
+     * Refreshes all the lists by temporarily hiding them. Both the regular lists
+     * along with the lists displaying extra data are refreshed.
+     */
     public void hideAllTables() {
         routeList.setItems(observableArrayList());
         airlineList.setItems(observableArrayList());
