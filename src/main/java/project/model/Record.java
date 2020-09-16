@@ -191,12 +191,12 @@ public class Record {
      * ICAO code from that airport, and search the flightlist for flights matching this source/destination
      * ICAO. If none can be found, returns empty list. Print exception when this occurs.
      */
-    public ArrayList<Flight> searchFlights(boolean source, String keyWord) {
+    public ArrayList<Flight> searchFlights(boolean source, String keyword) {
 
         ArrayList<Flight> searchResult = new ArrayList<Flight>();
 
         for (Airport airport: airportList) {
-            if (airport.getName().toUpperCase().contains(keyWord.toUpperCase())) {
+            if (airport.getName().toUpperCase().contains(keyword.toUpperCase())) {
                 String icao = airport.getIcao();
                 for (Flight flight : flightList) {
                     if (source) { // Searching source
@@ -230,10 +230,12 @@ public class Record {
         }
     }
 
+    // Region commented out because these will be replaced soon.
     /**
+    /*
      * Iterates through the list of airports and list of routes and adds 1 to the numRoutesSource attribute
      * of each airport based on how many routes begin at that airport.
-     */
+
     public void setNumRoutesSource() {
         for (Airport airport : airportList) {
             String icao = airport.getIcao();
@@ -246,10 +248,9 @@ public class Record {
         }
     }
 
-    /**
+    /*
      * Iterates through the list of airports and list of routes and adds 1 to the numRoutesDest attribute
      * of each airport based on how many routes end at that airport.
-     */
     public void setNumRoutesDest() {
         for (Airport airport : airportList) {
             String icao = airport.getIcao();
@@ -261,6 +262,7 @@ public class Record {
             }
         }
     }
+     */
 
     /**
      * This will be tricky. return statement and parameters aren't concrete.

@@ -157,7 +157,6 @@ public class GUIController implements Initializable {
     private ChoiceBox recordSelectAirline;
     @FXML
     private ChoiceBox recordSelectRoute;
-
     @FXML
     private Button modifyRouteWindowButton;
     @FXML
@@ -205,7 +204,6 @@ public class GUIController implements Initializable {
     private CheckBox airlineActiveMod;
     @FXML
     private SplitPane airlineSplitPane;
-
     @FXML
     private SplitPane airportSplitPane;
     @FXML

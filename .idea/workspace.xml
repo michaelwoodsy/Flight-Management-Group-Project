@@ -19,6 +19,8 @@
       <change beforePath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/project/CovidTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/CovidTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/project/LoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/LoaderTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Data.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Record.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
