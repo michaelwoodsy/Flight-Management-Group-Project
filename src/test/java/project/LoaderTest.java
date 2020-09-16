@@ -14,7 +14,7 @@ public class LoaderTest {
     private final Loader loader = new Loader();
     private final RouteLoader routeLoad = new RouteLoader();
     private final CovidLoader covidLoad = new CovidLoader();
-    private final AirportLoader AirportLoad = new AirportLoader();
+    private final AirportLoader airportLoad = new AirportLoader();
     private final AirlineLoader airlineLoad = new AirlineLoader();
     private final FlightLoader flightLoad = new FlightLoader();
 
@@ -57,10 +57,14 @@ public class LoaderTest {
 
         String[] routeData4 = {"", "410", "", "2965", "", "2990", "Y", "0", ""};
         testRoute1 = routeLoad.loadRoute(routeData4);
-        assertEquals(testRoute1.getAirline(), null);
-        assertEquals(testRoute1.getSourceAirport(), null);
-        assertEquals(testRoute1.getDestAirport(), null);
-        assertEquals(testRoute1.getEquipment(), null);
+        assertEquals(testRoute1.getAirline(), "Unknown");
+        assertEquals(testRoute1.getSourceAirport(), "Unknown");
+        assertEquals(testRoute1.getDestAirport(), "Unknown");
+        assertEquals(testRoute1.getEquipment(), "Unknown");
+
+        String[] routeData5 = {"", "", "", "", "", "", "", "", ""};
+        testRoute1 = routeLoad.loadRoute(routeData5);
+        assertEquals(testRoute1, null);
     }
 
     @Test
@@ -96,13 +100,14 @@ public class LoaderTest {
 
         String[] airlineData4 = {"1", "", "", "", "", "", "", "Y"};
         testAirline1 = airlineLoad.loadAirline(airlineData4);
+        assertEquals(testAirline1, null);
 
-        assertEquals(testAirline1.getName(), null);
+        /*assertEquals(testAirline1.getName(), null);
         assertEquals(testAirline1.getAlias(), null);
         assertEquals(testAirline1.getIata(), null);
         assertEquals(testAirline1.getIcao(), null);
         assertEquals(testAirline1.getCallSign(), null);
-        assertEquals(testAirline1.getCountry(), null);
+        assertEquals(testAirline1.getCountry(), null);*/
 
     }
 
@@ -114,7 +119,7 @@ public class LoaderTest {
     public void loadIndividualAirportTest() {
 
         String[] airportData1 = {"1", "Goroka", "Goroka", "Papua New Guinea", "GKA", "AYGA", "-6.081689", "145.391881", "5282", "10", "U", "Pacific/Port_Moresby", "type", "source"};
-        Airport testAirport1 = AirportLoad.loadAirport(airportData1);
+        Airport testAirport1 = airportLoad.loadAirport(airportData1);
 
         assertEquals(testAirport1.getId(), 1);
         assertEquals(testAirport1.getName(), "Goroka");
@@ -135,7 +140,7 @@ public class LoaderTest {
         assertEquals(testAirport1.getTotalRoutes(), 0);
 
         String[] airportData2 = {"1a", "Goroka", "Goroka", "Papua New Guinea", "GKA", "AYGA", "-6.081689a", "145.391881a", "5282a", "10a", "U", "Pacific/Port_Moresby", "type", "source"};
-        testAirport1 = AirportLoad.loadAirport(airportData2);
+        testAirport1 = airportLoad.loadAirport(airportData2);
 
         assertEquals(testAirport1.getId(), -1);
         assertEquals(testAirport1.getLatitude(), 360, 0);
@@ -146,10 +151,11 @@ public class LoaderTest {
 
         // Code works but fails tests due to nullpointer in thanks to having no record in loadertest.
         // Tests worked before this addition and code works.
-        /*String[] airportData3 = {"", "", "", "", "", "", "", "", "", "", "", "", "", ""};
-        testAirport1 = loader.loadAirport(airportData3);
-        assertEquals(testAirport1.getId(), -1);
-        assertEquals(testAirport1.getName(), null);
+        String[] airportData3 = {"", "", "", "", "", "", "", "", "", "", "", "", "", ""};
+        testAirport1 = airportLoad.loadAirport(airportData3);
+        assertEquals(testAirport1, null);
+        /*.getId(), -1);
+        assertEquals(testAirport1.getName(), );
         assertEquals(testAirport1.getCity(), null);
         assertEquals(testAirport1.getCountry(), null);
         assertEquals(testAirport1.getIata(), null);

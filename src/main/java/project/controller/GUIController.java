@@ -263,7 +263,9 @@ public class GUIController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         recordList = new ArrayList<Record>();
-        currentRecord = Database.generateRecord();
+        //Allows generation of a record from the database
+        //Full implementation will come in Phase 3
+        //currentRecord = Database.generateRecord();
         currentRecord.setName("Record 1");
         recordList.add(currentRecord);
 
@@ -912,10 +914,13 @@ public class GUIController implements Initializable {
             String location = String.format("Location: %s, %s", airport.getCity(), airport.getCountry());
             String risk = String.format("COVID risk level: %s (%.2f%%)", airport.getRiskString(), airport.getRisk());
 
-            String numRoutes = ("A total of " + airport.getTotalRoutes() + " flight routes go through this airport");
-            if (airport.getTotalRoutes() < 1) {
-                DialogBoxes.noRoutes();
-            }
+            //INCLUDED WHEN NUMROUTES IMPLEMENTATION IS COMPLETE
+//            String numRoutes = ("A total of " + airport.getTotalRoutes() + " flight routes go through this airport");
+            //Displays a pop-up when an airport that gets clicked on has no routes
+            //Currently not active as each airport currently has 0 routes
+//            if (airport.getTotalRoutes() < 1) {
+//                DialogBoxes.noRoutes();
+//            }
 
             String timezoneNum;
             if (airport.getTimezone() == 25) {
@@ -937,7 +942,7 @@ public class GUIController implements Initializable {
             }
             lastSelectedAirport = airport;
 
-            airportDetailList.setItems(observableArrayList(name, location, risk, numRoutes, timezone, distanceString));
+            airportDetailList.setItems(observableArrayList(name, location, risk, timezone, distanceString));
             modifyAirportWindowButton.setVisible(true);
 
             if (optedIn) {
