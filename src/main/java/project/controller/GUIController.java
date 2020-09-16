@@ -910,7 +910,7 @@ public class GUIController implements Initializable {
 
             String name = String.format("Name: %s", airport.getName());
             String location = String.format("Location: %s, %s", airport.getCity(), airport.getCountry());
-            String risk = ("COVID risk level: " + airport.getRisk());
+            String risk = String.format("COVID risk level: %s (%.2f%%)", airport.getRiskString(), airport.getRisk());
 
             String numRoutes = ("A total of " + airport.getTotalRoutes() + " flight routes go through this airport");
             if (airport.getTotalRoutes() < 1) {
