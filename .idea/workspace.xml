@@ -13,9 +13,8 @@
     <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="MAPS api automatic scaling has been commented out (buggy in embedded map) manual scaling and position added (Place holder until bug fixed), map controls blocked">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/airportIcon.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/airportIcon.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/map.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Data.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Record.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
