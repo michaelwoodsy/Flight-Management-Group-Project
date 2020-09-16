@@ -27,13 +27,28 @@
     var marker2;
     var path;
 
-    var marker_icon = 'https://maps.google.com/mapfiles/kml/pal2/icon56.png'
+    var marker_icon = 'airportIcon.png';
+    marker_icon.width = '1px';
+
+    var flightPlanCoordinates = [
+            {lat: dest1[0], lng: dest1[1]},
+            {lat: dest2[0], lng: dest2[1]}
+        ];
+
 
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: dest1[0], lng:  dest1[1]},
-            zoom: 5
+<!-- had to manually enter half way because embedded map, automatic scaling and zoom is buggy      -->
+<!--            center: {lat: dest1[0], lng:  dest1[1]},-->
+            center:{lat: -39.980469, lng:173.806084},
+            zoom: 5.8,
+            zoomControl: false,
+            mapTypeControl: false,
+            scaleControl: false,
+            streetViewControl: false,
+            rotateControl: false,
+            fullscreenControl: false
         });
 
 
@@ -56,11 +71,6 @@
 
         });
 
-        var flightPlanCoordinates = [
-            {lat: dest1[0], lng: dest1[1]},
-            {lat: dest2[0], lng: dest2[1]}
-        ];
-
         var flightPath = new google.maps.Polyline({
             path: flightPlanCoordinates,
             geodesic: true,
@@ -70,11 +80,14 @@
         });
 
         flightPath.setMap(map);
-        repositionMap(flightPath);
+
+<!--  will fix automatic reposition-->
+<!--        repositionMap(flightPath);-->
     }
 
     function repositionMap(flightPath) {
     <!-- automatically scale the map between the two points -->
+<!--    DOESNT WORK WITH EMBEDDING MAP (Only stand alone)-->
         var bounds = new google.maps.LatLngBounds();
 
         bounds.extend(marker1.position);
