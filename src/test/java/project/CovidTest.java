@@ -16,8 +16,8 @@ public class CovidTest {
         assertEquals("Extremely Low", country1.getRiskString());
         assertEquals("Low", country2.getRiskString());
         assertEquals("Medium", country3.getRiskString());
-        assertEquals("High Risk", country4.getRiskString());
-        assertEquals("Extreme risk", country5.getRiskString());
+        assertEquals("High", country4.getRiskString());
+        assertEquals("Extreme", country5.getRiskString());
 
     }
 
