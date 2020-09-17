@@ -23,7 +23,7 @@ import java.util.*;
 import static javafx.collections.FXCollections.observableArrayList;
 
 /**
- * Class for working in while experimenting with GUI features
+ * Contains all functionality for the GUI screen.
  */
 public class GUIController implements Initializable {
 
@@ -77,16 +77,12 @@ public class GUIController implements Initializable {
     private CheckBox routeIndirectBox;
     @FXML
     private CheckBox extraInfoBox;
-
     @FXML
     private WebView OpenFlightsWebView;
-
     @FXML
     private WebView CovidDataWebView;
-
     @FXML
     private WebView mapView;
-
     @FXML
     private TextField airportID;
     @FXML
@@ -115,7 +111,6 @@ public class GUIController implements Initializable {
     private TextField airportLongitude;
     @FXML
     private TextField airportAltitude;
-
     @FXML
     private TextField airlineID;
     @FXML
@@ -132,7 +127,6 @@ public class GUIController implements Initializable {
     private TextField airlineCountry;
     @FXML
     private CheckBox airlineActive;
-
     @FXML
     private TextField routeAirline;
     @FXML
@@ -158,6 +152,8 @@ public class GUIController implements Initializable {
     @FXML
     private ChoiceBox recordSelectRoute;
     @FXML
+    private ChoiceBox recordSelectFlight;
+    @FXML
     private Button modifyRouteWindowButton;
     @FXML
     private Pane modifyRoutePane;
@@ -181,7 +177,6 @@ public class GUIController implements Initializable {
     private TextField routeStopsMod;
     @FXML
     private CheckBox routeCodeShareMod;
-
     @FXML
     private Button modifyAirlineWindowButton;
     @FXML
@@ -255,7 +250,13 @@ public class GUIController implements Initializable {
     private Airport lastSelectedAirport = null;
 
     /**
-     * Stuff to do on setup
+     * Sets up all the data array lists to be used along with the sources of
+     * our data.
+     *
+     * The function then opens the welcoming dialog box to the user.
+     *
+     * @param url Location used to resolve relative paths for the root object, or null if the location is not known.
+     * @param rb Resources used to localize the root object, or null if the root object was not localized.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -273,6 +274,8 @@ public class GUIController implements Initializable {
         recordSelectAirline.getSelectionModel().selectFirst();
         recordSelectRoute.setItems(observableArrayList(currentRecord.getName()));
         recordSelectRoute.getSelectionModel().selectFirst();
+        recordSelectFlight.setItems(observableArrayList(currentRecord.getName()));
+        recordSelectFlight.getSelectionModel().selectFirst();
 
         recordDropdown.setItems(observableArrayList(currentRecord.getName(), "New Record"));
         recordDropdown.getSelectionModel().selectFirst();
@@ -303,6 +306,10 @@ public class GUIController implements Initializable {
         DialogBoxes.welcomeBox();
     }
 
+    /**
+     * Finds the index of the selected route in the recordList and then selects
+     * this given route.
+     */
     @FXML
     public void routeSelect() {
         int index = 0;
@@ -314,10 +321,15 @@ public class GUIController implements Initializable {
         }
         recordSelectAirport.getSelectionModel().select(index);
         recordSelectAirline.getSelectionModel().select(index);
+        recordSelectFlight.getSelectionModel().select(index);
 
         currentRecord = recordList.get(index);
     }
 
+    /**
+     * Finds the index of the selected airport in the recordList and then selects
+     * this given airport.
+     */
     @FXML
     public void airportSelect() {
         int index = 0;
@@ -329,10 +341,15 @@ public class GUIController implements Initializable {
         }
         recordSelectRoute.getSelectionModel().select(index);
         recordSelectAirline.getSelectionModel().select(index);
+        recordSelectFlight.getSelectionModel().select(index);
 
         currentRecord = recordList.get(index);
     }
 
+    /**
+     * Finds the index of the selected airline in the recordList and then selects
+     * this given airline.
+     */
     @FXML
     public void airlineSelect() {
         int index = 0;
@@ -344,16 +361,38 @@ public class GUIController implements Initializable {
         }
         recordSelectAirport.getSelectionModel().select(index);
         recordSelectRoute.getSelectionModel().select(index);
+        recordSelectFlight.getSelectionModel().select(index);
 
         currentRecord = recordList.get(index);
     }
 
+    /**
+     * Finds the index of the selected flight in the recordList and then selects
+     * this given flight.
+     */
     @FXML
+    public void flightSelect() {
+        int index = 0;
+        for (Record record: recordList) {
+            if (recordSelectFlight.getValue() == record.getName()) {
+                index = recordList.indexOf(record);
+                break;
+            }
+        }
+        recordSelectAirport.getSelectionModel().select(index);
+        recordSelectRoute.getSelectionModel().select(index);
+        recordSelectAirline.getSelectionModel().select(index);
+
+        currentRecord = recordList.get(index);
+    }
+
     /**
      * Retrieves user input and searches for airports that match the provided criteria in the selected attribute.
      * Displays only those airports in the airport data viewer.
+     *
      * If input is blank, display an error pop-up.
      */
+    @FXML
     public void searchAirports() {
         String searchCategory = (String) airportSearchBy.getSelectionModel().getSelectedItem();
         String searchCriteria = airportSearchCriteria.getText().toLowerCase();
@@ -372,6 +411,7 @@ public class GUIController implements Initializable {
     /**
      * Retrieves user input and searches for airlines that match the provided criteria in the selected attribute.
      * Displays only those airlines in the airlines data viewer.
+     *
      * If input is blank, display an error pop-up.
      */
     public void searchAirlines() {
@@ -396,6 +436,7 @@ public class GUIController implements Initializable {
     /**
      * Retrieves user input, and searches for routes that match the provided criteria in the selected attribute.
      * Displays only those routes in the route data viewer.
+     *
      * If input is blank, an error pop-up is displayed.
      */
     @FXML
@@ -419,7 +460,13 @@ public class GUIController implements Initializable {
     }
 
 
-
+    /**
+     * Filters through the airport data and sorts them by the airports with
+     * the least number of routes.
+     *
+     * @param event The user presses the leastRoutesButton in the airport tab.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
     @FXML
     public void leastRoutesButton(ActionEvent event) throws IOException {
         List<Airport> currentData = airportList.getItems();
@@ -427,6 +474,13 @@ public class GUIController implements Initializable {
         airportList.setItems(observableArrayList(rankedAirports));
     }
 
+    /**
+     * Filters through the airport data and sorts them by the airports with
+     * the highest number of routes.
+     *
+     * @param event The user presses the mostRoutesButton in the airport tab.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
     @FXML
     public void mostRoutesButton(ActionEvent event) throws IOException {
         List<Airport> currentData = airportList.getItems();
@@ -434,6 +488,12 @@ public class GUIController implements Initializable {
         airportList.setItems(observableArrayList(rankedAirports));
     }
 
+    /**
+     * Filters the airlines shown in the list view based on whether they are active or not
+     *
+     * @param event User selects whether the airlines should filter active or inactive flights.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
     @FXML
     public void filterActiveAirlines(ActionEvent event) throws IOException {
 
@@ -454,6 +514,14 @@ public class GUIController implements Initializable {
         }
     }
 
+    /**
+     * Filters the route list view based on whether the routes are a direct flight or have
+     * multiple stops.
+     *
+     * @param event User selects whether the routes should filter direct routes or routes
+     *              with multiple stops
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
     @FXML
     public void filterRouteStops(ActionEvent event) throws IOException {
 
@@ -487,6 +555,7 @@ public class GUIController implements Initializable {
             recordSelectAirport.getItems().add(currentRecord.getName());
             recordSelectAirline.getItems().add(currentRecord.getName());
             recordSelectRoute.getItems().add(currentRecord.getName());
+            recordSelectFlight.getItems().add(currentRecord.getName());
             ArrayList<String> recordNames = new ArrayList<String>();
             for (Record records: recordList) {
                 recordNames.add(records.getName());
@@ -497,6 +566,7 @@ public class GUIController implements Initializable {
             recordSelectAirline.getSelectionModel().select(recordList.size() - 1);
             recordSelectAirport.getSelectionModel().select(recordList.size() - 1);
             recordSelectRoute.getSelectionModel().select(recordList.size() - 1);
+            recordSelectFlight.getSelectionModel().select(recordList.size() - 1);
             recordDropdown.getSelectionModel().select(recordList.size() - 1);
 
             return;
@@ -513,15 +583,23 @@ public class GUIController implements Initializable {
         recordSelectAirline.getSelectionModel().select(index);
         recordSelectAirport.getSelectionModel().select(index);
         recordSelectRoute.getSelectionModel().select(index);
+        recordSelectFlight.getSelectionModel().select(index);
         recordDropdown.getSelectionModel().select(index);
 
         currentRecord = recordList.get(index);
     }
 
-    @FXML
     /**
-     * Can't handle errors yet, and doesn't have the option to append data to new record yet
+     * Based on the file type checked (Airport, Airline, Route, or Flight), the program attempts to load in
+     * a data file of that type into the application.
+     *
+     * If the file is invalid, an appropriate error message is displayed.
+     *
+     * @param event The user has selected one of the four data types to load in and has loaded in a file
+     *              from their file directory.
+     * @throws IOException Signals that the file loaded in was either invalid or in the wrong format.
      */
+    @FXML
     public void addFileButton(ActionEvent event) throws IOException {
 
         if (newTab.getSelectionModel().getSelectedIndex() == 3) {
@@ -583,11 +661,13 @@ public class GUIController implements Initializable {
         }
     }
 
-    @FXML
     /**
-     * Can't handle errors yet, and doesn't have the option to append data to new record yet.
-     * Also doesn't have confirmation on when files are successfully loaded.
+     * The user enters the data for the new airport they wish to add and presses the 'add airport' button. If all
+     * fields have valid inputs, the airport is added to the database.
+     *
+     * If some of the fields have invalid inputs, the user will be prompted with an appropriate error message.
      */
+    @FXML
     public void addAirportButton() {
         addFileHelper();
 
@@ -621,11 +701,20 @@ public class GUIController implements Initializable {
         String iata = airportIATA.getText().trim();
         if (iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
             errors.add("Invalid IATA Code");
+        } else if (iata.length() != 3) {
+            errors.add("Airport IATA codes must be 3 letters long");
+        } else if (currentRecord.searchAirports(iata, "iata").size() != 0) {
+            //Check if any airports in the current record have the same
+            errors.add("New IATA Code matches an existing airport");
         }
 
         String icao = airportICAO.getText().trim();
-        if (iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
+        if (icao.equals("") || !icao.matches("[a-zA-Z0-9]*")) {
             errors.add("Invalid ICAO Code");
+        } else if (icao.length() != 4) {
+            errors.add("Airport ICAO codes must be 4 letters long");
+        } else if (currentRecord.searchAirports(icao, "icao").size() != 0) {
+            errors.add("New ICAO Code matches an existing airport");
         }
 
         double latitude = 0;
@@ -700,11 +789,16 @@ public class GUIController implements Initializable {
         hideAllTables();
     }
 
-    @FXML
     /**
-     * Can't handle errors yet, and doesn't have the option to append data to new record yet.
-     * Also doesn't have confirmation on when files are successfully loaded.
+     * The user enters the data for the new airline they wish to add and presses the 'add airline' button. If all
+     * fields have valid inputs, the airline is added to the database.
+     *
+     * If some of the fields have invalid inputs, the user will be prompted with an appropriate error message.
+     *
+     * @param event The user fills the inputs and presses the addAirlineButton
+     * @throws IOException Signals that the airline loaded in was either invalid or in the wrong format.
      */
+    @FXML
     public void addAirlineButton(ActionEvent event) throws IOException {
         addFileHelper();
         ArrayList<String> errors = new ArrayList<>();
@@ -744,14 +838,20 @@ public class GUIController implements Initializable {
             callSign = "Unknown";
         }
 
+        //As one IATA airline code can be assigned to multiple airlines, uniqueness does not need to be verified here
         String iata = airlineIATA.getText().trim();
         if (iata.equals("") || !iata.matches("[a-zA-Z0-9]*")) {
             errors.add("Invalid IATA Code");
         }
 
+        //Each ICAO code is unique to an airline, hence uniqueness needs to be verified here
         String icao = airlineICAO.getText().trim();
         if (icao.equals("") || !icao.matches("[a-zA-Z0-9]*")) {
             errors.add("Invalid ICAO Code");
+        } else if (icao.length() != 3) {
+            errors.add("Airline ICAO codes must be 3 letters long");
+        } else if (currentRecord.searchAirlines(icao.toLowerCase(), "icao").size() != 0) {
+            errors.add("New ICAO code matches an existing airline");
         }
 
         if (errors.size() == 0) {
@@ -766,11 +866,16 @@ public class GUIController implements Initializable {
         hideAllTables();
     }
 
-    @FXML
     /**
-     * Can't handle errors yet, and doesn't have the option to append data to new record yet.
-     * Also doesn't have confirmation on when files are successfully loaded.
+     * The user enters the data for the new route they wish to add and presses the 'add route' button. If all
+     * fields have valid inputs, the route is added to the database.
+     *
+     * If some of the fields have invalid inputs, the user will be prompted with an appropriate error message.
+     *
+     * @param event The user fills the inputs and presses the addRouteButton
+     * @throws IOException Signals that the route loaded in was either invalid or in the wrong format.
      */
+    @FXML
     public void addRouteButton(ActionEvent event) throws IOException {
         addFileHelper();
         ArrayList<String> errors = new ArrayList<>();
@@ -851,7 +956,8 @@ public class GUIController implements Initializable {
     }
 
     /**
-     * Makes the airport data viewer display every airport in the current record.
+     * When the button is pressed, all the airport data currently loaded into the program is shown
+     * in the main list view on the airport tab.
      */
     public void displayAllAirports() {
         airportList.setItems(observableArrayList(currentRecord.getAirportList()));
@@ -859,6 +965,10 @@ public class GUIController implements Initializable {
 
     }
 
+    /**
+     * Refreshes all the lists by temporarily hiding them. Both the regular lists
+     * along with the lists displaying extra data are refreshed.
+     */
     public void hideAllTables() {
         routeList.setItems(observableArrayList());
         airlineList.setItems(observableArrayList());
@@ -869,6 +979,10 @@ public class GUIController implements Initializable {
         routeDetailList.setItems(observableArrayList());
     }
 
+    /**
+     * When the button is pressed, all the airline data currently loaded into the program is shown
+     * in the main list view on the airline tab.
+     */
     public void displayAllAirlines() {
         airlineList.setItems(observableArrayList(currentRecord.getAirlineList()));
         recordSelectAirline.getSelectionModel().select(currentRecord.getName());
@@ -877,7 +991,10 @@ public class GUIController implements Initializable {
         defaultAirlineList = airlineList.getItems();
     }
 
-
+    /**
+     * When the button is pressed, all the route data currently loaded into the program is shown
+     * in the main list view on the route tab.
+     */
     public void displayAllRoutes() {
         routeList.setItems(observableArrayList(currentRecord.getRouteList()));
         recordSelectRoute.getSelectionModel().select(currentRecord.getName());
@@ -886,10 +1003,21 @@ public class GUIController implements Initializable {
         defaultRouteList = routeList.getItems();
     }
 
+    /**
+     * When the button is pressed, all the flight data currently loaded into the program is shown
+     * in the main list view on the flight tab.
+     */
     public void displayAllFlights() {
         flightList.setItems(observableArrayList(currentRecord.getFlightList()));
+        recordSelectFlight.getSelectionModel().select(currentRecord.getName());
     }
 
+    /**
+     * When the setOptedIn box is checked, the user is able to see additional route, airline
+     * and airport information in their respective tabs.
+     *
+     * If not checked, the user will be unable to see this additional information/
+     */
     @FXML
     public void setOptedIn() {
         if (extraInfoBox.isSelected()) {
@@ -900,8 +1028,9 @@ public class GUIController implements Initializable {
     }
 
     /**
-     * Extracts the selected airport from the current data in the data viewer, and displays its additional
-     * data in the appropriate panel. Displays additional information if the user has opted in.
+     * Displays additional information about a selected airport in the detail panel.
+     * If the user has opted in to viewing further additional information, this
+     * is also displayed.
      */
     public void additionalAirportInfo() {
         Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
@@ -978,7 +1107,8 @@ public class GUIController implements Initializable {
 
     /**
      * Displays additional information about a selected airline in the detail panel.
-     * If the user has opted in, displays further additional information
+     * If the user has opted in to viewing further additional information, this
+     * is also displayed.
      */
     public void additionalAirlineInfo() {
         Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
@@ -1011,11 +1141,12 @@ public class GUIController implements Initializable {
     }
 
 
-    @FXML
     /**
      * Displays additional information about a selected route in the detail panel.
-     * If the user has opted in, displays further additional information
+     * If the user has opted in to viewing further additional information, this
+     * is also displayed.
      */
+    @FXML
     public void additionalRouteInfo() {
         Route route = (Route) routeList.getSelectionModel().getSelectedItem();
 
@@ -1051,12 +1182,12 @@ public class GUIController implements Initializable {
     }
 
     /**
+     * Overlays a window over the airline tab in which the user can make their desired
+     * changes to the selected airline.
      *
-     * Modifying Airlines is working but not the best way to code
-     * Using Panes rather than windows
-     *
+     * @param event The user selects an airline and then the modifyAirlineWindowButton.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
      */
-
     @FXML
     public void modifyAirlineWindowButton(ActionEvent event) throws IOException {
         Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
@@ -1073,6 +1204,12 @@ public class GUIController implements Initializable {
         modifyAirlinePane.setVisible(true);
     }
 
+    /**
+     * Permanently removes the selected airline from the airline database.
+     *
+     * @param event The user selects an airline and presses the deleteAirlineButton.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
     @FXML
     public void deleteAirlineButton(ActionEvent event) throws IOException {
         Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
@@ -1085,6 +1222,17 @@ public class GUIController implements Initializable {
         additionalAirlineInfo();
     }
 
+    /**
+     * Runs through the changes made to an airline and checks whether all inputs for the newly modified
+     * airline are of the right type and format.
+     *
+     * If they are not, the program will notify the user about which input(s) are invalid and need to
+     * be changed.
+     *
+     * @param event The user has filled in the modifyAirline section with the changes they would like to
+     *              make and have pressed the modifyAirlineButton.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
     @FXML
     public void modifyAirlineButton(ActionEvent event) throws IOException {
         ArrayList<String> errors = new ArrayList<>();
@@ -1169,9 +1317,11 @@ public class GUIController implements Initializable {
 
 
     /**
-     * work in progress
-     * These open a new window but isn't working the way I want it to :(
+     * Overlays a window over the route tab in which the user can make their desired
+     * changes to the selected route.
      *
+     * @param event The user selects an route and then the modifyRouteWindowButton.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
      */
     @FXML
     public void modifyRouteWindowButton(ActionEvent event) throws IOException {
@@ -1190,6 +1340,12 @@ public class GUIController implements Initializable {
         modifyRoutePane.setVisible(true);
     }
 
+    /**
+     * Permanently removes the selected route from the route database.
+     *
+     * @param event The user selects an route and presses the deleteRouteButton.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
     @FXML
     public void deleteRouteButton(ActionEvent event) throws IOException {
         Route route = (Route) routeList.getSelectionModel().getSelectedItem();
@@ -1202,6 +1358,17 @@ public class GUIController implements Initializable {
         additionalRouteInfo();
     }
 
+    /**
+     * Runs through the changes made to an route and checks whether all inputs for the newly modified
+     * route are of the right type and format.
+     *
+     * If they are not, the program will notify the user about which input(s) are invalid and need to
+     * be changed.
+     *
+     * @param event The user has filled in the modifyRoute section with the changes they would like to
+     *              make and have pressed the modifyRouteButton.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
     @FXML
     public void modifyRouteButton(ActionEvent event) throws IOException {
         ArrayList<String> errors = new ArrayList<>();
@@ -1273,6 +1440,13 @@ public class GUIController implements Initializable {
         }
     }
 
+    /**
+     * Overlays a airport over the route tab in which the user can make their desired
+     * changes to the selected airport.
+     *
+     * @param event The user selects an route and then the modifyAirportWindowButton.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
     @FXML
     public void modifyAirportWindowButton(ActionEvent event) throws IOException {
         Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
@@ -1295,6 +1469,12 @@ public class GUIController implements Initializable {
         modifyAirportPane.setVisible(true);
     }
 
+    /**
+     * Permanently removes the selected airport from the airport database.
+     *
+     * @param event The user selects an airport and presses the deleteAirportButton.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
     @FXML
     public void deleteAirportButton(ActionEvent event) throws IOException {
         Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
@@ -1307,6 +1487,17 @@ public class GUIController implements Initializable {
         additionalAirportInfo();
     }
 
+    /**
+     * Runs through the changes made to an airport and checks whether all inputs for the newly modified
+     * airport are of the right type and format.
+     *
+     * If they are not, the program will notify the user about which input(s) are invalid and need to
+     * be changed.
+     *
+     * @param event The user has filled in the modifyAirport section with the changes they would like to
+     *              make and have pressed the modifyAirportButton.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
     @FXML
     public void modifyAirportButton(ActionEvent event) throws IOException {
         ArrayList<String> errors = new ArrayList<>();
