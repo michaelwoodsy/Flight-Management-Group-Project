@@ -64,7 +64,7 @@ public class LoaderTest {
 
         String[] routeData5 = {"", "", "", "", "", "", "", "", ""};
         testRoute1 = routeLoad.loadRoute(routeData5);
-        assertEquals(testRoute1, null);
+        assertNull(testRoute1);
     }
 
     @Test
@@ -100,7 +100,7 @@ public class LoaderTest {
 
         String[] airlineData4 = {"1", "", "", "", "", "", "", "Y"};
         testAirline1 = airlineLoad.loadAirline(airlineData4);
-        assertEquals(testAirline1, null);
+        assertNull(testAirline1);
 
         /*assertEquals(testAirline1.getName(), null);
         assertEquals(testAirline1.getAlias(), null);
@@ -115,7 +115,7 @@ public class LoaderTest {
     /**
      * Function works fine, just difficult to test error cases due to how java handles arrays (fixed type).
      * Error cases have been manually tested.
-     */
+     **/
     public void loadIndividualAirportTest() {
 
         String[] airportData1 = {"1", "Goroka", "Goroka", "Papua New Guinea", "GKA", "AYGA", "-6.081689", "145.391881", "5282", "10", "U", "Pacific/Port_Moresby", "type", "source"};
@@ -153,7 +153,7 @@ public class LoaderTest {
         // Tests worked before this addition and code works.
         String[] airportData3 = {"", "", "", "", "", "", "", "", "", "", "", "", "", ""};
         testAirport1 = airportLoad.loadAirport(airportData3);
-        assertEquals(testAirport1, null);
+        assertNull(testAirport1);
         /*.getId(), -1);
         assertEquals(testAirport1.getName(), );
         assertEquals(testAirport1.getCity(), null);
@@ -177,10 +177,6 @@ public class LoaderTest {
      */
     public void loadRouteFileTest() throws IOException {
         ArrayList<Route> routeList = routeLoad.loadRouteFile("data/routes.dat");
-//        for (Route route: routeList) {
-//            System.out.println(route);
-//        }
-
     }
 
     @Test
@@ -207,9 +203,7 @@ public class LoaderTest {
         AirportLoader airportLoad = new AirportLoader();
         Record record = new Record(null, null, null, null); //initialise the COVID lists
         ArrayList<Airport> airportList = airportLoad.loadAirportFile("data/airports.dat");
-//        for (Airport airport: airportList) {
-//            System.out.println(airport);
-//        }
+
     }
 
     @Test
@@ -219,9 +213,6 @@ public class LoaderTest {
     public void loadAirlineFileTest() throws IOException {
         Loader loader = new Loader();
         ArrayList<Airline> airlineList = airlineLoad.loadAirlineFile("data/airlines.dat");
-        for (Airline airline: airlineList) {
-            //System.out.println(airline);
-        }
 
     }
 
@@ -231,9 +222,6 @@ public class LoaderTest {
         // checks that covid file doesnt fail
 
         Hashtable<String, Covid> covid_list = covidLoad.loadCovidFile("data/covid.dat");
-//        for(Covid covid: covid_list){
-//            System.out.println(covid.print_country_data());
-//        }
 
     }
 
@@ -242,10 +230,6 @@ public class LoaderTest {
         //runs test file with missing attributes to ensure loader wont crash
         // test file contains missing values and illegal values, to test that checks work correctly
         Hashtable<String, Covid> covid_list = covidLoad.loadCovidFile("data/covid_test.dat");
-
-//        for(Covid covid: covid_list){
-//            System.out.println(covid.print_country_data());
-//        }
 
     }
 }
