@@ -235,11 +235,7 @@ public class GUIController implements Initializable {
     @FXML
     private ChoiceBox recordSelectFlight;
     @FXML
-    private Button flightSelectButton;
-    @FXML
     private ChoiceBox flightDropDown;
-    @FXML
-    private Button showFlightButton;
     @FXML
     private ListView flightDetailList;
     @FXML
@@ -404,7 +400,7 @@ public class GUIController implements Initializable {
 
     @FXML
     /**
-     * Refreshes flight choicebox when changing records.
+     * Refreshes flight choicebox when changing records, as well as changing the flight display text accordingly.
      */
     public void flightHelper() {
         flightDropDown.setItems(observableArrayList());
@@ -415,7 +411,7 @@ public class GUIController implements Initializable {
         if (flightDropDown.getValue() == null) {
             flightText.setText("No flight selected");
         } else {
-            flightText.setText("Current selected flight: " + ((String) flightDropDown.getValue()).substring(0, 12));
+            flightText.setText("Currently selected flight: " + ((String) flightDropDown.getValue()).substring(0, 12));
         }
     }
 
@@ -428,7 +424,7 @@ public class GUIController implements Initializable {
             flightText.setText("No flight selected");
             flightList.setItems(observableArrayList());
         } else {
-            flightText.setText("Current selected flight: " + ((String) flightDropDown.getValue()).substring(0, 12));
+            flightText.setText("Currently selected flight: " + ((String) flightDropDown.getValue()).substring(0, 12));
             for (Flight flight : currentRecord.getFlightList()) {
                 if (flight.flightName().equals(flightDropDown.getValue())) {
                     flightList.setItems(observableArrayList(flight.getStrings()));

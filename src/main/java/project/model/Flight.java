@@ -112,10 +112,20 @@ public class Flight {
         return dest;
     }
 
+    /**
+     * Returns the flight "name" for use in the GUI flight choicebox.
+     * Includes hashcode to differentiate flights which take different routes to the same destination.
+     * @return flight "name" string, acts more as a descriptor, based on the flight's source and destination codes + hashcode.
+     */
     public String flightName() {
         return this.source + " to " + this.dest + " (Code: "+ this.hashCode() + ")";
     }
 
+    /**
+     * Returns a list of simplified flight details, for use in flight ListView in GUI.
+     * Rounds latitude and longitude to 5 decimal places (accurate to about 1m) for viewing convenience.
+     * @return ArrayList of string descriptors for each point in the aircraft's flight (at each index)
+     */
     public ArrayList<String> getStrings() {
         int index = 0;
         ArrayList<String> data = new ArrayList<String>();
@@ -126,20 +136,6 @@ public class Flight {
             index += 1;
         }
         return data;
-    }
-
-    /**
-     * Placeholder until we've decided what the format should be for flights.
-     */
-    public String getName(int pointInFlight) {
-        if (pointInFlight > altitudes.size()) {
-            return ("Provided int not within bounds");
-        } else {
-            int altitude = altitudes.get(pointInFlight);
-            double lat = latitudes.get(pointInFlight);
-            double lon = longitudes.get(pointInFlight);
-            return (String.format("At point % in the flight, the plane had an altitude of %, and was located at coordinates %.4f, %.4f", altitude, lat, lon));
-        }
     }
 
     @Override
