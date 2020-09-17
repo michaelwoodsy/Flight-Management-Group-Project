@@ -112,10 +112,26 @@ public class Flight {
         return dest;
     }
 
+    public String flightName() {
+        return this.source + " to " + this.dest + " (Code: "+ this.hashCode() + ")";
+    }
+
+    public ArrayList<String> getStrings() {
+        int index = 0;
+        ArrayList<String> data = new ArrayList<String>();
+        while (index < latitudes.size()) {
+            String strLat = String.format("%.5f", latitudes.get(index));
+            String strLon = String.format("%.5f", longitudes.get(index));
+            data.add("At point " + (index + 1) + " in its flight, aircraft has: Altitude " + altitudes.get(index) + " ft, Latitude " + strLat + "°, Longitude " + strLon + "°");
+            index += 1;
+        }
+        return data;
+    }
+
     /**
      * Placeholder until we've decided what the format should be for flights.
      */
-    public String print(int pointInFlight) {
+    public String getName(int pointInFlight) {
         if (pointInFlight > altitudes.size()) {
             return ("Provided int not within bounds");
         } else {
@@ -131,12 +147,15 @@ public class Flight {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Flight flight = (Flight) o;
-        return Objects.equals(getSource(), flight.getSource()) &&
-                Objects.equals(getDest(), flight.getDest());
+        return Objects.equals(getLatitudes(), flight.getLatitudes()) &&
+                Objects.equals(getLongitudes(), flight.getLongitudes()) &&
+                Objects.equals(getAltitudes(), flight.getAltitudes()) &&
+                Objects.equals(getLocations(), flight.getLocations()) &&
+                Objects.equals(getStatus(), flight.getStatus());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getSource(), getDest());
+        return Objects.hash(getLatitudes(), getLongitudes(), getAltitudes(), getLocations(), getStatus());
     }
 }

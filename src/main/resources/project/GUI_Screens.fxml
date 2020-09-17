@@ -299,10 +299,32 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ListView fx:id="flightList" layoutX="14.0" layoutY="9.0" onMouseClicked="#additionalAirportInfo" prefHeight="450.0" prefWidth="500.0" />
-                        <Button layoutX="565.0" layoutY="157.0" mnemonicParsing="false" onAction="#displayAllFlights" text="SHOW_ALL_FLIGHTS" />
-                        <ChoiceBox fx:id="recordSelectFlight" layoutX="524.0" layoutY="30.0" prefWidth="150.0" />
-                        <Button fx:id="flightSelectButton" layoutX="685.0" layoutY="30.0" mnemonicParsing="false" onAction="#flightSelect" text="SELECT" />
+                        <ListView fx:id="flightList" layoutX="15.0" layoutY="10.0" onMouseClicked="#additionalFlightInfo" prefHeight="450.0" prefWidth="500.0" />
+                        <SplitPane fx:id="routeSplitPane1" dividerPositions="0.5" layoutX="535.0" layoutY="10.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="200.0">
+                           <items>
+                              <AnchorPane fx:id="routeSearchPanel1" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <Text layoutX="8.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Flight:" />
+                                    <ChoiceBox fx:id="flightDropDown" layoutX="5.0" layoutY="88.0" prefHeight="25.0" prefWidth="190.0" />
+                                    <Button fx:id="showFlightButton" layoutX="53.0" layoutY="189.0" mnemonicParsing="false" onAction="#showFlight" text="SHOW FLIGHT" />
+                                    <ChoiceBox fx:id="recordSelectFlight" layoutX="5.0" layoutY="23.0" prefHeight="25.0" prefWidth="130.0" />
+                                    <Text layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
+                                    <Button fx:id="flightSelectButton" layoutX="134.0" layoutY="23.0" mnemonicParsing="false" onAction="#flightSelect" prefHeight="25.0" prefWidth="60.0" text="SELECT" />
+                                    <Text layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
+                                       <font>
+                                          <Font size="9.0" />
+                                       </font>
+                                    </Text>
+                                    <Text fx:id="flightText" layoutX="14.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No flight selected" textAlignment="CENTER" wrappingWidth="169.9609375" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="routeDetailPanel1" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                 <children>
+                                    <ListView fx:id="flightDetailList" layoutX="-1.0" prefHeight="185.0" prefWidth="200.0" />
+                                 </children>
+                              </AnchorPane>
+                           </items>
+                        </SplitPane>
                      </children>
                   </AnchorPane>
               </content>
@@ -528,7 +550,7 @@
                                           <RadioButton fx:id="routeRadioButton" layoutX="43.0" layoutY="113.0" mnemonicParsing="false" text="Route" toggleGroup="$selectFile" />
                                           <RadioButton fx:id="flightRadioButton" layoutX="43.0" layoutY="153.0" mnemonicParsing="false" text="Flight" toggleGroup="$selectFile" />
                                           <Button fx:id="addFileButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addFileButton" text="Add to" />
-                                          <Text layoutX="179.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To add a new file:&#10;1. Select the type of file you would like to add.&#10;2. Select which record you would like to add the file to in the dropdown next to the &quot;Add to&quot; button. Select &quot;New Record&quot; if you would like to start a new record.&#10;3. Click the &quot;Add to&quot; button and find the file you would like to add in your file directory. Note the file must be a .dat file and be in the correct format." wrappingWidth="393.79425048828125" />
+                                          <Text layoutX="179.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To add a new file:&#10;1. Select the type of file you would like to add.&#10;2. Select which record you would like to add the file to in the dropdown next to the &quot;Add to&quot; button. Select &quot;New Record&quot; if you would like to start a new record.&#10;3. Click the &quot;Add to&quot; button and find the file you would like to add in your file directory. Note the file must be a .dat or .csv file and be in the correct format." wrappingWidth="393.79425048828125" />
                                        </children>
                                     </AnchorPane>
                                  </content>

@@ -9,6 +9,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
@@ -33,8 +34,6 @@ public class GUIController implements Initializable {
     private ListView airlineList;
     @FXML
     private ListView routeList;
-    @FXML
-    private ListView flightList;
     @FXML
     private ListView airlineDetailList;
     @FXML
@@ -152,8 +151,6 @@ public class GUIController implements Initializable {
     @FXML
     private ChoiceBox recordSelectRoute;
     @FXML
-    private ChoiceBox recordSelectFlight;
-    @FXML
     private Button modifyRouteWindowButton;
     @FXML
     private Pane modifyRoutePane;
@@ -233,6 +230,21 @@ public class GUIController implements Initializable {
     private TextField airportLongitudeMod;
     @FXML
     private TextField airportAltitudeMod;
+    @FXML
+    private Text flightText;
+    @FXML
+    private ChoiceBox recordSelectFlight;
+    @FXML
+    private Button flightSelectButton;
+    @FXML
+    private ChoiceBox flightDropDown;
+    @FXML
+    private Button showFlightButton;
+    @FXML
+    private ListView flightDetailList;
+    @FXML
+    private ListView flightList;
+
 
     private ArrayList<Record> recordList;
     private Record currentRecord;
@@ -324,6 +336,7 @@ public class GUIController implements Initializable {
         recordSelectFlight.getSelectionModel().select(index);
 
         currentRecord = recordList.get(index);
+        flightHelper();
     }
 
     /**
@@ -344,6 +357,7 @@ public class GUIController implements Initializable {
         recordSelectFlight.getSelectionModel().select(index);
 
         currentRecord = recordList.get(index);
+        flightHelper();
     }
 
     /**
@@ -364,6 +378,7 @@ public class GUIController implements Initializable {
         recordSelectFlight.getSelectionModel().select(index);
 
         currentRecord = recordList.get(index);
+        flightHelper();
     }
 
     /**
@@ -384,7 +399,45 @@ public class GUIController implements Initializable {
         recordSelectAirline.getSelectionModel().select(index);
 
         currentRecord = recordList.get(index);
+        flightHelper();
     }
+
+    @FXML
+    /**
+     * Refreshes flight choicebox when changing records.
+     */
+    public void flightHelper() {
+        flightDropDown.setItems(observableArrayList());
+        for (Flight flight: currentRecord.getFlightList()) {
+            flightDropDown.getItems().add(flight.flightName());
+        }
+        flightDropDown.getSelectionModel().selectFirst();
+        if (flightDropDown.getValue() == null) {
+            flightText.setText("No flight selected");
+        } else {
+            flightText.setText("Current selected flight: " + ((String) flightDropDown.getValue()).substring(0, 12));
+        }
+    }
+
+    @FXML
+    /**
+     * Displays the status of a flight at all points in flightList.
+     */
+    public void showFlight(ActionEvent event) throws IOException {
+        if (flightDropDown.getValue() == null) {
+            flightText.setText("No flight selected");
+            flightList.setItems(observableArrayList());
+        } else {
+            flightText.setText("Current selected flight: " + ((String) flightDropDown.getValue()).substring(0, 12));
+            for (Flight flight : currentRecord.getFlightList()) {
+                if (flight.flightName().equals(flightDropDown.getValue())) {
+                    flightList.setItems(observableArrayList(flight.getStrings()));
+                    break;
+                }
+            }
+        }
+    }
+
 
     /**
      * Retrieves user input and searches for airports that match the provided criteria in the selected attribute.
@@ -626,6 +679,7 @@ public class GUIController implements Initializable {
                     if (Airport.getNumMissingCovid() > 0) {
                         DialogBoxes.missingCovidInfoBox();
                     }
+                    flightHelper();
                 } else if (selectFile.getSelectedToggle() == airlineRadioButton) {
                     boolean airlineCheck = airlineLoad.loadAirlineErrorCheck(file.getAbsolutePath());
                     DialogBoxes.fileFormatInfo(airlineCheck, true, "airline");
@@ -636,6 +690,7 @@ public class GUIController implements Initializable {
                     ArrayList<Airline> newAirlineList = airlineLoad.loadAirlineFile(file.getAbsolutePath());
                     currentRecord.addAirlines(newAirlineList);
                     hideAllTables();
+                    flightHelper();
                 } else if (selectFile.getSelectedToggle() == routeRadioButton) {
                     boolean routeCheck = routeLoad.loadRouteErrorCheck(file.getAbsolutePath());
                     DialogBoxes.fileFormatInfo(routeCheck, true, "route");
@@ -646,6 +701,7 @@ public class GUIController implements Initializable {
                     ArrayList<Route> newRouteList = routeLoad.loadRouteFile(file.getAbsolutePath());
                     currentRecord.addRoutes(newRouteList);
                     hideAllTables();
+                    flightHelper();
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
                     boolean flightCheck = flightLoad.loadFlightErrorCheck(file.getAbsolutePath());
                     DialogBoxes.fileFormatInfo(flightCheck, true, "flight");
@@ -656,6 +712,7 @@ public class GUIController implements Initializable {
                     Flight newFlight = flightLoad.loadFlightFile(file.getAbsolutePath());
                     currentRecord.addFlights(newFlight);
                     hideAllTables();
+                    flightHelper();
                 }
             }
         }
@@ -977,6 +1034,7 @@ public class GUIController implements Initializable {
         airportDetailList.setItems(observableArrayList());
         airlineDetailList.setItems(observableArrayList());
         routeDetailList.setItems(observableArrayList());
+        flightDetailList.setItems(observableArrayList());
     }
 
     /**
@@ -1001,15 +1059,6 @@ public class GUIController implements Initializable {
         routeDirectBox.setSelected(true);
         routeIndirectBox.setSelected(true);
         defaultRouteList = routeList.getItems();
-    }
-
-    /**
-     * When the button is pressed, all the flight data currently loaded into the program is shown
-     * in the main list view on the flight tab.
-     */
-    public void displayAllFlights() {
-        flightList.setItems(observableArrayList(currentRecord.getFlightList()));
-        recordSelectFlight.getSelectionModel().select(currentRecord.getName());
     }
 
     /**
@@ -1078,21 +1127,21 @@ public class GUIController implements Initializable {
                 if (airport.getLatitude() == 360) {
                     lat = ("Latitude: Unknown");
                 } else {
-                    lat = ("Latitude: " + airport.getLatitude() + " decimal degrees");
+                    lat = ("Latitude: " + airport.getLatitude() + "°");
                 }
 
                 String lon;
                 if (airport.getLongitude() == 360) {
                     lon = ("Longitude: Unknown");
                 } else {
-                    lon = ("Longitude: " + airport.getLongitude() + " decimal degrees");
+                    lon = ("Longitude: " + airport.getLongitude() + "°");
                 }
 
                 String alt;
                 if (airport.getAltitude() == -1) {
                     alt = ("Altitude: Unknown");
                 } else {
-                    alt = ("Altitude: " + airport.getAltitude() + " feet");
+                    alt = ("Altitude: " + airport.getAltitude() + " ft");
                 }
 
                 String iata = String.format("IATA code: %s", airport.getIata());
@@ -1177,6 +1226,40 @@ public class GUIController implements Initializable {
                 String codeshare = String.format("This flight is%s a codeshare", isACodeshare);
 
                 routeDetailList.getItems().addAll(equipment, codeshare);
+            }
+        }
+    }
+
+    /**
+     * Displays additional information about a selected airline in the detail panel.
+     * If the user has opted in to viewing further additional information, this
+     * is also displayed.
+     */
+    public void additionalFlightInfo() {
+        Flight currentFlight = null;
+        for (Flight flight : currentRecord.getFlightList()) {
+            if (flight.flightName().equals(flightDropDown.getValue())) {
+                currentFlight = flight;
+                break;
+            }
+        }
+        int index = flightList.getSelectionModel().getSelectedIndex();
+        if (currentFlight != null && index != -1) {
+
+            String source = String.format("Source: %s", currentFlight.getSource());
+            String dest = String.format("Destination: %s", currentFlight.getDest());
+            String alt = String.format("Altitude: %s ft", currentFlight.getAltitudes().get(index));
+            String lat = String.format("Latitude: %.5f°", currentFlight.getLatitudes().get(index));
+            String lon = String.format("Longitude: %.5f°", currentFlight.getLongitudes().get(index));
+
+
+            flightDetailList.setItems(observableArrayList(source, dest, alt, lat, lon));
+
+            if (optedIn) {
+                String status = String.format("Current status: %s", currentFlight.getStatus().get(index));
+                String location = String.format("Current location: %s", currentFlight.getLocations().get(index));
+
+                flightDetailList.getItems().addAll(status, location);
             }
         }
     }
