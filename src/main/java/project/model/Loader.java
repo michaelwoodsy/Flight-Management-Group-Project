@@ -5,7 +5,10 @@ import java.io.File;
 public class Loader {
 
     /**
-     * Ensures loaded file is correct file format.
+     * Deals with the error handling of the files and checks whether the file is of correct type.
+     *
+     * @param file The file being checked for correct format
+     * @return true if the file is of a valid type (.csv or .dat) and false if the file is of invalid type
      */
     public boolean errorHandler(File file) {
         String extension = "";
