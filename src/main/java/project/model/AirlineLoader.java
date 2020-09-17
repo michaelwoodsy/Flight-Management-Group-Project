@@ -7,8 +7,11 @@ import java.util.ArrayList;
 
 public class AirlineLoader {
     /**
-     * Returns an airline class from a line read in airlines.dat.
-     * Invalid ints will be displayed as -1, invalid strings displayed as null
+     * Loads each airline from the airlineData and makes sure that the airline has enough valid data attributes
+     * to be a valid airline.
+     *
+     * @param airlineData a string containing the data attributes for an airline.
+     * @return The loaded airline if the number of unknown data attributes is less than 5, null otherwise.
      */
     public Airline loadAirline(String[] airlineData) {
 
@@ -111,8 +114,14 @@ public class AirlineLoader {
         }
 
     }
+
     /**
-     * Checks if loaded airline file is right format.
+     * Checks to make sure that the airline has the exact number of attributes to be a
+     * valid airline.
+     *
+     * @param path The path at which the airline file is contained.
+     * @return true if the airline has exactly 8 attributes, false otherwise.
+     * @throws IOException If the airline loaded is invalid.
      */
     public boolean loadAirlineErrorCheck(String path) throws IOException {
 
@@ -133,7 +142,12 @@ public class AirlineLoader {
     }
 
     /**
-     * Returns a list of airlines by reading a comma-separated data file.
+     * Loads all the airlines in a particular file into an array to be checked further.
+     * Appropriate error handling is done if the airline file is invalid.
+     *
+     * @param path The path at which the airline file is contained.
+     * @return An arraylist containing all the airlines in the file.
+     * @throws IOException If the airline file loaded is invalid.
      */
     public ArrayList<Airline> loadAirlineFile(String path) throws IOException {
 

@@ -7,10 +7,14 @@ import java.util.ArrayList;
 
 public class AirportLoader {
     /**
-     * Returns an airport class from a line read in airports.dat.
-     * (Most) nvalid ints will be displayed as -1, invalid strings displayed as null
+     * Loads each airport from the airportData and makes sure that the airport has enough valid data attributes
+     * to be a valid airport.
+     * (Most) invalid ints are displayed as -1, invalid strings displayed as null
      * Invalid latitudes and longitudes are displayed as 360. This is because these are impossible latitude/longitude values, and correspond to easy error handling.
      * Invalid timezones displayed as 25. Can't have a +25 hour timezone after all.
+     *
+     * @param airportData a string containing the data attributes for an airport.
+     * @return The loaded airport if the number of unknown data attributes is less than 9, null otherwise.
      */
     public Airport loadAirport(String[] airportData) {
 
@@ -175,8 +179,14 @@ public class AirportLoader {
             return null;
         }
     }
+
     /**
-     * Checks if loaded airport file is right format.
+     * Checks to make sure that the number of attributes an airport has is in the correct range
+     * to be a valid airport.
+     *
+     * @param path The path at which the airport file is contained.
+     * @return true if the airline has between 12 and 14 attributes, false otherwise.
+     * @throws IOException If the airport loaded is invalid.
      */
     public boolean loadAirportErrorCheck(String path) throws IOException {
 
@@ -197,7 +207,12 @@ public class AirportLoader {
     }
 
     /**
-     * Returns a list of airports by reading a comma-separated data file.
+     * Loads all the airports in a particular file into an array to be checked further.
+     * Appropriate error handling is done if the airport file is invalid.
+     *
+     * @param path The path at which the airport file is contained.
+     * @return An arraylist containing all the airports in the file.
+     * @throws IOException If the airport file loaded is invalid.
      */
     public ArrayList<Airport> loadAirportFile(String path) throws IOException {
 

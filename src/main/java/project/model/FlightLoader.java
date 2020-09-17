@@ -6,6 +6,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class FlightLoader {
+    /**
+     * Loads a flight in from a particular file and appends the: statuses, locations, altitudes, latitudes
+     * and longitudes to arraylists, which are returned in the Flight object.
+     *
+     * @param path The path at which the flight file is contained.
+     * @return The particular flight being loaded in, which may contain some null values.
+     * @throws IOException If the flight file loaded is invalid.
+     */
     public Flight loadFlightFile(String path) throws IOException {
 
         ArrayList<String> statuses = new ArrayList<String>();
@@ -73,7 +81,12 @@ public class FlightLoader {
     }
 
     /**
-     * Checks if loaded airport file is right format.
+     * Checks to make sure that the flight has the exact number of attributes to be a
+     * valid flight.
+     *
+     * @param path The path at which the flight file is contained.
+     * @return true if the flight has exactly 5 attributes, false otherwise.
+     * @throws IOException If the flight loaded is invalid.
      */
     public boolean loadFlightErrorCheck(String path) throws IOException {
 

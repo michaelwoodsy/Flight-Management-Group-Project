@@ -7,6 +7,14 @@ import java.util.Hashtable;
 
 public class CovidLoader {
 
+    /**
+     * Iterates through the COVID file given, appending each line of COVID data into a hashtasble.
+     * Appropriate error handling is done for invalid files.
+     *
+     * @param path The path at which the COVID file is contained.
+     * @return A hashtable containing all the individual covidData attributes in the file, each will be for a different country.
+     * @throws IOException If the COVID file loaded is invalid.
+     */
     public Hashtable<String, Covid> loadCovidFile(String path) throws IOException {
 
         Hashtable<String, Covid> covidDict = new Hashtable<>();
@@ -29,18 +37,17 @@ public class CovidLoader {
         return covidDict;
     }
 
+    /**
+     * Reads covid data from file and assigns the values to new element
+     *
+     * This function has checks for each input to try ensure data is entered correctly
+     * For Example:
+     * For numeric values, if they are not valid (Non-Numeric) they are set to a default of 0.
+     * For string values, if they contain illegal characters are set to null.
+     *
+     * @return country covid-19 data entry
+     */
     public Covid loadCovid(String[] covidData) {
-        /**
-         * Reads covid data from file and assigns the values to new element
-         *
-         * This function has checks for each input to try ensure data is entered correctly
-         * For Example:
-         * For numeric values, if they are not valid (Non-Numeric) they are set to a default of 0.
-         * For string values, if they contain illegal characters are set to null.
-         *
-         * @return country covid-19 data entry
-         */
-
         String location;
         try {
             if (covidData[2].matches("[A-Za-z '-]+")){

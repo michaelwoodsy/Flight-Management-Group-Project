@@ -7,8 +7,11 @@ import java.util.ArrayList;
 
 public class RouteLoader {
     /**
-     * Returns a route class from a line read in routes.dat.
-     * Invalid ints will be displayed as -1, invalid strings displayed as null
+     * Loads each route from the routeData and makes sure that the route has enough valid data attributes
+     * to be a valid route.
+     *
+     * @param routeData a string containing the data attributes for an route.
+     * @return The loaded route if the number of unknown data attributes is less than 5, null otherwise.
      */
     public Route loadRoute(String[] routeData) {
 
@@ -116,7 +119,12 @@ public class RouteLoader {
     }
 
     /**
-     * Returns a list of routes by reading a comma-separated data file.
+     * Loads all the routes in a particular file into an array to be checked further.
+     * Appropriate error handling is done if the route file is invalid.
+     *
+     * @param path The path at which the route file is contained.
+     * @return An arraylist containing all the routes in the file.
+     * @throws IOException If the route file loaded is invalid.
      */
     public ArrayList<Route> loadRouteFile(String path) throws IOException {
 
@@ -143,7 +151,12 @@ public class RouteLoader {
     }
 
     /**
-     * Checks if loaded route file is right format.
+     * Checks to make sure that the route has the exact number of attributes to be a
+     * valid route.
+     *
+     * @param path The path at which the route file is contained.
+     * @return true if the route has exactly 9 attributes, false otherwise.
+     * @throws IOException If the route loaded is invalid.
      */
     public boolean loadRouteErrorCheck(String path) throws IOException {
 
