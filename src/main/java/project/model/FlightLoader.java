@@ -63,7 +63,7 @@ public class FlightLoader {
 
                 double longitude;
                 try {
-                    longitude = Double.parseDouble(data[3]);
+                    longitude = Double.parseDouble(data[4]);
                 } catch (Exception e) {
                     longitude = 360; // Error case, longitude can't be 360.
                 }

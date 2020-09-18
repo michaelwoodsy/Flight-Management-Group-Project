@@ -81,7 +81,7 @@ public class DialogBoxes {
         alert.showAndWait();
     }
 
-    // Unused because we don't currently have the means to add routes to airports. Will be added soon.
+    // Unused because we don't currently have the means to add routes to airports. Will be added in phase 3.
     /**
     public static void noRoutes() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
