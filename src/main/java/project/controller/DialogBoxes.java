@@ -7,8 +7,16 @@ import project.model.Covid;
 
 import java.util.ArrayList;
 
+/**
+ * A class that contains methods that display dialog boxes
+ * depending on the situation
+ */
 public class DialogBoxes {
 
+    /**
+     * A dialog box that displays when the loaded Airports class has countries that don't have any information
+     * available regarding COVID cases and informs the user that they will be set to 0 risk.
+     */
     public static void missingCovidInfoBox() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         int numMissing = Airport.getNumMissingCovid();
@@ -25,7 +33,13 @@ public class DialogBoxes {
         alert.showAndWait();
     }
 
-
+    /**
+     * A dialog box that displays when a file is loaded and it's format is good
+     * else it displays that the data is laid out correct or it is not the right type of data
+     * @param check A boolean that error checks the file path
+     * @param displayGoodLoad A boolean that checks whether the load is good
+     * @param dataType A String that represents the type of data e.g. Airports, Flights etc.
+     */
     public static void fileFormatInfo(boolean check, boolean displayGoodLoad, String dataType) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("FILE STATUS");
@@ -43,6 +57,11 @@ public class DialogBoxes {
         alert.showAndWait();
     }
 
+    /**
+     * A dialog box that displays when the multipleBoxes aren't selected
+     * and it is left as a null/blank box
+     * @param multipleBoxes A boolean to check whether the multiBoxes are selected
+     */
     public static void blankTextField(boolean multipleBoxes) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("BLANK TEXT FIELD");
@@ -58,6 +77,11 @@ public class DialogBoxes {
         alert.showAndWait();
     }
 
+    /**
+     * A dialog box that displays when the searched/filtered criteria does not match
+     * anything in the record
+     * @param dataType A String that represents the type of data that is being searched e.g. IATA or Airport Name etc.
+     */
     public static void noneReturned(String dataType) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         String title = String.format("NO MATCHING %s", dataType.toUpperCase());
@@ -69,6 +93,11 @@ public class DialogBoxes {
         alert.showAndWait();
     }
 
+    /**
+     * A dialog box that displays when there is an error when adding new types of data
+     * or modifying data doesn't fit the data type
+     * @param errors An ArrayList of Strings that represents the errors found when modifying or adding new data.
+     */
     public static void newDataError(ArrayList<String> errors) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         String errorString = "";

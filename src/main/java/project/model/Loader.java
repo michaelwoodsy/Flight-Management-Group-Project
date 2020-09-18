@@ -2,6 +2,9 @@ package project.model;
 
 import java.io.File;
 
+/**
+ * A Class that implements Loader and has a method to check whether the file is of the correct type
+ */
 public class Loader {
 
     /**

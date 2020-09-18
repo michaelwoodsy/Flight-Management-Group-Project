@@ -5,6 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * A Class that implements AirportLoader using methods to turn a .dat file containing Airports into an
+ * Arraylist of Airports to use for the record
+ */
 public class AirportLoader {
     /**
      * Loads each airport from the airportData and makes sure that the airport has enough valid data attributes

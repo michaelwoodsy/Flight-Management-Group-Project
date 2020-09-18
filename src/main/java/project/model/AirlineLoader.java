@@ -5,6 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * A Class that implements AirlineLoader using methods to turn a .dat file containing Airlines into an
+ * Arraylist of Airlines to use for the record
+ */
 public class AirlineLoader {
     /**
      * Loads each airline from the airlineData and makes sure that the airline has enough valid data attributes
