@@ -369,6 +369,7 @@ public class RecordTest {
     }
      */
 
+    /**
     @Test
     public void searchFlightsTest() throws IOException {
 
@@ -382,6 +383,7 @@ public class RecordTest {
         assertEquals(0, flightList.size());
 
     }
+     */
 
     @Test
     public void addAirportsTest() throws IOException {
