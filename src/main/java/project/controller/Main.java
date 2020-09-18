@@ -1,7 +1,7 @@
 package project.controller;
 
 /**
- * Test main method used to run the GUI
+ * Main method used to run the GUI
  */
 public class Main {
 

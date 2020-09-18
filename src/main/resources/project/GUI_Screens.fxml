@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -295,7 +296,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab fx:id="flight_tab" text="Flights">
+            <Tab fx:id="flight_tab" text="Flight">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -608,5 +609,6 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
+      <Accordion />
    </children>
 </AnchorPane>

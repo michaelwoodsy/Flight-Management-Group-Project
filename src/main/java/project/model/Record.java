@@ -190,7 +190,7 @@ public class Record {
      * Then enter the name of the source/destination airport. If this is on record, will identify the
      * ICAO code from that airport, and search the flightlist for flights matching this source/destination
      * ICAO. If none can be found, returns empty list. Print exception when this occurs.
-     */
+
     public ArrayList<Flight> searchFlights(boolean source, String keyword) {
 
         ArrayList<Flight> searchResult = new ArrayList<Flight>();
@@ -213,6 +213,7 @@ public class Record {
         }
         return searchResult;
     }
+     */
 
     /**
      * Searches the current COVID list for a country, and returns the the COVID object that is of that country
