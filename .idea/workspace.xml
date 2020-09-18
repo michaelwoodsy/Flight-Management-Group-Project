@@ -13,7 +13,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Added a statement in risk calculation to avoid division by 0 error. Covid test (added risk boundary test) and loader test (removed redundancy).">
+    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Re-commit for Record documentation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/model/Record.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/Record.java" afterDir="false" />
     </list>
@@ -206,13 +206,6 @@
       <workItem from="1600132001134" duration="3022000" />
       <workItem from="1600227536265" duration="302000" />
       <workItem from="1600314338736" duration="2357000" />
-    </task>
-    <task id="LOCAL-00018" summary="Deleted some unnecessary stuff, Added search functions for airports, routes, flights, and added/updated tests.">
-      <created>1597879065583</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1597879065583</updated>
     </task>
     <task id="LOCAL-00019" summary="Added error handling for distance function, added further error handling for loading classes, added ability to set number of routes for airports (untested).">
       <created>1597895525096</created>
@@ -550,7 +543,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600248147079</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="Re-commit for Record documentation">
+      <created>1600411299414</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1600411299414</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -592,7 +592,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="All filtering completed - need searching" />
     <MESSAGE value="Added additional info when selecting an airport/airline/route" />
     <MESSAGE value="Cleaned up file loading and finally fixed the string splitting error for airports.dat" />
     <MESSAGE value="Better string representations for classes, through still subject to change" />
@@ -617,7 +616,8 @@
     <MESSAGE value="Set up flight functionality for record selection etc, still cant get file to load in properly however" />
     <MESSAGE value="Added documentation for the leftover classes in GUIController" />
     <MESSAGE value="Added a statement in risk calculation to avoid division by 0 error. Covid test (added risk boundary test) and loader test (removed redundancy)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a statement in risk calculation to avoid division by 0 error. Covid test (added risk boundary test) and loader test (removed redundancy)." />
+    <MESSAGE value="Re-commit for Record documentation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-commit for Record documentation" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="300" key="#Notifications" timestamp="1595984112742">
@@ -744,13 +744,13 @@
     <state x="155" y="0" key="SettingsEditor/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1597622967066" />
     <state x="166" y="12" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1595997449081" />
     <state x="233" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598425220256" />
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1600319017099">
-      <screen x="0" y="0" width="1368" height="872" />
+    <state x="390" y="203" key="Vcs.Push.Dialog.v2" timestamp="1600412371701">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1600319017099" />
     <state x="312" y="160" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1598581356049" />
     <state x="338" y="208" key="Vcs.Push.Dialog.v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017372267" />
-    <state x="390" y="203" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1599598633256" />
+    <state x="390" y="203" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600412371701" />
     <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1600125633290">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

@@ -18,8 +18,8 @@ public class Record {
     private String name;
 
     /**
-     *
-     * @param name
+     * Record constructor that takes a String and initialize ArrayLists as null lists
+     * @param name A String containing the name of the record
      */
     public Record(String name) {
         this.flightList = new ArrayList<Flight>();
@@ -30,11 +30,11 @@ public class Record {
     }
 
     /**
-     *
-     * @param flightList
-     * @param routeList
-     * @param airportList
-     * @param airlineList
+     * Record constructor
+     * @param flightList An ArrayList containing Flight objects
+     * @param routeList An ArrayList containing Route objects
+     * @param airportList An ArrayList containing Airport objects
+     * @param airlineList An Arraylist containing Airline objects
      */
     public Record(ArrayList<Flight> flightList, ArrayList<Route> routeList, ArrayList<Airport> airportList, ArrayList<Airline> airlineList) {
         this.flightList = flightList;
