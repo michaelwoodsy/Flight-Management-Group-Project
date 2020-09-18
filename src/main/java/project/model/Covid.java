@@ -73,7 +73,11 @@ public class Covid {
      * @return The percentage of one million citizens that have cases of COVID-19
      */
     public double getRiskDouble() {
-        double percentWithCases = (this.total_cases_per_million/1000000)*100;
-        return Precision.round(percentWithCases, 2);
+        if(this.total_cases_per_million != 0) {
+            double percentWithCases = (this.total_cases_per_million/1000000)*100;
+            return Precision.round(percentWithCases, 2);
+        }else {
+            return 0;
+        }
     }
 }
