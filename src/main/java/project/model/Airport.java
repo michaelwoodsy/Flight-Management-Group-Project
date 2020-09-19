@@ -1,6 +1,5 @@
 package project.model;
 
-import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -178,20 +177,20 @@ public class Airport {
 
         return nameString + cityString + countryString;
     }
-
+/*
     public void setNumRoutesSource(int numRoutesSource) {
         this.numRoutesSource = numRoutesSource;
         setTotalRoutes();
-    }
+    }*/
 
     public int getNumRoutesDest() {
         return numRoutesDest;
     }
 
-    public void setNumRoutesDest(int numRoutesDest) {
+    /*public void setNumRoutesDest(int numRoutesDest) {
         this.numRoutesDest = numRoutesDest;
         setTotalRoutes();
-    }
+    }*/
 
     public int getTotalRoutes() {
         return totalRoutes;
@@ -247,10 +246,6 @@ public class Airport {
         return iata;
     }
 
-    public void setIata(String iata) {
-        this.iata = iata;
-    }
-
     public String getIcao() {
         return icao;
     }
@@ -263,56 +258,31 @@ public class Airport {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
 
     public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
 
     public int getAltitude() {
         return altitude;
     }
 
-    public void setAltitude(int altitude) {
-        this.altitude = altitude;
-    }
 
     public double getTimezone() {
         return timezone;
-    }
-
-    public void setTimezone(double timezone) {
-        this.timezone = timezone;
     }
 
     public String getDst() {
         return dst;
     }
 
-    public void setDst(String dst) {
-        this.dst = dst;
-    }
-
     public String getTimezoneString() {
         return timezoneString;
     }
 
-    public void setTimezoneString(String timezoneString) {
-        this.timezoneString = timezoneString;
-    }
-
     public String getType() {
         return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getSource() {

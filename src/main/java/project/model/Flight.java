@@ -109,31 +109,12 @@ public class Flight {
         return Objects.hash(getLatitudes(), getLongitudes(), getAltitudes(), getLocations(), getStatus());
     }
 
-    public void setAltitudes(ArrayList<Integer> altitudes) {
-        this.altitudes = altitudes;
-    }
-
-    public void setLatitudes(ArrayList<Double> latitudes) {
-        this.latitudes = latitudes;
-    }
-
-    public void setLongitudes(ArrayList<Double> longitudes) {
-        this.longitudes = longitudes;
-    }
-
-    public void setLocations(ArrayList<String> locations) {
+    /*public void setLocations(ArrayList<String> locations) {
         this.locations = locations;
         this.source = locations.get(0);
         this.dest = locations.get(locations.size() - 1);
-    }
+    }*/
 
-    public void setRisk(int risk) {
-        this.risk = risk;
-    }
-
-    public void setStatus(ArrayList<String> status) {
-        this.status = status;
-    }
 
     public ArrayList<Double> getLatitudes() {
         return latitudes;
@@ -153,10 +134,6 @@ public class Flight {
 
     public ArrayList<String> getStatus() {
         return status;
-    }
-
-    public int getRisk() {
-        return risk;
     }
 
     public String getSource() {
