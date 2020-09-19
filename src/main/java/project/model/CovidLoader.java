@@ -5,6 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Hashtable;
 
+/**
+ * A Class that implements CovidLoader using methods to turn a .dat file containing data about COVID into an
+ * a hashtable containing all the Covid Data to use for the record
+ */
 public class CovidLoader {
 
     /**

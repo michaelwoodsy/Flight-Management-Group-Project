@@ -5,6 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * A Class that implements RouteLoader using methods to turn a .dat file containing Route data into individual Route Objects
+ * and placed into an Arraylist of Routes to use for the record.
+ */
 public class RouteLoader {
     /**
      * Loads each route from the routeData and makes sure that the route has enough valid data attributes

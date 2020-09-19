@@ -5,6 +5,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * A Class that implements FlightLoader using methods to turn a .dat file containing Flight data into a
+ * an Flight object to use for the record
+ */
 public class FlightLoader {
     /**
      * Loads a flight in from a particular file and appends the: statuses, locations, altitudes, latitudes
