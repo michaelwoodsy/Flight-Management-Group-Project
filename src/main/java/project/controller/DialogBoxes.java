@@ -1,11 +1,15 @@
 package project.controller;
 
 import javafx.scene.control.Alert;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 import project.model.Airport;
 import project.model.Covid;
 
 import java.util.ArrayList;
+
+
 
 /**
  * A class that contains methods that display dialog boxes
@@ -21,6 +25,7 @@ public class DialogBoxes {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         int numMissing = Airport.getNumMissingCovid();
         alert.setTitle("MISSING COUNTRIES");
+
         alert.setHeaderText(String.format("%d airports are in countries that do not have information available on COVID cases." +
                 " Airports in these countries will show a risk of 0 when selected:", numMissing));
         String missingCountries = Covid.missingCountries.get(0);
@@ -29,6 +34,9 @@ public class DialogBoxes {
         }
         alert.setContentText(missingCountries);
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make aler to stage so icon can be changed
+        stage.getIcons().add(new Image("primaryStageIcon.png"));
 
         alert.showAndWait();
     }
@@ -53,6 +61,10 @@ public class DialogBoxes {
         } else {
             body = String.format("Data laid out incorrectly, or is not %s data", dataType);
         }
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make aler to stage so icon can be changed
+        stage.getIcons().add(new Image("primaryStageIcon.png"));
+
         alert.setContentText(body);
         alert.showAndWait();
     }
@@ -74,6 +86,9 @@ public class DialogBoxes {
         }
         alert.setContentText(body);
 
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make aler to stage so icon can be changed
+        stage.getIcons().add(new Image("primaryStageIcon.png"));
+
         alert.showAndWait();
     }
 
@@ -89,6 +104,9 @@ public class DialogBoxes {
         alert.setTitle(title);
         alert.setContentText(body);
         alert.setHeaderText(null);
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make aler to stage so icon can be changed
+        stage.getIcons().add(new Image("primaryStageIcon.png"));
 
         alert.showAndWait();
     }
@@ -107,6 +125,10 @@ public class DialogBoxes {
         alert.setContentText(errorString);
         alert.setHeaderText(null);
         alert.setTitle("ERRORS WITH DATA");
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make aler to stage so icon can be changed
+        stage.getIcons().add(new Image("primaryStageIcon.png"));
+
         alert.showAndWait();
     }
 
@@ -137,6 +159,10 @@ public class DialogBoxes {
                 "Medium: Less than 1% of the population have cases\nHigh: Less than 5% of the population have cases\n" +
                 "Extreme: More than 5% of the population have cases\nRemember to social distance when you can, and stay safe.";
         alert.setTitle("WELCOME");
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make aler to stage so icon can be changed
+        stage.getIcons().add(new Image("primaryStageIcon.png"));
+
         alert.setHeaderText(headerText);
         alert.setContentText(bodyText);
         alert.showAndWait();

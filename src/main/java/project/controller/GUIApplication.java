@@ -9,7 +9,9 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
+import javafx.scene.image.Image;
 
 /**
  * Application methods to run the GUI
@@ -23,6 +25,7 @@ public class GUIApplication extends Application {
         primaryStage.setResizable(false);
         primaryStage.setTitle("PlaneSonar25");
         primaryStage.show();
+        primaryStage.getIcons().add(new Image("primaryStageIcon.png"));
     }
 
     public static void main(String[] args) {
