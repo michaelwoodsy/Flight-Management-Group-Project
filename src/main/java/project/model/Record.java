@@ -111,6 +111,7 @@ public class Record {
      */
     public List<Airport> searchAirports(String keyword, String attribute) {
         List<Airport> searchResult = new ArrayList<Airport>();
+        keyword = keyword.trim();
         for (Airport airport: airportList) {
             boolean airportMatches = false;
             if (attribute.equals("country")) {
@@ -144,6 +145,7 @@ public class Record {
      */
     public List<Airline> searchAirlines(String keyword, String attribute) {
        List<Airline> searchResult = new ArrayList<Airline>();
+       keyword = keyword.trim();
        for (Airline airline: airlineList) {
            boolean airlineMatches = false;
            if (attribute.equals("name")) {
@@ -176,7 +178,7 @@ public class Record {
      */
     public ArrayList<Route> searchRoutes(String keyWord, String attribute) {
         ArrayList<Route> searchResult = new ArrayList<Route>();
-
+        keyWord = keyWord.trim();
         for (Route route: routeList) {
             boolean match = false;
             if (attribute.equals("airline")) {
