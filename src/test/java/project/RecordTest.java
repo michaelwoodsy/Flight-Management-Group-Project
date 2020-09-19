@@ -303,7 +303,7 @@ public class RecordTest {
 
             searchResult = Record.searchCovid("Austria");
             assertEquals("Austria", searchResult.getCountry());
-            assertEquals(0.25, searchResult.getRiskDouble(), 0);
+            assertEquals(0.4, searchResult.getRiskDouble(), 0);
         } catch (NoSuchFieldException e) {
             fail("Exception caught when inappropriate");
         }
