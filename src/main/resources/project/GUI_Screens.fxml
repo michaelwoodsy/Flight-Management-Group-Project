@@ -372,7 +372,7 @@
                                  </font>
                               </Label>
                               <CheckBox fx:id="extraInfoBox" layoutX="34.0" layoutY="57.0" mnemonicParsing="false" onAction="#setOptedIn" prefHeight="40.0" prefWidth="155.0" text="Additional information" />
-                              <Button fx:id="defaultsButton" layoutX="54.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Restore Defaults" />
+                              <Button fx:id="defaultsButton" disable="true" layoutX="54.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Restore Defaults" />
                            </children>
                         </Pane>
                      </children>
@@ -600,6 +600,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Text>
+      <Accordion />
       <Accordion />
    </children>
 </AnchorPane>
