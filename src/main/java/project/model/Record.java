@@ -3,7 +3,12 @@ package project.model;
 import java.io.*;
 import java.util.*;
 
-
+/**
+ * This is a Class implements a Record.
+ * The record can be used to filter Airports, Routes, Airlines and Flights by criteria,
+ * it can also be used to search for Airports, Routes, Airlines and Flights given a criteria.
+ * It is also used to add, remove and modify certain types of data.
+ */
 public class Record {
     private ArrayList<Flight> flightList;
     private ArrayList<Route> routeList;
@@ -12,6 +17,10 @@ public class Record {
     private static Hashtable<String, Covid> covidDict = setCovid();
     private String name;
 
+    /**
+     * Record constructor that takes a String and initialize ArrayLists as null lists
+     * @param name A String containing the name of the record
+     */
     public Record(String name) {
         this.flightList = new ArrayList<Flight>();
         this.routeList = new ArrayList<Route>();
@@ -20,14 +29,13 @@ public class Record {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    /**
+     * Record constructor
+     * @param flightList An ArrayList containing Flight objects
+     * @param routeList An ArrayList containing Route objects
+     * @param airportList An ArrayList containing Airport objects
+     * @param airlineList An Arraylist containing Airline objects
+     */
     public Record(ArrayList<Flight> flightList, ArrayList<Route> routeList, ArrayList<Airport> airportList, ArrayList<Airline> airlineList) {
         this.flightList = flightList;
         this.routeList = routeList;
@@ -37,6 +45,10 @@ public class Record {
 
     /**
      * Filters airlines by whether they're active or not. Returns a new list of airlines meeting this criteria.
+     * Filters airlines by whether they're active or not.
+     * @param active A boolean taken from the GUI whether they're after active or not
+     * @param airlineList A list of Airlines to be filtered
+     * @return a new list of airlines meeting this criteria (doesn't override original airlineList).
      */
     public ArrayList<Airline> filterAirlines(Boolean active, List<Airline> airlineList) {
         ArrayList<Airline> filteredAirlines = new ArrayList<Airline>();
@@ -50,6 +62,10 @@ public class Record {
 
     /**
      * Filters routes by whether they have stops or not. Returns a new list of routes meeting this criteria.
+     * Filters routes by whether they have stops or not.
+     * @param direct A boolean taken from the GUI whether they are after direct flights or not
+     * @param routeList A list of Routes to be filtered
+     * @return a new list of routes meeting this criteria (doesn't override original routeList).
      */
     public ArrayList<Route> filterRoutesStops(boolean direct, List<Route> routeList) {
         ArrayList<Route> filteredRoutes = new ArrayList<Route>();
@@ -72,7 +88,9 @@ public class Record {
     /**
      * Ranks airports based on the number of routes they have.
      * Can be either ascending or descending order depending on the reverse parameter.
-     * Returns new, sorted list of airports (doesn't override original airportList).
+     * @param reverse A boolean taken from the GUI whether they are after ascending or descending
+     * @param airports A list of Airports to be sorted
+     * @return new, sorted list of airports (doesn't override original airportList).
      */
     public List<Airport> rankAirports(boolean reverse, List<Airport> airports) {
         List<Airport> rankedAirports = airports;
@@ -93,6 +111,7 @@ public class Record {
      */
     public List<Airport> searchAirports(String keyword, String attribute) {
         List<Airport> searchResult = new ArrayList<Airport>();
+        keyword = keyword.trim();
         for (Airport airport: airportList) {
             boolean airportMatches = false;
             if (attribute.equals("country")) {
@@ -126,6 +145,7 @@ public class Record {
      */
     public List<Airline> searchAirlines(String keyword, String attribute) {
        List<Airline> searchResult = new ArrayList<Airline>();
+       keyword = keyword.trim();
        for (Airline airline: airlineList) {
            boolean airlineMatches = false;
            if (attribute.equals("name")) {
@@ -158,7 +178,7 @@ public class Record {
      */
     public ArrayList<Route> searchRoutes(String keyWord, String attribute) {
         ArrayList<Route> searchResult = new ArrayList<Route>();
-
+        keyWord = keyWord.trim();
         for (Route route: routeList) {
             boolean match = false;
             if (attribute.equals("airline")) {
@@ -265,6 +285,10 @@ public class Record {
     }
      */
 
+    /**
+     * Adds new Routes to the Record's list of Routes.
+     * @param newRouteList An ArrayList containing the new Routes to be added
+     */
     public void addRoutes(ArrayList<Route> newRouteList) {
         this.routeList.addAll(newRouteList);
         Set<Route> uniqueElements = new HashSet<>(this.routeList);
@@ -273,6 +297,10 @@ public class Record {
         this.routeList.sort(Comparator.comparing(Route::getId));
     }
 
+    /**
+     * Adds new Airports to the Record's list of Airports.
+     * @param newAirportList An ArrayList containing the new Airports to be added
+     */
     public void addAirports(ArrayList<Airport> newAirportList) {
         this.airportList.addAll(newAirportList);
         Set<Airport> uniqueElements = new HashSet<>(this.airportList);
@@ -281,6 +309,10 @@ public class Record {
         this.airportList.sort(Comparator.comparing(Airport::getId));
     }
 
+    /**
+     * Adds new Airlines to the Record's list of Airlines.
+     * @param newAirlineList An ArrayList containing the new Airlines to be added
+     */
     public void addAirlines(ArrayList<Airline> newAirlineList) {
         this.airlineList.addAll(newAirlineList);
         Set<Airline> uniqueElements = new HashSet<>(this.airlineList);
@@ -289,6 +321,10 @@ public class Record {
         this.airlineList.sort(Comparator.comparing(Airline::getId));
     }
 
+    /**
+     * Add a single Flight to the Record's list of Flight.
+     * @param newFlight A Flight object containing the new object Flight to be added
+     */
     public void addFlights(Flight newFlight) {
         this.flightList.add(newFlight);
         Set<Flight> uniqueElements = new HashSet<>(this.flightList);
@@ -296,43 +332,79 @@ public class Record {
         this.flightList.addAll(uniqueElements);
     }
 
+    /**
+     * Modifies an Airport from the Record's list of Airport
+     * by setting the oldAirport index to the new Airport
+     * @param oldAirport An Airport object to be modified
+     * @param newAirport An Airport object that is modified
+     */
     public void modifyAirport(Airport oldAirport, Airport newAirport) {
         if (this.airportList.contains(oldAirport)) {
             this.airportList.set(airportList.indexOf(oldAirport), newAirport);
         }
     }
 
+    /**
+     * Modifies an Airline from the Record's list of Airline
+     * by setting the oldAirline index to the new Airline
+     * @param oldAirline An Airline object to be modified
+     * @param newAirline An Airline object that is modified
+     */
     public void modifyAirline(Airline oldAirline, Airline newAirline) {
         if (this.airlineList.contains(oldAirline)) {
             this.airlineList.set(airlineList.indexOf(oldAirline), newAirline);
         }
     }
 
+    /**
+     * Modifies a Route from the Record's list of Route
+     * by setting the oldRoute index to the new Route
+     * @param oldRoute A Route object to be modified
+     * @param newRoute A Route object that is modified
+     */
     public void modifyRoute(Route oldRoute, Route newRoute) {
         if (this.routeList.contains(oldRoute)) {
             this.routeList.set(routeList.indexOf(oldRoute), newRoute);
         }
     }
 
+    /**
+     * Removes an Airport from the Record's list of Airport
+     * ensuring the Airport exists inside the Record
+     * @param airport An Airport object to be removed
+     */
     public void removeAirports(Airport airport) {
         if (this.airportList.contains(airport)) {
             this.airportList.remove(airport);
         }
     }
 
+    /**
+     * Removes an Airline from the Record's list of Airline
+     * ensuring the Airline exists inside the Record
+     * @param airlines An Airline object to be removed
+     */
     public void removeAirlines(Airline airlines) {
         if (this.airlineList.contains(airlines)) {
             this.airlineList.remove(airlines);
         }
     }
 
+    /**
+     * Removes an Route from the Record's list of Route
+     * ensuring the Route exists inside the Record
+     * @param route A route object to be removed
+     */
     public void removeRoutes(Route route) {
         if (this.routeList.contains(route)) {
             this.routeList.remove(route);
         }
     }
+
     /**
      * Prompts the loading of a pre-installed covid file
+     * using the loadCovidFile from the CovidLoader method
+     * @return a Hashtable containing the covid data
      */
     public static Hashtable<String, Covid> setCovid() {
         Hashtable<String, Covid> covidDict = null;
@@ -360,6 +432,14 @@ public class Record {
 
     public ArrayList<Airline> getAirlineList() {
         return airlineList;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
 }
