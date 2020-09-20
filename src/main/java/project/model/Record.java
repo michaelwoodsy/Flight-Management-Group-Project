@@ -411,7 +411,8 @@ public class Record {
 
         try {
             CovidLoader covidLoad = new CovidLoader();
-            covidDict = covidLoad.loadCovidFile("./data/covid.dat");
+            covidDict = covidLoad.loadCovidFile("src/main/resources/covid.dat");
+
         } catch (IOException e) {
             System.err.println("Could not load file");
         }

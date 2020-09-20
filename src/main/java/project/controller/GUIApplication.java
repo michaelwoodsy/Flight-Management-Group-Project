@@ -17,8 +17,7 @@ public class GUIApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        System.out.println("Test");
-        Parent root = FXMLLoader.load(getClass().getResource("../GUI_Screens.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/project/GUI_Screens.fxml"));
         primaryStage.setScene(new Scene(root, 750, 530));
         primaryStage.setResizable(false);
         primaryStage.setTitle("PlaneSonar25");
@@ -27,7 +26,6 @@ public class GUIApplication extends Application {
     }
 
     public static void main(String[] args) {
-        System.out.println("App class");
         launch(args);
     }
 
