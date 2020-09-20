@@ -1,12 +1,9 @@
 package project.controller;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -20,6 +17,7 @@ public class GUIApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        System.out.println("Test");
         Parent root = FXMLLoader.load(getClass().getResource("../GUI_Screens.fxml"));
         primaryStage.setScene(new Scene(root, 750, 530));
         primaryStage.setResizable(false);
@@ -29,6 +27,7 @@ public class GUIApplication extends Application {
     }
 
     public static void main(String[] args) {
+        System.out.println("App class");
         launch(args);
     }
 
