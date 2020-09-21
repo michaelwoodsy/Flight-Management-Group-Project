@@ -318,7 +318,7 @@ public class RecordTest {
     }
 
     // Commented out as we won't be using this numRoutes function
-    /**
+    /*
     public void setNumRoutesTest() {
 
         ArrayList<Airline> testAirlineList = new ArrayList<Airline>();
@@ -369,8 +369,7 @@ public class RecordTest {
     }
      */
 
-    /**
-    @Test
+    /*
     public void searchFlightsTest() throws IOException {
 
         ArrayList<Flight> flightList = testRecord.searchFlights(true, "Test1");

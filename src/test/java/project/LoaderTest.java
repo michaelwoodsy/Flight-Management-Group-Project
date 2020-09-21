@@ -221,7 +221,7 @@ public class LoaderTest {
     public void loadCovidFileTest() throws IOException{
         // checks that covid file doesnt fail
 
-        Hashtable<String, Covid> covid_list = covidLoad.loadCovidFile("data/covid.dat");
+        Hashtable<String, Covid> covid_list = covidLoad.loadCovidFile("/covid.dat");
 
     }
 
@@ -229,7 +229,7 @@ public class LoaderTest {
     public void testCovid() throws IOException {
         //runs test file with missing attributes to ensure loader wont crash
         // test file contains missing values and illegal values, to test that checks work correctly
-        Hashtable<String, Covid> covid_list = covidLoad.loadCovidFile("data/covid_test.dat");
+        Hashtable<String, Covid> covid_list = covidLoad.loadCovidFile("/covid_test.dat");
 
     }
 }
