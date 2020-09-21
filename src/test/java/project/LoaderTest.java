@@ -221,7 +221,7 @@ public class LoaderTest {
     public void loadCovidFileTest() throws IOException{
         // checks that covid file doesnt fail
 
-        Hashtable<String, Covid> covid_list = covidLoad.loadCovidFile("data/covid.dat");
+        Hashtable<String, Covid> covid_list = covidLoad.loadCovidFile("src/main/resources/covid.dat");
 
     }
 

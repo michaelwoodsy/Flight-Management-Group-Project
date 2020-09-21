@@ -1,8 +1,6 @@
 package project.model;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.Hashtable;
 
 /**
@@ -24,7 +22,7 @@ public class CovidLoader {
         Hashtable<String, Covid> covidDict = new Hashtable<>();
         Covid currentCovid;
 
-        BufferedReader dataReader = new BufferedReader(new FileReader(path));
+        BufferedReader dataReader = new BufferedReader(new InputStreamReader(this.getClass().getResource(path).openStream()));
 
         boolean breaker = false;
         while (!breaker) {
@@ -52,6 +50,7 @@ public class CovidLoader {
      * @return country covid-19 data entry
      */
     public Covid loadCovid(String[] covidData) {
+
         String location;
         try {
             if (covidData[2].matches("[A-Za-z '-]+")){
