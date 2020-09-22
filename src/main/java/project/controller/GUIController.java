@@ -264,8 +264,6 @@ public class GUIController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         recordList = new ArrayList<Record>();
-        //Allows generation of a record from the database
-        //Full implementation will come in Phase 3
         //currentRecord = Database.generateRecord();
         currentRecord = new Record("Record 1");
         recordList.add(currentRecord);
