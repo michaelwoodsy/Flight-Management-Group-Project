@@ -38,8 +38,8 @@
                                  <children>
                                     <Text layoutX="8.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rank by:" />
                                     <Button fx:id="showAllAirports" layoutX="35.0" layoutY="190.0" mnemonicParsing="false" onAction="#displayAllAirports" text="SHOW ALL AIRPORTS" />
-                                    <Button fx:id="airportMostRoutes" disable="true" layoutX="100.0" layoutY="157.0" mnemonicParsing="false" onAction="#mostRoutesButton" prefHeight="25.0" text="MOST ROUTES" />
-                                    <Button fx:id="airportLeastRoutes" disable="true" layoutX="5.0" layoutY="157.0" mnemonicParsing="false" onAction="#leastRoutesButton" prefHeight="25.0" text="LEAST ROUTES" />
+                                    <Button fx:id="airportMostRoutes" layoutX="100.0" layoutY="157.0" mnemonicParsing="false" onAction="#mostRoutesButton" prefHeight="25.0" text="MOST ROUTES" />
+                                    <Button fx:id="airportLeastRoutes" layoutX="5.0" layoutY="157.0" mnemonicParsing="false" onAction="#leastRoutesButton" prefHeight="25.0" text="LEAST ROUTES" />
                                     <Text layoutX="8.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter/Search By:" />
                                     <ChoiceBox fx:id="airportSearchBy" layoutX="5.0" layoutY="88.0" prefHeight="25.0" prefWidth="130.0" />
                                     <Button fx:id="airportFilterButton" layoutX="134.0" layoutY="88.0" mnemonicParsing="false" onAction="#searchAirports" prefHeight="50.0" prefWidth="60.0" text="FILTER" />
@@ -372,7 +372,6 @@
                                  </font>
                               </Label>
                               <CheckBox fx:id="extraInfoBox" layoutX="34.0" layoutY="57.0" mnemonicParsing="false" onAction="#setOptedIn" prefHeight="40.0" prefWidth="155.0" text="Additional information" />
-                              <Button fx:id="defaultsButton" disable="true" layoutX="54.0" layoutY="115.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="106.0" text="Restore Defaults" />
                            </children>
                         </Pane>
                      </children>
@@ -592,6 +591,15 @@
                      </children>
                   </AnchorPane>
                </content>
+            </Tab>
+            <Tab text="Help">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Under construction" />
+                     </children>
+                  </AnchorPane>
+              </content>
             </Tab>
          </tabs>
       </TabPane>
