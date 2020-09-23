@@ -153,7 +153,7 @@ public class AirlineLoader {
      * @return An arraylist containing all the airlines in the file.
      * @throws IOException If the airline file loaded is invalid.
      */
-    public ArrayList<Airline> loadAirlineFile(String path) throws IOException {
+    public ArrayList<Airline> loadAirlineFile(String path, String recordName) throws IOException {
 
         ArrayList<Airline> airlineList = new ArrayList<Airline>();
 
@@ -168,6 +168,7 @@ public class AirlineLoader {
                 String[] data = row.split(",");
                 Airline airline = loadAirline(data);
                 if (airline != null) {
+                    airline.setRecordName(recordName);
                     airlineList.add(airline);
                 }
             }

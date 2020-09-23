@@ -15,6 +15,7 @@ public class Route {
     private int numStops;
     private String equipment;
     private boolean codeshare;
+    private String recordName;
 
     /**
      * @param airline
@@ -173,4 +174,8 @@ public class Route {
     public void setCodeshare(boolean codeshare) {
         this.codeshare = codeshare;
     }
+
+    public void setRecordName(String recordName) { this.recordName = recordName; }
+
+    public String getRecordName() { return recordName; }
 }

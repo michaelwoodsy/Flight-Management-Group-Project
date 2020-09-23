@@ -130,7 +130,7 @@ public class RouteLoader {
      * @return An arraylist containing all the routes in the file.
      * @throws IOException If the route file loaded is invalid.
      */
-    public ArrayList<Route> loadRouteFile(String path) throws IOException {
+    public ArrayList<Route> loadRouteFile(String path, String recordName) throws IOException {
 
         ArrayList<Route> routeList = new ArrayList<Route>();
 
@@ -146,6 +146,7 @@ public class RouteLoader {
                 RouteLoader routeLoad = new RouteLoader();
                 Route route = routeLoad.loadRoute(data);
                 if (route != null){
+                    route.setRecordName(recordName);
                     routeList.add(route);
                 }
             }

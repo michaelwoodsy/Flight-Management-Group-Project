@@ -218,7 +218,7 @@ public class AirportLoader {
      * @return An arraylist containing all the airports in the file.
      * @throws IOException If the airport file loaded is invalid.
      */
-    public ArrayList<Airport> loadAirportFile(String path) throws IOException {
+    public ArrayList<Airport> loadAirportFile(String path, String recordName) throws IOException {
 
         ArrayList<Airport> airportList = new ArrayList<Airport>();
 
@@ -235,6 +235,7 @@ public class AirportLoader {
                 Airport airport = airportLoad.loadAirport(data);
                 //Only add the airport if enough attributes are present
                 if (airport != null) {
+                    airport.setRecordName(recordName);
                     airportList.add(airport);
                 }
             }

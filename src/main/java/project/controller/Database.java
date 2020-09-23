@@ -71,7 +71,7 @@ public class Database {
     public static Connection connect() {
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection("jdbc:sqlite:/database.db");
+            conn = DriverManager.getConnection("jdbc:sqlite:database.db");
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
@@ -97,7 +97,7 @@ public class Database {
      * It is assumed that the table has already been created.
      * @param airport The airport object to be added to the database.
      */
-    public static void addNewAirport(Airport airport, Record record) {
+    public static void addNewAirport(Airport airport) {
 
         String insertStatement = String.format("INSERT INTO airports(id, altitude, numRoutesSource, numRoutesDest, " +
                 "airportName, city, country, iata, icao, destination, timezoneString, airportType, airportSource, latitude, " +
@@ -120,14 +120,15 @@ public class Database {
             pstmt.setDouble(14, airport.getLatitude());
             pstmt.setDouble(15, airport.getLongitude());
             pstmt.setDouble(16, airport.getTimezone());
-            pstmt.setString(17, record.getName());
+            pstmt.setString(17, airport.getRecordName());
             pstmt.executeUpdate();
+            System.out.println("Airport added");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static void addNewAirline(Airline airline, Record record) {
+    public static void addNewAirline(Airline airline) {
 
         String insertStatement = String.format("INSERT INTO airlines(id, airlineName, country, alias, callsign, icao, iata, " +
                 "active, record) VALUES(?,?,?,?,?,?,?,?,?)");
@@ -145,14 +146,14 @@ public class Database {
             } else {
                 pstmt.setInt(8, 0);
             }
-            pstmt.setString(9, record.getName());
+            pstmt.setString(9, airline.getRecordName());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static void addNewRoute(Route route, Record record) {
+    public static void addNewRoute(Route route) {
         String insertStatement = String.format("INSERT INTO routes(id, sourceID, destID, numStops, airline, sourceAirport, " +
                 "destAirport, equipment, codeshare, record) VALUES(?,?,?,?,?,?,?,?,?,?)");
         try (Connection conn = connect();
@@ -170,7 +171,7 @@ public class Database {
             } else {
                 pstmt.setInt(9, 0);
             }
-            pstmt.setString(10, record.getName());
+            pstmt.setString(10, route.getRecordName());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -194,6 +195,7 @@ public class Database {
              PreparedStatement pstmt = conn.prepareStatement(deleteStatement)) {
             pstmt.setString(1, value);
             pstmt.executeUpdate();
+            System.out.println("Airport removed");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -238,7 +240,6 @@ public class Database {
     public static void createAirportTable() {
         String sql = "CREATE TABLE IF NOT EXISTS airports (\n"
                 + " id integer PRIMARY KEY,\n"
-                + " risk integer NOT NULL,\n"
                 + " altitude integer,\n"
                 + " numRoutesSource integer,\n"
                 + " numRoutesDest integer,\n"
@@ -342,6 +343,7 @@ public class Database {
                         rs.getString("airportType"), rs.getString("airportSource"),
                         rs.getInt("numRoutesSource"), rs.getInt("numRoutesDest"));
                 String record = rs.getString("record");
+                newAirport.setRecordName(record);
                 if (recordNumbers.get(record) != null) {
                     int recordNum = recordNumbers.get(record);
                     recordList.get(recordNum).add(newAirport);
@@ -380,6 +382,7 @@ public class Database {
                         rs.getString("country"), rs.getString("alias"), rs.getString("callsign"),
                         rs.getString("iata"), rs.getString("icao"));
                 String record = rs.getString("record");
+                newAirline.setRecordName(record);
                 if (recordNumbers.get(record) != null) {
                     int recordNum = recordNumbers.get(record);
                     recordList.get(recordNum).add(newAirline);
@@ -401,7 +404,7 @@ public class Database {
      * @return routes - an ArrayList containing a route object for each route in the database
      */
     public static ArrayList<ArrayList<Route>> getAllRoutes() {
-        String query = "SELECT id, sourceID, destID, numStops, airline, sourceAirport, destAirport, equipment, codeshare " +
+        String query = "SELECT id, sourceID, destID, numStops, airline, sourceAirport, destAirport, equipment, codeshare, " +
                 "record FROM routes";
 
         HashMap<String, Integer> recordNumbers = new HashMap<>();
@@ -423,6 +426,7 @@ public class Database {
                         codeshare);
 
                 String record = rs.getString("record");
+                newRoute.setRecordName(record);
                 if (recordNumbers.get(record) != null) {
                     int recordNum = recordNumbers.get(record);
                     recordList.get(recordNum).add(newRoute);
@@ -439,13 +443,56 @@ public class Database {
         return recordList;
     }
 
+    public static ArrayList<Record> getRecords(ArrayList<ArrayList<Airline>> airlines, ArrayList<ArrayList<Airport>> airports, ArrayList<ArrayList<Route>> routes) {
+        ArrayList<Flight> flights = new ArrayList<>();
+        ArrayList<Record> records = new ArrayList<>();
+        for (ArrayList<Airline> airline: airlines) {
+            System.out.println(airline.get(0).getRecordName());
+            ArrayList<Airport> matchingAirport = new ArrayList<>();
+            ArrayList<Route> matchingRoute = new ArrayList<>();
+            for (ArrayList<Airport> airport : airports) {
+                if (airport.get(0).getRecordName().equals(airline.get(0).getRecordName())) {
+                    matchingAirport = airport;
+                    airports.remove(airport); //Corresponding airport list no longer needs to be stored
+                    break;
+                }
+            }
+            for (ArrayList<Route> route : routes) {
+                if (route.get(0).getRecordName().equals(airline.get(0).getRecordName())) {
+                    matchingRoute = route;
+                    routes.remove(route); //Corresponding route list no longer needs to be stored - remove it so searching for others is faster
+                    break;
+                }
+            }
+            records.add(new Record(flights, matchingRoute, matchingAirport, airline));
+        }
+        //Check if there are any additional records containing only airports, or airports and routes
+        for (ArrayList<Airport> airport: airports) {
+            ArrayList<Route> matchingRoute = new ArrayList<>();
+            for (ArrayList<Route> route: routes) {
+                if (route.get(0).getRecordName().equals(airport.get(0).getRecordName())) {
+                    matchingRoute = route;
+                    routes.remove(route);
+                    break;
+                }
+            }
+            records.add(new Record(flights, matchingRoute, airport, new ArrayList<>()));
+        }
+
+        //Check if there are any additional records containing only routes
+        for (ArrayList<Route> route: routes) {
+            records.add(new Record(flights, route, new ArrayList<>(), new ArrayList<>()));
+        }
+
+        return records;
+    }
+
     /**
      * Generates a record class from the data within the current database's tables.
      * Attempts to connect to the database; if it can't, the database is not present, and is created.
      * @return A record class, containing all the data from the databases tables.
      */
     public static ArrayList<Record> generateRecord() {
-        System.out.println("TEst");
         try (Connection conn = connect();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("SELECT id FROM airports"))
@@ -455,9 +502,9 @@ public class Database {
             ArrayList<ArrayList<Airline>> airlines = getAllAirlines();
             ArrayList<ArrayList<Airport>> airports = getAllAirports();
             ArrayList<ArrayList<Route>> routes = getAllRoutes();
-            ArrayList<Flight> flights = new ArrayList<>();
-            //Record record = new Record(flights, routes, airports, airlines);
-            return null;
+            ArrayList<Record> records = getRecords(airlines, airports, routes);
+
+            return records;
         }
     }
 

@@ -1,6 +1,7 @@
 package project;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import project.controller.Database;
 import project.model.*;
@@ -38,6 +39,25 @@ public class DatabaseTest {
 
     private Record record = new Record("Test");
 
+    public void assignRecords() {
+        testAirline1.setRecordName("Test");
+        testAirline2.setRecordName("Test");
+        testAirline3.setRecordName("Test");
+        testAirline4.setRecordName("Test");
+        testAirline5.setRecordName("Test");
+        testRoute1.setRecordName("Test");
+        testRoute2.setRecordName("Test");
+        testRoute3.setRecordName("Test");
+        testRoute4.setRecordName("Test");
+        testRoute5.setRecordName("Test");
+        testRoute6.setRecordName("Test");
+        testAirport1.setRecordName("Test");
+        testAirport2.setRecordName("Test");
+        testAirport3.setRecordName("Test");
+        testAirport4.setRecordName("Test");
+        testAirport5.setRecordName("Test");
+    }
+
     @Before
     public void setUp() {
         //Drop each of the current tables in the database to ensure a clear testing database
@@ -52,14 +72,15 @@ public class DatabaseTest {
             System.out.println("Tables dropped");
         } catch (SQLException e) {}
         Database.setupDatabase();
+        assignRecords();
     }
 
 
     @Test
     public void getAllAirportsTest() {
-        Database.addNewAirport(testAirport1, record);
-        Database.addNewAirport(testAirport2, record);
-        Database.addNewAirport(testAirport5, record);
+        Database.addNewAirport(testAirport1);
+        Database.addNewAirport(testAirport2);
+        Database.addNewAirport(testAirport5);
 
         ArrayList<Airport> airports = new ArrayList<Airport>();
         airports.add(testAirport1);
@@ -69,8 +90,8 @@ public class DatabaseTest {
         ArrayList<Airport> retrievedAirports = Database.getAllAirports().get(0);
         assertEquals(retrievedAirports, airports);
 
-        Database.addNewAirport(testAirport3, record);
-        Database.addNewAirport(testAirport4, record);
+        Database.addNewAirport(testAirport3);
+        Database.addNewAirport(testAirport4);
         airports.add(2, testAirport3);
         airports.add(3, testAirport4);
 
@@ -80,9 +101,9 @@ public class DatabaseTest {
 
     @Test
     public void getAllAirlinesTest() {
-        Database.addNewAirline(testAirline4, record);
-        Database.addNewAirline(testAirline1, record);
-        Database.addNewAirline(testAirline3, record);
+        Database.addNewAirline(testAirline4);
+        Database.addNewAirline(testAirline1);
+        Database.addNewAirline(testAirline3);
 
         //Create an arrayList in order of ID's, as SQL will order the data points in this way
         ArrayList<Airline> airlines = new ArrayList<Airline>();
@@ -93,8 +114,8 @@ public class DatabaseTest {
         ArrayList<Airline> retrievedAirlines = Database.getAllAirlines().get(0);
         assertEquals(retrievedAirlines, airlines);
 
-        Database.addNewAirline(testAirline5, record);
-        Database.addNewAirline(testAirline2, record);
+        Database.addNewAirline(testAirline5);
+        Database.addNewAirline(testAirline2);
         airlines.add(1, testAirline2);
         airlines.add(testAirline5);
 
@@ -104,9 +125,9 @@ public class DatabaseTest {
 
     @Test
     public void getAllRoutesTest() {
-        Database.addNewRoute(testRoute2, record);
-        Database.addNewRoute(testRoute3, record);
-        Database.addNewRoute(testRoute4, record);
+        Database.addNewRoute(testRoute2);
+        Database.addNewRoute(testRoute3);
+        Database.addNewRoute(testRoute4);
 
         ArrayList<Route> routes = new ArrayList<Route>();
         routes.add(testRoute2);
@@ -116,9 +137,9 @@ public class DatabaseTest {
         ArrayList<Route> retrievedRoutes = Database.getAllRoutes().get(0);
         assertEquals(retrievedRoutes, routes);
 
-        Database.addNewRoute(testRoute5, record);
-        Database.addNewRoute(testRoute1, record);
-        Database.addNewRoute(testRoute6, record);
+        Database.addNewRoute(testRoute5);
+        Database.addNewRoute(testRoute1);
+        Database.addNewRoute(testRoute6);
         routes.add(testRoute5);
         routes.add(0, testRoute1);
         routes.add(testRoute6);
@@ -130,11 +151,11 @@ public class DatabaseTest {
     @Test
     public void removeAirportTest() {
         Database.populateAirportTableColumns();
-        Database.addNewAirport(testAirport1, record);
-        Database.addNewAirport(testAirport2, record);
-        Database.addNewAirport(testAirport3, record);
-        Database.addNewAirport(testAirport4, record);
-        Database.addNewAirport(testAirport5, record);
+        Database.addNewAirport(testAirport1);
+        Database.addNewAirport(testAirport2);
+        Database.addNewAirport(testAirport3);
+        Database.addNewAirport(testAirport4);
+        Database.addNewAirport(testAirport5);
 
         try {
             //Remove Airline 2
@@ -161,11 +182,11 @@ public class DatabaseTest {
     @Test
     public void removeAirlineTest() {
         Database.populateAirlineTableColumns();
-        Database.addNewAirline(testAirline1, record);
-        Database.addNewAirline(testAirline2, record);
-        Database.addNewAirline(testAirline3, record);
-        Database.addNewAirline(testAirline4, record);
-        Database.addNewAirline(testAirline5, record);
+        Database.addNewAirline(testAirline1);
+        Database.addNewAirline(testAirline2);
+        Database.addNewAirline(testAirline3);
+        Database.addNewAirline(testAirline4);
+        Database.addNewAirline(testAirline5);
 
         try {
             Database.removeAirline("id", "101");
@@ -192,12 +213,12 @@ public class DatabaseTest {
     @Test
     public void removeRouteTest() {
         Database.populateRouteTableColumns();
-        Database.addNewRoute(testRoute1, record);
-        Database.addNewRoute(testRoute2, record);
-        Database.addNewRoute(testRoute3, record);
-        Database.addNewRoute(testRoute4, record);
-        Database.addNewRoute(testRoute5, record);
-        Database.addNewRoute(testRoute6, record);
+        Database.addNewRoute(testRoute1);
+        Database.addNewRoute(testRoute2);
+        Database.addNewRoute(testRoute3);
+        Database.addNewRoute(testRoute4);
+        Database.addNewRoute(testRoute5);
+        Database.addNewRoute(testRoute6);
 
         try {
             Database.removeRoute("id", "502");
@@ -223,9 +244,9 @@ public class DatabaseTest {
 
     @Test
     public void addNewAirportTest() {
-        Database.addNewAirport(testAirport1, record);
-        Database.addNewAirport(testAirport2, record);
-        Database.addNewAirport(testAirport4, record);
+        Database.addNewAirport(testAirport1);
+        Database.addNewAirport(testAirport2);
+        Database.addNewAirport(testAirport4);
 
         ArrayList<Integer> airportIDs = new ArrayList<Integer>();
         airportIDs.add(testAirport1.getId());
@@ -251,9 +272,9 @@ public class DatabaseTest {
 
     @Test
     public void addNewAirlineTest() {
-        Database.addNewAirport(testAirport1, record);
-        Database.addNewAirport(testAirport2, record);
-        Database.addNewAirport(testAirport4, record);
+        Database.addNewAirport(testAirport1);
+        Database.addNewAirport(testAirport2);
+        Database.addNewAirport(testAirport4);
 
         ArrayList<Integer> airportIDs = new ArrayList<Integer>();
         airportIDs.add(testAirport1.getId());
@@ -279,9 +300,9 @@ public class DatabaseTest {
 
     @Test
     public void addNewRouteTest() {
-        Database.addNewAirport(testAirport1, record);
-        Database.addNewAirport(testAirport2, record);
-        Database.addNewAirport(testAirport4, record);
+        Database.addNewAirport(testAirport1);
+        Database.addNewAirport(testAirport2);
+        Database.addNewAirport(testAirport4);
 
         ArrayList<Integer> airportIDs = new ArrayList<Integer>();
         airportIDs.add(testAirport1.getId());
@@ -306,24 +327,25 @@ public class DatabaseTest {
 
     @Test
     public void generateRecordTest() {
-        Database.addNewRoute(testRoute5, record);
-        Database.addNewRoute(testRoute2, record);
-        Database.addNewRoute(testRoute4, record);
+        System.out.println(testRoute1.getRecordName());
+        Database.addNewRoute(testRoute5);
+        Database.addNewRoute(testRoute2);
+        Database.addNewRoute(testRoute4);
         ArrayList<Route> routes = new ArrayList<Route>();
         routes.add(testRoute2);
         routes.add(testRoute4);
         routes.add(testRoute5);
 
-        Database.addNewAirline(testAirline3, record);
-        Database.addNewAirline(testAirline1, record);
+        Database.addNewAirline(testAirline3);
+        Database.addNewAirline(testAirline1);
         ArrayList<Airline> airlines = new ArrayList<Airline>();
         airlines.add(testAirline1);
         airlines.add(testAirline3);
 
-        Database.addNewAirport(testAirport4, record);
-        Database.addNewAirport(testAirport5, record);
-        Database.addNewAirport(testAirport2, record);
-        Database.addNewAirport(testAirport1, record);
+        Database.addNewAirport(testAirport4);
+        Database.addNewAirport(testAirport5);
+        Database.addNewAirport(testAirport2);
+        Database.addNewAirport(testAirport1);
         ArrayList<Airport> airports = new ArrayList<Airport>();
         airports.add(testAirport1);
         airports.add(testAirport2);

@@ -264,7 +264,7 @@ public class GUIController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         recordList = new ArrayList<Record>();
-        //currentRecord = Database.generateRecord();
+        currentRecord = Database.generateRecord().get(0);
         currentRecord = new Record("Record 1");
         recordList.add(currentRecord);
 
@@ -661,7 +661,7 @@ public class GUIController implements Initializable {
 
                     addFileHelper();
 
-                    ArrayList<Airport> newAirportList = airportLoad.loadAirportFile(file.getAbsolutePath());
+                    ArrayList<Airport> newAirportList = airportLoad.loadAirportFile(file.getAbsolutePath(), currentRecord.getName());
                     currentRecord.addAirports(newAirportList);
                     hideAllTables();
                     if (Airport.getNumMissingCovid() > 0) {
@@ -675,7 +675,7 @@ public class GUIController implements Initializable {
 
                     addFileHelper();
 
-                    ArrayList<Airline> newAirlineList = airlineLoad.loadAirlineFile(file.getAbsolutePath());
+                    ArrayList<Airline> newAirlineList = airlineLoad.loadAirlineFile(file.getAbsolutePath(), currentRecord.getName());
                     currentRecord.addAirlines(newAirlineList);
                     hideAllTables();
                     flightHelper();
@@ -686,7 +686,7 @@ public class GUIController implements Initializable {
 
                     addFileHelper();
 
-                    ArrayList<Route> newRouteList = routeLoad.loadRouteFile(file.getAbsolutePath());
+                    ArrayList<Route> newRouteList = routeLoad.loadRouteFile(file.getAbsolutePath(), currentRecord.getName());
                     currentRecord.addRoutes(newRouteList);
                     hideAllTables();
                     flightHelper();

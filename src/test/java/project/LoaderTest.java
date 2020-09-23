@@ -176,7 +176,7 @@ public class LoaderTest {
      * Manual testing. Not gonna bother to type out the entire data files as an ArrayList of classes. Functions work.
      */
     public void loadRouteFileTest() throws IOException {
-        ArrayList<Route> routeList = routeLoad.loadRouteFile("data/routes.dat");
+        ArrayList<Route> routeList = routeLoad.loadRouteFile("data/routes.dat", "Test Name");
     }
 
     @Test
@@ -202,7 +202,7 @@ public class LoaderTest {
     public void loadAirportFileTest() throws IOException {
         AirportLoader airportLoad = new AirportLoader();
         Record record = new Record(null, null, null, null); //initialise the COVID lists
-        ArrayList<Airport> airportList = airportLoad.loadAirportFile("data/airports.dat");
+        ArrayList<Airport> airportList = airportLoad.loadAirportFile("data/airports.dat", "Test Name");
 
     }
 
@@ -212,7 +212,7 @@ public class LoaderTest {
      */
     public void loadAirlineFileTest() throws IOException {
         Loader loader = new Loader();
-        ArrayList<Airline> airlineList = airlineLoad.loadAirlineFile("data/airlines.dat");
+        ArrayList<Airline> airlineList = airlineLoad.loadAirlineFile("data/airlines.dat", "Test Name");
 
     }
 
