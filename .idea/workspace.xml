@@ -11,10 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Must commit to pull">
-      <change afterPath="$PROJECT_DIR$/SENG202Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/map.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,12 +84,6 @@
     <property name="settings.editor.selected.configurable" value="inlay.hints.JAVA" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\elang\planesonar25\src\main\resources" />
-      <recent name="C:\Users\elang\planesonar25\src\main\resources\project" />
-      <recent name="C:\Users\dan\Documents\SENG202\planesonar25\src\main\resources\project" />
-      <recent name="C:\Users\elang\planesonar25\src\main" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="project" />
     </key>
@@ -99,6 +91,12 @@
       <recent name="C:\Users\elang\planesonar25\src\main\resources" />
       <recent name="C:\Users\elang\planesonar25\src\main\resources\project" />
       <recent name="C:\Users\elang\planesonar25\src\test\java\project" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\elang\planesonar25\src\main\resources" />
+      <recent name="C:\Users\elang\planesonar25\src\main\resources\project" />
+      <recent name="C:\Users\dan\Documents\SENG202\planesonar25\src\main\resources\project" />
+      <recent name="C:\Users\elang\planesonar25\src\main" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">

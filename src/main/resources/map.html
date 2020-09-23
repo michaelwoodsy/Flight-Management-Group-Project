@@ -20,12 +20,34 @@
 <!--Embedded javascript for google maps API-->
     var map;
 
-<!--    phase 3 will have long and latitude inputs from routes, these are used for demo purposes-->
-    var dest1 = [-43.4876, 172.5374]
-    var dest2 = [-37.0082, 174.7850]
+    var markers = [
+    {
+        "title": 'Christchurch International Airport',
+        "lat": '-43.4876',
+        "lng": '172.5374'
+    },
+    {
+        "title": 'Auckland International Airport',
+        "lat": '-37.0082',
+        "lng": '174.7850',
+    },
+    {
+        "title": 'Wellington International Airport',
+        "lat": '-41.3276',
+        "lng": '174.8076'
+    },
+    {
+        "title": 'Invercargill airport',
+        "lat": '-46.4153',
+        "lng": '168.3151'
+    },
+    {
+        "title": 'Tauranga Airport',
+        "lat": '-37.6725',
+        "lng": '176.1982'
+    }
+    ];
 
-    var marker1;
-    var marker2;
     var path;
 
     var marker_icon = 'airportIcon.png';
@@ -35,6 +57,11 @@ For the line connecting the two airports, path co-ordinates are needed. If we ha
 about the path of the flight, we can input the long and lat data into flightPlanCoordinates to show the curve of
 the flight rather than a direct line connecting them
 */
+
+
+// lat and long for source and dest go in here
+    var dest1 = [-43.4876, 172.5374]
+    var dest2 = [-37.0082, 174.7850]
     var flightPlanCoordinates = [
             {lat: dest1[0], lng: dest1[1]},
             {lat: dest2[0], lng: dest2[1]}
@@ -52,10 +79,7 @@ the flight rather than a direct line connecting them
         map = new google.maps.Map(document.getElementById('map'), {
 <!-- had to manually enter half way because embedded map, automatic scaling and zoom is buggy      -->
 
-            <!-- uncomment when reposition function works   -->
-            <!--  center: {lat: dest1[0], lng:  dest1[1]},-->
-
-            center:{lat: -39.980469, lng:173.806084},
+            center: new google.maps.LatLng(markers[0].lat, markers[0].lng),
             zoom: 5.8,
             zoomControl: false,
             mapTypeControl: false,
@@ -65,26 +89,27 @@ the flight rather than a direct line connecting them
             fullscreenControl: false
         });
 
+        var infoWindow = new google.maps.InfoWindow();
+        var latlngbounds = new google.maps.LatLngBounds();
+
+        for (var i = 0; i < markers.length; i++) {
+            var data = markers[i]
+            var Latlng = new google.maps.LatLng(data.lat, data.lng);
+            var marker = new google.maps.Marker({
+                position: Latlng,
+                map: map,
+                title: data.title,
+                icon: marker_icon
+            });
+            latlngbounds.extend(marker.position);
+        }
 
         displayRoute(dest1, dest2);
+        repositionMap(latlngbounds);
+
     }
 
-    function displayRoute(dest1, dest2) {
-        marker1 = new google.maps.Marker({
-            position: {lat: dest1[0], lng:  dest1[1]},
-            icon: marker_icon,
-            map: map,
-            title: 'Christchurch  International Airport'
-        });
-
-        marker2 = new google.maps.Marker({
-            position: {lat: dest2[0], lng:  dest2[1]},
-            map: map,
-            title: 'Auckland  International Airport',
-            icon: marker_icon
-
-        });
-
+    function displayRoute(flightPath) {
         var flightPath = new google.maps.Polyline({
             path: flightPlanCoordinates,
             strokeColor: 'Blue',
@@ -96,24 +121,19 @@ the flight rather than a direct line connecting them
                 offset: "0",
                 repeat: "25px"
               }
-    ],
+            ],
+        });
+        google.maps.event.addListener(flightPath, 'click', function() {
+            window.alert("sometext");
         });
 
         flightPath.setMap(map);
-
-<!--  will fix automatic reposition-->
-<!--        repositionMap(flightPath);-->
     }
 
-    function repositionMap(flightPath) {
-    <!-- automatically scale the map between the two points -->
-<!--    BUGGY WITH EMBEDDED MAP (Only stand alone)-->
+    function repositionMap(latlngbounds) {
         var bounds = new google.maps.LatLngBounds();
-
-        bounds.extend(marker1.position);
-        bounds.extend(marker2.position);
-
-        map.fitBounds(bounds);
+        map.setCenter(latlngbounds.getCenter());
+        map.fitBounds(latlngbounds);
     }
 </script>
 </head>
