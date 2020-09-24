@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class RouteLocations {
+public class AirportLocations {
     private List<Position> routeLocations = new ArrayList<>();
 
-    public RouteLocations(Position ...points) {
+    public AirportLocations(Position ...points) {
         Collections.addAll(routeLocations, points);
     }
 

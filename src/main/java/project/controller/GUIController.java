@@ -14,9 +14,12 @@ import project.model.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.*;
 import org.json.simple.JSONArray;
+
+import javax.naming.Binding;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
@@ -252,8 +255,10 @@ public class GUIController implements Initializable {
     private WebEngine mapEngine;
 
     //need to get this function to loop through airports adding position then RouteLocations
-    private RouteLocations routeA = new RouteLocations(
+
+    private AirportLocations routeA = new AirportLocations(
             new Position(-43.4876, 172.5374),
+
             new Position(-37.0082, 174.7850)
     );
 
@@ -327,14 +332,25 @@ public class GUIController implements Initializable {
 
 
     }
-    private void displayRoute(RouteLocations newRouteLocation) {
-        String scriptToExecute = "displayRoute(" + newRouteLocation.toJSONArray() + ");";
+    private void displayRoute(AirportLocations newAirportLocation) {
+        String scriptToExecute = "displayRoute(" + newAirportLocation.toJSONArray() + ");";
         this.mapEngine.executeScript(scriptToExecute);
     }
     public void initMap(){
         this.mapEngine = mapView.getEngine();
         this.mapEngine.load(getClass().getResource("/map.html").toExternalForm());
     }
+    public void airportLoop() {
+        //need to have a loop for all airport locations
+        AirportLocations routeA = new AirportLocations(
+                new Position(-43.4876, 172.5374),
+
+                new Position(-37.0082, 174.7850)
+        );
+
+    }
+
+
     /**
      * Finds the index of the selected route in the recordList and then selects
      * this given route.
@@ -1005,6 +1021,7 @@ public class GUIController implements Initializable {
      * in the main list view on the airport tab.
      */
     public void displayAllAirports() {
+        airportLoop();
         airportList.setItems(observableArrayList(currentRecord.getAirportList()));
         recordSelectAirport.getSelectionModel().select(currentRecord.getName());
 
