@@ -426,6 +426,7 @@ public class Record {
     public void removeRoutes(Route route) {
         if (this.routeList.contains(route)) {
             this.routeList.remove(route);
+            availableIDs.add(route.getId());
         }
     }
 

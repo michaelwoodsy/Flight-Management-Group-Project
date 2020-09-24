@@ -1499,6 +1499,7 @@ public class GUIController implements Initializable {
         if (errors.size() == 0) {
             Route newRoute = new Route(id, airline, airlineId, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
             newRoute.setRecordName(route.getRecordName());
+            System.out.println(newRoute.getRecordName());
             currentRecord.modifyRoute(route, newRoute);
             modifyRoutePane.setVisible(false);
             modifyRouteWindowButton.setVisible(false);
@@ -1671,8 +1672,8 @@ public class GUIController implements Initializable {
             modifyAirportWindowButton.setVisible(false);
             airportSplitPane.setVisible(true);
             airportList.setVisible(true);
-            displayAllAirlines();
-            additionalAirlineInfo();
+            displayAllAirports();
+            additionalAirportInfo();
         } else {
             DialogBoxes.newDataError(errors);
         }

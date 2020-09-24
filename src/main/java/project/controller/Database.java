@@ -263,13 +263,13 @@ public class Database {
         } else {
             codeshare = 0;
         }
-        String columnUpdates = String.format("airline = %s, sourceAirport = %s, sourceID = %d, destAirport = %s, " +
-                "destID = %s, numStops = %d, equipment = %s, codeshare = %d", newRoute.getAirline(), newRoute.getSourceAirport(),
+        String columnUpdates = String.format("airline = '%s', sourceAirport = '%s', sourceID = %d, destAirport = '%s', " +
+                "destID = '%s', numStops = %d, equipment = '%s', codeshare = %d", newRoute.getAirline(), newRoute.getSourceAirport(),
         newRoute.getSourceID(), newRoute.getDestAirport(), newRoute.getDestID(), newRoute.getNumStops(), newRoute.getEquipment(), codeshare);
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(String.format("UPDATE routes SET %s WHERE id = ? and record = ?", columnUpdates))) {
-            pstmt.setInt(1, newRoute.getAirlineId());
+            pstmt.setInt(1, newRoute.getId());
             pstmt.setString(2, newRoute.getRecordName());
             pstmt.executeUpdate();
         } catch (SQLException e) {
