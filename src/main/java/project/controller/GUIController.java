@@ -3,23 +3,20 @@ package project.controller;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import project.model.*;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import org.json.simple.JSONArray;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
@@ -251,6 +248,16 @@ public class GUIController implements Initializable {
     private List<Route> defaultRouteList = new ArrayList<>();
     private Airport lastSelectedAirport = null;
 
+
+    private WebEngine mapEngine;
+
+    private RouteLocations routeA = new RouteLocations(
+            new Position(37.772, -122.214),
+            new Position(21.291,  -157.821),
+            new Position(-18.142, 178.431),
+            new Position(-27.467, 153.027)
+    );
+
     /**
      * Sets up all the data array lists to be used along with the sources of
      * our data.
@@ -295,6 +302,9 @@ public class GUIController implements Initializable {
         WebEngine mapEngine = mapView.getEngine();
         mapEngine.load(getClass().getResource("/map.html").toExternalForm());
 
+//        Will ask tutors why this doesnt work
+//        displayRoute(routeA);
+
 
 
         WebEngine OpenFlightsWebEngine = OpenFlightsWebView.getEngine();
@@ -317,7 +327,10 @@ public class GUIController implements Initializable {
         airlineSearchBy.getSelectionModel().selectFirst();
         DialogBoxes.welcomeBox();
     }
-
+    private void displayRoute(RouteLocations newRouteLocation) {
+        String scriptToExecute = "displayRoute(" + newRouteLocation.toJSONArray() + ");";
+        mapEngine.executeScript(scriptToExecute);
+    }
     /**
      * Finds the index of the selected route in the recordList and then selects
      * this given route.
