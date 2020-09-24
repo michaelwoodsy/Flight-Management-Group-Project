@@ -92,6 +92,21 @@ public class Database {
         }
     }
 
+    public static void clearDatabase() {
+        try (Connection conn = Database.connect();
+             Statement stmt = conn.createStatement()) {
+            String dropStatement = "DROP TABLE airports";
+            stmt.executeUpdate(dropStatement);
+            dropStatement = "DROP TABLE airlines";
+            stmt.executeUpdate(dropStatement);
+            dropStatement = "DROP TABLE routes";
+            stmt.executeUpdate(dropStatement);
+            System.out.println("Tables dropped");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
     /**
      * Adds a new airport into the database's airport table.
      * It is assumed that the table has already been created.
@@ -122,7 +137,6 @@ public class Database {
             pstmt.setDouble(16, airport.getTimezone());
             pstmt.setString(17, airport.getRecordName());
             pstmt.executeUpdate();
-            System.out.println("Airport added");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -183,25 +197,29 @@ public class Database {
      * @param column If a data point has 'value' in this column, it will be deleted.
      * @param value If a data point has this value in 'column', it will be deleted.
      */
-    public static void removeAirport(String column, String value) throws NoSuchFieldException {
+    public static void removeAirport(String column, String value, String record) throws NoSuchFieldException {
 
         if (!airportTableColumns.contains(column)) {
             throw new NoSuchFieldException("Provided column value is not a column in the airport table");
         }
 
-        String deleteStatement = String.format("DELETE FROM airports WHERE %s = ?", column);
+        System.out.println(value);
+        System.out.println(record);
+        String deleteStatement = String.format("DELETE FROM airports WHERE %s = ? AND record = ?", column);
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(deleteStatement)) {
             pstmt.setString(1, value);
+            pstmt.setString(2, record);
             pstmt.executeUpdate();
             System.out.println("Airport removed");
         } catch (SQLException e) {
+            System.out.println("Whoops");
             System.out.println(e.getMessage());
         }
     }
 
-    public static void removeAirline(String column, String value) throws NoSuchFieldException {
+    public static void removeAirline(String column, String value, String record) throws NoSuchFieldException {
         if (!airlineTableColumns.contains(column)) {
             throw new NoSuchFieldException("Column name does not exist in the airline table.");
         }
@@ -219,14 +237,15 @@ public class Database {
 
     }
 
-    public static void removeRoute(String column, String value) throws NoSuchFieldException {
+    public static void removeRoute(String column, String value, String record) throws NoSuchFieldException {
         if (!routeTableColumns.contains(column)) {
             throw new NoSuchFieldException("Column name does not exist in the routes table.");
         }
 
         try (Connection conn = connect();
-             PreparedStatement pstmt = conn.prepareStatement(String.format("DELETE FROM routes WHERE %s = ?", column))) {
+             PreparedStatement pstmt = conn.prepareStatement(String.format("DELETE FROM routes WHERE %s = ? AND record = ?", column))) {
             pstmt.setString(1, value);
+            pstmt.setString(2, record);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -464,7 +483,9 @@ public class Database {
                     break;
                 }
             }
-            records.add(new Record(flights, matchingRoute, matchingAirport, airline));
+            Record newRecord = new Record(flights, matchingRoute, matchingAirport, airline);
+            newRecord.setName(airline.get(0).getName());
+            records.add(newRecord);
         }
         //Check if there are any additional records containing only airports, or airports and routes
         for (ArrayList<Airport> airport: airports) {
@@ -476,12 +497,16 @@ public class Database {
                     break;
                 }
             }
-            records.add(new Record(flights, matchingRoute, airport, new ArrayList<>()));
+            Record newRecord = new Record(flights, matchingRoute, airport, new ArrayList<>());
+            newRecord.setName(airport.get(0).getRecordName());
+            records.add(newRecord);
         }
 
         //Check if there are any additional records containing only routes
         for (ArrayList<Route> route: routes) {
-            records.add(new Record(flights, route, new ArrayList<>(), new ArrayList<>()));
+            Record newRecord = new Record(flights, route, new ArrayList<>(), new ArrayList<>());
+            newRecord.setName(route.get(0).getRecordName());
+            records.add(newRecord);
         }
 
         return records;
@@ -517,5 +542,11 @@ public class Database {
         createAirportTable();
         createAirlineTable();
         createRouteTable();
+    }
+
+    public static void populateTables() {
+        populateRouteTableColumns();
+        populateAirportTableColumns();
+        populateAirlineTableColumns();
     }
 }

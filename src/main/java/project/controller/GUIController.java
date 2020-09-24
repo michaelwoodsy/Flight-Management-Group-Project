@@ -263,21 +263,33 @@ public class GUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        recordList = new ArrayList<Record>();
-        currentRecord = Database.generateRecord().get(0);
-        currentRecord = new Record("Record 1");
-        recordList.add(currentRecord);
+        //recordList = new ArrayList<Record>();
+        recordList = Database.generateRecord();
+        if (recordList.size() > 0) {
+            currentRecord = recordList.get(0);
+        } else {
+            currentRecord = new Record("Record 1");
+            recordList.add(currentRecord);
+        }
+        Database.populateTables();
 
-        recordSelectAirport.setItems(observableArrayList(currentRecord.getName()));
+        ArrayList<String> recordNames = new ArrayList<String>();
+        for (Record record: recordList) {
+            System.out.println(record.getName());
+            recordNames.add(record.getName());
+        }
+
+        recordSelectAirport.setItems(observableArrayList(recordNames));
         recordSelectAirport.getSelectionModel().selectFirst();
-        recordSelectAirline.setItems(observableArrayList(currentRecord.getName()));
+        recordSelectAirline.setItems(observableArrayList(recordNames));
         recordSelectAirline.getSelectionModel().selectFirst();
-        recordSelectRoute.setItems(observableArrayList(currentRecord.getName()));
+        recordSelectRoute.setItems(observableArrayList(recordNames));
         recordSelectRoute.getSelectionModel().selectFirst();
-        recordSelectFlight.setItems(observableArrayList(currentRecord.getName()));
+        recordSelectFlight.setItems(observableArrayList(recordNames));
         recordSelectFlight.getSelectionModel().selectFirst();
 
-        recordDropdown.setItems(observableArrayList(currentRecord.getName(), "New Record"));
+        recordNames.add("New Record");
+        recordDropdown.setItems(observableArrayList(recordNames));
         recordDropdown.getSelectionModel().selectFirst();
 
         WebEngine mapEngine = mapView.getEngine();
@@ -663,6 +675,9 @@ public class GUIController implements Initializable {
 
                     ArrayList<Airport> newAirportList = airportLoad.loadAirportFile(file.getAbsolutePath(), currentRecord.getName());
                     currentRecord.addAirports(newAirportList);
+                    for (Airport airport: newAirportList) {
+                        Database.addNewAirport(airport);
+                    }
                     hideAllTables();
                     if (Airport.getNumMissingCovid() > 0) {
                         DialogBoxes.missingCovidInfoBox();
@@ -677,6 +692,9 @@ public class GUIController implements Initializable {
 
                     ArrayList<Airline> newAirlineList = airlineLoad.loadAirlineFile(file.getAbsolutePath(), currentRecord.getName());
                     currentRecord.addAirlines(newAirlineList);
+                    for (Airline airline: newAirlineList) {
+                        Database.addNewAirline(airline);
+                    }
                     hideAllTables();
                     flightHelper();
                 } else if (selectFile.getSelectedToggle() == routeRadioButton) {
@@ -688,6 +706,9 @@ public class GUIController implements Initializable {
 
                     ArrayList<Route> newRouteList = routeLoad.loadRouteFile(file.getAbsolutePath(), currentRecord.getName());
                     currentRecord.addRoutes(newRouteList);
+                    for (Route route: newRouteList) {
+                        Database.addNewRoute(route);
+                    }
                     hideAllTables();
                     flightHelper();
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
@@ -806,6 +827,7 @@ public class GUIController implements Initializable {
             ArrayList<Airport> newAirportList = new ArrayList<Airport>();
             newAirportList.add(newAirport);
             currentRecord.addAirports(newAirportList);
+            Database.addNewAirport(newAirport);
         } else {
             DialogBoxes.newDataError(errors);
         }
@@ -868,6 +890,7 @@ public class GUIController implements Initializable {
             ArrayList<Airline> newAirlineList = new ArrayList<Airline>();
             newAirlineList.add(newAirline);
             currentRecord.addAirlines(newAirlineList);
+            Database.addNewAirline(newAirline);
         } else {
             DialogBoxes.newDataError(errors);
         }
@@ -952,6 +975,7 @@ public class GUIController implements Initializable {
             ArrayList<Route> newRouteList = new ArrayList<Route>();
             newRouteList.add(newRoute);
             currentRecord.addRoutes(newRouteList);
+            Database.addNewRoute(newRoute);
         } else {
             DialogBoxes.newDataError(errors);
         }
@@ -1244,6 +1268,9 @@ public class GUIController implements Initializable {
     public void deleteAirlineButton(ActionEvent event) throws IOException {
         Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
         currentRecord.removeAirlines(airline);
+        try { Database.removeAirline("id", Integer.toString(airline.getId()), airline.getRecordName());
+        } catch (NoSuchFieldException e) {System.out.println("WHoopes");}
+
         modifyAirlinePane.setVisible(false);
         modifyAirlineWindowButton.setVisible(false);
         airlineSplitPane.setVisible(true);
@@ -1380,6 +1407,8 @@ public class GUIController implements Initializable {
     public void deleteRouteButton(ActionEvent event) throws IOException {
         Route route = (Route) routeList.getSelectionModel().getSelectedItem();
         currentRecord.removeRoutes(route);
+        try { Database.removeRoute("id", Integer.toString(route.getId()), route.getRecordName());
+        } catch (NoSuchFieldException e) {}
         modifyRoutePane.setVisible(false);
         modifyRouteWindowButton.setVisible(false);
         routeSplitPane.setVisible(true);
@@ -1509,6 +1538,8 @@ public class GUIController implements Initializable {
     public void deleteAirportButton(ActionEvent event) throws IOException {
         Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
         currentRecord.removeAirports(airport);
+        try { Database.removeAirport("id", Integer.toString(airport.getId()), airport.getRecordName());
+        } catch (NoSuchFieldException e) {System.out.println("Whoopsie"); System.out.println(e.getMessage());}
         modifyAirportPane.setVisible(false);
         modifyAirportWindowButton.setVisible(false);
         airportSplitPane.setVisible(true);
