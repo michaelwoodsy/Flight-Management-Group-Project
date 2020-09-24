@@ -251,11 +251,10 @@ public class GUIController implements Initializable {
 
     private WebEngine mapEngine;
 
+    //need to get this function to loop through airports adding position then RouteLocations
     private RouteLocations routeA = new RouteLocations(
-            new Position(37.772, -122.214),
-            new Position(21.291,  -157.821),
-            new Position(-18.142, 178.431),
-            new Position(-27.467, 153.027)
+            new Position(-43.4876, 172.5374),
+            new Position(-37.0082, 174.7850)
     );
 
     /**
@@ -287,12 +286,8 @@ public class GUIController implements Initializable {
         recordDropdown.setItems(observableArrayList(currentRecord.getName(), "New Record"));
         recordDropdown.getSelectionModel().selectFirst();
 
-        WebEngine mapEngine = mapView.getEngine();
-        mapEngine.load(getClass().getResource("/map.html").toExternalForm());
 
-//        Will ask tutors why this doesnt work
-//        displayRoute(routeA);
-
+        initMap();
 
 
         WebEngine OpenFlightsWebEngine = OpenFlightsWebView.getEngine();
@@ -313,11 +308,20 @@ public class GUIController implements Initializable {
         routeSearchBy.getSelectionModel().selectFirst();
         airportSearchBy.getSelectionModel().selectFirst();
         airlineSearchBy.getSelectionModel().selectFirst();
+
         DialogBoxes.welcomeBox();
+
+        displayRoute(routeA);
+
+
     }
     private void displayRoute(RouteLocations newRouteLocation) {
         String scriptToExecute = "displayRoute(" + newRouteLocation.toJSONArray() + ");";
-        mapEngine.executeScript(scriptToExecute);
+        this.mapEngine.executeScript(scriptToExecute);
+    }
+    public void initMap(){
+        this.mapEngine = mapView.getEngine();
+        this.mapEngine.load(getClass().getResource("/map.html").toExternalForm());
     }
     /**
      * Finds the index of the selected route in the recordList and then selects

@@ -11,6 +11,7 @@ public class RouteLocations {
         Collections.addAll(routeLocations, points);
     }
 
+
     public String toJSONArray() {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
