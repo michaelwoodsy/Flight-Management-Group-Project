@@ -1,32 +1,59 @@
-/** {*/
-/*    dark-primary-color: #1976D2;*/
-/*    default-primary-color: #2196F3;*/
-/*    light-primary-color: #BBDEFB;*/
-/*    text-primary-color: #FFFFFF;*/
-/*    accent-color: #9E9E9E;*/
-/*    primary-text-color: #212121;*/
-/*    secondary-text-color: #757575;*/
-/*    divider-color: #BDBDBD;*/
-/*}*/
+* {
+    color1: #171a21;
+    color2: #66c0f4;
+    color3: #1b2838;
+    color4: #2a475e;
+    color5: #c7d5e0;
+}
 
-/*.root {*/
-/*    -fx-background-color: dark-primary-color;*/
-/*}*/
+.root {
+    -fx-background-color: #171a21;
+}
 
-/*.button {*/
-/*    -fx-text-fill: text-primary-color;*/
-/*    -fx-padding: 5;*/
-/*    -fx-background-color: accent-color;*/
-/*    -fx-effect: dropshadow(one-pass-box, black, 14.0, 0.0, 6, 0);*/
-/*    -fx-background-radius: 8;*/
-/*}*/
+.button {
+    -fx-background-color: #c7d5e0;
+}
 
-/*.label {*/
-/*    -fx-text-fill: primary-text-color;*/
-/*    -fx-text-alignment: center;*/
-/*}*/
+.list-view {
+    -fx-background-color: dimgrey;
+}
 
-/*.choice-box {*/
-/*    -fx-text-fill: text-primary-color;*/
-/*    -fx-text-alignment: center;*/
-/*}*/
+.tab-pane {
+
+}
+
+.tab {
+    -fx-background-color: #2a475e;
+}
+
+.tab:selected {
+    -fx-background-color: #66c0f4;
+}
+
+.tab-pane {
+    -fx-padding: 0 -1 -1 -1;
+}
+
+.tab-pane *.tab-header-area *.tab-header-background {
+    -fx-background-color: #171a21;
+}
+
+.split-pane {
+     -fx-background-color: #2a475e;
+}
+
+.pane {
+    -fx-background-color: #2a475e;
+}
+
+.choice-box {
+
+}
+
+.text-field {
+
+}
+
+.check-box {
+
+}

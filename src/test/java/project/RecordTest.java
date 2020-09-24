@@ -20,12 +20,12 @@ public class RecordTest {
     Airline testAirline4 = new Airline(103, "Test4", false, "New Zealand", "Test4", "Test4", "Test4", "Test4");
     Airline testAirline5 = new Airline(104, "Test5", true, "U.K.", "Test5", "Test5", "Test5", "Test5");
 
-    Route testRoute1 = new Route("Air NZ", 500, "NZWN", 411, "NZCH", 511, 0, "DXa134", false);
-    Route testRoute2 = new Route("Air NZ", 501, "NZCH", 411, "WLG", 511, 0, "DXa34", false);
-    Route testRoute3 = new Route("Air NZ", 502, "NZAA", 411, "SYD", 511, 2, "DXa34", false);
-    Route testRoute4 = new Route("Air NZ", 503, "NZCH", 411, "SYD", 511, 1, "DXa34", false);
-    Route testRoute5 = new Route("Air NZ", 504, "NZWN", 411, "SYD", 511, 1, "DXa34", false);
-    Route testRoute6 = new Route("Air NZ", 505, "CHC", 411, "YSSY", 511, 4, "DXa34", false);
+    Route testRoute1 = new Route(1,"Air NZ", 500, "NZWN", 411, "NZCH", 511, 0, "DXa134", false);
+    Route testRoute2 = new Route(2,"Air NZ", 501, "NZCH", 411, "WLG", 511, 0, "DXa34", false);
+    Route testRoute3 = new Route(3,"Air NZ", 502, "NZAA", 411, "SYD", 511, 2, "DXa34", false);
+    Route testRoute4 = new Route(4,"Air NZ", 503, "NZCH", 411, "SYD", 511, 1, "DXa34", false);
+    Route testRoute5 = new Route(5,"Air NZ", 504, "NZWN", 411, "SYD", 511, 1, "DXa34", false);
+    Route testRoute6 = new Route(6,"Air NZ", 505, "CHC", 411, "YSSY", 511, 4, "DXa34", false);
 
 
     Airport testAirport1 = new Airport(101, 500, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", "Test1", "Openflights", 1, 1);
@@ -230,11 +230,11 @@ public class RecordTest {
         ArrayList<Route> testRouteList = new ArrayList<>();
         ArrayList<Route> comparisonList = new ArrayList<>();
 
-        Route testRoute7 = new Route("Air NZL", 500, "NZWN", 411, "NZCH", 511, 0, "DXaMIDDLE34", false);
-        Route testRoute8 = new Route("AIR NZL", 501, "NZCH", 411, "WLG", 511, 0, "DXa34", false);
-        Route testRoute9 = new Route("ubereats", 502, "NZAA", 411, "LAX", 511, 2, "DXa34ter", false);
-        Route testRoute10 = new Route("frubereats", 503, "NZCH", 411, "ENG", 511, 1, "FRONTDXa34BACK", false);
-        Route testRoute11 = new Route("frubercheats", 504, "NZWN", 411, "FAP", 511, 1, "Big PlaNE", false);
+        Route testRoute7 = new Route(7,"Air NZL", 500, "NZWN", 411, "NZCH", 511, 0, "DXaMIDDLE34", false);
+        Route testRoute8 = new Route(8,"AIR NZL", 501, "NZCH", 411, "WLG", 511, 0, "DXa34", false);
+        Route testRoute9 = new Route(9,"ubereats", 502, "NZAA", 411, "LAX", 511, 2, "DXa34ter", false);
+        Route testRoute10 = new Route(10,"frubereats", 503, "NZCH", 411, "ENG", 511, 1, "FRONTDXa34BACK", false);
+        Route testRoute11 = new Route(11,"frubercheats", 504, "NZWN", 411, "FAP", 511, 1, "Big PlaNE", false);
 
         testRouteList.add(testRoute1);
         testRouteList.add(testRoute2);
@@ -431,7 +431,7 @@ public class RecordTest {
         testRouteList.add(testRoute5);
         testRouteList.add(testRoute1);
 
-        Route testRoute7 = new Route("Air NZL", 505, "CHC", 411, "YSSY", 511, 4, "DXa34", false);
+        Route testRoute7 = new Route(7, "Air NZL", 505, "CHC", 411, "YSSY", 511, 4, "DXa34", false);
 
         testRouteList.add(testRoute7);
 

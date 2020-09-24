@@ -1,13 +1,15 @@
 package project.model;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
  * This is a Class implements Route taken from Route.dat.
  */
 public class Route {
-    private String airline;
     private int id;
+    private String airline;
+    private int airlineId;
     private String sourceAirport;
     private int sourceID;
     private String destAirport;
@@ -15,10 +17,11 @@ public class Route {
     private int numStops;
     private String equipment;
     private boolean codeshare;
+    private String recordName;
 
     /**
      * @param airline
-     * @param id
+     * @param airlineId
      * @param sourceAirport
      * @param sourceID
      * @param destAirport
@@ -27,9 +30,10 @@ public class Route {
      * @param equipment
      * @param codeshare
      */
-    public Route(String airline, int id, String sourceAirport, int sourceID, String destAirport, int destID, int numStops, String equipment, boolean codeshare) {
-            setAirline(airline);
+    public Route(int id, String airline, int airlineId, String sourceAirport, int sourceID, String destAirport, int destID, int numStops, String equipment, boolean codeshare) {
             setId(id);
+            setAirline(airline);
+            setAirlineId(airlineId);
             setSourceAirport(sourceAirport);
             setSourceID(sourceID);
             setDestAirport(destAirport);
@@ -50,7 +54,7 @@ public class Route {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Route route = (Route) o;
-        return getId() == route.getId() &&
+        return getAirlineId() == route.getAirlineId() &&
                 getSourceID() == route.getSourceID() &&
                 getDestID() == route.getDestID() &&
                 getNumStops() == route.getNumStops() &&
@@ -67,7 +71,7 @@ public class Route {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(getAirline(), getId(), getSourceAirport(), getSourceID(), getDestAirport(), getDestID(), getNumStops(), getEquipment(), isCodeshare());
+        return Objects.hash(getAirline(), getAirlineId(), getSourceAirport(), getSourceID(), getDestAirport(), getDestID(), getNumStops(), getEquipment(), isCodeshare());
     }
 
     /**
@@ -102,6 +106,10 @@ public class Route {
         return "Route from " + sourceString + destString + airlineString;
     }
 
+    public int getId() { return id; }
+
+    public void setId(int id) { this.id = id; }
+
     public String getAirline() {
         return airline;
     }
@@ -110,12 +118,12 @@ public class Route {
         this.airline = airline;
     }
 
-    public int getId() {
-        return id;
+    public int getAirlineId() {
+        return airlineId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setAirlineId(int id) {
+        this.airlineId = id;
     }
 
     public String getSourceAirport() {
@@ -173,4 +181,8 @@ public class Route {
     public void setCodeshare(boolean codeshare) {
         this.codeshare = codeshare;
     }
+
+    public void setRecordName(String recordName) { this.recordName = recordName; }
+
+    public String getRecordName() { return recordName; }
 }

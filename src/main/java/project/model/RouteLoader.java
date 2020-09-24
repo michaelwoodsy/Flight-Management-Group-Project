@@ -1,5 +1,7 @@
 package project.model;
 
+
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -33,11 +35,11 @@ public class RouteLoader {
             numUnknown += 1;
         }
 
-        int id;
+        int airlineId;
         try {
-            id = Integer.parseInt(routeData[1]);
+            airlineId = Integer.parseInt(routeData[1]);
         } catch (Exception e) {
-            id = -1;
+            airlineId = -1;
             numUnknown += 1;
         }
 
@@ -115,7 +117,7 @@ public class RouteLoader {
         codeshare = codeshareString.equals("Y");
 
         if (numUnknown < 5) {
-            return new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
+            return new Route(-1, airline, airlineId, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
         } else {
             return null;
         }
@@ -130,7 +132,7 @@ public class RouteLoader {
      * @return An arraylist containing all the routes in the file.
      * @throws IOException If the route file loaded is invalid.
      */
-    public ArrayList<Route> loadRouteFile(String path) throws IOException {
+    public ArrayList<Route> loadRouteFile(String path, String recordName) throws IOException {
 
         ArrayList<Route> routeList = new ArrayList<Route>();
 
@@ -146,11 +148,13 @@ public class RouteLoader {
                 RouteLoader routeLoad = new RouteLoader();
                 Route route = routeLoad.loadRoute(data);
                 if (route != null){
+                    route.setRecordName(recordName);
                     routeList.add(route);
                 }
             }
         }
         dataReader.close();
+
         return routeList;
     }
 

@@ -32,7 +32,7 @@ public class LoaderTest {
         assertEquals(testRoute1.getSourceAirport(), "AER");
         assertEquals(testRoute1.getDestAirport(), "KZN");
         assertEquals(testRoute1.getEquipment(), "CR2");
-        assertEquals(testRoute1.getId(), 410);
+        assertEquals(testRoute1.getAirlineId(), 410);
         assertEquals(testRoute1.getSourceID(), 2965);
         assertEquals(testRoute1.getDestID(), 2990);
         assertTrue(testRoute1.isCodeshare());
@@ -41,7 +41,7 @@ public class LoaderTest {
         String[] routeData2 = {"2B", "410a", "AER", "2965a", "KZN", "2990a", "N", "0a", "CR2"};
         testRoute1 = routeLoad.loadRoute(routeData2);
 
-        assertEquals(testRoute1.getId(), -1);
+        assertEquals(testRoute1.getAirlineId(), -1);
         assertEquals(testRoute1.getSourceID(), -1);
         assertEquals(testRoute1.getDestID(), -1);
         assertEquals(testRoute1.getNumStops(), -1);
@@ -50,7 +50,7 @@ public class LoaderTest {
         String[] routeData3 = {"2B", "", "AER", "", "KZN", "", "", "", "CR2"};
         testRoute1 = routeLoad.loadRoute(routeData3);
         assertFalse(testRoute1.isCodeshare());
-        assertEquals(testRoute1.getId(), -1);
+        assertEquals(testRoute1.getAirlineId(), -1);
         assertEquals(testRoute1.getSourceID(), -1);
         assertEquals(testRoute1.getDestID(), -1);
         assertEquals(testRoute1.getNumStops(), -1);
@@ -176,7 +176,7 @@ public class LoaderTest {
      * Manual testing. Not gonna bother to type out the entire data files as an ArrayList of classes. Functions work.
      */
     public void loadRouteFileTest() throws IOException {
-        ArrayList<Route> routeList = routeLoad.loadRouteFile("data/routes.dat");
+        ArrayList<Route> routeList = routeLoad.loadRouteFile("data/routes.dat", "Test Name");
     }
 
     @Test
@@ -202,7 +202,7 @@ public class LoaderTest {
     public void loadAirportFileTest() throws IOException {
         AirportLoader airportLoad = new AirportLoader();
         Record record = new Record(null, null, null, null); //initialise the COVID lists
-        ArrayList<Airport> airportList = airportLoad.loadAirportFile("data/airports.dat");
+        ArrayList<Airport> airportList = airportLoad.loadAirportFile("data/airports.dat", "Test Name");
 
     }
 
@@ -212,7 +212,7 @@ public class LoaderTest {
      */
     public void loadAirlineFileTest() throws IOException {
         Loader loader = new Loader();
-        ArrayList<Airline> airlineList = airlineLoad.loadAirlineFile("data/airlines.dat");
+        ArrayList<Airline> airlineList = airlineLoad.loadAirlineFile("data/airlines.dat", "Test Name");
 
     }
 

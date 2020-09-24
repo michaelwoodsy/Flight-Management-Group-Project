@@ -27,6 +27,7 @@ public class Airport {
     private int numRoutesSource;
     private int numRoutesDest;
     private int totalRoutes;
+    private String recordName;
     private static int numMissingCovid;
 
     /**
@@ -292,6 +293,10 @@ public class Airport {
     public void setSource(String source) {
         this.source = source;
     }
+
+    public void setRecordName(String recordName) { this.recordName = recordName; }
+
+    public String getRecordName() { return recordName; }
 
     public int getNumRoutesSource() {
         return numRoutesSource;

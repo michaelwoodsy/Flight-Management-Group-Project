@@ -14,6 +14,7 @@ public class Airline {
     private String callSign;
     private String iata;
     private String icao;
+    private String recordName;
 
     /**
      * @param id    An int that represents the Airline ID
@@ -120,6 +121,8 @@ public class Airline {
         this.icao = icao;
     }
 
+    public void setRecordName(String recordName) { this.recordName = recordName; }
+
     public int getId() {
         return id;
     }
@@ -151,4 +154,6 @@ public class Airline {
     public String getIcao() {
         return icao;
     }
+
+    public String getRecordName() { return recordName; }
 }
