@@ -1,5 +1,6 @@
 package project;
 
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -24,12 +25,12 @@ public class DatabaseTest {
     private Airline testAirline4 = new Airline(103, "Test4", false, "New Zealand", "Test4", "Test4", "Test4", "Test4");
     private Airline testAirline5 = new Airline(104, "Test5", true, "U.K.", "Test5", "Test5", "Test5", "Test5");
 
-    private Route testRoute1 = new Route("Air NZ", 500, "NZWN", 411, "NZCH", 511, 0, "DXa134", false);
-    private Route testRoute2 = new Route("Air NZ", 501, "NZCH", 411, "WLG", 511, 0, "DXa34", false);
-    private Route testRoute3 = new Route("Air NZ", 502, "NZAA", 411, "SYD", 511, 2, "DXa34", false);
-    private Route testRoute4 = new Route("Air NZ", 503, "NZCH", 411, "SYD", 511, 1, "DXa34", false);
-    private Route testRoute5 = new Route("Air NZ", 504, "NZWN", 411, "SYD", 511, 1, "DXa34", false);
-    private Route testRoute6 = new Route("Air NZ", 505, "CHC", 411, "YSSY", 511, 4, "DXa34", false);
+    private Route testRoute1 = new Route(1,"Air NZ", 500, "NZWN", 411, "NZCH", 511, 0, "DXa134", false);
+    private Route testRoute2 = new Route(2,"Air NZ", 501, "NZCH", 411, "WLG", 511, 0, "DXa34", false);
+    private Route testRoute3 = new Route(3,"Air NZ", 502, "NZAA", 411, "SYD", 511, 2, "DXa34", false);
+    private Route testRoute4 = new Route(4,"Air NZ", 503, "NZCH", 411, "SYD", 511, 1, "DXa34", false);
+    private Route testRoute5 = new Route(5,"Air NZ", 504, "NZWN", 411, "SYD", 511, 1, "DXa34", false);
+    private Route testRoute6 = new Route(6,"Air NZ", 505, "CHC", 411, "YSSY", 511, 4, "DXa34", false);
 
     private Airport testAirport1 = new Airport(101, 500, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", "Test1", "Openflights", 1, 1);
     private Airport testAirport2 = new Airport(102, 500, "Test2", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", "Test2", "Openflights", 4, 4);
@@ -61,16 +62,7 @@ public class DatabaseTest {
     @Before
     public void setUp() {
         //Drop each of the current tables in the database to ensure a clear testing database
-        try (Connection conn = Database.connect();
-             Statement stmt = conn.createStatement()) {
-            String dropStatement = "DROP TABLE airports";
-            stmt.executeUpdate(dropStatement);
-            dropStatement = "DROP TABLE airlines";
-            stmt.executeUpdate(dropStatement);
-            dropStatement = "DROP TABLE routes";
-            stmt.executeUpdate(dropStatement);
-            System.out.println("Tables dropped");
-        } catch (SQLException e) {}
+        Database.clearDatabase();
         Database.setupDatabase();
         assignRecords();
     }
@@ -159,16 +151,16 @@ public class DatabaseTest {
 
         try {
             //Remove Airline 2
-            Database.removeAirport("id", "101");
-            Database.removeAirport("airportName", "Test4");
-            Database.removeAirport("city", "Christchurch");
-            Database.removeAirport("city", "New Zealand");
+            Database.removeAirport("id", "101", "Test");
+            Database.removeAirport("airportName", "Test4", "Test");
+            Database.removeAirport("city", "Christchurch", "Test");
+            Database.removeAirport("city", "New Zealand", "Test");
         } catch (NoSuchFieldException e) {
             fail("Exception thrown when not appropriate");
         }
 
         try {
-            Database.removeAirport("Not an appropriate column", "Not an appropriate value");
+            Database.removeAirport("Not an appropriate column", "Not an appropriate value", "Test");
             fail("Exception not thrown with inappropriate data value");
         } catch (NoSuchFieldException e) {
             System.out.println(e.getMessage());
@@ -189,17 +181,17 @@ public class DatabaseTest {
         Database.addNewAirline(testAirline5);
 
         try {
-            Database.removeAirline("id", "101");
-            Database.removeAirline("airlineName", "Test3");
-            Database.removeAirline("active", "1");
+            Database.removeAirline("id", "101", "Test");
+            Database.removeAirline("airlineName", "Test3", "Test");
+            Database.removeAirline("active", "1", "Test");
             //Remove none, but don't throw an error
-            Database.removeAirline("id", "New Zealand");
+            Database.removeAirline("id", "New Zealand", "Test");
         } catch (NoSuchFieldException e) {
             fail("Exception thrown when not appropriate");
         }
 
         try {
-            Database.removeAirline("No such column", "bad value");
+            Database.removeAirline("No such column", "bad value", "Test");
             fail("Exception not thrown with inappropriate data value");
         } catch (NoSuchFieldException e) {
             System.out.println(e.getMessage());
@@ -221,16 +213,16 @@ public class DatabaseTest {
         Database.addNewRoute(testRoute6);
 
         try {
-            Database.removeRoute("id", "502");
-            Database.removeRoute("numStops", "0");
-            Database.removeRoute("destAirport", "SYD");
-            Database.removeRoute("sourceAirport", "Totally Real Airport");
+            Database.removeRoute("airlineId", "502", "Test");
+            Database.removeRoute("numStops", "0", "Test");
+            Database.removeRoute("destAirport", "SYD", "Test");
+            Database.removeRoute("sourceAirport", "Totally Real Airport", "Test");
         } catch (NoSuchFieldException e) {
             fail("Exception caught when not expected");
         }
 
         try {
-            Database.removeRoute("routeName", "This is a route name");
+            Database.removeRoute("routeName", "This is a route name", "Test");
             fail("Exception not caught when expected.");
         } catch (NoSuchFieldException e) {
             System.out.println(e.getMessage());
@@ -361,5 +353,13 @@ public class DatabaseTest {
         assertEquals(recordAirports, airports);
         assertEquals(recordRoutes, routes);
 
+    }
+
+    /**
+     * Clears the database of test data. This does cause any user-stored data to be removed.
+     */
+    @AfterClass
+    public static void cleanUp() {
+        Database.clearDatabase();
     }
 }

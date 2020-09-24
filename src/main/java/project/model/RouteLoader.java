@@ -35,11 +35,11 @@ public class RouteLoader {
             numUnknown += 1;
         }
 
-        int id;
+        int airlineId;
         try {
-            id = Integer.parseInt(routeData[1]);
+            airlineId = Integer.parseInt(routeData[1]);
         } catch (Exception e) {
-            id = -1;
+            airlineId = -1;
             numUnknown += 1;
         }
 
@@ -117,7 +117,7 @@ public class RouteLoader {
         codeshare = codeshareString.equals("Y");
 
         if (numUnknown < 5) {
-            return new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
+            return new Route(-1, airline, airlineId, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
         } else {
             return null;
         }
