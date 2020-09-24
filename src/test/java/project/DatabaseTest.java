@@ -25,12 +25,12 @@ public class DatabaseTest {
     private Airline testAirline4 = new Airline(103, "Test4", false, "New Zealand", "Test4", "Test4", "Test4", "Test4");
     private Airline testAirline5 = new Airline(104, "Test5", true, "U.K.", "Test5", "Test5", "Test5", "Test5");
 
-    private Route testRoute1 = new Route("Air NZ", 500, "NZWN", 411, "NZCH", 511, 0, "DXa134", false);
-    private Route testRoute2 = new Route("Air NZ", 501, "NZCH", 411, "WLG", 511, 0, "DXa34", false);
-    private Route testRoute3 = new Route("Air NZ", 502, "NZAA", 411, "SYD", 511, 2, "DXa34", false);
-    private Route testRoute4 = new Route("Air NZ", 503, "NZCH", 411, "SYD", 511, 1, "DXa34", false);
-    private Route testRoute5 = new Route("Air NZ", 504, "NZWN", 411, "SYD", 511, 1, "DXa34", false);
-    private Route testRoute6 = new Route("Air NZ", 505, "CHC", 411, "YSSY", 511, 4, "DXa34", false);
+    private Route testRoute1 = new Route(1,"Air NZ", 500, "NZWN", 411, "NZCH", 511, 0, "DXa134", false);
+    private Route testRoute2 = new Route(2,"Air NZ", 501, "NZCH", 411, "WLG", 511, 0, "DXa34", false);
+    private Route testRoute3 = new Route(3,"Air NZ", 502, "NZAA", 411, "SYD", 511, 2, "DXa34", false);
+    private Route testRoute4 = new Route(4,"Air NZ", 503, "NZCH", 411, "SYD", 511, 1, "DXa34", false);
+    private Route testRoute5 = new Route(5,"Air NZ", 504, "NZWN", 411, "SYD", 511, 1, "DXa34", false);
+    private Route testRoute6 = new Route(6,"Air NZ", 505, "CHC", 411, "YSSY", 511, 4, "DXa34", false);
 
     private Airport testAirport1 = new Airport(101, 500, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", "Test1", "Openflights", 1, 1);
     private Airport testAirport2 = new Airport(102, 500, "Test2", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", "Test2", "Openflights", 4, 4);
@@ -213,7 +213,7 @@ public class DatabaseTest {
         Database.addNewRoute(testRoute6);
 
         try {
-            Database.removeRoute("id", "502", "Test");
+            Database.removeRoute("airlineId", "502", "Test");
             Database.removeRoute("numStops", "0", "Test");
             Database.removeRoute("destAirport", "SYD", "Test");
             Database.removeRoute("sourceAirport", "Totally Real Airport", "Test");

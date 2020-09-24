@@ -1,5 +1,7 @@
 package project.model;
 
+import project.controller.Database;
+
 import java.io.*;
 import java.util.*;
 
@@ -16,6 +18,8 @@ public class Record {
     private ArrayList<Airline> airlineList;
     private static Hashtable<String, Covid> covidDict = setCovid();
     private String name;
+    private int numRoutes = 1;
+    private ArrayList<Integer> availableIDs = new ArrayList<>();
 
     /**
      * Record constructor that takes a String and initialize ArrayLists as null lists
@@ -286,6 +290,26 @@ public class Record {
      */
 
     /**
+     * Assigns IDs to each route in the record. Check if some IDs are available after deletion occurs.
+     * If not, create a new ID from the number currently in the routeList.
+     */
+    public void generateRouteIDs() {
+        for (Route route: this.routeList) {
+            if (route.getId() == -1) {
+                if (availableIDs.size() > 0) {
+                    route.setId(availableIDs.get(availableIDs.size()-1));
+                    availableIDs.remove(availableIDs.size()-1);
+                } else {
+                    route.setId(numRoutes);
+                    numRoutes += 1;
+                }
+            } else {
+                numRoutes += 1;
+            }
+        }
+    }
+
+    /**
      * Adds new Routes to the Record's list of Routes.
      * @param newRouteList An ArrayList containing the new Routes to be added
      */
@@ -294,7 +318,8 @@ public class Record {
         Set<Route> uniqueElements = new HashSet<>(this.routeList);
         this.routeList.clear();
         this.routeList.addAll(uniqueElements);
-        this.routeList.sort(Comparator.comparing(Route::getId));
+        generateRouteIDs();
+        this.routeList.sort(Comparator.comparing(Route::getAirlineId));
     }
 
     /**
@@ -341,6 +366,7 @@ public class Record {
     public void modifyAirport(Airport oldAirport, Airport newAirport) {
         if (this.airportList.contains(oldAirport)) {
             this.airportList.set(airportList.indexOf(oldAirport), newAirport);
+            Database.updateAirport(newAirport);
         }
     }
 
@@ -353,6 +379,7 @@ public class Record {
     public void modifyAirline(Airline oldAirline, Airline newAirline) {
         if (this.airlineList.contains(oldAirline)) {
             this.airlineList.set(airlineList.indexOf(oldAirline), newAirline);
+            Database.updateAirline(newAirline);
         }
     }
 
@@ -365,6 +392,7 @@ public class Record {
     public void modifyRoute(Route oldRoute, Route newRoute) {
         if (this.routeList.contains(oldRoute)) {
             this.routeList.set(routeList.indexOf(oldRoute), newRoute);
+            Database.updateRoute(newRoute);
         }
     }
 

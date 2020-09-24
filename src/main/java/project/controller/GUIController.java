@@ -926,7 +926,7 @@ public class GUIController implements Initializable {
         ArrayList<String> errors = new ArrayList<>();
 
         String airline = routeAirline.getText().trim();
-        int id = 0;
+        int airlineId = 0;
         List<Airline> resultAirline = currentRecord.searchAirlines(airline, "name");
         if (airline.equals("")) {
             errors.add("Invalid Airline Name");
@@ -935,7 +935,7 @@ public class GUIController implements Initializable {
         } else if (resultAirline.size() > 1) {
             errors.add("Please be more specific with the Airline Name");
         } else {
-            id = resultAirline.get(0).getId();
+            airlineId = resultAirline.get(0).getId();
             airline = resultAirline.get(0).getIata();
             if (airline.equals("Unknown")) { errors.add("Airline has an invalid IATA code"); }
         }
@@ -984,7 +984,7 @@ public class GUIController implements Initializable {
         if (routeCodeShare.isSelected()) { codeshare = true; }
 
         if (errors.size() == 0) {
-            Route newRoute = new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
+            Route newRoute = new Route(-1, airline, airlineId, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
             ArrayList<Route> newRouteList = new ArrayList<Route>();
             newRouteList.add(newRoute);
             currentRecord.addRoutes(newRouteList);
@@ -1371,6 +1371,7 @@ public class GUIController implements Initializable {
 
         if (errors.size() == 0) {
             Airline newAirline = new Airline(id, name, active, country, alias, callSign, iata, icao);
+            newAirline.setRecordName(airline.getRecordName());
             currentRecord.modifyAirline(airline, newAirline);
             modifyAirlinePane.setVisible(false);
             modifyAirlineWindowButton.setVisible(false);
@@ -1399,7 +1400,7 @@ public class GUIController implements Initializable {
         routeSplitPane.setVisible(false);
         routeList.setVisible(false);
         routeAirlineMod.setText(route.getAirline());
-        routeAirlineIDMod.setText(String.valueOf(route.getId()));
+        routeAirlineIDMod.setText(String.valueOf(route.getAirlineId()));
         routeSourceMod.setText(route.getSourceAirport());
         routeSourceIDMod.setText(String.valueOf(route.getSourceID()));
         routeDestMod.setText(route.getDestAirport());
@@ -1446,16 +1447,12 @@ public class GUIController implements Initializable {
         ArrayList<String> errors = new ArrayList<>();
         Route route = (Route) routeList.getSelectionModel().getSelectedItem();
 
+        int id = route.getId();
+        int airlineId = route.getAirlineId();
+
         String airline = routeAirlineMod.getText().trim();
         if (airline.equals("") || airline.length() != 2){
             errors.add("Invalid Airline IATA");
-        }
-
-        int id = 0;
-        try {
-            id = Integer.parseInt(routeAirlineIDMod.getText().trim());
-        } catch (Exception e) {
-            errors.add("Invalid Airline ID");
         }
 
         String sourceAirport = routeSourceMod.getText().trim();
@@ -1500,7 +1497,8 @@ public class GUIController implements Initializable {
         }
 
         if (errors.size() == 0) {
-            Route newRoute = new Route(airline, id, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
+            Route newRoute = new Route(id, airline, airlineId, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
+            newRoute.setRecordName(route.getRecordName());
             currentRecord.modifyRoute(route, newRoute);
             modifyRoutePane.setVisible(false);
             modifyRouteWindowButton.setVisible(false);
@@ -1667,6 +1665,7 @@ public class GUIController implements Initializable {
 
         if (errors.size() == 0) {
             Airport newAirport = new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
+            newAirport.setRecordName(airport.getRecordName());
             currentRecord.modifyAirport(airport, newAirport);
             modifyAirportPane.setVisible(false);
             modifyAirportWindowButton.setVisible(false);
