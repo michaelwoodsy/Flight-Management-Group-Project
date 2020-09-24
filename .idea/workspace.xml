@@ -12,8 +12,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Got a function for adding airports from controller class into the mapJS for markers on map">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/model/RouteLocations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/model/AirportLocations.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +44,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="$PROJECT_DIR$/../../../Program Files/apache-maven-3.6.3" />
+        <option name="mavenHome" value="$USER_HOME$/Program Files/apache-maven-3.6.3" />
       </MavenGeneralSettings>
     </option>
   </component>
