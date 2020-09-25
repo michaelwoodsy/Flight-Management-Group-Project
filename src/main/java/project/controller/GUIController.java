@@ -5,6 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
@@ -12,11 +16,16 @@ import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import project.model.*;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
+import java.util.List;
+
 import org.json.simple.JSONArray;
 
 import javax.naming.Binding;
@@ -234,7 +243,12 @@ public class GUIController implements Initializable {
     private ListView flightDetailList;
     @FXML
     private ListView flightList;
-
+    @FXML
+    private ChoiceBox helpDropdown;
+    @FXML
+    private Button helpSelect;
+    @FXML
+    private TextArea helpTextArea;
 
     private ArrayList<Record> recordList;
     private Record currentRecord;
@@ -330,16 +344,24 @@ public class GUIController implements Initializable {
 
         displayRoute(routeA);
 
+        // TODO - set all items, and give descriptions to them
+        helpDropdown.setItems(observableArrayList("Airport - ID", "Airport - Name", "Airport - City", "Airport - Country", "Airport - IATA Code", "Airport - ICAO Code", "Airport - Type", "Airport - Timezone", "Airport - Timezone Offset", "Airport - DST", "Airport - Source", "Airport - Latitude", "Airport - Longitude", "Airport - Altitude", "Airline - ID", "Airline - Name", "Airline - Alias", "Airline - Callsign", "Airline - Active", "Airline - IATA Code", "Airline - ICAO Code", "Airline - Country"));
+        helpDropdown.getSelectionModel().selectFirst();
+        helpTextArea.setText("aids");
+
 
     }
+
     private void displayRoute(AirportLocations newAirportLocation) {
         String scriptToExecute = "displayRoute(" + newAirportLocation.toJSONArray() + ");";
         this.mapEngine.executeScript(scriptToExecute);
     }
+
     public void initMap(){
         this.mapEngine = mapView.getEngine();
         this.mapEngine.load(getClass().getResource("/map.html").toExternalForm());
     }
+
     public void airportLoop() {
         //need to have a loop for all airport locations
         AirportLocations routeA = new AirportLocations(
@@ -349,7 +371,6 @@ public class GUIController implements Initializable {
         );
 
     }
-
 
     /**
      * Finds the index of the selected route in the recordList and then selects
@@ -1698,5 +1719,41 @@ public class GUIController implements Initializable {
         } else {
             DialogBoxes.newDataError(errors);
         }
+    }
+
+    /**
+     * Opens the user's default browser to the flight planner website upon clicking on the hyperlink in the
+     * Help tab of the GUI.
+     *
+     * @param event The user has clicked on the hyperlink.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
+    @FXML
+    public void hyperLink (ActionEvent event) throws IOException {
+        if(Desktop.isDesktopSupported())
+        {
+            try {
+                Desktop.getDesktop().browse(new URI("https://flightplandatabase.com/planner"));
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            } catch (URISyntaxException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
+
+    @FXML
+    /**
+     * Sets the information TextArea for data attributes on the Help tab of the GUI after a user selects
+     * an attribute from the ChoiceBox and clicks on the Select button.
+     *
+     * @param event The user has clicked on the button and selected an item from the dropdown.
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
+    public void helpButton(ActionEvent event) throws IOException {
+        /*
+        if (helpDropdown.getValue() == ) {
+            helpTextArea.setText();
+        } */
     }
 }

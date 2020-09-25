@@ -648,10 +648,10 @@
                                           <Text fill="WHITE" layoutX="424.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the desired field for each datatype from the " />
                                           <Text fill="WHITE" layoutX="424.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="dropdown menu to see a description of each field and" />
                                           <Text fill="WHITE" layoutX="424.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the required format." />
-                                          <ChoiceBox layoutX="419.0" layoutY="162.0" prefHeight="25.0" prefWidth="238.0" />
-                                          <Button layoutX="656.0" layoutY="162.0" mnemonicParsing="false" text="SELECT" />
-                                          <Hyperlink layoutX="303.0" layoutY="388.0" text="https://flightplandatabase.com/planner" />
-                                          <TextArea layoutX="419.0" layoutY="191.0" prefHeight="53.0" prefWidth="291.0" />
+                                          <ChoiceBox fx:id="helpDropdown" layoutX="419.0" layoutY="162.0" prefHeight="25.0" prefWidth="238.0" />
+                                          <Button fx:id="helpSelect" layoutX="656.0" layoutY="162.0" mnemonicParsing="false" onAction="#helpButton" text="SELECT" />
+                                          <Hyperlink fx:id="hyperlink" layoutX="303.0" layoutY="388.0" onAction="#hyperLink" text="https://flightplandatabase.com/planner" />
+                                          <TextArea fx:id="helpTextArea" layoutX="419.0" layoutY="191.0" prefHeight="53.0" prefWidth="291.0" />
                                        </children>
                                     </AnchorPane>
                               </content>
