@@ -355,6 +355,28 @@ public class DatabaseTest {
 
     }
 
+    @Test
+    public void testGetNumRoutes() {
+        Airport testAirport11 = new Airport(1, 0, "Wellington Int.", "Wellington", "New Zealand", "WLG", "WGTN", 1, 1, 1, 1, "U", "Yes", "Huh", "Huh", 0, 0);
+        Route testRoute11 = new Route(1, "IF", 12, "Wellington Intl.", 1, "Nevermind", 0, 0, "DAN", true);
+        Route testRoute12 = new Route(2, "IF", 12, "Wellington Intl.", 1, "Nevermind", 0, 0, "DAN", true);
+        Route testRoute13 = new Route(3, "IF", 12, "NeverMind", 0, "Wellington Intl.", 1, 0, "DAN", true);
+        Route testRoute14 = new Route(4, "IF", 12, "Nevermind", 0, "Wellington Intl.", 1, 0, "DAN", true);
+        Route testRoute15 = new Route(5, "IF", 12, "Nevermind", 0, "Wellington Intl.", 1, 0, "DAN", true);
+        Route testRoute16 = new Route(6, "IF", 12, "Nevermind", 0, "Nevermind", 0, 0, "DAN", true);
+
+        Database.addNewRoute(testRoute11);
+        Database.addNewRoute(testRoute12);
+        Database.addNewRoute(testRoute13);
+        Database.addNewRoute(testRoute14);
+        Database.addNewRoute(testRoute15);
+        Database.addNewRoute(testRoute16);
+
+        assertEquals(Database.getNumRoutes(testAirport11, "sourceID"), 2);
+        assertEquals(Database.getNumRoutes(testAirport11, "destID"), 3);
+
+    }
+
     /**
      * Clears the database of test data. This does cause any user-stored data to be removed.
      */
