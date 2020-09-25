@@ -29,7 +29,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="750.0" stylesheets="@GUI_Design.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controller.GUIController">
    <children>
-      <TabPane layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutY="29.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="79.0">
          <tabs>
             <Tab fx:id="airport_tab" text="Airport">
                <content>
@@ -375,7 +375,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TabPane fx:id="newTab" layoutX="14.0" layoutY="14.0" prefHeight="444.0" prefWidth="713.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane fx:id="newTab" layoutX="14.0" layoutY="14.0" prefHeight="444.0" prefWidth="713.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="80.0">
                            <tabs>
                               <Tab fx:id="airportTab" text="Airport">
                                  <content>
@@ -429,7 +429,7 @@
                                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                              </padding>
                                           </GridPane>
-                                          <Button fx:id="addAirportButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addAirportButton" text="Add to" />
+                                          <Button fx:id="addAirportButton" layoutX="503.0" layoutY="364.0" mnemonicParsing="false" onAction="#addAirportButton" text="Add to" />
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -471,7 +471,7 @@
                                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                              </padding>
                                           </GridPane>
-                                          <Button fx:id="addAirlineButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addAirlineButton" text="Add to" />
+                                          <Button fx:id="addAirlineButton" layoutX="503.0" layoutY="364.0" mnemonicParsing="false" onAction="#addAirlineButton" text="Add to" />
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -511,7 +511,7 @@
                                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                              </padding>
                                           </GridPane>
-                                          <Button fx:id="addRouteButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addRouteButton" text="Add to" />
+                                          <Button fx:id="addRouteButton" layoutX="503.0" layoutY="364.0" mnemonicParsing="false" onAction="#addRouteButton" text="Add to" />
                                           <Text fill="WHITE" layoutX="539.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: New Routes are invalid when added if there are no Airports or Airlines loaded or added into the record." wrappingWidth="139.69921875" />
                                        </children>
                                     </AnchorPane>
@@ -529,7 +529,7 @@
                                           <RadioButton fx:id="airlineRadioButton" layoutX="43.0" layoutY="73.0" mnemonicParsing="false" text="Airline" textFill="WHITE" toggleGroup="$selectFile" />
                                           <RadioButton fx:id="routeRadioButton" layoutX="43.0" layoutY="113.0" mnemonicParsing="false" text="Route" textFill="WHITE" toggleGroup="$selectFile" />
                                           <RadioButton fx:id="flightRadioButton" layoutX="43.0" layoutY="153.0" mnemonicParsing="false" text="Flight" textFill="WHITE" toggleGroup="$selectFile" />
-                                          <Button fx:id="addFileButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addFileButton" text="Add to" />
+                                          <Button fx:id="addFileButton" layoutX="503.0" layoutY="364.0" mnemonicParsing="false" onAction="#addFileButton" text="Add to" />
                                           <Text fill="WHITE" layoutX="179.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To add a new file:&#10;1. Select the type of file you would like to add.&#10;2. Select which record you would like to add the file to in the dropdown next to the &quot;Add to&quot; button. Select &quot;New Record&quot; if you would like to start a new record.&#10;3. Click the &quot;Add to&quot; button and find the file you would like to add in your file directory. Note the file must be a .dat or .csv file and be in the correct format." wrappingWidth="393.79425048828125" />
                                        </children>
                                     </AnchorPane>
@@ -546,7 +546,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TabPane layoutX="14.0" layoutY="14.0" prefHeight="441.0" prefWidth="704.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane layoutX="14.0" layoutY="14.0" prefHeight="441.0" prefWidth="704.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="170.0">
                           <tabs>
                             <Tab text="Open Flights Data Source">
                               <content>
@@ -585,7 +585,7 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TabPane layoutX="14.0" layoutY="14.0" prefHeight="442.0" prefWidth="721.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane layoutX="14.0" layoutY="14.0" prefHeight="442.0" prefWidth="721.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="100.0">
                           <tabs>
                             <Tab text="Page 1">
                               <content>
@@ -645,10 +645,10 @@
                                           <Text fill="WHITE" layoutX="424.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the desired field for each datatype from the " />
                                           <Text fill="WHITE" layoutX="424.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="dropdown menu to see a description of each field and" />
                                           <Text fill="WHITE" layoutX="424.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the required format." />
-                                          <Button fx:id="helpSelect" layoutX="656.0" layoutY="162.0" mnemonicParsing="false" onAction="#helpButton" text="SELECT" />
+                                          <Button fx:id="helpSelect" layoutX="655.0" layoutY="163.0" mnemonicParsing="false" onAction="#helpButton" text="SELECT" />
                                           <Hyperlink fx:id="hyperlink" layoutX="303.0" layoutY="388.0" onAction="#hyperLink" text="https://flightplandatabase.com/planner" />
                                           <TextArea fx:id="helpTextArea" editable="false" layoutX="419.0" layoutY="191.0" prefHeight="53.0" prefWidth="291.0" wrapText="true" />
-                                          <ComboBox fx:id="helpDropdown" layoutX="419.0" layoutY="162.0" prefWidth="238.0" />
+                                          <ComboBox fx:id="helpDropdown" layoutX="419.0" layoutY="162.0" prefHeight="26.0" prefWidth="229.0" />
                                        </children>
                                     </AnchorPane>
                               </content>
@@ -727,10 +727,10 @@
                                           <Text fill="WHITE" layoutX="424.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Data tab contains information of each downloaded" />
                                           <Text fill="WHITE" layoutX="426.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data type used in the application, obtained from their" />
                                           <Text fill="WHITE" layoutX="426.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="respective websites." />
-                                          <Pane layoutX="414.0" layoutY="329.0" prefHeight="69.0" prefWidth="298.0" style="-fx-background-color: #FFFFFF;">
+                                          <Pane layoutX="414.0" layoutY="329.0" prefHeight="69.0" prefWidth="298.0" style="-fx-background-color: #1b2336;">
                                              <children>
-                                                <CheckBox fx:id="extraInfoBox" layoutX="47.0" layoutY="28.0" mnemonicParsing="false" onAction="#setOptedIn" prefHeight="40.0" prefWidth="204.0" text="Display Additional Information" />
-                                                <Label alignment="CENTER" prefHeight="36.0" prefWidth="299.0" text="Flight Enthusiast Opt-In">
+                                                <CheckBox fx:id="extraInfoBox" layoutX="47.0" layoutY="28.0" mnemonicParsing="false" onAction="#setOptedIn" prefHeight="40.0" prefWidth="204.0" text="Display Additional Information" textFill="WHITE" />
+                                                <Label alignment="CENTER" prefHeight="36.0" prefWidth="299.0" text="Flight Enthusiast Opt-In" textFill="WHITE">
                                                    <font>
                                                       <Font name="System Bold" size="20.0" />
                                                    </font>

@@ -13,10 +13,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Fixing merging with GUI">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/project/GUI_Design.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/GUI_Design.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -224,14 +223,7 @@
       <workItem from="1600132001134" duration="3022000" />
       <workItem from="1600227536265" duration="302000" />
       <workItem from="1600314338736" duration="2357000" />
-      <workItem from="1601008937649" duration="356000" />
-    </task>
-    <task id="LOCAL-00029" summary="Fixes here and there, adding filechooser to GUI">
-      <created>1598485467342</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1598485467342</updated>
+      <workItem from="1601008937649" duration="1991000" />
     </task>
     <task id="LOCAL-00030" summary="Added to settings panel, in map GUI">
       <created>1598501348398</created>
@@ -569,7 +561,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600997129571</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Changed text colours to match background">
+      <created>1601009314286</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1601009314286</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -611,7 +610,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Airline loader class (breaking up loader class)" />
     <MESSAGE value="GUI Controller Class modifying and deleting method for airline (pane) version" />
     <MESSAGE value="Maps GUI added markers, route line and automatic scaling between the two markers" />
     <MESSAGE value="Minor GUI adjustments" />
@@ -636,7 +634,8 @@
     <MESSAGE value="Help tab additions" />
     <MESSAGE value="Fixed merging conflict" />
     <MESSAGE value="Fixing merging" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixing merging" />
+    <MESSAGE value="Changed text colours to match background" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed text colours to match background" />
   </component>
   <component name="WindowStateProjectService">
     <state x="381" y="56" key="#Main" timestamp="1600650512140">
@@ -685,10 +684,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="276" y="243" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1600597384375" />
-    <state x="235" y="0" key="CommitChangelistDialog2" timestamp="1600248146264">
+    <state x="235" y="0" key="CommitChangelistDialog2" timestamp="1601009313619">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="235" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1600248146264" />
+    <state x="235" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1601009313619" />
     <state x="653" y="184" key="FileChooserDialogImpl" timestamp="1600855637382">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
