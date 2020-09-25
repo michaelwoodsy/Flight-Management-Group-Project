@@ -92,8 +92,6 @@ public class GUIController implements Initializable {
     @FXML
     private WebView mapView;
     @FXML
-    private TextField airportID;
-    @FXML
     private TextField airportName;
     @FXML
     private TextField airportCity;
@@ -119,8 +117,6 @@ public class GUIController implements Initializable {
     private TextField airportLongitude;
     @FXML
     private TextField airportAltitude;
-    @FXML
-    private TextField airlineID;
     @FXML
     private TextField airlineName;
     @FXML
