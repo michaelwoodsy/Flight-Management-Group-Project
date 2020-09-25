@@ -71,3 +71,8 @@
     -fx-background-color: #c9c9c9;
     -fx-cursor: hand;
 }
+
+.combo-box:hover {
+    -fx-background-color: #c9c9c9;
+    -fx-cursor: hand;
+}
