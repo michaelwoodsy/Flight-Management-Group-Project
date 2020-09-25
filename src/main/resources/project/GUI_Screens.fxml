@@ -405,34 +405,32 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <Label text="ID:" textFill="#c7d5e0" />
-                                                <Label text="Name:" textFill="#c7d5e0" GridPane.rowIndex="1" />
-                                                <Label text="City:" textFill="#c7d5e0" GridPane.rowIndex="2" />
-                                                <Label text="Country:" textFill="#c7d5e0" GridPane.rowIndex="3" />
-                                                <Label text="IATA:" textFill="#c7d5e0" GridPane.rowIndex="4" />
-                                                <Label text="ICAO:" textFill="#c7d5e0" GridPane.rowIndex="5" />
-                                                <Label text="Type:" textFill="#c7d5e0" GridPane.rowIndex="6" />
-                                                <TextField fx:id="airportID" GridPane.columnIndex="1" />
-                                                <TextField fx:id="airportName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField fx:id="airportCity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <TextField fx:id="airportCountry" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <TextField fx:id="airportIATA" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <TextField fx:id="airportICAO" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                <TextField fx:id="airportType" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                <Label text="Name:" textFill="#c7d5e0" />
+                                                <Label text="City:" textFill="#c7d5e0" GridPane.rowIndex="1" />
+                                                <Label text="Country:" textFill="#c7d5e0" GridPane.rowIndex="2" />
+                                                <Label text="IATA:" textFill="#c7d5e0" GridPane.rowIndex="3" />
+                                                <Label text="ICAO:" textFill="#c7d5e0" GridPane.rowIndex="4" />
+                                                <Label text="Type:" textFill="#c7d5e0" GridPane.rowIndex="5" />
+                                                <TextField fx:id="airportName" GridPane.columnIndex="1" />
+                                                <TextField fx:id="airportCity" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="airportCountry" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField fx:id="airportIATA" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField fx:id="airportICAO" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <TextField fx:id="airportType" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <TextField fx:id="airportSource" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                                                 <Label text="Timezone Offset:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="DST:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <Label text="Source:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                                <Label text="Latitude:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                                <Label text="Longitude:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                                <Label text="Altitude:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                                                <Label text="Source:" textFill="#c7d5e0" GridPane.rowIndex="6" />
+                                                <Label text="Latitude:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                <Label text="Longitude:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                <Label text="Altitude:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                <TextField fx:id="airportTimezoneString" GridPane.columnIndex="3" />
                                                 <TextField fx:id="airportTimezone" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                                 <TextField fx:id="airportDST" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                <TextField fx:id="airportSource" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                                <TextField fx:id="airportLatitude" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                                                <TextField fx:id="airportLongitude" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                                                <TextField fx:id="airportAltitude" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                                                <TextField fx:id="airportLatitude" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                                <TextField fx:id="airportLongitude" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                                <TextField fx:id="airportAltitude" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                                                 <Label text="Timezone:" textFill="#c7d5e0" GridPane.columnIndex="2" />
-                                                <TextField fx:id="airportTimezoneString" GridPane.columnIndex="3" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
@@ -462,21 +460,19 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <Label text="ID:" textFill="#c7d5e0" />
-                                                <Label text="Name:" textFill="#c7d5e0" GridPane.rowIndex="1" />
+                                                <Label text="Name:" textFill="#c7d5e0" />
+                                                <Label text="Country:" textFill="#c7d5e0" GridPane.rowIndex="1" />
                                                 <Label text="Alias:" textFill="#c7d5e0" GridPane.rowIndex="2" />
                                                 <Label text="Callsign:" textFill="#c7d5e0" GridPane.rowIndex="3" />
-                                                <TextField fx:id="airlineID" prefHeight="17.0" prefWidth="174.0" GridPane.columnIndex="1" />
-                                                <TextField fx:id="airlineName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="airlineName" GridPane.columnIndex="1" />
                                                 <TextField fx:id="airlineAlias" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                 <TextField fx:id="airlineCallsign" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <CheckBox fx:id="airlineActive" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Active" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.columnSpan="2" />
                                                 <Label text="IATA:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                                 <Label text="ICAO:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <Label text="Country:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                                 <TextField fx:id="airlineIATA" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                                 <TextField fx:id="airlineICAO" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                <TextField fx:id="airlineCountry" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                                <CheckBox fx:id="airlineActive" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Active" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.columnSpan="2" />
+                                                <TextField fx:id="airlineCountry" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />

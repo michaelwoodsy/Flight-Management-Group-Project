@@ -335,25 +335,21 @@ public class Record {
     /**
      * Modifies an Airport from the Record's list of Airport
      * by setting the oldAirport index to the new Airport
-     * @param oldAirport An Airport object to be modified
+     * @param airportIndex The old Airport index
      * @param newAirport An Airport object that is modified
      */
-    public void modifyAirport(Airport oldAirport, Airport newAirport) {
-        if (this.airportList.contains(oldAirport)) {
-            this.airportList.set(airportList.indexOf(oldAirport), newAirport);
-        }
+    public void modifyAirport(int airportIndex, Airport newAirport) {
+        this.airportList.add(airportIndex, newAirport);
     }
 
     /**
      * Modifies an Airline from the Record's list of Airline
      * by setting the oldAirline index to the new Airline
-     * @param oldAirline An Airline object to be modified
+     * @param airlineIndex The old airline index
      * @param newAirline An Airline object that is modified
      */
-    public void modifyAirline(Airline oldAirline, Airline newAirline) {
-        if (this.airlineList.contains(oldAirline)) {
-            this.airlineList.set(airlineList.indexOf(oldAirline), newAirline);
-        }
+    public void modifyAirline(int airlineIndex, Airline newAirline) {
+        this.airlineList.set(airlineIndex, newAirline);
     }
 
     /**

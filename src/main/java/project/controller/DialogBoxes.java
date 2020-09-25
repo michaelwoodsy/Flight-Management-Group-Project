@@ -123,10 +123,21 @@ public class DialogBoxes {
             errorString += errors.get(i) + '\n';
         }
         alert.setContentText(errorString);
-        alert.setHeaderText(null);
-        alert.setTitle("ERRORS WITH DATA");
+        alert.setHeaderText("ERRORS WITH DATA");
+        alert.setTitle("Adding Status");
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make aler to stage so icon can be changed
+        stage.getIcons().add(new Image("primaryStageIcon.png"));
+
+        alert.showAndWait();
+    }
+
+    public static void addedAlert(String type) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Adding Status");
+        alert.setHeaderText("Successfully added new data (" + type.toUpperCase() + ")");
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make alert to stage so icon can be changed
         stage.getIcons().add(new Image("primaryStageIcon.png"));
 
         alert.showAndWait();
