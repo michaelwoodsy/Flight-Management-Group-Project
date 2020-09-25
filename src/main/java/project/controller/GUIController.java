@@ -1187,17 +1187,21 @@ public class GUIController implements Initializable {
      */
     @FXML
     public void deleteAirlineButton(ActionEvent event) throws IOException {
-        Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
-        currentRecord.removeAirlines(airline);
-        try { Database.removeAirline("id", Integer.toString(airline.getId()), airline.getRecordName());
-        } catch (NoSuchFieldException e) {System.out.println("WHoopes");}
-
-        modifyAirlinePane.setVisible(false);
-        modifyAirlineWindowButton.setVisible(false);
-        airlineSplitPane.setVisible(true);
-        airlineList.setVisible(true);
-        displayAllAirlines();
-        additionalAirlineInfo();
+        if (DialogBoxes.confirmationAlert("delete airline")) {
+            Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
+            currentRecord.removeAirlines(airline);
+            try {
+                Database.removeAirline("id", Integer.toString(airline.getId()), airline.getRecordName());
+            } catch (NoSuchFieldException e) {
+                System.out.println("WHoopes");
+            }
+            modifyAirlinePane.setVisible(false);
+            modifyAirlineWindowButton.setVisible(false);
+            airlineSplitPane.setVisible(true);
+            airlineList.setVisible(true);
+            displayAllAirlines();
+            additionalAirlineInfo();
+        }
     }
 
     /**
@@ -1281,16 +1285,20 @@ public class GUIController implements Initializable {
      */
     @FXML
     public void deleteRouteButton(ActionEvent event) throws IOException {
-        Route route = (Route) routeList.getSelectionModel().getSelectedItem();
-        currentRecord.removeRoutes(route);
-        try { Database.removeRoute("id", Integer.toString(route.getId()), route.getRecordName());
-        } catch (NoSuchFieldException e) {}
-        modifyRoutePane.setVisible(false);
-        modifyRouteWindowButton.setVisible(false);
-        routeSplitPane.setVisible(true);
-        routeList.setVisible(true);
-        displayAllRoutes();
-        additionalRouteInfo();
+        if (DialogBoxes.confirmationAlert("delete route")) {
+            Route route = (Route) routeList.getSelectionModel().getSelectedItem();
+            currentRecord.removeRoutes(route);
+            try {
+                Database.removeRoute("id", Integer.toString(route.getId()), route.getRecordName());
+            } catch (NoSuchFieldException e) {
+            }
+            modifyRoutePane.setVisible(false);
+            modifyRouteWindowButton.setVisible(false);
+            routeSplitPane.setVisible(true);
+            routeList.setVisible(true);
+            displayAllRoutes();
+            additionalRouteInfo();
+        }
     }
 
     /**
@@ -1410,16 +1418,18 @@ public class GUIController implements Initializable {
      */
     @FXML
     public void deleteAirportButton(ActionEvent event) throws IOException {
-        Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
-        currentRecord.removeAirports(airport);
-        try { Database.removeAirport("id", Integer.toString(airport.getId()), airport.getRecordName());
-        } catch (NoSuchFieldException e) {System.out.println("Whoopsie"); System.out.println(e.getMessage());}
-        modifyAirportPane.setVisible(false);
-        modifyAirportWindowButton.setVisible(false);
-        airportSplitPane.setVisible(true);
-        airportList.setVisible(true);
-        displayAllAirports();
-        additionalAirportInfo();
+        if (DialogBoxes.confirmationAlert("delete airport")) {
+            Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
+            currentRecord.removeAirports(airport);
+            try { Database.removeAirport("id", Integer.toString(airport.getId()), airport.getRecordName());
+            } catch (NoSuchFieldException e) {System.out.println("Whoopsie"); System.out.println(e.getMessage());}
+            modifyAirportPane.setVisible(false);
+            modifyAirportWindowButton.setVisible(false);
+            airportSplitPane.setVisible(true);
+            airportList.setVisible(true);
+            displayAllAirports();
+            additionalAirportInfo();
+        }
     }
 
     /**
