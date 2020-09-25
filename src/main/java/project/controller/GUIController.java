@@ -240,9 +240,7 @@ public class GUIController implements Initializable {
     @FXML
     private ListView flightList;
     @FXML
-    private ChoiceBox helpDropdown;
-    @FXML
-    private Button helpSelect;
+    private ComboBox helpDropdown;
     @FXML
     private TextArea helpTextArea;
 
@@ -343,7 +341,7 @@ public class GUIController implements Initializable {
 
         displayRoute(routeA);
 
-        helpDropdown.setItems(observableArrayList("Airport - ID", "Airport - Name", "Airport - City", "Airport - Country", "Airport - IATA Code", "Airport - ICAO Code", "Airport - Type", "Airport - Timezone", "Airport - Timezone Offset", "Airport - DST", "Airport - Source", "Airport - Latitude", "Airport - Longitude", "Airport - Altitude", "Airline - ID", "Airline - Name", "Airline - Alias", "Airline - Callsign", "Airline - Active", "Airline - IATA Code", "Airline - ICAO Code", "Airline - Country", "Route - Airline Code", "Route - Source Airport Code", "Route - Destination Airport Code", "Route - Equipment", "Route - Number of Stops", "Route - Codeshare"));
+        helpDropdown.setItems(observableArrayList("Airport - ID", "Airport - Name", "Airport - City", "Airport - Country", "Airport - IATA Code", "Airport - ICAO Code", "Airport - Timezone", "Airport - Timezone Offset", "Airport - DST", "Airport - Latitude", "Airport - Longitude", "Airport - Altitude", "Airline - ID", "Airline - Name", "Airline - Alias", "Airline - Callsign", "Airline - Active", "Airline - IATA Code", "Airline - ICAO Code", "Airline - Country", "Route - Airline Code", "Route - Source Airport Code", "Route - Destination Airport Code", "Route - Equipment", "Route - Number of Stops", "Route - Codeshare"));
         helpDropdown.getSelectionModel().selectFirst();
         helpTextArea.setText("OpenFlights and PlaneSonar25's ID for the airport. Must be an integer.");
 
@@ -976,7 +974,13 @@ public class GUIController implements Initializable {
 
             String name = String.format("Name: %s", airport.getName());
             String location = String.format("Location: %s, %s", airport.getCity(), airport.getCountry());
-            String risk = String.format("COVID risk level: %s (%.2f%%)", airport.getRiskString(), airport.getRisk());
+
+            String risk;
+            if (airport.getRiskString() == null) {
+                risk = "COVID risk level: Unknown (???%)";
+            } else {
+                risk = String.format("COVID risk level: %s (%.2f%%)", airport.getRiskString(), airport.getRisk());
+            }
 
             //INCLUDED WHEN NUMROUTES IMPLEMENTATION IS COMPLETE
 //            String numRoutes = ("A total of " + airport.getTotalRoutes() + " flight routes go through this airport");
@@ -1516,16 +1520,12 @@ public class GUIController implements Initializable {
             helpTextArea.setText("Unique 3 letter airport code defined by the International Air Transport Association.");
         } else if (helpDropdown.getValue() == "Airport - ICAO Code") {
             helpTextArea.setText("Unique 4 letter airport code defined by the International Civil Aviation Organization.");
-        } else if (helpDropdown.getValue() == "Airport - Type") {
-            helpTextArea.setText("The type of port (generally just 'airport').");
         } else if (helpDropdown.getValue() == "Airport - Timezone") {
             helpTextArea.setText("A textual representation of the timezone in which the airport is located. For example, Pacific/Auckland.");
         } else if (helpDropdown.getValue() == "Airport - Timezone Offset") {
             helpTextArea.setText("The amount of hours the airport's timezone is offset by. Can be positive or negative. For example, -12. Must be a number.");
         } else if (helpDropdown.getValue() == "Airport - DST") {
             helpTextArea.setText("The 1 letter daylight savings code used by OpenFlights.");
-        } else if (helpDropdown.getValue() == "Airport - Source") {
-            helpTextArea.setText("The source of the data obtained. Used primarily in file loading.");
         } else if (helpDropdown.getValue() == "Airport - Latitude") {
             helpTextArea.setText("The latitude location of the airport in decimal degrees. Must be a number between -90 and 90.");
         } else if (helpDropdown.getValue() == "Airport - Longitude") {
