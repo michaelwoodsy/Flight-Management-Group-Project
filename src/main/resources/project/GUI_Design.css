@@ -6,8 +6,18 @@
     -fx-background-color: #85bce6;
 }
 
+.button:hover {
+    -fx-background-color: #6690b0;
+}
+
 .list-view {
     -fx-background-color: white;
+    -fx-background-radius: 5 5 5 5;
+    -fx-border-radius: 5 5 5 5;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #c9c9c9;
 }
 
 .tab-label {
@@ -15,6 +25,10 @@
 }
 .tab {
     -fx-background-color: #2c5c82;
+}
+
+.tab:hover {
+    -fx-background-color: #2d94cf;
 }
 
 .tab:selected {
@@ -37,4 +51,16 @@
 
 .pane {
     -fx-background-color: #2a475e;
+}
+
+.choice-box:hover {
+    -fx-background-color: #c9c9c9;
+}
+
+.text-field:hover {
+    -fx-background-color: #c9c9c9;
+}
+
+.check-box:hover > .box {
+    -fx-background-color: #c9c9c9;
 }
