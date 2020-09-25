@@ -35,12 +35,12 @@ public class DataUnitTests {
 
     @Test
     public void routeEquals() {
-        Route testRoute1 = new Route("Air NZ", 500, "Christchurch International Airport", 5011, "Wellington International Airport", 5012, 0, "AX54", false);
-        Route testRoute2 = new Route("Air NZ", 500, "Christchurch International Airport", 5011, "Wellington International Airport", 5012, 0, "AX54", false);
+        Route testRoute1 = new Route(1, "Air NZ", 500, "Christchurch International Airport", 5011, "Wellington International Airport", 5012, 0, "AX54", false);
+        Route testRoute2 = new Route(2, "Air NZ", 500, "Christchurch International Airport", 5011, "Wellington International Airport", 5012, 0, "AX54", false);
 
         assertTrue(testRoute1.equals(testRoute2));
 
-        testRoute1 = new Route("Air NZL", 500, "Christchurch International Airport", 5011, "Wellington International Airport", 5012, 0, "AX54", false);
+        testRoute1 = new Route(1, "Air NZL", 500, "Christchurch International Airport", 5011, "Wellington International Airport", 5012, 0, "AX54", false);
 
         assertFalse(testRoute1.equals(testRoute2));
     }

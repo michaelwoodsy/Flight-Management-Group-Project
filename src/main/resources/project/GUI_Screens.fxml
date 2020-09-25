@@ -5,12 +5,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
@@ -26,7 +28,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="530.0" prefWidth="750.0" stylesheets="@GUI_Design.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="project.controller.GUIController">
    <children>
-      <TabPane layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="748.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="76.0">
+      <TabPane layoutY="30.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE">
          <tabs>
             <Tab fx:id="airport_tab" text="Airport">
                <content>
@@ -36,18 +38,18 @@
                            <items>
                               <AnchorPane fx:id="airportSearchPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
-                                    <Text fill="#c7d5e0" layoutX="8.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rank by:" />
+                                    <Text layoutX="8.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rank by:" />
                                     <Button fx:id="showAllAirports" layoutX="35.0" layoutY="190.0" mnemonicParsing="false" onAction="#displayAllAirports" text="SHOW ALL AIRPORTS" />
                                     <Button fx:id="airportMostRoutes" layoutX="100.0" layoutY="157.0" mnemonicParsing="false" onAction="#mostRoutesButton" prefHeight="25.0" text="MOST ROUTES" />
                                     <Button fx:id="airportLeastRoutes" layoutX="5.0" layoutY="157.0" mnemonicParsing="false" onAction="#leastRoutesButton" prefHeight="25.0" text="LEAST ROUTES" />
-                                    <Text fill="#c7d5e0" layoutX="8.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter/Search By:" />
+                                    <Text layoutX="8.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter/Search By:" />
                                     <ChoiceBox fx:id="airportSearchBy" layoutX="5.0" layoutY="88.0" prefHeight="25.0" prefWidth="130.0" />
                                     <Button fx:id="airportFilterButton" layoutX="134.0" layoutY="88.0" mnemonicParsing="false" onAction="#searchAirports" prefHeight="50.0" prefWidth="60.0" text="FILTER" />
                                     <TextField fx:id="airportSearchCriteria" layoutX="5.0" layoutY="113.0" prefHeight="25.0" prefWidth="130.0" />
                                     <ChoiceBox fx:id="recordSelectAirport" layoutX="5.0" layoutY="23.0" prefHeight="25.0" prefWidth="130.0" />
-                                    <Text fill="#c7d5e0" layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
+                                    <Text layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
                                     <Button fx:id="airportSelectButton" layoutX="134.0" layoutY="23.0" mnemonicParsing="false" onAction="#airportSelect" prefHeight="25.0" prefWidth="60.0" text="SELECT" />
-                                    <Text fill="#c7d5e0" layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
+                                    <Text layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
                                        <font>
                                           <Font size="9.0" />
                                        </font>
@@ -136,16 +138,16 @@
                               <AnchorPane fx:id="airlineSearchPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
                                     <ChoiceBox fx:id="airlineSearchBy" layoutX="5.0" layoutY="88.0" prefHeight="25.0" prefWidth="130.0" />
-                                    <Text fill="#c7d5e0" layoutX="8.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter/Search By:" />
+                                    <Text layoutX="8.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter/Search By:" />
                                     <Button fx:id="showAllAirlines" layoutX="35.0" layoutY="190.0" mnemonicParsing="false" onAction="#displayAllAirlines" text="SHOW ALL AIRLINES" />
-                                    <CheckBox fx:id="airlineActiveBox" layoutX="30.0" layoutY="154.0" mnemonicParsing="false" onAction="#filterActiveAirlines" selected="true" text="Active" textFill="#c7d5e0" />
-                                    <CheckBox fx:id="airlineInactiveBox" layoutX="110.0" layoutY="154.0" mnemonicParsing="false" onAction="#filterActiveAirlines" selected="true" text="Inactive" textFill="#c7d5e0" />
+                                    <CheckBox fx:id="airlineActiveBox" layoutX="30.0" layoutY="154.0" mnemonicParsing="false" onAction="#filterActiveAirlines" selected="true" text="Active" />
+                                    <CheckBox fx:id="airlineInactiveBox" layoutX="110.0" layoutY="154.0" mnemonicParsing="false" onAction="#filterActiveAirlines" selected="true" text="Inactive" />
                                     <TextField fx:id="airlineSearchCriteria" layoutX="5.0" layoutY="113.0" prefHeight="25.0" prefWidth="130.0" />
                                     <Button fx:id="airlineFilterButton" layoutX="134.0" layoutY="88.0" mnemonicParsing="false" onAction="#searchAirlines" prefHeight="50.0" prefWidth="60.0" text="FILTER" />
                                     <ChoiceBox fx:id="recordSelectAirline" layoutX="5.0" layoutY="23.0" prefHeight="25.0" prefWidth="130.0" />
-                                    <Text fill="#c7d5e0" layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
+                                    <Text layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
                                     <Button fx:id="airlineSelectButton" layoutX="134.0" layoutY="23.0" mnemonicParsing="false" onAction="#airlineSelect" prefHeight="25.0" prefWidth="60.0" text="SELECT" />
-                                    <Text fill="#c7d5e0" layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
+                                    <Text layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
                                        <font>
                                           <Font size="9.0" />
                                        </font>
@@ -216,17 +218,17 @@
                            <items>
                               <AnchorPane fx:id="routeSearchPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
-                                    <Text fill="#c7d5e0" layoutX="8.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter/Search By:" />
+                                    <Text layoutX="8.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter/Search By:" />
                                     <ChoiceBox fx:id="routeSearchBy" layoutX="5.0" layoutY="88.0" prefHeight="25.0" prefWidth="130.0" />
                                     <Button fx:id="showAllRoutes" layoutX="35.0" layoutY="190.0" mnemonicParsing="false" onAction="#displayAllRoutes" text="SHOW ALL ROUTES" />
-                                    <CheckBox fx:id="routeDirectBox" layoutX="15.0" layoutY="154.0" mnemonicParsing="false" onAction="#filterRouteStops" selected="true" text="Direct Flight" textFill="#c7d5e0" />
-                                    <CheckBox fx:id="routeIndirectBox" layoutX="115.0" layoutY="154.0" mnemonicParsing="false" onAction="#filterRouteStops" selected="true" text="Has Stops" textFill="#c7d5e0" />
+                                    <CheckBox fx:id="routeDirectBox" layoutX="15.0" layoutY="154.0" mnemonicParsing="false" onAction="#filterRouteStops" selected="true" text="Direct Flight" />
+                                    <CheckBox fx:id="routeIndirectBox" layoutX="115.0" layoutY="154.0" mnemonicParsing="false" onAction="#filterRouteStops" selected="true" text="Has Stops" />
                                     <TextField fx:id="routeSearchCriteria" layoutX="5.0" layoutY="113.0" prefHeight="25.0" prefWidth="130.0" />
                                     <Button fx:id="routeFilterButton" layoutX="134.0" layoutY="88.0" mnemonicParsing="false" onAction="#searchRoutes" prefHeight="50.0" prefWidth="60.0" text="FILTER" />
                                     <ChoiceBox fx:id="recordSelectRoute" layoutX="5.0" layoutY="23.0" prefHeight="25.0" prefWidth="130.0" />
-                                    <Text fill="#c7d5e0" layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
+                                    <Text layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
                                     <Button fx:id="routeSelectButton" layoutX="134.0" layoutY="23.0" mnemonicParsing="false" onAction="#routeSelect" prefHeight="25.0" prefWidth="60.0" text="SELECT" />
-                                    <Text fill="#c7d5e0" layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
+                                    <Text layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
                                        <font>
                                           <Font size="9.0" />
                                        </font>
@@ -305,18 +307,18 @@
                            <items>
                               <AnchorPane fx:id="routeSearchPanel1" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
-                                    <Text fill="#c7d5e0" layoutX="8.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Flight:" />
+                                    <Text layoutX="8.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Flight:" />
                                     <ChoiceBox fx:id="flightDropDown" layoutX="5.0" layoutY="88.0" prefHeight="25.0" prefWidth="190.0" />
                                     <Button fx:id="showFlightButton" layoutX="53.0" layoutY="189.0" mnemonicParsing="false" onAction="#showFlight" text="SHOW FLIGHT" />
                                     <ChoiceBox fx:id="recordSelectFlight" layoutX="5.0" layoutY="23.0" prefHeight="25.0" prefWidth="130.0" />
-                                    <Text fill="#c7d5e0" layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
+                                    <Text layoutX="8.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Record:" />
                                     <Button fx:id="flightSelectButton" layoutX="134.0" layoutY="23.0" mnemonicParsing="false" onAction="#flightSelect" prefHeight="25.0" prefWidth="60.0" text="SELECT" />
-                                    <Text fill="#c7d5e0" layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
+                                    <Text layoutX="45.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to press the select button" wrappingWidth="147.63671875">
                                        <font>
                                           <Font size="9.0" />
                                        </font>
                                     </Text>
-                                    <Text fx:id="flightText" fill="#c7d5e0" layoutX="14.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No flight selected" textAlignment="CENTER" wrappingWidth="169.9609375" />
+                                    <Text fx:id="flightText" layoutX="14.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="No flight selected" textAlignment="CENTER" wrappingWidth="169.9609375" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane fx:id="routeDetailPanel1" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
@@ -335,7 +337,7 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <WebView fx:id="mapView" layoutX="14.0" layoutY="28.0" prefHeight="429.0" prefWidth="498.0" />
-                        <Text fill="#c7d5e0" layoutX="221.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Map is still in development, will be completed next update">
+                        <Text layoutX="221.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Map is still in development, will be completed next update">
                            <font>
                               <Font name="System Bold Italic" size="12.0" />
                            </font>
@@ -364,16 +366,6 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane layoutX="524.0" layoutY="257.0" prefHeight="200.0" prefWidth="213.0" style="-fx-background-color: #FFFFFF;">
-                           <children>
-                              <Label alignment="CENTER" layoutX="15.0" layoutY="14.0" prefHeight="36.0" prefWidth="184.0" text="Settings">
-                                 <font>
-                                    <Font name="System Bold" size="25.0" />
-                                 </font>
-                              </Label>
-                              <CheckBox fx:id="extraInfoBox" layoutX="34.0" layoutY="57.0" mnemonicParsing="false" onAction="#setOptedIn" prefHeight="40.0" prefWidth="155.0" text="Additional information" />
-                           </children>
-                        </Pane>
                      </children>
                   </AnchorPane>
                </content>
@@ -382,7 +374,7 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TabPane fx:id="newTab" layoutX="14.0" layoutY="14.0" prefHeight="444.0" prefWidth="713.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="160.0">
+                        <TabPane fx:id="newTab" layoutX="14.0" layoutY="14.0" prefHeight="444.0" prefWidth="713.0" tabClosingPolicy="UNAVAILABLE">
                            <tabs>
                               <Tab fx:id="airportTab" text="Airport">
                                  <content>
@@ -405,32 +397,34 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <Label text="Name:" textFill="#c7d5e0" />
-                                                <Label text="City:" textFill="#c7d5e0" GridPane.rowIndex="1" />
-                                                <Label text="Country:" textFill="#c7d5e0" GridPane.rowIndex="2" />
-                                                <Label text="IATA:" textFill="#c7d5e0" GridPane.rowIndex="3" />
-                                                <Label text="ICAO:" textFill="#c7d5e0" GridPane.rowIndex="4" />
-                                                <Label text="Type:" textFill="#c7d5e0" GridPane.rowIndex="5" />
-                                                <TextField fx:id="airportName" GridPane.columnIndex="1" />
-                                                <TextField fx:id="airportCity" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                <TextField fx:id="airportCountry" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                                <TextField fx:id="airportIATA" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <TextField fx:id="airportICAO" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <TextField fx:id="airportType" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                <TextField fx:id="airportSource" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                                <Label text="Timezone Offset:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label text="DST:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <Label text="Source:" textFill="#c7d5e0" GridPane.rowIndex="6" />
-                                                <Label text="Latitude:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                                <Label text="Longitude:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                                <Label text="Altitude:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                                                <TextField fx:id="airportTimezoneString" GridPane.columnIndex="3" />
+                                                <Label text="ID:" />
+                                                <Label text="Name:" GridPane.rowIndex="1" />
+                                                <Label text="City:" GridPane.rowIndex="2" />
+                                                <Label text="Country:" GridPane.rowIndex="3" />
+                                                <Label text="IATA:" GridPane.rowIndex="4" />
+                                                <Label text="ICAO:" GridPane.rowIndex="5" />
+                                                <Label text="Type:" GridPane.rowIndex="6" />
+                                                <TextField fx:id="airportID" GridPane.columnIndex="1" />
+                                                <TextField fx:id="airportName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="airportCity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <TextField fx:id="airportCountry" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <TextField fx:id="airportIATA" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <TextField fx:id="airportICAO" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <TextField fx:id="airportType" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                                <Label text="Timezone Offset:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="DST:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <Label text="Source:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                <Label text="Latitude:" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                                                <Label text="Longitude:" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                <Label text="Altitude:" GridPane.columnIndex="2" GridPane.rowIndex="6" />
                                                 <TextField fx:id="airportTimezone" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                                 <TextField fx:id="airportDST" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                <TextField fx:id="airportLatitude" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                                <TextField fx:id="airportLongitude" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                                                <TextField fx:id="airportAltitude" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                                                <Label text="Timezone:" textFill="#c7d5e0" GridPane.columnIndex="2" />
+                                                <TextField fx:id="airportSource" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                                <TextField fx:id="airportLatitude" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                                <TextField fx:id="airportLongitude" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                                <TextField fx:id="airportAltitude" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+                                                <Label text="Timezone:" GridPane.columnIndex="2" />
+                                                <TextField fx:id="airportTimezoneString" GridPane.columnIndex="3" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
@@ -460,19 +454,21 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <Label text="Name:" textFill="#c7d5e0" />
-                                                <Label text="Country:" textFill="#c7d5e0" GridPane.rowIndex="1" />
-                                                <Label text="Alias:" textFill="#c7d5e0" GridPane.rowIndex="2" />
-                                                <Label text="Callsign:" textFill="#c7d5e0" GridPane.rowIndex="3" />
-                                                <TextField fx:id="airlineName" GridPane.columnIndex="1" />
+                                                <Label text="ID:" />
+                                                <Label text="Name:" GridPane.rowIndex="1" />
+                                                <Label text="Alias:" GridPane.rowIndex="2" />
+                                                <Label text="Callsign:" GridPane.rowIndex="3" />
+                                                <TextField fx:id="airlineID" prefHeight="17.0" prefWidth="174.0" GridPane.columnIndex="1" />
+                                                <TextField fx:id="airlineName" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <TextField fx:id="airlineAlias" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                 <TextField fx:id="airlineCallsign" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                                <CheckBox fx:id="airlineActive" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Active" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.columnSpan="2" />
-                                                <Label text="IATA:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label text="ICAO:" textFill="#c7d5e0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <Label text="IATA:" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <Label text="ICAO:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <Label text="Country:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                                 <TextField fx:id="airlineIATA" GridPane.columnIndex="3" GridPane.rowIndex="1" />
                                                 <TextField fx:id="airlineICAO" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                <TextField fx:id="airlineCountry" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <TextField fx:id="airlineCountry" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                                <CheckBox fx:id="airlineActive" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Active" GridPane.columnIndex="2" GridPane.columnSpan="2" />
                                              </children>
                                              <padding>
                                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
@@ -501,12 +497,12 @@
                                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                              </rowConstraints>
                                              <children>
-                                                <Label text="Airline Name:" textFill="#c7d5e0" />
-                                                <Label text="Source Airport Name:" textFill="#c7d5e0" GridPane.rowIndex="1" />
-                                                <Label text="Destination Airport Name:" textFill="#c7d5e0" GridPane.rowIndex="2" />
-                                                <Label text="Equipment:" textFill="#c7d5e0" GridPane.rowIndex="3" />
-                                                <Label text="Number of Stops:" textFill="#c7d5e0" GridPane.rowIndex="4" />
-                                                <Label text="Code Share:" textFill="#c7d5e0" GridPane.rowIndex="5" />
+                                                <Label text="Airline Name:" />
+                                                <Label text="Source Airport Name:" GridPane.rowIndex="1" />
+                                                <Label text="Destination Airport Name:" GridPane.rowIndex="2" />
+                                                <Label text="Equipment:" GridPane.rowIndex="3" />
+                                                <Label text="Number of Stops:" GridPane.rowIndex="4" />
+                                                <Label text="Code Share:" GridPane.rowIndex="5" />
                                                 <TextField fx:id="routeAirline" prefHeight="17.0" prefWidth="174.0" GridPane.columnIndex="1" />
                                                 <TextField fx:id="routeSource" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <TextField fx:id="routeDest" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -519,7 +515,7 @@
                                              </padding>
                                           </GridPane>
                                           <Button fx:id="addRouteButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addRouteButton" text="Add to" />
-                                          <Text fill="#c7d5e0" layoutX="539.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: New Routes are invalid when added if there are no Airports or Airlines loaded or added into the record." wrappingWidth="139.69921875" />
+                                          <Text layoutX="539.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: New Routes are invalid when added if there are no Airports or Airlines loaded or added into the record." wrappingWidth="139.69921875" />
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -528,16 +524,16 @@
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="415.0" prefWidth="673.0">
                                        <children>
-                                          <RadioButton fx:id="airportRadioButton" layoutX="43.0" layoutY="33.0" mnemonicParsing="false" selected="true" text="Airport" textFill="#c7d5e0">
+                                          <RadioButton fx:id="airportRadioButton" layoutX="43.0" layoutY="33.0" mnemonicParsing="false" selected="true" text="Airport">
                                              <toggleGroup>
                                                 <ToggleGroup fx:id="selectFile" />
                                              </toggleGroup>
                                           </RadioButton>
-                                          <RadioButton fx:id="airlineRadioButton" layoutX="43.0" layoutY="73.0" mnemonicParsing="false" text="Airline" textFill="#c7d5e0" toggleGroup="$selectFile" />
-                                          <RadioButton fx:id="routeRadioButton" layoutX="43.0" layoutY="113.0" mnemonicParsing="false" text="Route" textFill="#c7d5e0" toggleGroup="$selectFile" />
-                                          <RadioButton fx:id="flightRadioButton" layoutX="43.0" layoutY="153.0" mnemonicParsing="false" text="Flight" textFill="#c7d5e0" toggleGroup="$selectFile" />
+                                          <RadioButton fx:id="airlineRadioButton" layoutX="43.0" layoutY="73.0" mnemonicParsing="false" text="Airline" toggleGroup="$selectFile" />
+                                          <RadioButton fx:id="routeRadioButton" layoutX="43.0" layoutY="113.0" mnemonicParsing="false" text="Route" toggleGroup="$selectFile" />
+                                          <RadioButton fx:id="flightRadioButton" layoutX="43.0" layoutY="153.0" mnemonicParsing="false" text="Flight" toggleGroup="$selectFile" />
                                           <Button fx:id="addFileButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addFileButton" text="Add to" />
-                                          <Text fill="#c7d5e0" layoutX="179.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To add a new file:&#10;1. Select the type of file you would like to add.&#10;2. Select which record you would like to add the file to in the dropdown next to the &quot;Add to&quot; button. Select &quot;New Record&quot; if you would like to start a new record.&#10;3. Click the &quot;Add to&quot; button and find the file you would like to add in your file directory. Note the file must be a .dat or .csv file and be in the correct format." wrappingWidth="393.79425048828125" />
+                                          <Text layoutX="179.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To add a new file:&#10;1. Select the type of file you would like to add.&#10;2. Select which record you would like to add the file to in the dropdown next to the &quot;Add to&quot; button. Select &quot;New Record&quot; if you would like to start a new record.&#10;3. Click the &quot;Add to&quot; button and find the file you would like to add in your file directory. Note the file must be a .dat or .csv file and be in the correct format." wrappingWidth="393.79425048828125" />
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -553,14 +549,14 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TabPane layoutX="14.0" layoutY="14.0" prefHeight="441.0" prefWidth="704.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="332.0">
+                        <TabPane layoutX="14.0" layoutY="14.0" prefHeight="441.0" prefWidth="704.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
                             <Tab text="Open Flights Data Source">
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
                                           <WebView fx:id="OpenFlightsWebView" layoutX="14.0" layoutY="31.0" prefHeight="371.0" prefWidth="676.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="31.0" />
-                                          <Label fx:id="dataSourceLabel" alignment="CENTER" layoutX="262.0" layoutY="1.0" prefHeight="25.0" prefWidth="185.0" text="Data Source" textFill="#c7d5e0">
+                                          <Label fx:id="dataSourceLabel" alignment="CENTER" layoutX="262.0" layoutY="1.0" prefHeight="25.0" prefWidth="185.0" text="Data Source">
                                              <font>
                                                 <Font name="System Bold" size="20.0" />
                                              </font>
@@ -574,7 +570,7 @@
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
                                           <WebView fx:id="CovidDataWebView" layoutX="14.0" layoutY="31.0" prefHeight="371.0" prefWidth="676.0" />
-                                          <Label layoutX="250.0" layoutY="1.0" text="Covid-19 Data Source" textFill="#c7d5e0">
+                                          <Label layoutX="250.0" layoutY="1.0" text="Covid-19 Data Source">
                                              <font>
                                                 <Font name="System Bold" size="20.0" />
                                              </font>
@@ -592,14 +588,171 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Text fill="#c7d5e0" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Under construction" />
+                        <TabPane layoutX="14.0" layoutY="14.0" prefHeight="442.0" prefWidth="721.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab text="Page 1">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <Text fill="WHITE" layoutX="3.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adding Data" underline="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A first time user of PlaneSonar25 will need to add data to the application:" />
+                                          <Text fill="WHITE" layoutX="43.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Manually, or" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Each can be done through the New tab. " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Duplicate data will not be added if it is appended to the same record." />
+                                          <Text fill="WHITE" layoutX="43.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Loading data files" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This must be done to display information on the data tables and map." />
+                                          <Text fill="WHITE" layoutX="3.0" layoutY="128.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adding Data Manually" underline="true" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data can be added manually by going to the New tab, and then selecting" />
+                                          <Text fill="WHITE" layoutX="14.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="either the Airport, Airline, or Route tab within the New tab." />
+                                          <Text fill="WHITE" layoutX="14.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Flight data has a more detailed format, and so this data can only be" />
+                                          <Text fill="WHITE" layoutX="14.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="added through loading files." />
+                                          <Text fill="WHITE" layoutX="14.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fill out each attribute in the correct format for the chosen data type, and" />
+                                          <Text fill="WHITE" layoutX="14.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="when finished, click the Add to button, selecting what record you would" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="like to append the new data to." />
+                                          <Text fill="WHITE" layoutX="3.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loading Files" underline="true" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data can be loaded in through either .csv files or .dat files obtained from" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the internet. We have included predownloaded files for each of the four" />
+                                          <Text fill="WHITE" layoutX="14.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="loadable datatypes in the data folder within the application's files." />
+                                          <Text fill="WHITE" layoutX="14.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To load a file, select the New tab, then the File tab within. Select the" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="type of file you would like to load, and click the Add to button. Like when" />
+                                          <Text fill="WHITE" layoutX="14.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="adding data manually, you can select which record you would like to load" />
+                                          <Text fill="WHITE" layoutX="14.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the data into." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clicking the Add to button will open a file explorer where you can search" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="375.0" strokeType="OUTSIDE" strokeWidth="0.0" text="for a file to load." />
+                                          <Text fill="WHITE" layoutX="3.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: flight files can be generated and downloaded from" />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="263.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loaded files will be rejected if they do not meet the " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="correct data file format. " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data files must be either .csv or .dat files, each " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="containing lines with a certain amount of comma" />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="separated values, representing the data fields. The " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="347.0" strokeType="OUTSIDE" strokeWidth="0.0" text="number is specified below:" />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="number of these fields depends on the data type. This" />
+                                          <Text fill="WHITE" layoutX="485.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Airport: 12" />
+                                          <Text fill="WHITE" layoutX="485.0" layoutY="387.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Airline: 8" />
+                                          <Text fill="WHITE" layoutX="570.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Route: 9" />
+                                          <Text fill="WHITE" layoutX="570.0" layoutY="388.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• Flight: 5" />
+                                          <Text fill="WHITE" layoutX="414.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File Formats" underline="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loaded and added files must have their fields in the" />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="correct formats." />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This also applies to what you enter in the" />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter/Search By section of the Airport, Airline, and " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Route tabs of the application." />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select the desired field for each datatype from the " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="dropdown menu to see a description of each field and" />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the required format." />
+                                          <ChoiceBox fx:id="helpDropdown" layoutX="419.0" layoutY="162.0" prefHeight="25.0" prefWidth="238.0" />
+                                          <Button fx:id="helpSelect" layoutX="656.0" layoutY="162.0" mnemonicParsing="false" onAction="#helpButton" text="SELECT" />
+                                          <Hyperlink fx:id="hyperlink" layoutX="303.0" layoutY="388.0" onAction="#hyperLink" text="https://flightplandatabase.com/planner" />
+                                          <TextArea fx:id="helpTextArea" layoutX="419.0" layoutY="191.0" prefHeight="53.0" prefWidth="291.0" />
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="Page 2">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <Text fill="WHITE" layoutX="3.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tables" underline="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In the airport, airline, route, and flight tabs, there is a table of the data" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="currently loaded into the application's selected record." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="There are various buttons to the side of the table to perform specific" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="functionalities." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecting an item on the table will display information about that" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="item in a similar table at the bottom right corner of the tab." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In the Airport table, the currently selected airport will display the distance" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="from the last selected airport in the information table too." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Further information can be shown by selecting the Enthusiast checkbox." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selecting a data item will also display the Modify button below this table" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="on the Airport, Airline, and Route tabs." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clicking this button will change the tab to a UI similar to the add data" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="menu. Each field must be filled out correctly before modifying, and you" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can also choose to delete the selected data item." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note you must refresh the table via the Show [Datatype] button in order" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to see the changes made." />
+                                          <Text fill="WHITE" layoutX="3.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Records" underline="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A record will store data of all types loaded into it." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When adding or loading data, You may choose to add data into a" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="particular existing record, or add it into a new one." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Switching between records will change the data you can see based on" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the data you've loaded into the selected record." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Switching records can be done on each datatype tab, as well as the Map" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tab." />
+                                          <Text fill="WHITE" layoutX="414.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Covid Data" underline="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our covid data comes preloaded into the application" />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="with no user input. In future releases, this is subject to" />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="change." />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our covid risk rating for each airport is merely an" />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="approximation, and should be taken with a grain of salt." />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data is obtained from ourworldindata.org, which in turn" />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="is obtained from WHO statistics." />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We take a rounded percentage of the population of " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="that country infected by covid to estimate a risk level." />
+                                          <Text fill="WHITE" layoutX="485.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•" />
+                                          <Text fill="#1f9900" layoutX="493.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extremely low risk" />
+                                          <Text fill="WHITE" layoutX="485.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•" />
+                                          <Text fill="#98ad00" layoutX="493.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Low risk" />
+                                          <Text fill="WHITE" layoutX="485.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• " />
+                                          <Text fill="WHITE" layoutX="485.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• " />
+                                          <Text fill="WHITE" layoutX="485.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• " />
+                                          <Text fill="#e8d805" layoutX="493.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medium risk" />
+                                          <Text fill="#ff9900" layoutX="493.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="High risk" />
+                                          <Text fill="#da2100" layoutX="493.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extreme risk" />
+                                          <Text fill="WHITE" layoutX="589.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &lt;= 0.1%" />
+                                          <Text fill="WHITE" layoutX="537.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &gt; 0.1% and &lt;= 0.5%" />
+                                          <Text fill="WHITE" layoutX="560.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &gt; 0.5% and &lt;= 1%" />
+                                          <Text fill="WHITE" layoutX="540.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &gt; 1% and &lt;= 5%" />
+                                          <Text fill="WHITE" layoutX="557.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &gt; 5%" />
+                                          <Text fill="WHITE" layoutX="414.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Data Tab" underline="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Data tab contains information of each downloaded" />
+                                          <Text fill="WHITE" layoutX="426.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data type used in the application, obtained from their" />
+                                          <Text fill="WHITE" layoutX="426.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="respective websites." />
+                                          <Pane layoutX="414.0" layoutY="329.0" prefHeight="69.0" prefWidth="298.0" style="-fx-background-color: #FFFFFF;">
+                                             <children>
+                                                <CheckBox fx:id="extraInfoBox" layoutX="47.0" layoutY="28.0" mnemonicParsing="false" onAction="#setOptedIn" prefHeight="40.0" prefWidth="204.0" text="Display Additional Information" />
+                                                <Label alignment="CENTER" prefHeight="36.0" prefWidth="299.0" text="Flight Enthusiast Opt-In">
+                                                   <font>
+                                                      <Font name="System Bold" size="20.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </Pane>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
          </tabs>
       </TabPane>
-      <Text fill="#c7d5e0" fontSmoothingType="LCD" layoutX="298.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PlaneSonar25">
+      <Text layoutX="298.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PlaneSonar25">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
