@@ -647,7 +647,7 @@
                                           <ChoiceBox fx:id="helpDropdown" layoutX="419.0" layoutY="162.0" prefHeight="25.0" prefWidth="238.0" />
                                           <Button fx:id="helpSelect" layoutX="656.0" layoutY="162.0" mnemonicParsing="false" onAction="#helpButton" text="SELECT" />
                                           <Hyperlink fx:id="hyperlink" layoutX="303.0" layoutY="388.0" onAction="#hyperLink" text="https://flightplandatabase.com/planner" />
-                                          <TextArea fx:id="helpTextArea" layoutX="419.0" layoutY="191.0" prefHeight="53.0" prefWidth="291.0" />
+                                          <TextArea fx:id="helpTextArea" editable="false" layoutX="419.0" layoutY="191.0" prefHeight="53.0" prefWidth="291.0" wrapText="true" />
                                        </children>
                                     </AnchorPane>
                               </content>

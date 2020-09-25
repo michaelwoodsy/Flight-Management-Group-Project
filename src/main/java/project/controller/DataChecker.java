@@ -77,7 +77,7 @@ public class DataChecker {
         double num_timezone = 0;
         try {
             num_timezone = Double.parseDouble(timezone);
-            if (num_timezone < -5 || num_timezone > 25) { errors.add("Invalid Timezone Offset(Must be between -5 and +25)"); }
+            if (num_timezone < -12 || num_timezone > 14) { errors.add("Invalid Timezone Offset(Must be between -12 and +14)"); }
         } catch (Exception e) {
             errors.add("Invalid Timezone Offset");
         }

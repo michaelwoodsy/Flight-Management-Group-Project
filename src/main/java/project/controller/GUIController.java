@@ -343,10 +343,9 @@ public class GUIController implements Initializable {
 
         displayRoute(routeA);
 
-        // TODO - set all items, and give descriptions to them
-        helpDropdown.setItems(observableArrayList("Airport - ID", "Airport - Name", "Airport - City", "Airport - Country", "Airport - IATA Code", "Airport - ICAO Code", "Airport - Type", "Airport - Timezone", "Airport - Timezone Offset", "Airport - DST", "Airport - Source", "Airport - Latitude", "Airport - Longitude", "Airport - Altitude", "Airline - ID", "Airline - Name", "Airline - Alias", "Airline - Callsign", "Airline - Active", "Airline - IATA Code", "Airline - ICAO Code", "Airline - Country"));
+        helpDropdown.setItems(observableArrayList("Airport - ID", "Airport - Name", "Airport - City", "Airport - Country", "Airport - IATA Code", "Airport - ICAO Code", "Airport - Type", "Airport - Timezone", "Airport - Timezone Offset", "Airport - DST", "Airport - Source", "Airport - Latitude", "Airport - Longitude", "Airport - Altitude", "Airline - ID", "Airline - Name", "Airline - Alias", "Airline - Callsign", "Airline - Active", "Airline - IATA Code", "Airline - ICAO Code", "Airline - Country", "Route - Airline Code", "Route - Source Airport Code", "Route - Destination Airport Code", "Route - Equipment", "Route - Number of Stops", "Route - Codeshare"));
         helpDropdown.getSelectionModel().selectFirst();
-        helpTextArea.setText("aids");
+        helpTextArea.setText("OpenFlights and PlaneSonar25's ID for the airport. Must be an integer.");
 
 
     }
@@ -1505,9 +1504,66 @@ public class GUIController implements Initializable {
      * @throws IOException Signals that an I/O exception of some sort has occurred.
      */
     public void helpButton(ActionEvent event) throws IOException {
-        /*
-        if (helpDropdown.getValue() == ) {
-            helpTextArea.setText();
-        } */
+        if (helpDropdown.getValue() == "Airport - ID") {
+            helpTextArea.setText("OpenFlights and PlaneSonar25's ID for the airport. Must be an integer.");
+        } else if (helpDropdown.getValue() == "Airport - Name") {
+            helpTextArea.setText("The name of the airport.");
+        } else if (helpDropdown.getValue() == "Airport - City") {
+            helpTextArea.setText("The main city served by the airport.");
+        } else if (helpDropdown.getValue() == "Airport - Country") {
+            helpTextArea.setText("The name of the country in which the airport is located.");
+        } else if (helpDropdown.getValue() == "Airport - IATA Code") {
+            helpTextArea.setText("Unique 3 letter airport code defined by the International Air Transport Association.");
+        } else if (helpDropdown.getValue() == "Airport - ICAO Code") {
+            helpTextArea.setText("Unique 4 letter airport code defined by the International Civil Aviation Organization.");
+        } else if (helpDropdown.getValue() == "Airport - Type") {
+            helpTextArea.setText("The type of port (generally just 'airport').");
+        } else if (helpDropdown.getValue() == "Airport - Timezone") {
+            helpTextArea.setText("A textual representation of the timezone in which the airport is located. For example, Pacific/Auckland.");
+        } else if (helpDropdown.getValue() == "Airport - Timezone Offset") {
+            helpTextArea.setText("The amount of hours the airport's timezone is offset by. Can be positive or negative. For example, -12. Must be a number.");
+        } else if (helpDropdown.getValue() == "Airport - DST") {
+            helpTextArea.setText("The 1 letter daylight savings code used by OpenFlights.");
+        } else if (helpDropdown.getValue() == "Airport - Source") {
+            helpTextArea.setText("The source of the data obtained. Used primarily in file loading.");
+        } else if (helpDropdown.getValue() == "Airport - Latitude") {
+            helpTextArea.setText("The latitude location of the airport in decimal degrees. Must be a number between -90 and 90.");
+        } else if (helpDropdown.getValue() == "Airport - Longitude") {
+            helpTextArea.setText("The longitude location of the airport in decimal degrees. Must be a number between -180 and 180.");
+        } else if (helpDropdown.getValue() == "Airport - Altitude") {
+            helpTextArea.setText("The altitude location of the airport in feet. Must be an integer.");
+        } else if (helpDropdown.getValue() == "Airport - Altitude") {
+            helpTextArea.setText("The altitude location of the airport in feet. Must be an integer.");
+        } else if (helpDropdown.getValue() == "Airline - ID") {
+            helpTextArea.setText("OpenFlights and PlaneSonar25's ID for the airline. Must be an integer.");
+        } else if (helpDropdown.getValue() == "Airline - Name") {
+            helpTextArea.setText("The name of the airline.");
+        } else if (helpDropdown.getValue() == "Airline - Alias") {
+            helpTextArea.setText("Common alternate name(s) of the airline.");
+        } else if (helpDropdown.getValue() == "Airline - Callsign") {
+            helpTextArea.setText("Callsign code that identifies the airline.");
+        } else if (helpDropdown.getValue() == "Airline - Active") {
+            helpTextArea.setText("Whether the airline is currently active or not.");
+        } else if (helpDropdown.getValue() == "Airline - IATA Code") {
+            helpTextArea.setText("Unique 2 letter airline code defined by the International Air Transport Association.");
+        } else if (helpDropdown.getValue() == "Airline - ICAO Code") {
+            helpTextArea.setText("Unique 3 letter airline code defined by the International Civil Aviation Organization.");
+        } else if (helpDropdown.getValue() == "Airline - Country") {
+            helpTextArea.setText("The name of the country of origin of the airline.");
+        } else if (helpDropdown.getValue() == "Airline - Country") {
+            helpTextArea.setText("The name of the country of origin of the airline.");
+        } else if (helpDropdown.getValue() == "Route - Airline Code") {
+            helpTextArea.setText("2 letter IATA or 3 Letter ICAO code of the airline operating the flight route.");
+        } else if (helpDropdown.getValue() == "Route - Source Airport Code") {
+            helpTextArea.setText("3 letter IATA or 4 Letter ICAO code of the source airport of the route.");
+        } else if (helpDropdown.getValue() == "Route - Destination Airport Code") {
+            helpTextArea.setText("3 letter IATA or 4 Letter ICAO code of the destination airport of the route.");
+        } else if (helpDropdown.getValue() == "Route - Equipment") {
+            helpTextArea.setText("3 letter code(s) of plane types used on the route.");
+        } else if (helpDropdown.getValue() == "Route - Number of Stops") {
+            helpTextArea.setText("The number of stops the flight route takes before reaching its destination. Commonly 0. Must be an integer.");
+        } else if (helpDropdown.getValue() == "Route - Codeshare") {
+            helpTextArea.setText("Indicates if the route is a codeshare or not (route operated by an airline or not).");
+        }
     }
 }
