@@ -1,12 +1,14 @@
 package project.controller;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import project.model.Airport;
 import project.model.Covid;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 
 
@@ -123,13 +125,45 @@ public class DialogBoxes {
             errorString += errors.get(i) + '\n';
         }
         alert.setContentText(errorString);
-        alert.setHeaderText(null);
-        alert.setTitle("ERRORS WITH DATA");
+        alert.setHeaderText("ERRORS WITH DATA");
+        alert.setTitle("Adding Status");
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make aler to stage so icon can be changed
         stage.getIcons().add(new Image("primaryStageIcon.png"));
 
         alert.showAndWait();
+    }
+
+    /**
+     *
+     * @param type
+     */
+    public static void addedAlert(String type) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Adding Status");
+        alert.setHeaderText("Successfully added new data (" + type.toUpperCase() + ")");
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make alert to stage so icon can be changed
+        stage.getIcons().add(new Image("primaryStageIcon.png"));
+
+        alert.showAndWait();
+    }
+
+    /**
+     *
+     */
+    public static boolean confirmationAlert(String type) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation");
+        alert.setHeaderText("Are you sure you want to " +type+ "?" );
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make alert to stage so icon can be changed
+        stage.getIcons().add(new Image("primaryStageIcon.png"));
+        alert.showAndWait();
+        if (alert.getResult() == ButtonType.OK){
+            return true;
+        } else {
+            return false;
+        }
     }
 
     // Unused because we don't currently have the means to add routes to airports. Will be added in phase 3.

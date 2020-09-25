@@ -280,7 +280,6 @@ public class Database {
     public static void updateAirport(Airport airport) {
         String columnUpdates = "airportName = ?,\ncity = ?,\ncountry = ?,\niata = ?,\nicao = ?,\nlatitude = ?,\n" +
                         " longitude = ?,\naltitude = ?,\ntimezone = ?,\ndst = ?,\ntimezoneString = ?,\nairportType = ?,\nairportSource = ?";
-        System.out.println(columnUpdates);
 
         String pstmtString = String.format("UPDATE airports\nSET %s\nWHERE id = ? AND record = ?", columnUpdates);
         System.out.println(pstmtString);
@@ -416,6 +415,33 @@ public class Database {
             System.out.println(e.getMessage());
         }
     }
+
+
+    /**
+     * Function that allows an airport to calculate how many routes are within the current routes table, that have the airport as their
+     * destination or departure location.
+     * @param airport The airport that numRoutes is being calculated for
+     * @param sourceOrDest Whether we are searching for routes that depart or arrive at that airport
+     * @return An integer; the number of routes arriving/departing at the airport
+     */
+    public static int getNumRoutes(Airport airport, String sourceOrDest) {
+        String query = String.format("SELECT count(*) AS numSource FROM routes WHERE %s = %d", sourceOrDest, airport.getId());
+
+        int totalCount = 0;
+
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                totalCount = rs.getInt("numSource");
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return totalCount;
+    }
+
 
     /**
      * Extracts each airport from the database, and creates a new Airport object for each of them

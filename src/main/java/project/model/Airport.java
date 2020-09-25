@@ -48,7 +48,7 @@ public class Airport {
      * @param numRoutesSource An int that represents number of routes that are from this airport
      * @param numRoutesDest An int that represents number of routes that go to this airport
      */
-    public Airport(int id, int risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, double timezone, String dst, String timezoneString, String type, String source, int numRoutesSource, int numRoutesDest) {
+    public Airport(int id, double risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, double timezone, String dst, String timezoneString, String type, String source, int numRoutesSource, int numRoutesDest) {
         this.id = id;
         this.name = name;
         this.city = city;
