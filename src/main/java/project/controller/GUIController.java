@@ -254,13 +254,9 @@ public class GUIController implements Initializable {
 
     private WebEngine mapEngine;
 
-    //need to get this function to loop through airports adding position then RouteLocations
 
-    private AirportLocations routeA = new AirportLocations(
-            new Position(-43.4876, 172.5374),
 
-            new Position(-37.0082, 174.7850)
-    );
+    private AirportLocations routeA = new AirportLocations();
 
     /**
      * Sets up all the data array lists to be used along with the sources of
@@ -328,7 +324,7 @@ public class GUIController implements Initializable {
 
         DialogBoxes.welcomeBox();
 
-        displayRoute(routeA);
+
 
 
     }
@@ -341,12 +337,16 @@ public class GUIController implements Initializable {
         this.mapEngine.load(getClass().getResource("/map.html").toExternalForm());
     }
     public void airportLoop() {
-        //need to have a loop for all airport locations
-        AirportLocations routeA = new AirportLocations(
-                new Position(-43.4876, 172.5374),
 
+        //need to have a loop for all airport locations
+        /*AirportLocations routeA = new AirportLocations(
+                new Position(-43.4876, 172.5374),
+                new Position(-43.4876, 173.5374),
                 new Position(-37.0082, 174.7850)
-        );
+        );*/
+        System.out.println("calling");
+        routeA.addAirports(currentRecord);
+        displayRoute(routeA);
 
     }
 

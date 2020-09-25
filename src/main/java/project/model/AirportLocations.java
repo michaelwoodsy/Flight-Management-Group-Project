@@ -11,8 +11,16 @@ public class AirportLocations {
         Collections.addAll(routeLocations, points);
     }
 
+    public void addAirports(Record currentRecord) {
+        for(Airport location:currentRecord.getAirportList()) {
+            this.routeLocations.add(new Position(location.getLatitude(), location.getLongitude()));
+        }
+    }
+
+
 
     public String toJSONArray() {
+        System.out.println("json");
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
         routeLocations.forEach(pos -> stringBuilder.append(
