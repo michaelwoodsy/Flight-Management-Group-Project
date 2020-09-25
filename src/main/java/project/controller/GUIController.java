@@ -268,7 +268,8 @@ public class GUIController implements Initializable {
     //need to get this function to loop through airports adding position then RouteLocations
 
 
-    private AirportLocations routeA = new AirportLocations();
+    private AirportLocations airports = new AirportLocations();
+    private AirportLocations RoutesPlotLocations = new AirportLocations();
 
     /**
      * Sets up all the data array lists to be used along with the sources of
@@ -356,17 +357,22 @@ public class GUIController implements Initializable {
     }
 
     public void airportLoop() {
+        airports.addAirports(currentRecord);
+        plotRoute();
+        displayRoute(airports);
+    }
 
-        //need to have a loop for all airport locations
-        /*AirportLocations routeA = new AirportLocations(
-                new Position(-43.4876, 172.5374),
-                new Position(-43.4876, 173.5374),
-                new Position(-37.0082, 174.7850)
-        );*/
-        System.out.println("calling");
-        routeA.addAirports(currentRecord);
-        displayRoute(routeA);
+    public void plotRoute() {
+        //plotting route=
+        //for plotting routes add
+//        RoutesPlotLocations.addAirports(currentRecord);
+//        String scriptToExecute = "drawRoute(" + RoutesPlotLocations.toJSONArray() +");";
 
+        String scriptToExecute = "drawRoute(" + "[{ lat: -43.4876, lng: 172.5374 },{ lat: -37.0082, lng: 174.7850 },]" + ");"; // christchurch to auckland
+        this.mapEngine.executeScript(scriptToExecute);
+
+        String scriptToExecute2 = "drawRoute(" + "[{ lat: -41.3276, lng: 174.8076 },{ lat: -46.4153, lng: 168.3151 },]" + ");"; // invercargill to wellington
+        this.mapEngine.executeScript(scriptToExecute2);
     }
 
     /**

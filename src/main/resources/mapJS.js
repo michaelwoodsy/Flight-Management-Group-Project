@@ -18,12 +18,6 @@ the flight rather than a direct line connecting them
 //            {lat: dest2[0], lng: dest2[1]}
 //        ];
 //
-//    const lineSymbol = {
-//        path: "M 0,-1 0,1",
-//        strokeOpacity: 1,
-//        scale: 4
-//  };
-
 
 
     function initMap() {
@@ -41,6 +35,9 @@ the flight rather than a direct line connecting them
 
         var infoWindow = new google.maps.InfoWindow();
         var latlngbounds = new google.maps.LatLngBounds();
+
+
+//        drawRoute(flightPlanCoordinates);
 
     }
 
@@ -71,4 +68,14 @@ the flight rather than a direct line connecting them
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
 
+    }
+    function drawRoute(flightCoordinates) {
+        const routeCoords = new google.maps.Polyline({
+            path: flightCoordinates,
+            geodesic: true,
+            strokeColor: "#FF0000",
+            strokeOpacity: 1.0,
+            strokeWeight: 2,
+          });
+        routeCoords.setMap(map);
     }
