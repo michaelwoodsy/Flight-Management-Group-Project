@@ -115,28 +115,11 @@ public class Database {
      */
     public static void addNewAirport(Airport airport) {
 
-        String insertStatement = String.format("INSERT INTO airports(id, altitude, numRoutesSource, numRoutesDest, " +
+        String insertStatement = String.format("INSERT INTO airports(id, altitude, " +
                 "airportName, city, country, iata, icao, dst, timezoneString, airportType, airportSource, latitude, " +
-                "longitude, timezone, record) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                "longitude, timezone, record) VALUES(%s)", airport.getDatabaseValues());
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
-            pstmt.setInt(1, airport.getId());
-            pstmt.setInt(2, airport.getAltitude());
-            pstmt.setInt(3, airport.getNumRoutesSource());
-            pstmt.setInt(4, airport.getNumRoutesDest());
-            pstmt.setString(5, airport.getName());
-            pstmt.setString(6, airport.getCity());
-            pstmt.setString(7, airport.getCountry());
-            pstmt.setString(8, airport.getIata());
-            pstmt.setString(9, airport.getIcao());
-            pstmt.setString(10, airport.getDst());
-            pstmt.setString(11, airport.getTimezoneString());
-            pstmt.setString(12, airport.getType());
-            pstmt.setString(13, airport.getSource());
-            pstmt.setDouble(14, airport.getLatitude());
-            pstmt.setDouble(15, airport.getLongitude());
-            pstmt.setDouble(16, airport.getTimezone());
-            pstmt.setString(17, airport.getRecordName());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());

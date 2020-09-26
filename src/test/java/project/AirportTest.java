@@ -26,13 +26,13 @@ public class AirportTest {
         Airport testErrorAirport4 = new Airport(4, 2, "Christchurch International Airport", "Christchurch", "New Zealand", "CHC", "NZCH", 360, 34, 37, 12, "dunno", "NZST", "Airport", "Source", 0, 0);
         double dist3 = testErrorAirport3.distance(testErrorAirport4);
         Airport testErrorAirport5 = new Airport(3, 7, "Auckland Airport", "Auckland", "New Zealand", "AKL", "NZAA", 360, 36, 7, 12, "dunno", "NZST", "Airport", "Source", 0, 0);
-        Airport testErrorAirport6= new Airport(4, 2, "Christchurch International Airport", "Christchurch", "New Zealand", "CHC", "NZCH", 25, 360, 37, 12, "dunno", "NZST", "Airport", "Source", 0, 0);
+        Airport testErrorAirport6 = new Airport(4, 2, "Christchurch International Airport", "Christchurch", "New Zealand", "CHC", "NZCH", 25, 360, 37, 12, "dunno", "NZST", "Airport", "Source", 0, 0);
         double dist4 = testErrorAirport5.distance(testErrorAirport6);
         Airport testBoundaryAirport1 = new Airport(3, 7, "Auckland Airport", "Auckland", "New Zealand", "AKL", "NZAA", 90, -180, 7, 12, "dunno", "NZST", "Airport", "Source", 0, 0);
-        Airport testBoundaryAirport2= new Airport(4, 2, "Christchurch International Airport", "Christchurch", "New Zealand", "CHC", "NZCH", 0, 110, 37, 12, "dunno", "NZST", "Airport", "Source", 0, 0);
+        Airport testBoundaryAirport2 = new Airport(4, 2, "Christchurch International Airport", "Christchurch", "New Zealand", "CHC", "NZCH", 0, 110, 37, 12, "dunno", "NZST", "Airport", "Source", 0, 0);
         double dist5 = testBoundaryAirport1.distance(testBoundaryAirport2);
         Airport testBoundaryAirport3 = new Airport(3, 7, "Auckland Airport", "Auckland", "New Zealand", "AKL", "NZAA", -90, -180, 7, 12, "dunno", "NZST", "Airport", "Source", 0, 0);
-        Airport testBoundaryAirport4= new Airport(4, 2, "Christchurch International Airport", "Christchurch", "New Zealand", "CHC", "NZCH", 90, 180, 37, 12, "dunno", "NZST", "Airport", "Source", 0, 0);
+        Airport testBoundaryAirport4 = new Airport(4, 2, "Christchurch International Airport", "Christchurch", "New Zealand", "CHC", "NZCH", 90, 180, 37, 12, "dunno", "NZST", "Airport", "Source", 0, 0);
         double dist6 = testBoundaryAirport3.distance(testBoundaryAirport4);
         assertEquals(dist1, 745.692, 5);
         assertEquals(dist2, -1, 0);

@@ -301,4 +301,18 @@ public class Airport {
     public int getNumRoutesSource() {
         return numRoutesSource;
     }
+
+    /**
+     * Create a string representation for the database
+     */
+    public String getDatabaseValues() {
+        String values = String.format("%d,%d,'%s','%s','%s','%s','%s','%s','%s','%s','%s',%f,%f,%f,'%s'",
+                this.id, this.altitude, this.name, this.city, this.country, this.iata, this.icao,
+                this.dst, this.timezoneString, this.type, this.source, this.latitude,
+                this.longitude, this.timezone, this.recordName);
+        return values;
+
+    }
+
+
 }
