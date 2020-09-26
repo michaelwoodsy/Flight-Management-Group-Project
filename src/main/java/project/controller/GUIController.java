@@ -267,11 +267,9 @@ public class GUIController implements Initializable {
 
     //need to get this function to loop through airports adding position then RouteLocations
 
-    private AirportLocations routeA = new AirportLocations(
-            new Position(-43.4876, 172.5374),
 
-            new Position(-37.0082, 174.7850)
-    );
+    private AirportLocations airports = new AirportLocations();
+    private AirportLocations RoutesPlotLocations = new AirportLocations();
 
     /**
      * Sets up all the data array lists to be used along with the sources of
@@ -339,7 +337,7 @@ public class GUIController implements Initializable {
 
         DialogBoxes.welcomeBox();
 
-        displayRoute(routeA);
+
 
         helpDropdown.setItems(observableArrayList("Airport - ID", "Airport - Name", "Airport - City", "Airport - Country", "Airport - IATA Code", "Airport - ICAO Code", "Airport - Timezone", "Airport - Timezone Offset", "Airport - DST", "Airport - Latitude", "Airport - Longitude", "Airport - Altitude", "Airline - ID", "Airline - Name", "Airline - Alias", "Airline - Callsign", "Airline - Active", "Airline - IATA Code", "Airline - ICAO Code", "Airline - Country", "Route - Airline Code", "Route - Source Airport Code", "Route - Destination Airport Code", "Route - Equipment", "Route - Number of Stops", "Route - Codeshare"));
         helpDropdown.getSelectionModel().selectFirst();
@@ -359,13 +357,22 @@ public class GUIController implements Initializable {
     }
 
     public void airportLoop() {
-        //need to have a loop for all airport locations
-        AirportLocations routeA = new AirportLocations(
-                new Position(-43.4876, 172.5374),
+        airports.addAirports(currentRecord);
+        plotRoute();
+        displayRoute(airports);
+    }
 
-                new Position(-37.0082, 174.7850)
-        );
+    public void plotRoute() {
+        //plotting route=
+        //for plotting routes add
+//        RoutesPlotLocations.addAirports(currentRecord);
+//        String scriptToExecute = "drawRoute(" + RoutesPlotLocations.toJSONArray() +");";
 
+        String scriptToExecute = "drawRoute(" + "[{ lat: -43.4876, lng: 172.5374 },{ lat: -37.0082, lng: 174.7850 },]" + ");"; // christchurch to auckland
+        this.mapEngine.executeScript(scriptToExecute);
+
+        String scriptToExecute2 = "drawRoute(" + "[{ lat: -41.3276, lng: 174.8076 },{ lat: -46.4153, lng: 168.3151 },]" + ");"; // invercargill to wellington
+        this.mapEngine.executeScript(scriptToExecute2);
     }
 
     /**
