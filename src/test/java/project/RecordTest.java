@@ -28,11 +28,11 @@ public class RecordTest {
     Route testRoute6 = new Route(6,"Air NZ", 505, "CHC", 411, "YSSY", 511, 4, "DXa34", false);
 
 
-    Airport testAirport1 = new Airport(101, 500, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", "Test1", "Openflights", 1, 1);
-    Airport testAirport2 = new Airport(102, 500, "Test2", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", "Test2", "Openflights", 4, 4);
-    Airport testAirport3 = new Airport(103, 500, "Test3", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test3", "Test3", "Test3", "Openflights", 10, 10);
-    Airport testAirport4 = new Airport(104, 500, "Test4", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test4", "Test4", "Test4", "Openflights", 2, 2);
-    Airport testAirport5 = new Airport(105, 500, "Test5", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
+    Airport testAirport1 = new Airport(101,"Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", 1, 1);
+    Airport testAirport2 = new Airport(102,"Test2", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", 4, 4);
+    Airport testAirport3 = new Airport(103,"Test3", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test3", "Test3", 10, 10);
+    Airport testAirport4 = new Airport(104,"Test4", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test4", "Test4", 2, 2);
+    Airport testAirport5 = new Airport(105,"Test5", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", 0, 0);
 
     private Loader loader = new Loader();
     private FlightLoader flightLoad = new FlightLoader();
@@ -189,12 +189,12 @@ public class RecordTest {
         ArrayList<Airport> comparisonList = new ArrayList<>();
         List<Airport> cityComparisonList = new ArrayList<>();
 
-        Airport testAirport6 = new Airport(101, 500, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", "Test1", "Openflights", 0, 0);
-        Airport testAirport7 = new Airport(102, 500, "Ranla ndom", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", "Test2", "Openflights", 0, 0);
-        Airport testAirport8 = new Airport(103, 500, "England", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test3", "Test3", "Test3", "Openflights", 0, 0);
-        Airport testAirport9 = new Airport(104, 500, "New Zealand", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test4", "Test4", "Test4", "Openflights", 0, 0);
-        Airport testAirport10 = new Airport(105, 500, "Orlando", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
-        Airport testAirport11 = new Airport(105, 500, "Test6", "Christchurch", "New Zealand", "YEET", "YEET", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
+        Airport testAirport6 = new Airport(101, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", 0, 0);
+        Airport testAirport7 = new Airport(102, "Ranla ndom", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", 0, 0);
+        Airport testAirport8 = new Airport(103, "England", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test3", "Test3", 0, 0);
+        Airport testAirport9 = new Airport(104, "New Zealand", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test4", "Test4", 0, 0);
+        Airport testAirport10 = new Airport(105,"Orlando", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", 0, 0);
+        Airport testAirport11 = new Airport(105,"Test6", "Christchurch", "New Zealand", "YEET", "YEET", 40.0, 40.0,50, 0, "Test5", "Test5", 0, 0);
 
         testAirport.add(testAirport6);
         testAirport.add(testAirport7);
@@ -394,7 +394,7 @@ public class RecordTest {
         testAirportList.add(testAirport2);
         testAirportList.add(testAirport5);
 
-        Airport testAirport6 = new Airport(119, 500, "Test5", "Christchurch", "New Zealand", "YEET", "YEET", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
+        Airport testAirport6 = new Airport(119, "Test5", "Christchurch", "New Zealand", "YEET", "YEET", 40.0, 40.0,50, 0, "Test5", "Test5",0, 0);
 
         testAirportList.add(testAirport6);
 

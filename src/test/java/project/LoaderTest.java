@@ -133,8 +133,6 @@ public class LoaderTest {
         assertEquals(testAirport1.getTimezone(), 10, 0);
         assertEquals(testAirport1.getDst(), "U");
         assertEquals(testAirport1.getTimezoneString(), "Pacific/Port_Moresby");
-        assertEquals(testAirport1.getType(), "type");
-        assertEquals(testAirport1.getSource(), "source");
         assertEquals(testAirport1.getNumRoutesSource(), 0);
         assertEquals(testAirport1.getNumRoutesDest(), 0);
         assertEquals(testAirport1.getTotalRoutes(), 0);

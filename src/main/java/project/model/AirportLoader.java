@@ -148,37 +148,12 @@ public class AirportLoader {
             numUnknown += 1;
         }
 
-        String type;
-        try {
-            type = airportData[12].replaceAll("\"", "").replace("\\\\", "");
-            if (type.equals("\\N") || type.equals("")) {
-                type = "Unknown";
-                numUnknown += 1;
-            }
-        } catch (Exception e) {
-            type = "Unknown";
-            numUnknown += 1;
-        }
-
-        String source;
-        try {
-            source = airportData[13].replaceAll("\"", "").replace("\\\\", "");
-            if (source.equals("\\N") || source.equals("")) {
-                source = "Unknown";
-                numUnknown += 1;
-            }
-        } catch (Exception e) {
-            source = "Unknown";
-            numUnknown += 1;
-        }
-
         int numRoutesSource = 0; // Placeholder, is altered through another function in Record (needs list routes to work).
         int numRoutesDest = 0; // Same as above.
-        int risk = 0; //Generated within the airport class itself, using COVID statistics
 
         //If there are too many errors, don't add the airport to the file
-        if (numUnknown < 9) {
-            return new Airport(id, risk, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
+        if (numUnknown < 7) {
+            return new Airport(id, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString, numRoutesSource, numRoutesDest);
         } else {
             return null;
         }

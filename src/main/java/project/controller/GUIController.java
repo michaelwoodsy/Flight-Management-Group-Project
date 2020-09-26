@@ -809,19 +809,14 @@ public class GUIController implements Initializable {
         String timezone = airportTimezone.getText().trim();
         String dst = airportDST.getText().trim();
         String timezoneString = airportTimezoneString.getText().trim();
-        String type = airportType.getText().trim();
-        if (type.equals("")) { type = "Unknown"; }
-        String source = airportSource.getText().trim();
-        if (source.equals("")) { source = "Unknown"; }
 
         ArrayList<String> errors = dataChecker.checkAirport(currentRecord, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString);
 
         int numRoutesSource = 0;
         int numRoutesDest = 0;
-        int risk = 0;
 
         if (errors.size() == 0) {
-            Airport newAirport = new Airport(id, risk, name, city, country, iata, icao, Double.parseDouble(latitude), Double.parseDouble(longitude), Integer.parseInt(altitude), Double.parseDouble(timezone), dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
+            Airport newAirport = new Airport(id, name, city, country, iata, icao, Double.parseDouble(latitude), Double.parseDouble(longitude), Integer.parseInt(altitude), Double.parseDouble(timezone), dst, timezoneString, numRoutesSource, numRoutesDest);
             ArrayList<Airport> newAirportList = new ArrayList<Airport>();
             newAirportList.add(newAirport);
             currentRecord.addAirports(newAirportList);
@@ -1409,8 +1404,6 @@ public class GUIController implements Initializable {
         airportCountryMod.setText(airport.getCountry());
         airportIATAMod.setText(airport.getIata());
         airportICAOMod.setText(airport.getIcao());
-        airportTypeMod.setText(airport.getType());
-        airportSourceMod.setText(airport.getSource());
         airportTimezoneStringMod.setText(airport.getTimezoneString());
         airportTimezoneMod.setText(String.valueOf(airport.getTimezone()));
         airportDSTMod.setText(airport.getDst());
@@ -1471,19 +1464,14 @@ public class GUIController implements Initializable {
         String timezone = airportTimezoneMod.getText().trim();
         String dst = airportDSTMod.getText().trim();
         String timezoneString = airportTimezoneStringMod.getText().trim();
-        String type = airportTypeMod.getText().trim();
-        if (type.equals("")) { type = "Unknown"; }
-        String source = airportSourceMod.getText().trim();
-        if (source.equals("")) { source = "Unknown"; }
 
         ArrayList<String> errors = dataChecker.checkAirport(currentRecord, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString);
 
         int numRoutesSource = airport.getNumRoutesSource();
         int numRoutesDest = airport.getNumRoutesDest();
-        double risk = airport.getRisk();
 
         if (errors.size() == 0) {
-            Airport newAirport = new Airport(id, risk, name, city, country, iata, icao, Double.parseDouble(latitude), Double.parseDouble(longitude), Integer.parseInt(altitude), Double.parseDouble(timezone), dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
+            Airport newAirport = new Airport(id, name, city, country, iata, icao, Double.parseDouble(latitude), Double.parseDouble(longitude), Integer.parseInt(altitude), Double.parseDouble(timezone), dst, timezoneString, numRoutesSource, numRoutesDest);
             currentRecord.modifyAirport(airportIndex, newAirport);
             modifyAirportPane.setVisible(false);
             modifyAirportWindowButton.setVisible(false);

@@ -32,11 +32,11 @@ public class DatabaseTest {
     private Route testRoute5 = new Route(5,"Air NZ", 504, "NZWN", 411, "SYD", 511, 1, "DXa34", false);
     private Route testRoute6 = new Route(6,"Air NZ", 505, "CHC", 411, "YSSY", 511, 4, "DXa34", false);
 
-    private Airport testAirport1 = new Airport(101, 500, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", "Test1", "Openflights", 1, 1);
-    private Airport testAirport2 = new Airport(102, 500, "Test2", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", "Test2", "Openflights", 4, 4);
-    private Airport testAirport3 = new Airport(103, 500, "Test3", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test3", "Test3", "Test3", "Openflights", 10, 10);
-    private Airport testAirport4 = new Airport(104, 500, "Test4", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test4", "Test4", "Test4", "Openflights", 2, 2);
-    private Airport testAirport5 = new Airport(105, 500, "Test5", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", "Test5", "Openflights", 0, 0);
+    private Airport testAirport1 = new Airport(101, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", 1, 1);
+    private Airport testAirport2 = new Airport(102, "Test2", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2",  4, 4);
+    private Airport testAirport3 = new Airport(103,  "Test3", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test3", "Test3", 10, 10);
+    private Airport testAirport4 = new Airport(104,  "Test4", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test4", "Test4", 2, 2);
+    private Airport testAirport5 = new Airport(105, "Test5", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", 0, 0);
 
     private Record record = new Record("Test");
 
@@ -357,7 +357,7 @@ public class DatabaseTest {
 
     @Test
     public void testGetNumRoutes() {
-        Airport testAirport11 = new Airport(1, 0, "Wellington Int.", "Wellington", "New Zealand", "WLG", "WGTN", 1, 1, 1, 1, "U", "Yes", "Huh", "Huh", 0, 0);
+        Airport testAirport11 = new Airport(1,  "Wellington Int.", "Wellington", "New Zealand", "WLG", "WGTN", 1, 1, 1, 1, "U", "Yes", 0, 0);
         Route testRoute11 = new Route(1, "IF", 12, "Wellington Intl.", 1, "Nevermind", 0, 0, "DAN", true);
         Route testRoute12 = new Route(2, "IF", 12, "Wellington Intl.", 1, "Nevermind", 0, 0, "DAN", true);
         Route testRoute13 = new Route(3, "IF", 12, "NeverMind", 0, "Wellington Intl.", 1, 0, "DAN", true);

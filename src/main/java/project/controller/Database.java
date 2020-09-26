@@ -116,12 +116,17 @@ public class Database {
     public static void addNewAirport(Airport airport) {
 
         String insertStatement = String.format("INSERT INTO airports(id, altitude, " +
-                "airportName, city, country, iata, icao, dst, timezoneString, airportType, airportSource, latitude, " +
+                "airportName, city, country, iata, icao, dst, timezoneString, latitude, " +
                 "longitude, timezone, record) VALUES(%s)", airport.getDatabaseValues());
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
+            //Set the name, city, and country fields separately, to handle the presence of apostrophes.
+            pstmt.setString(1, airport.getName());
+            pstmt.setString(2, airport.getCity());
+            pstmt.setString(3, airport.getCountry());
             pstmt.executeUpdate();
         } catch (SQLException e) {
+            System.out.println(insertStatement);
             System.out.println(e.getMessage());
         }
     }
@@ -262,7 +267,7 @@ public class Database {
 
     public static void updateAirport(Airport airport) {
         String columnUpdates = "airportName = ?,\ncity = ?,\ncountry = ?,\niata = ?,\nicao = ?,\nlatitude = ?,\n" +
-                        " longitude = ?,\naltitude = ?,\ntimezone = ?,\ndst = ?,\ntimezoneString = ?,\nairportType = ?,\nairportSource = ?";
+                        " longitude = ?,\naltitude = ?,\ntimezone = ?,\ndst = ?,\ntimezoneString = ?";
 
         String pstmtString = String.format("UPDATE airports\nSET %s\nWHERE id = ? AND record = ?", columnUpdates);
         System.out.println(pstmtString);
@@ -279,10 +284,8 @@ public class Database {
             pstmt.setDouble(9, airport.getTimezone());
             pstmt.setString(10, airport.getDst());
             pstmt.setString(11, airport.getTimezoneString());
-            pstmt.setString(12, airport.getType());
-            pstmt.setString(13, airport.getSource());
-            pstmt.setInt(14, airport.getId());
-            pstmt.setString(15, airport.getRecordName());
+            pstmt.setInt(12, airport.getId());
+            pstmt.setString(13, airport.getRecordName());
             System.out.println(pstmt.toString());
             pstmt.executeUpdate();
             System.out.println("Airport Updated");
@@ -333,8 +336,6 @@ public class Database {
                 + " icao text,\n"
                 + " dst text,\n"
                 + " timezoneString text,\n"
-                + " airportType text,\n"
-                + " airportSource text,\n"
                 + " latitude real,\n"
                 + " longitude real,\n"
                 + " timezone real,\n"
@@ -432,7 +433,7 @@ public class Database {
      */
     public static ArrayList<ArrayList<Airport>> getAllAirports() {
         String query = "SELECT id, altitude, numRoutesSource, numRoutesDest, airportName, city, " +
-                "country, iata, icao, dst, timezoneString, airportType, airportSource, latitude, longitude, " +
+                "country, iata, icao, dst, timezoneString, latitude, longitude, " +
                 "timezone, record FROM airports";
         HashMap<String, Integer> recordNumbers = new HashMap<>();
         ArrayList<ArrayList<Airport>> recordList = new ArrayList<>();
@@ -442,12 +443,11 @@ public class Database {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
-                Airport newAirport = new Airport(rs.getInt("id"), 0,
+                Airport newAirport = new Airport(rs.getInt("id"),
                         rs.getString("airportName"), rs.getString("city"), rs.getString("country"),
                         rs.getString("iata"), rs.getString("icao"), rs.getDouble("latitude"),
                         rs.getDouble("longitude"), rs.getInt("altitude"), rs.getDouble("timezone"),
                         rs.getString("dst"), rs.getString("timezoneString"),
-                        rs.getString("airportType"), rs.getString("airportSource"),
                         rs.getInt("numRoutesSource"), rs.getInt("numRoutesDest"));
                 String record = rs.getString("record");
                 newAirport.setRecordName(record);
