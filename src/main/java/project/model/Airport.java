@@ -1,5 +1,7 @@
 package project.model;
 
+import project.controller.Database;
+
 import java.util.Objects;
 
 /**
@@ -22,9 +24,9 @@ public class Airport {
     private double timezone;
     private String dst;
     private String timezoneString;
-    private int numRoutesSource;
-    private int numRoutesDest;
-    private int totalRoutes;
+    private int numRoutesSource = 0;
+    private int numRoutesDest = 0;
+    private int totalRoutes = 0;
     private String recordName;
     private static int numMissingCovid;
 
@@ -57,10 +59,8 @@ public class Airport {
         this.timezone = timezone;
         this.dst = dst;
         this.timezoneString = timezoneString;
-        this.numRoutesSource = numRoutesSource;
-        this.numRoutesDest = numRoutesDest;
-        this.totalRoutes = this.numRoutesDest + this.numRoutesSource;
         this.determineCovidRisk();
+        this.determineNumRoutes();
     }
 
     /**
@@ -140,6 +140,13 @@ public class Airport {
         }
     }
 
+    public void determineNumRoutes() {
+        this.numRoutesSource = Database.getNumRoutes(this, "sourceID");
+        this.numRoutesDest = Database.getNumRoutes(this, "destID");
+        System.out.println(String.format("%d, %d", numRoutesDest, numRoutesSource));
+        this.totalRoutes = this.numRoutesDest + this.numRoutesSource;
+    }
+
     /**
      * This method returns a String of information about the Airport, and the city and country it's from.
      *
@@ -194,7 +201,11 @@ public class Airport {
     }
 
     public static int getNumMissingCovid() {
-        return numMissingCovid;
+        //Reset the numMissingCovid variable
+        //Done here as it is only called when variable will no longer increase.
+        int count = numMissingCovid;
+        numMissingCovid = 0;
+        return count;
     }
 
     public int getId() {

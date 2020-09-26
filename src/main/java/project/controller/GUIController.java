@@ -579,12 +579,9 @@ public class GUIController implements Initializable {
      */
     @FXML
     public void leastRoutesButton(ActionEvent event) throws IOException {
-        for (Airport airport: currentRecord.getAirportList()) {
-            Database.getNumRoutes(airport, "sourceID");
-        }
-//        List<Airport> currentData = airportList.getItems();
-//        List<Airport> rankedAirports = currentRecord.rankAirports(false, currentData);
-//        airportList.setItems(observableArrayList(rankedAirports));
+        List<Airport> currentData = airportList.getItems();
+        List<Airport> rankedAirports = currentRecord.rankAirports(false, currentData);
+        airportList.setItems(observableArrayList(rankedAirports));
     }
 
     /**
@@ -728,7 +725,7 @@ public class GUIController implements Initializable {
                 if (!goodFile) {return;}
                 if (selectFile.getSelectedToggle() == airportRadioButton) {
                     boolean airportCheck = airportLoad.loadAirportErrorCheck(file.getAbsolutePath());
-                    DialogBoxes.fileFormatInfo(airportCheck, true, "airport");
+                    DialogBoxes.fileFormatInfo(airportCheck, false, "airport");
                     if (!airportCheck) {return;}
 
                     addFileHelper();
@@ -743,6 +740,7 @@ public class GUIController implements Initializable {
                         DialogBoxes.missingCovidInfoBox();
                     }
                     flightHelper();
+                    DialogBoxes.fileFormatInfo(true, true, "airport");
                 } else if (selectFile.getSelectedToggle() == airlineRadioButton) {
                     boolean airlineCheck = airlineLoad.loadAirlineErrorCheck(file.getAbsolutePath());
                     DialogBoxes.fileFormatInfo(airlineCheck, true, "airline");
@@ -988,12 +986,12 @@ public class GUIController implements Initializable {
             }
 
             //INCLUDED WHEN NUMROUTES IMPLEMENTATION IS COMPLETE
-//            String numRoutes = ("A total of " + airport.getTotalRoutes() + " flight routes go through this airport");
+            String numRoutes = ("A total of " + airport.getTotalRoutes() + " flight routes go through this airport");
             //Displays a pop-up when an airport that gets clicked on has no routes
             //Currently not active as each airport currently has 0 routes
-//            if (airport.getTotalRoutes() < 1) {
-//                DialogBoxes.noRoutes();
-//            }
+            if (airport.getTotalRoutes() < 1) {
+                DialogBoxes.noRoutes();
+            }
 
             String timezoneNum;
             if (airport.getTimezone() == 25) {
@@ -1015,7 +1013,7 @@ public class GUIController implements Initializable {
             }
             lastSelectedAirport = airport;
 
-            airportDetailList.setItems(observableArrayList(name, location, risk, timezone, distanceString));
+            airportDetailList.setItems(observableArrayList(name, location, risk, numRoutes, timezone, distanceString));
             modifyAirportWindowButton.setVisible(true);
 
             if (optedIn) {

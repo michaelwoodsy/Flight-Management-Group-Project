@@ -325,7 +325,7 @@ public class Database {
      */
     public static void createAirportTable() {
         String sql = "CREATE TABLE IF NOT EXISTS airports (\n"
-                + " id integer PRIMARY KEY,\n"
+                + " id integer NOT NULL,\n"
                 + " altitude integer,\n"
                 + " numRoutesSource integer,\n"
                 + " numRoutesDest integer,\n"
@@ -339,7 +339,8 @@ public class Database {
                 + " latitude real,\n"
                 + " longitude real,\n"
                 + " timezone real,\n"
-                + " record integer\n"
+                + " record integer NOT NULL,\n"
+                + " PRIMARY KEY(id, record)\n"
                 + ");";
 
         try (Connection conn = connect();
@@ -355,7 +356,7 @@ public class Database {
      */
     public static void createAirlineTable() {
         String sql = "CREATE TABLE IF NOT EXISTS airlines (\n"
-                + " id integer PRIMARY KEY,\n"
+                + " id integer NOT NULL,\n"
                 + " airlineName text,\n"
                 + " country text,\n"
                 + " alias text,\n"
@@ -363,7 +364,8 @@ public class Database {
                 + " icao text,\n"
                 + " iata text,\n"
                 + " active integer,\n" //Boolean value, can only be either 1 or 0
-                + " record integer\n"
+                + " record integer NOT NULL,\n"
+                + " PRIMARY KEY(id, record)\n"
                 + ");";
 
         try (Connection conn = connect();
@@ -379,7 +381,7 @@ public class Database {
      */
     public static void createRouteTable() {
         String sql = "CREATE TABLE IF NOT EXISTS routes (\n"
-                + "id integer PRIMARY KEY,\n"
+                + "id integer NOT NULL,\n"
                 + " airlineId integer,\n"
                 + " sourceID integer,\n"
                 + " destID integer,\n"
@@ -389,7 +391,8 @@ public class Database {
                 + " destAirport text,\n"
                 + " equipment text,\n"
                 + " codeshare integer,\n" //Boolean value, can only be either 1 or 0
-                + " record integer"
+                + " record integer NOT NULL,\n"
+                + " PRIMARY KEY(id, record)\n"
                 + ");";
 
         try (Connection conn = connect();
