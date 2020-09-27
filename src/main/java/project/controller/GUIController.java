@@ -743,7 +743,7 @@ public class GUIController implements Initializable {
                     DialogBoxes.fileFormatInfo(true, true, "airport");
                 } else if (selectFile.getSelectedToggle() == airlineRadioButton) {
                     boolean airlineCheck = airlineLoad.loadAirlineErrorCheck(file.getAbsolutePath());
-                    DialogBoxes.fileFormatInfo(airlineCheck, true, "airline");
+                    DialogBoxes.fileFormatInfo(airlineCheck, false, "airline");
                     if (!airlineCheck) {return;}
 
                     addFileHelper();
@@ -755,9 +755,10 @@ public class GUIController implements Initializable {
                     }
                     hideAllTables();
                     flightHelper();
+                    DialogBoxes.fileFormatInfo(true, true, "airline");
                 } else if (selectFile.getSelectedToggle() == routeRadioButton) {
                     boolean routeCheck = routeLoad.loadRouteErrorCheck(file.getAbsolutePath());
-                    DialogBoxes.fileFormatInfo(routeCheck, true, "route");
+                    DialogBoxes.fileFormatInfo(routeCheck, false, "route");
                     if (!routeCheck) {return;}
 
                     addFileHelper();
@@ -769,9 +770,10 @@ public class GUIController implements Initializable {
                     }
                     hideAllTables();
                     flightHelper();
+                    DialogBoxes.fileFormatInfo(true, true, "route");
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
                     boolean flightCheck = flightLoad.loadFlightErrorCheck(file.getAbsolutePath());
-                    DialogBoxes.fileFormatInfo(flightCheck, true, "flight");
+                    DialogBoxes.fileFormatInfo(flightCheck, false, "flight");
                     if (!flightCheck) {return;}
 
                     addFileHelper();
@@ -780,6 +782,7 @@ public class GUIController implements Initializable {
                     currentRecord.addFlights(newFlight);
                     hideAllTables();
                     flightHelper();
+                    DialogBoxes.fileFormatInfo(true, true, "flight");
                 }
             }
         }
