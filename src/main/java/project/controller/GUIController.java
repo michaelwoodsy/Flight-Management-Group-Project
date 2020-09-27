@@ -363,10 +363,10 @@ public class GUIController implements Initializable {
     }
 
     public void plotRoute() {
-        //plotting route=
-        //for plotting routes add
-//        RoutesPlotLocations.addAirports(currentRecord);
-//        String scriptToExecute = "drawRoute(" + RoutesPlotLocations.toJSONArray() +");";
+        //need to give source and destination looping through the following line
+//        for(Route routePlot: currentRecord.getRouteList()) {
+//            String scriptToExecute = "drawRoute(" + "[{ lat: 'SOURCE LAT', lng: 'SOURCE LONG' },{ lat: 'DEST LAT', lng: 'DEST LONG' },]" + ");";
+//        }
 
         String scriptToExecute = "drawRoute(" + "[{ lat: -43.4876, lng: 172.5374 },{ lat: -37.0082, lng: 174.7850 },]" + ");"; // christchurch to auckland
         this.mapEngine.executeScript(scriptToExecute);
