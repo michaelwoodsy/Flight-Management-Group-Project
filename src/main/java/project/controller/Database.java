@@ -553,6 +553,30 @@ public class Database {
         return recordList;
     }
 
+    /**
+     * Provides the user with a lsit of airlines within the current record that either arrive at or depart from through the specified airport
+     * @param airport The airport that the user wants to know the airlines of
+     * @return An arraylist containing the names of each of the airlines that use the airport
+     */
+    public static ArrayList<String> getAirlinesThroughAirport(Airport airport) {
+        String sql = String.format("SELECT DISTINCT airlineName FROM airlines WHERE id IN (SELECT airlineID FROM routes WHERE sourceID = %s OR destID = %s)", airport.getId(), airport.getId());
+
+        ArrayList<String> airlineNames = new ArrayList<>();
+
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                airlineNames.add(rs.getString("airlineName"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return airlineNames;
+    }
+
+
     public static ArrayList<Record> getRecords(ArrayList<ArrayList<Airline>> airlines, ArrayList<ArrayList<Airport>> airports, ArrayList<ArrayList<Route>> routes) {
         ArrayList<Flight> flights = new ArrayList<>();
         ArrayList<Record> records = new ArrayList<>();

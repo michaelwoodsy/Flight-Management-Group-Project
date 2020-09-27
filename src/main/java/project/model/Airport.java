@@ -143,7 +143,6 @@ public class Airport {
     public void determineNumRoutes() {
         this.numRoutesSource = Database.getNumRoutes(this, "sourceID");
         this.numRoutesDest = Database.getNumRoutes(this, "destID");
-        System.out.println(String.format("%d, %d", numRoutesDest, numRoutesSource));
         this.totalRoutes = this.numRoutesDest + this.numRoutesSource;
     }
 
@@ -177,20 +176,20 @@ public class Airport {
 
         return nameString + cityString + countryString;
     }
-/*
-    public void setNumRoutesSource(int numRoutesSource) {
-        this.numRoutesSource = numRoutesSource;
+
+    public void setNumRoutesSource() {
+        this.numRoutesSource = Database.getNumRoutes(this, "sourceID");
         setTotalRoutes();
-    }*/
+    }
 
     public int getNumRoutesDest() {
         return numRoutesDest;
     }
 
-    /*public void setNumRoutesDest(int numRoutesDest) {
-        this.numRoutesDest = numRoutesDest;
+    public void setNumRoutesDest() {
+        this.numRoutesDest = Database.getNumRoutes(this, "destID");
         setTotalRoutes();
-    }*/
+    }
 
     public int getTotalRoutes() {
         return totalRoutes;

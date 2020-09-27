@@ -2,18 +2,18 @@ package project;
 
 import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import project.controller.Database;
-import project.model.*;
+import project.model.Airline;
+import project.model.Airport;
+import project.model.Record;
+import project.model.Route;
 
-import java.nio.file.NoSuchFileException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Collections;
 
 import static org.junit.Assert.*;
 
@@ -25,12 +25,12 @@ public class DatabaseTest {
     private Airline testAirline4 = new Airline(103, "Test4", false, "New Zealand", "Test4", "Test4", "Test4", "Test4");
     private Airline testAirline5 = new Airline(104, "Test5", true, "U.K.", "Test5", "Test5", "Test5", "Test5");
 
-    private Route testRoute1 = new Route(1,"Air NZ", 500, "NZWN", 411, "NZCH", 511, 0, "DXa134", false);
-    private Route testRoute2 = new Route(2,"Air NZ", 501, "NZCH", 411, "WLG", 511, 0, "DXa34", false);
-    private Route testRoute3 = new Route(3,"Air NZ", 502, "NZAA", 411, "SYD", 511, 2, "DXa34", false);
-    private Route testRoute4 = new Route(4,"Air NZ", 503, "NZCH", 411, "SYD", 511, 1, "DXa34", false);
-    private Route testRoute5 = new Route(5,"Air NZ", 504, "NZWN", 411, "SYD", 511, 1, "DXa34", false);
-    private Route testRoute6 = new Route(6,"Air NZ", 505, "CHC", 411, "YSSY", 511, 4, "DXa34", false);
+    private Route testRoute1 = new Route(1,"Air NZ", 100, "NZWN", 101, "NZCH", 102, 0, "DXa134", false);
+    private Route testRoute2 = new Route(2,"Air NZ", 104, "NZCH", 102, "WLG", 101, 0, "DXa34", false);
+    private Route testRoute3 = new Route(3,"Air NZ", 101, "NZAA", 101, "SYD", 103, 2, "DXa34", false);
+    private Route testRoute4 = new Route(4,"Air NZ", 102, "NZCH", 102, "SYD", 101, 1, "DXa34", false);
+    private Route testRoute5 = new Route(5,"Air NZ", 100, "NZWN", 104, "SYD", 103, 1, "DXa34", false);
+    private Route testRoute6 = new Route(6,"Air NZ", 103, "CHC", 102, "YSSY", 104, 4, "DXa34", false);
 
     private Airport testAirport1 = new Airport(101, "Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", 1, 1);
     private Airport testAirport2 = new Airport(102, "Test2", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2",  4, 4);
@@ -384,8 +384,44 @@ public class DatabaseTest {
 
     }
 
+    @Test
+    public void testGetAirlinesThroughAirport() {
+        Database.addNewAirport(testAirport1);
+        Database.addNewAirport(testAirport3);
+        Database.addNewAirline(testAirline1);
+        Database.addNewAirline(testAirline2);
+        Database.addNewAirline(testAirline3);
+        Database.addNewAirline(testAirline4);
+        Database.addNewAirline(testAirline5);
+        Database.addNewRoute(testRoute1);
+        Database.addNewRoute(testRoute2);
+        Database.addNewRoute(testRoute3);
+        Database.addNewRoute(testRoute4);
+        Database.addNewRoute(testRoute5);
+        Database.addNewRoute(testRoute6);
+
+        ArrayList<String> airport1airlineNames = Database.getAirlinesThroughAirport(testAirport1);
+        ArrayList<String> airport3airlineNames = Database.getAirlinesThroughAirport(testAirport3);
+
+        ArrayList<String> expectedAirlines1 = new ArrayList<>();
+        ArrayList<String> expectedAirlines3 = new ArrayList<>();
+        expectedAirlines1.add("Test1");
+        expectedAirlines1.add("Test2");
+        expectedAirlines1.add("Test3");
+        expectedAirlines1.add("Test5");
+        expectedAirlines3.add("Test1");
+        expectedAirlines3.add("Test2");
+
+
+        assertEquals(airport1airlineNames.size(), 4);
+        assertEquals(airport3airlineNames.size(), 2);
+        assertTrue(airport1airlineNames.containsAll(expectedAirlines1));
+        assertTrue(airport3airlineNames.containsAll(expectedAirlines3));
+
+    }
+
     /**
-     * Clears the database of test data. This does cause any user-stored data to be removed.
+     * Clears the database of test data. This causes any user-stored data to be removed.
      */
     @AfterClass
     public static void cleanUp() {

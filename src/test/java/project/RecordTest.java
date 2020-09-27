@@ -2,6 +2,7 @@ package project;
 
 import org.junit.Before;
 import org.junit.Test;
+import project.controller.Database;
 import project.model.*;
 
 import java.io.IOException;
@@ -20,16 +21,15 @@ public class RecordTest {
     Airline testAirline4 = new Airline(103, "Test4", false, "New Zealand", "Test4", "Test4", "Test4", "Test4");
     Airline testAirline5 = new Airline(104, "Test5", true, "U.K.", "Test5", "Test5", "Test5", "Test5");
 
-    Route testRoute1 = new Route(1,"Air NZ", 500, "NZWN", 411, "NZCH", 511, 0, "DXa134", false);
-    Route testRoute2 = new Route(2,"Air NZ", 501, "NZCH", 411, "WLG", 511, 0, "DXa34", false);
-    Route testRoute3 = new Route(3,"Air NZ", 502, "NZAA", 411, "SYD", 511, 2, "DXa34", false);
-    Route testRoute4 = new Route(4,"Air NZ", 503, "NZCH", 411, "SYD", 511, 1, "DXa34", false);
-    Route testRoute5 = new Route(5,"Air NZ", 504, "NZWN", 411, "SYD", 511, 1, "DXa34", false);
-    Route testRoute6 = new Route(6,"Air NZ", 505, "CHC", 411, "YSSY", 511, 4, "DXa34", false);
+    Route testRoute1 = new Route(1,"Air NZ", 500, "NZWN", 101, "NZCH", 103, 0, "DXa134", false);
+    Route testRoute2 = new Route(2,"Air NZ", 501, "NZCH", 101, "WLG", 103, 0, "DXa34", false);
+    Route testRoute3 = new Route(3,"Air NZ", 502, "NZAA", 102, "SYD", 103, 2, "DXa34", false);
+    Route testRoute4 = new Route(4,"Air NZ", 503, "NZCH", 102, "SYD", 104, 1, "DXa34", false);
+    Route testRoute5 = new Route(5,"Air NZ", 504, "NZWN", 102, "SYD", 105, 1, "DXa34", false);
+    Route testRoute6 = new Route(6,"Air NZ", 505, "CHC", 103, "YSSY", 105, 4, "DXa34", false);
 
-
-    Airport testAirport1 = new Airport(101,"Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", 1, 1);
-    Airport testAirport2 = new Airport(102,"Test2", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", 4, 4);
+    Airport testAirport1 = new Airport(101,"Test1", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0, 50, 0, "Test1", "Test1", 0, 0);
+    Airport testAirport2 = new Airport(102,"Test2", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test2", "Test2", 4, 0);
     Airport testAirport3 = new Airport(103,"Test3", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test3", "Test3", 10, 10);
     Airport testAirport4 = new Airport(104,"Test4", "Sydney", "Australia", "SYD", "YSSY", 40.0, 40.0,50, 0, "Test4", "Test4", 2, 2);
     Airport testAirport5 = new Airport(105,"Test5", "Christchurch", "New Zealand", "CHC", "NZCH", 40.0, 40.0,50, 0, "Test5", "Test5", 0, 0);
@@ -38,9 +38,26 @@ public class RecordTest {
     private FlightLoader flightLoad = new FlightLoader();
     private Record testRecord;
 
+    public void addToDatabase() {
+        Database.addNewAirport(testAirport1);
+        Database.addNewAirport(testAirport2);
+        Database.addNewAirport(testAirport3);
+        Database.addNewAirport(testAirport4);
+        Database.addNewAirport(testAirport5);
+        Database.addNewRoute(testRoute1);
+        Database.addNewRoute(testRoute2);
+        Database.addNewRoute(testRoute3);
+        Database.addNewRoute(testRoute4);
+        Database.addNewRoute(testRoute5);
+        Database.addNewRoute(testRoute6);
+    }
+
 
     @Before
     public void setUp() throws IOException {
+
+        Database.clearDatabase();
+        Database.setupDatabase();
 
         Flight testFlight1 = flightLoad.loadFlightFile("data/flight.csv");
         Flight testFlight2 = flightLoad.loadFlightFile("data/flighttest.csv");
@@ -53,12 +70,12 @@ public class RecordTest {
         testFlightList.add(testFlight2);
 
         ArrayList<Route> testRouteList = new ArrayList<>();
-        testRouteList.add(testRoute1);
-        testRouteList.add(testRoute2);
-        testRouteList.add(testRoute3);
-        testRouteList.add(testRoute4);
-        testRouteList.add(testRoute5);
-        testRouteList.add(testRoute6);
+        testRouteList.add(testRoute1); testRoute1.setRecordName("Test");
+        testRouteList.add(testRoute2); testRoute2.setRecordName("Test");
+        testRouteList.add(testRoute3); testRoute3.setRecordName("Test");
+        testRouteList.add(testRoute4); testRoute4.setRecordName("Test");
+        testRouteList.add(testRoute5); testRoute5.setRecordName("Test");
+        testRouteList.add(testRoute6); testRoute6.setRecordName("Test");
 
         ArrayList<Airport> testAirportList = new ArrayList<>();
         testAirportList.add(testAirport1);
@@ -75,6 +92,7 @@ public class RecordTest {
         testAirlineList.add(testAirline5);
 
         testRecord = new Record(testFlightList, testRouteList, testAirportList, testAirlineList);
+        addToDatabase();
     }
 
     @Test
@@ -124,13 +142,18 @@ public class RecordTest {
 
         ArrayList<Airport> testAirports = testRecord.getAirportList();
 
+        for (Airport airport: testAirports) {
+            airport.setNumRoutesDest();
+            airport.setNumRoutesSource();
+        }
+
         List<Airport> rankedAirports = testRecord.rankAirports(false, testAirports);
 
         ArrayList<Airport> comparisonAirportList = new ArrayList<Airport>();
 
-        comparisonAirportList.add(testAirport5);
-        comparisonAirportList.add(testAirport1);
         comparisonAirportList.add(testAirport4);
+        comparisonAirportList.add(testAirport1);
+        comparisonAirportList.add(testAirport5);
         comparisonAirportList.add(testAirport2);
         comparisonAirportList.add(testAirport3);
 
@@ -142,9 +165,9 @@ public class RecordTest {
 
         comparisonAirportList.add(testAirport3);
         comparisonAirportList.add(testAirport2);
-        comparisonAirportList.add(testAirport4);
         comparisonAirportList.add(testAirport1);
         comparisonAirportList.add(testAirport5);
+        comparisonAirportList.add(testAirport4);
 
         assertEquals(comparisonAirportList, rankedAirports);
 
