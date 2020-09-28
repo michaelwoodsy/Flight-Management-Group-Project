@@ -11,12 +11,12 @@ public class DataUnitTests {
 
     @Test
     public void airportEquals() {
-        Airport testAirport1 = new Airport(101, 9001, "Christchurch International Airport", "Christchurch", "New Zealand", "BX45", "C9845", 40.0, 40.0, 40, 5, "Y", "NZST", "Default", "Openflights", 46, 45);
-        Airport testAirport2 = new Airport(101, 9001, "Christchurch International Airport", "Christchurch", "New Zealand", "BX45", "C9845", 40.0, 40.0, 40, 5, "Y", "NZST", "Default", "Openflights", 46, 45);
+        Airport testAirport1 = new Airport(101, "Christchurch International Airport", "Christchurch", "New Zealand", "BX45", "C9845", 40.0, 40.0, 40, 5, "Y", "NZST", 46, 45);
+        Airport testAirport2 = new Airport(101,"Christchurch International Airport", "Christchurch", "New Zealand", "BX45", "C9845", 40.0, 40.0, 40, 5, "Y", "NZST", 46, 45);
 
         assertTrue(testAirport1.equals(testAirport2));
 
-        testAirport1 = new Airport(100, 9001, "Christchurch International Airport", "Christchurch", "New Zealand", "BX45", "C9845", 40.0, 40.0, 40, 5, "Y", "NZST", "Default", "Openflights", 46, 45);
+        testAirport1 = new Airport(100,"Christchurch International Airport", "Christchurch", "New Zealand", "BX45", "C9845", 40.0, 40.0, 40, 5, "Y", "NZST",46, 45);
 
         assertFalse(testAirport1.equals(testAirport2));
     }

@@ -167,7 +167,6 @@ public class DialogBoxes {
     }
 
     // Unused because we don't currently have the means to add routes to airports. Will be added in phase 3.
-    /**
     public static void noRoutes() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         String bodyText = "The airport you have selected does not have any flights either in or out of it.\nHave you considered adding some?";
@@ -176,7 +175,6 @@ public class DialogBoxes {
         alert.setTitle("AIRPORT MISSING ROUTES");
         alert.showAndWait();
     }
-     */
 
     /**
      * A dialog box that displays on GUI bootup, to inform users that our calculations are approximate only.

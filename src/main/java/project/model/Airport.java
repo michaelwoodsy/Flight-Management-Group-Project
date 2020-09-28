@@ -1,5 +1,7 @@
 package project.model;
 
+import project.controller.Database;
+
 import java.util.Objects;
 
 /**
@@ -22,11 +24,9 @@ public class Airport {
     private double timezone;
     private String dst;
     private String timezoneString;
-    private String type;
-    private String source;
-    private int numRoutesSource;
-    private int numRoutesDest;
-    private int totalRoutes;
+    private int numRoutesSource = 0;
+    private int numRoutesDest = 0;
+    private int totalRoutes = 0;
     private String recordName;
     private static int numMissingCovid;
 
@@ -43,12 +43,10 @@ public class Airport {
      * @param timezone A double that represents the the hours offset from UTC
      * @param dst   A String that represents daylight savings time
      * @param timezoneString    A String that represents timezone in "tz" (Olson) format
-     * @param type  A String that represents the type of airport
-     * @param source    A String that represents the source of the Airport data
      * @param numRoutesSource An int that represents number of routes that are from this airport
      * @param numRoutesDest An int that represents number of routes that go to this airport
      */
-    public Airport(int id, double risk, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, double timezone, String dst, String timezoneString, String type, String source, int numRoutesSource, int numRoutesDest) {
+    public Airport(int id, String name, String city, String country, String iata, String icao, double latitude, double longitude, int altitude, double timezone, String dst, String timezoneString, int numRoutesSource, int numRoutesDest) {
         this.id = id;
         this.name = name;
         this.city = city;
@@ -61,12 +59,8 @@ public class Airport {
         this.timezone = timezone;
         this.dst = dst;
         this.timezoneString = timezoneString;
-        this.type = type;
-        this.source = source;
-        this.numRoutesSource = numRoutesSource;
-        this.numRoutesDest = numRoutesDest;
-        this.totalRoutes = this.numRoutesDest + this.numRoutesSource;
         this.determineCovidRisk();
+        this.determineNumRoutes();
     }
 
     /**
@@ -116,9 +110,7 @@ public class Airport {
                 Objects.equals(getIata(), airport.getIata()) &&
                 Objects.equals(getIcao(), airport.getIcao()) &&
                 Objects.equals(getDst(), airport.getDst()) &&
-                Objects.equals(getTimezoneString(), airport.getTimezoneString()) &&
-                Objects.equals(getType(), airport.getType()) &&
-                Objects.equals(getSource(), airport.getSource());
+                Objects.equals(getTimezoneString(), airport.getTimezoneString());
     }
 
     /**
@@ -127,7 +119,7 @@ public class Airport {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getCity(), getCountry(), getIata(), getIcao(), getLatitude(), getLongitude(), getAltitude(), getTimezone(), getDst(), getTimezoneString(), getType(), getSource());
+        return Objects.hash(getId(), getName(), getCity(), getCountry(), getIata(), getIcao(), getLatitude(), getLongitude(), getAltitude(), getTimezone(), getDst(), getTimezoneString());
     }
 
     /**
@@ -146,6 +138,12 @@ public class Airport {
                 Covid.missingCountries.add(this.country);
             }
         }
+    }
+
+    public void determineNumRoutes() {
+        this.numRoutesSource = Database.getNumRoutes(this, "sourceID");
+        this.numRoutesDest = Database.getNumRoutes(this, "destID");
+        this.totalRoutes = this.numRoutesDest + this.numRoutesSource;
     }
 
     /**
@@ -178,20 +176,20 @@ public class Airport {
 
         return nameString + cityString + countryString;
     }
-/*
-    public void setNumRoutesSource(int numRoutesSource) {
-        this.numRoutesSource = numRoutesSource;
+
+    public void setNumRoutesSource() {
+        this.numRoutesSource = Database.getNumRoutes(this, "sourceID");
         setTotalRoutes();
-    }*/
+    }
 
     public int getNumRoutesDest() {
         return numRoutesDest;
     }
 
-    /*public void setNumRoutesDest(int numRoutesDest) {
-        this.numRoutesDest = numRoutesDest;
+    public void setNumRoutesDest() {
+        this.numRoutesDest = Database.getNumRoutes(this, "destID");
         setTotalRoutes();
-    }*/
+    }
 
     public int getTotalRoutes() {
         return totalRoutes;
@@ -202,7 +200,11 @@ public class Airport {
     }
 
     public static int getNumMissingCovid() {
-        return numMissingCovid;
+        //Reset the numMissingCovid variable
+        //Done here as it is only called when variable will no longer increase.
+        int count = numMissingCovid;
+        numMissingCovid = 0;
+        return count;
     }
 
     public int getId() {
@@ -282,18 +284,6 @@ public class Airport {
         return timezoneString;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
     public void setRecordName(String recordName) { this.recordName = recordName; }
 
     public String getRecordName() { return recordName; }
@@ -301,4 +291,18 @@ public class Airport {
     public int getNumRoutesSource() {
         return numRoutesSource;
     }
+
+    /**
+     * Create a string representation for the database
+     */
+    public String getDatabaseValues() {
+        String values = String.format("%d,%d,?,?,?,'%s','%s','%s','%s',%f,%f,%f,'%s'",
+                this.id, this.altitude, this.iata, this.icao,
+                this.dst, this.timezoneString, this.latitude,
+                this.longitude, this.timezone, this.recordName);
+        return values;
+
+    }
+
+
 }

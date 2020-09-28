@@ -267,11 +267,9 @@ public class GUIController implements Initializable {
 
     //need to get this function to loop through airports adding position then RouteLocations
 
-    private AirportLocations routeA = new AirportLocations(
-            new Position(-43.4876, 172.5374),
 
-            new Position(-37.0082, 174.7850)
-    );
+    private AirportLocations airports = new AirportLocations();
+    private AirportLocations RoutesPlotLocations = new AirportLocations();
 
     /**
      * Sets up all the data array lists to be used along with the sources of
@@ -339,7 +337,7 @@ public class GUIController implements Initializable {
 
         DialogBoxes.welcomeBox();
 
-        displayRoute(routeA);
+
 
         helpDropdown.setItems(observableArrayList("Airport - ID", "Airport - Name", "Airport - City", "Airport - Country", "Airport - IATA Code", "Airport - ICAO Code", "Airport - Timezone", "Airport - Timezone Offset", "Airport - DST", "Airport - Latitude", "Airport - Longitude", "Airport - Altitude", "Airline - ID", "Airline - Name", "Airline - Alias", "Airline - Callsign", "Airline - Active", "Airline - IATA Code", "Airline - ICAO Code", "Airline - Country", "Route - Airline Code", "Route - Source Airport Code", "Route - Destination Airport Code", "Route - Equipment", "Route - Number of Stops", "Route - Codeshare"));
         helpDropdown.getSelectionModel().selectFirst();
@@ -359,13 +357,22 @@ public class GUIController implements Initializable {
     }
 
     public void airportLoop() {
-        //need to have a loop for all airport locations
-        AirportLocations routeA = new AirportLocations(
-                new Position(-43.4876, 172.5374),
+        airports.addAirports(currentRecord);
+        plotRoute();
+        displayRoute(airports);
+    }
 
-                new Position(-37.0082, 174.7850)
-        );
+    public void plotRoute() {
+        //need to give source and destination looping through the following line
+//        for(Route routePlot: currentRecord.getRouteList()) {
+//            String scriptToExecute = "drawRoute(" + "[{ lat: 'SOURCE LAT', lng: 'SOURCE LONG' },{ lat: 'DEST LAT', lng: 'DEST LONG' },]" + ");";
+//        }
 
+        String scriptToExecute = "drawRoute(" + "[{ lat: -43.4876, lng: 172.5374 },{ lat: -37.0082, lng: 174.7850 },]" + ");"; // christchurch to auckland
+        this.mapEngine.executeScript(scriptToExecute);
+
+        String scriptToExecute2 = "drawRoute(" + "[{ lat: -41.3276, lng: 174.8076 },{ lat: -46.4153, lng: 168.3151 },]" + ");"; // invercargill to wellington
+        this.mapEngine.executeScript(scriptToExecute2);
     }
 
     /**
@@ -718,7 +725,7 @@ public class GUIController implements Initializable {
                 if (!goodFile) {return;}
                 if (selectFile.getSelectedToggle() == airportRadioButton) {
                     boolean airportCheck = airportLoad.loadAirportErrorCheck(file.getAbsolutePath());
-                    DialogBoxes.fileFormatInfo(airportCheck, true, "airport");
+                    DialogBoxes.fileFormatInfo(airportCheck, false, "airport");
                     if (!airportCheck) {return;}
 
                     addFileHelper();
@@ -733,6 +740,7 @@ public class GUIController implements Initializable {
                         DialogBoxes.missingCovidInfoBox();
                     }
                     flightHelper();
+                    DialogBoxes.fileFormatInfo(true, true, "airport");
                 } else if (selectFile.getSelectedToggle() == airlineRadioButton) {
                     boolean airlineCheck = airlineLoad.loadAirlineErrorCheck(file.getAbsolutePath());
                     DialogBoxes.fileFormatInfo(airlineCheck, true, "airline");
@@ -799,19 +807,14 @@ public class GUIController implements Initializable {
         String timezone = airportTimezone.getText().trim();
         String dst = airportDST.getText().trim();
         String timezoneString = airportTimezoneString.getText().trim();
-        String type = airportType.getText().trim();
-        if (type.equals("")) { type = "Unknown"; }
-        String source = airportSource.getText().trim();
-        if (source.equals("")) { source = "Unknown"; }
 
         ArrayList<String> errors = dataChecker.checkAirport(currentRecord, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString);
 
         int numRoutesSource = 0;
         int numRoutesDest = 0;
-        int risk = 0;
 
         if (errors.size() == 0) {
-            Airport newAirport = new Airport(id, risk, name, city, country, iata, icao, Double.parseDouble(latitude), Double.parseDouble(longitude), Integer.parseInt(altitude), Double.parseDouble(timezone), dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
+            Airport newAirport = new Airport(id, name, city, country, iata, icao, Double.parseDouble(latitude), Double.parseDouble(longitude), Integer.parseInt(altitude), Double.parseDouble(timezone), dst, timezoneString, numRoutesSource, numRoutesDest);
             ArrayList<Airport> newAirportList = new ArrayList<Airport>();
             newAirportList.add(newAirport);
             currentRecord.addAirports(newAirportList);
@@ -983,12 +986,12 @@ public class GUIController implements Initializable {
             }
 
             //INCLUDED WHEN NUMROUTES IMPLEMENTATION IS COMPLETE
-//            String numRoutes = ("A total of " + airport.getTotalRoutes() + " flight routes go through this airport");
+            String numRoutes = ("A total of " + airport.getTotalRoutes() + " flight routes go through this airport");
             //Displays a pop-up when an airport that gets clicked on has no routes
             //Currently not active as each airport currently has 0 routes
-//            if (airport.getTotalRoutes() < 1) {
-//                DialogBoxes.noRoutes();
-//            }
+            if (airport.getTotalRoutes() < 1) {
+                DialogBoxes.noRoutes();
+            }
 
             String timezoneNum;
             if (airport.getTimezone() == 25) {
@@ -1010,7 +1013,7 @@ public class GUIController implements Initializable {
             }
             lastSelectedAirport = airport;
 
-            airportDetailList.setItems(observableArrayList(name, location, risk, timezone, distanceString));
+            airportDetailList.setItems(observableArrayList(name, location, risk, numRoutes, timezone, distanceString));
             modifyAirportWindowButton.setVisible(true);
 
             if (optedIn) {
@@ -1399,8 +1402,6 @@ public class GUIController implements Initializable {
         airportCountryMod.setText(airport.getCountry());
         airportIATAMod.setText(airport.getIata());
         airportICAOMod.setText(airport.getIcao());
-        airportTypeMod.setText(airport.getType());
-        airportSourceMod.setText(airport.getSource());
         airportTimezoneStringMod.setText(airport.getTimezoneString());
         airportTimezoneMod.setText(String.valueOf(airport.getTimezone()));
         airportDSTMod.setText(airport.getDst());
@@ -1461,19 +1462,14 @@ public class GUIController implements Initializable {
         String timezone = airportTimezoneMod.getText().trim();
         String dst = airportDSTMod.getText().trim();
         String timezoneString = airportTimezoneStringMod.getText().trim();
-        String type = airportTypeMod.getText().trim();
-        if (type.equals("")) { type = "Unknown"; }
-        String source = airportSourceMod.getText().trim();
-        if (source.equals("")) { source = "Unknown"; }
 
         ArrayList<String> errors = dataChecker.checkAirport(currentRecord, name, city, country, iata, icao, latitude, longitude, altitude, timezone, dst, timezoneString);
 
         int numRoutesSource = airport.getNumRoutesSource();
         int numRoutesDest = airport.getNumRoutesDest();
-        double risk = airport.getRisk();
 
         if (errors.size() == 0) {
-            Airport newAirport = new Airport(id, risk, name, city, country, iata, icao, Double.parseDouble(latitude), Double.parseDouble(longitude), Integer.parseInt(altitude), Double.parseDouble(timezone), dst, timezoneString, type, source, numRoutesSource, numRoutesDest);
+            Airport newAirport = new Airport(id, name, city, country, iata, icao, Double.parseDouble(latitude), Double.parseDouble(longitude), Integer.parseInt(altitude), Double.parseDouble(timezone), dst, timezoneString, numRoutesSource, numRoutesDest);
             currentRecord.modifyAirport(airportIndex, newAirport);
             modifyAirportPane.setVisible(false);
             modifyAirportWindowButton.setVisible(false);
