@@ -363,9 +363,12 @@ public class GUIController implements Initializable {
     }
 
     public void plotRoute() {
-        //need to give source and destination looping through the following line
+        //There is a problem with the database function
 //        for(Route routePlot: currentRecord.getRouteList()) {
-//            String scriptToExecute = "drawRoute(" + "[{ lat: 'SOURCE LAT', lng: 'SOURCE LONG' },{ lat: 'DEST LAT', lng: 'DEST LONG' },]" + ");";
+//            System.out.println(Database.getLatLong(routePlot.getDestAirport(), routePlot.getSourceAirport()));
+//           /* ArrayList<Double> points = Database.getLatLong(routePlot.getDestAirport(), routePlot.getSourceAirport());
+//            String scriptToExecute = "drawRoute(" + "[{ lat: " + points.get(0) + ", lng: " + points.get(1)+ " },{ lat: " + points.get(2) + ", lng: " + points.get(3) + " },]" + ");";
+//            this.mapEngine.executeScript(scriptToExecute);*/
 //        }
 
         String scriptToExecute = "drawRoute(" + "[{ lat: -43.4876, lng: 172.5374 },{ lat: -37.0082, lng: 174.7850 },]" + ");"; // christchurch to auckland
