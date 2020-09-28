@@ -732,8 +732,11 @@ public class GUIController implements Initializable {
 
                     ArrayList<Airport> newAirportList = airportLoad.loadAirportFile(file.getAbsolutePath(), currentRecord.getName());
                     currentRecord.addAirports(newAirportList);
-                    for (Airport airport: newAirportList) {
-                        Database.addNewAirport(airport);
+                    boolean sync = DialogBoxes.confirmSync("Airport", newAirportList.size());
+                    if (sync) {
+                        for (Airport airport : newAirportList) {
+                            Database.addNewAirport(airport);
+                        }
                     }
                     hideAllTables();
                     if (Airport.getNumMissingCovid() > 0) {
@@ -750,8 +753,11 @@ public class GUIController implements Initializable {
 
                     ArrayList<Airline> newAirlineList = airlineLoad.loadAirlineFile(file.getAbsolutePath(), currentRecord.getName());
                     currentRecord.addAirlines(newAirlineList);
-                    for (Airline airline: newAirlineList) {
-                        Database.addNewAirline(airline);
+                    boolean sync = DialogBoxes.confirmSync("Airline", newAirlineList.size());
+                    if (sync) {
+                        for (Airline airline : newAirlineList) {
+                            Database.addNewAirline(airline);
+                        }
                     }
                     hideAllTables();
                     flightHelper();
@@ -765,8 +771,11 @@ public class GUIController implements Initializable {
 
                     ArrayList<Route> newRouteList = routeLoad.loadRouteFile(file.getAbsolutePath(), currentRecord.getName());
                     currentRecord.addRoutes(newRouteList);
-                    for (Route route: newRouteList) {
-                        Database.addNewRoute(route);
+                    boolean sync = DialogBoxes.confirmSync("Route", newRouteList.size());
+                    if (sync) {
+                        for (Route route : newRouteList) {
+                            Database.addNewRoute(route);
+                        }
                     }
                     hideAllTables();
                     flightHelper();

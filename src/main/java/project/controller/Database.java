@@ -151,7 +151,6 @@ public class Database {
             }
             pstmt.setString(9, airline.getRecordName());
             pstmt.executeUpdate();
-            System.out.println("Airline created");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -203,9 +202,7 @@ public class Database {
             pstmt.setString(1, value);
             pstmt.setString(2, record);
             pstmt.executeUpdate();
-            System.out.println("Airport removed");
         } catch (SQLException e) {
-            System.out.println("Whoops");
             System.out.println(e.getMessage());
         }
     }
@@ -625,6 +622,37 @@ public class Database {
         }
 
         return records;
+    }
+
+
+    public static ArrayList<Double> getLatLong(String sourceID, String destID) {
+        String sourceSelect = String.format("SELECT latitude, longitude FROM airports WHERE id = %s", sourceID);
+        String destSelect = String.format("SELECT latitude, longitude FROM airports WHERE id = %s", destID);
+        ArrayList<Double> latsAndLongs = new ArrayList<>();
+
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sourceSelect)) {
+            while (rs.next()) {
+                latsAndLongs.add(rs.getDouble("latitude"));
+                latsAndLongs.add(rs.getDouble("longitude"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(destSelect)) {
+            while (rs.next()) {
+                latsAndLongs.add(rs.getDouble("latitude"));
+                latsAndLongs.add(rs.getDouble("longitude"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return latsAndLongs;
     }
 
     /**
