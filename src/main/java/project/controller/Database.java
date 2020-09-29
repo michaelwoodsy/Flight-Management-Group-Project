@@ -625,9 +625,9 @@ public class Database {
     }
 
 
-    public static ArrayList<Double> getLatLong(String sourceIATA, String destIATA) {
-        String sourceSelect = String.format("SELECT latitude, longitude FROM airports WHERE iata = %s", sourceIATA);
-        String destSelect = String.format("SELECT latitude, longitude FROM airports WHERE iata = %s", destIATA);
+    public static ArrayList<Double> getLatLong(Route route) {
+        String sourceSelect = String.format("SELECT latitude, longitude FROM airports WHERE id = %s", route.getSourceID());
+        String destSelect = String.format("SELECT latitude, longitude FROM airports WHERE id = %s", route.getDestID());
         ArrayList<Double> latsAndLongs = new ArrayList<>();
 
         try (Connection conn = connect();
