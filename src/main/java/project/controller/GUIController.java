@@ -363,19 +363,16 @@ public class GUIController implements Initializable {
     }
 
     public void plotRoute() {
-        //There is a problem with the database function
-//        for(Route routePlot: currentRecord.getRouteList()) {
-//            System.out.println(Database.getLatLong(routePlot.getDestAirport(), routePlot.getSourceAirport()));
-//           /* ArrayList<Double> points = Database.getLatLong(routePlot.getDestAirport(), routePlot.getSourceAirport());
-//            String scriptToExecute = "drawRoute(" + "[{ lat: " + points.get(0) + ", lng: " + points.get(1)+ " },{ lat: " + points.get(2) + ", lng: " + points.get(3) + " },]" + ");";
-//            this.mapEngine.executeScript(scriptToExecute);*/
-//        }
-
-        String scriptToExecute = "drawRoute(" + "[{ lat: -43.4876, lng: 172.5374 },{ lat: -37.0082, lng: 174.7850 },]" + ");"; // christchurch to auckland
-        this.mapEngine.executeScript(scriptToExecute);
-
-        String scriptToExecute2 = "drawRoute(" + "[{ lat: -41.3276, lng: 174.8076 },{ lat: -46.4153, lng: 168.3151 },]" + ");"; // invercargill to wellington
-        this.mapEngine.executeScript(scriptToExecute2);
+        //loops through routes and gets lat and long of source and destination airports from batabase. Then draws line connecting them on map
+        for(Route routePlot: currentRecord.getRouteList()) {
+            ArrayList<Double> points = Database.getLatLong(routePlot);
+            try {
+                String scriptToExecute = "drawRoute(" + "[{ lat: " + points.get(0) + ", lng: " + points.get(1) + " },{ lat: " + points.get(2) + ", lng: " + points.get(3) + " },]" + ");";
+                this.mapEngine.executeScript(scriptToExecute);
+            } catch (Exception IndexOutOfBoundsException){
+                continue;
+            }
+        }
     }
 
     /**
