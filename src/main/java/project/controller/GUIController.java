@@ -366,15 +366,16 @@ public class GUIController implements Initializable {
         this.mapEngine.load(getClass().getResource("/map.html").toExternalForm());
     }
 
+    @FXML
     public void airportLoop() {
         airports = new AirportLocations();
         airports.addAirports(currentRecord);
+        displayRoute(airports);
     }
 
     @FXML
     public void showMapRoutes() {
         plotRoute();
-        displayRoute(airports);
     }
 
     public void plotRoute() {
