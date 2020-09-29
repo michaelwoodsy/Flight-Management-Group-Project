@@ -363,16 +363,16 @@ public class GUIController implements Initializable {
     }
 
     public void plotRoute() {
-        //need to give source and destination looping through the following line
-//        for(Route routePlot: currentRecord.getRouteList()) {
-//            String scriptToExecute = "drawRoute(" + "[{ lat: 'SOURCE LAT', lng: 'SOURCE LONG' },{ lat: 'DEST LAT', lng: 'DEST LONG' },]" + ");";
-//        }
-
-        String scriptToExecute = "drawRoute(" + "[{ lat: -43.4876, lng: 172.5374 },{ lat: -37.0082, lng: 174.7850 },]" + ");"; // christchurch to auckland
-        this.mapEngine.executeScript(scriptToExecute);
-
-        String scriptToExecute2 = "drawRoute(" + "[{ lat: -41.3276, lng: 174.8076 },{ lat: -46.4153, lng: 168.3151 },]" + ");"; // invercargill to wellington
-        this.mapEngine.executeScript(scriptToExecute2);
+        //loops through routes and gets lat and long of source and destination airports from batabase. Then draws line connecting them on map
+        for(Route routePlot: currentRecord.getRouteList()) {
+            ArrayList<Double> points = Database.getLatLong(routePlot);
+            try {
+                String scriptToExecute = "drawRoute(" + "[{ lat: " + points.get(0) + ", lng: " + points.get(1) + " },{ lat: " + points.get(2) + ", lng: " + points.get(3) + " },]" + ");";
+                this.mapEngine.executeScript(scriptToExecute);
+            } catch (Exception IndexOutOfBoundsException){
+                continue;
+            }
+        }
     }
 
     /**
@@ -732,8 +732,11 @@ public class GUIController implements Initializable {
 
                     ArrayList<Airport> newAirportList = airportLoad.loadAirportFile(file.getAbsolutePath(), currentRecord.getName());
                     currentRecord.addAirports(newAirportList);
-                    for (Airport airport: newAirportList) {
-                        Database.addNewAirport(airport);
+                    boolean sync = DialogBoxes.confirmSync("Airport", newAirportList.size());
+                    if (sync) {
+                        for (Airport airport : newAirportList) {
+                            Database.addNewAirport(airport);
+                        }
                     }
                     hideAllTables();
                     if (Airport.getNumMissingCovid() > 0) {
@@ -743,35 +746,43 @@ public class GUIController implements Initializable {
                     DialogBoxes.fileFormatInfo(true, true, "airport");
                 } else if (selectFile.getSelectedToggle() == airlineRadioButton) {
                     boolean airlineCheck = airlineLoad.loadAirlineErrorCheck(file.getAbsolutePath());
-                    DialogBoxes.fileFormatInfo(airlineCheck, true, "airline");
+                    DialogBoxes.fileFormatInfo(airlineCheck, false, "airline");
                     if (!airlineCheck) {return;}
 
                     addFileHelper();
 
                     ArrayList<Airline> newAirlineList = airlineLoad.loadAirlineFile(file.getAbsolutePath(), currentRecord.getName());
                     currentRecord.addAirlines(newAirlineList);
-                    for (Airline airline: newAirlineList) {
-                        Database.addNewAirline(airline);
+                    boolean sync = DialogBoxes.confirmSync("Airline", newAirlineList.size());
+                    if (sync) {
+                        for (Airline airline : newAirlineList) {
+                            Database.addNewAirline(airline);
+                        }
                     }
                     hideAllTables();
                     flightHelper();
+                    DialogBoxes.fileFormatInfo(true, true, "airline");
                 } else if (selectFile.getSelectedToggle() == routeRadioButton) {
                     boolean routeCheck = routeLoad.loadRouteErrorCheck(file.getAbsolutePath());
-                    DialogBoxes.fileFormatInfo(routeCheck, true, "route");
+                    DialogBoxes.fileFormatInfo(routeCheck, false, "route");
                     if (!routeCheck) {return;}
 
                     addFileHelper();
 
                     ArrayList<Route> newRouteList = routeLoad.loadRouteFile(file.getAbsolutePath(), currentRecord.getName());
                     currentRecord.addRoutes(newRouteList);
-                    for (Route route: newRouteList) {
-                        Database.addNewRoute(route);
+                    boolean sync = DialogBoxes.confirmSync("Route", newRouteList.size());
+                    if (sync) {
+                        for (Route route : newRouteList) {
+                            Database.addNewRoute(route);
+                        }
                     }
                     hideAllTables();
                     flightHelper();
+                    DialogBoxes.fileFormatInfo(true, true, "route");
                 } else if (selectFile.getSelectedToggle() == flightRadioButton) {
                     boolean flightCheck = flightLoad.loadFlightErrorCheck(file.getAbsolutePath());
-                    DialogBoxes.fileFormatInfo(flightCheck, true, "flight");
+                    DialogBoxes.fileFormatInfo(flightCheck, false, "flight");
                     if (!flightCheck) {return;}
 
                     addFileHelper();
@@ -780,6 +791,7 @@ public class GUIController implements Initializable {
                     currentRecord.addFlights(newFlight);
                     hideAllTables();
                     flightHelper();
+                    DialogBoxes.fileFormatInfo(true, true, "flight");
                 }
             }
         }

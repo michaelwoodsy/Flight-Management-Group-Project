@@ -200,11 +200,11 @@ public class Airport {
     }
 
     public static int getNumMissingCovid() {
-        //Reset the numMissingCovid variable
-        //Done here as it is only called when variable will no longer increase.
-        int count = numMissingCovid;
+        return numMissingCovid;
+    }
+
+    public static void setNumMissingCovid() {
         numMissingCovid = 0;
-        return count;
     }
 
     public int getId() {

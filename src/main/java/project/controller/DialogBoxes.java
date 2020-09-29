@@ -41,6 +41,8 @@ public class DialogBoxes {
         stage.getIcons().add(new Image("primaryStageIcon.png"));
 
         alert.showAndWait();
+
+        Airport.setNumMissingCovid();
     }
 
     /**
@@ -199,4 +201,38 @@ public class DialogBoxes {
         alert.setContentText(bodyText);
         alert.showAndWait();
     }
+
+    public static boolean confirmSync(String type, int numLines) {
+
+        double syncTime = 0;
+        double timePerAirport = 77.4/8107;
+        double timePerRoute = 21.8/3000;
+        double timePerAirline = 49.3/6048;
+
+        switch(type) {
+            case "Airport":
+                syncTime = timePerAirport*numLines;
+                break;
+            case "Airline":
+                syncTime = timePerAirline*numLines;
+                break;
+            case "Route":
+                syncTime = timePerRoute*numLines;
+                break;
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("CONFIRM DATABASE SYNC");
+        alert.setHeaderText(null);
+        alert.setContentText(String.format("Synchronising this file (%d lines) with the database will take approximately %.2f seconds. Continue?", numLines, syncTime));
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make alert to stage so icon can be changed
+        stage.getIcons().add(new Image("primaryStageIcon.png"));
+        alert.showAndWait();
+        if (alert.getResult() == ButtonType.OK){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
