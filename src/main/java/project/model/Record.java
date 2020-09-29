@@ -199,9 +199,6 @@ public class Record {
                 match = route.getDestAirport().toLowerCase().contains(keyWord.toLowerCase());
             } else if (attribute.equals("equipment")) {
                 match = route.getEquipment().toLowerCase().contains(keyWord.toLowerCase());
-            } else if (attribute.equals("airport")) {
-                searchResult.addAll(searchRoutes(keyWord, "destination airport"));
-                searchResult.addAll(searchRoutes(keyWord, "source airport"));
             }
 
             if (match) {

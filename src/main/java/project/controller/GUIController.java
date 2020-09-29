@@ -320,7 +320,7 @@ public class GUIController implements Initializable {
         recordDropdown.setItems(observableArrayList(recordNames));
         recordDropdown.getSelectionModel().selectFirst();
 
-        mapFilter.setItems(observableArrayList("Airport", "Equipment"));
+        mapFilter.setItems(observableArrayList("Airport Code", "Equipment Code"));
         mapFilter.getSelectionModel().selectFirst();
 
         initMap();
@@ -375,17 +375,24 @@ public class GUIController implements Initializable {
 
     @FXML
     public void showMapRoutes() {
+        airports = new AirportLocations();
+        airports.addAirports(currentRecord);
         plotRoute();
+        displayRoute(airports);
     }
 
     public void plotRoute() {
         //loops through routes and gets lat and long of source and destination airports from database. Then draws line connecting them on map
         ArrayList<Route> filteredRoutes;
 
-        if (mapFilter.getValue() == "Equipment") {
+        if (mapFilter.getValue() == "Equipment Code") {
             filteredRoutes = currentRecord.searchRoutes(mapSearchBox.getText().toLowerCase(), "equipment");
         } else {
-            filteredRoutes = currentRecord.searchRoutes(mapSearchBox.getText().toLowerCase(), "airport");
+            filteredRoutes = currentRecord.searchRoutes(mapSearchBox.getText().toLowerCase(), "source airport");
+            filteredRoutes.addAll(currentRecord.searchRoutes(mapSearchBox.getText().toLowerCase(), "destination airport"));
+            Set<Route> noDuplicates = new HashSet<Route>(filteredRoutes);
+            filteredRoutes.clear();
+            filteredRoutes.addAll(noDuplicates);
         }
 
         for(Route routePlot: filteredRoutes) {
