@@ -243,6 +243,12 @@ public class GUIController implements Initializable {
     private ComboBox helpDropdown;
     @FXML
     private TextArea helpTextArea;
+    @FXML
+    private ChoiceBox recordSelectMap;
+    @FXML
+    private ChoiceBox mapFilter;
+    @FXML
+    private TextField mapSearchBox;
 
     private ArrayList<Record> recordList;
     private Record currentRecord;
@@ -307,11 +313,15 @@ public class GUIController implements Initializable {
         recordSelectRoute.getSelectionModel().selectFirst();
         recordSelectFlight.setItems(observableArrayList(recordNames));
         recordSelectFlight.getSelectionModel().selectFirst();
+        recordSelectMap.setItems(observableArrayList(recordNames));
+        recordSelectMap.getSelectionModel().selectFirst();
 
         recordNames.add("New Record");
         recordDropdown.setItems(observableArrayList(recordNames));
         recordDropdown.getSelectionModel().selectFirst();
 
+        mapFilter.setItems(observableArrayList("Airport", "Equipment"));
+        mapFilter.getSelectionModel().selectFirst();
 
         initMap();
 
@@ -357,14 +367,27 @@ public class GUIController implements Initializable {
     }
 
     public void airportLoop() {
+        airports = new AirportLocations();
         airports.addAirports(currentRecord);
+    }
+
+    @FXML
+    public void showMapRoutes() {
         plotRoute();
         displayRoute(airports);
     }
 
     public void plotRoute() {
-        //loops through routes and gets lat and long of source and destination airports from batabase. Then draws line connecting them on map
-        for(Route routePlot: currentRecord.getRouteList()) {
+        //loops through routes and gets lat and long of source and destination airports from database. Then draws line connecting them on map
+        ArrayList<Route> filteredRoutes;
+
+        if (mapFilter.getValue() == "Equipment") {
+            filteredRoutes = currentRecord.searchRoutes(mapSearchBox.getText().toLowerCase(), "equipment");
+        } else {
+            filteredRoutes = currentRecord.searchRoutes(mapSearchBox.getText().toLowerCase(), "airport");
+        }
+
+        for(Route routePlot: filteredRoutes) {
             ArrayList<Double> points = Database.getLatLong(routePlot);
             try {
                 String scriptToExecute = "drawRoute(" + "[{ lat: " + points.get(0) + ", lng: " + points.get(1) + " },{ lat: " + points.get(2) + ", lng: " + points.get(3) + " },]" + ");";
@@ -373,6 +396,28 @@ public class GUIController implements Initializable {
                 continue;
             }
         }
+    }
+
+    /**
+     * Finds the index of the selected route in the recordList and then selects
+     * this given route.
+     */
+    @FXML
+    public void mapSelect() {
+        int index = 0;
+        for (Record record: recordList) {
+            if (recordSelectMap.getValue() == record.getName()) {
+                index = recordList.indexOf(record);
+                break;
+            }
+        }
+        recordSelectAirport.getSelectionModel().select(index);
+        recordSelectAirline.getSelectionModel().select(index);
+        recordSelectFlight.getSelectionModel().select(index);
+        recordSelectRoute.getSelectionModel().select(index);
+
+        currentRecord = recordList.get(index);
+        flightHelper();
     }
 
     /**
@@ -391,6 +436,8 @@ public class GUIController implements Initializable {
         recordSelectAirport.getSelectionModel().select(index);
         recordSelectAirline.getSelectionModel().select(index);
         recordSelectFlight.getSelectionModel().select(index);
+        recordSelectMap.getSelectionModel().select(index);
+
 
         currentRecord = recordList.get(index);
         flightHelper();
@@ -412,6 +459,8 @@ public class GUIController implements Initializable {
         recordSelectRoute.getSelectionModel().select(index);
         recordSelectAirline.getSelectionModel().select(index);
         recordSelectFlight.getSelectionModel().select(index);
+        recordSelectMap.getSelectionModel().select(index);
+
 
         currentRecord = recordList.get(index);
         flightHelper();
@@ -433,6 +482,8 @@ public class GUIController implements Initializable {
         recordSelectAirport.getSelectionModel().select(index);
         recordSelectRoute.getSelectionModel().select(index);
         recordSelectFlight.getSelectionModel().select(index);
+        recordSelectMap.getSelectionModel().select(index);
+
 
         currentRecord = recordList.get(index);
         flightHelper();
@@ -454,6 +505,8 @@ public class GUIController implements Initializable {
         recordSelectAirport.getSelectionModel().select(index);
         recordSelectRoute.getSelectionModel().select(index);
         recordSelectAirline.getSelectionModel().select(index);
+        recordSelectMap.getSelectionModel().select(index);
+
 
         currentRecord = recordList.get(index);
         flightHelper();
@@ -666,6 +719,7 @@ public class GUIController implements Initializable {
             recordSelectAirline.getItems().add(currentRecord.getName());
             recordSelectRoute.getItems().add(currentRecord.getName());
             recordSelectFlight.getItems().add(currentRecord.getName());
+            recordSelectMap.getItems().add(currentRecord.getName());
             ArrayList<String> recordNames = new ArrayList<String>();
             for (Record records: recordList) {
                 recordNames.add(records.getName());
@@ -677,6 +731,7 @@ public class GUIController implements Initializable {
             recordSelectAirport.getSelectionModel().select(recordList.size() - 1);
             recordSelectRoute.getSelectionModel().select(recordList.size() - 1);
             recordSelectFlight.getSelectionModel().select(recordList.size() - 1);
+            recordSelectMap.getSelectionModel().select(recordList.size() - 1);
             recordDropdown.getSelectionModel().select(recordList.size() - 1);
 
             return;
@@ -694,6 +749,7 @@ public class GUIController implements Initializable {
         recordSelectAirport.getSelectionModel().select(index);
         recordSelectRoute.getSelectionModel().select(index);
         recordSelectFlight.getSelectionModel().select(index);
+        recordSelectMap.getSelectionModel().select(index);
         recordDropdown.getSelectionModel().select(index);
 
         currentRecord = recordList.get(index);
