@@ -338,13 +338,8 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <WebView fx:id="mapView" layoutX="14.0" layoutY="28.0" prefHeight="429.0" prefWidth="498.0" />
-                        <Text fill="WHITE" layoutX="221.0" layoutY="18.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Map is still in development, will be completed next update">
-                           <font>
-                              <Font name="System Bold Italic" size="12.0" />
-                           </font>
-                        </Text>
-                        <Pane fx:id="routePane" layoutX="524.0" layoutY="28.0" prefHeight="207.0" prefWidth="212.0" style="-fx-background-color: #FFFFFF;">
+                        <WebView fx:id="mapView" layoutX="15.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0" />
+                        <Pane fx:id="routePane" layoutX="524.0" layoutY="10.0" prefHeight="207.0" prefWidth="212.0" style="-fx-background-color: #FFFFFF;">
                            <children>
                               <ImageView fx:id="DepartureIcon" fitHeight="73.0" fitWidth="84.0" layoutX="29.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
