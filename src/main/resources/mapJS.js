@@ -14,8 +14,7 @@ the flight rather than a direct line connecting them
 //    var dest1 = [-43.4876, 172.5374]
 //    var dest2 = [-37.0082, 174.7850]
 //    var flightPlanCoordinates = [
-//            {lat: dest1[0], lng: dest1[1]},
-//            {lat: dest2[0], lng: dest2[1]}
+//            {lat: dest1[0], lng: dest1[1]}
 //        ];
 //
 
@@ -36,12 +35,34 @@ the flight rather than a direct line connecting them
         var infoWindow = new google.maps.InfoWindow();
         var latlngbounds = new google.maps.LatLngBounds();
 
+//        var myLatlng = {lat: -25.363, lng: 131.044};
+//
+//        var infoWindow = new google.maps.InfoWindow(
+//                    {content: 'Click the map to get Lat/Lng!', position: myLatlng});
+//                infoWindow.open(map);
+//
+//                // Configure the click listener.
+//                map.addListener('click', function(mapsMouseEvent) {
+//                  // Close the current InfoWindow.
+//                  infoWindow.close();
+//
+//                  // Create a new InfoWindow.
+//                  infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
+//                  infoWindow.setContent(mapsMouseEvent.latLng.toString());
+//                  infoWindow.open(map);
+//          });
+
 
 //        drawRoute(flightPlanCoordinates);
+//         displayAirport(flightPlanCoordinates);
 
     }
 
-    function displayRoute(flightPath) {
+    function clearMap() {
+      initMap();
+    }
+
+    function displayAirport(flightPath) {
 
         if (flightPath.length < 2) {
             return;
@@ -56,19 +77,21 @@ the flight rather than a direct line connecting them
 //                icon: marker_icon
 //            });
 //        }
-
+        var marker = null;
         var markers = flightPath.map(function(location, i) {
-          return new google.maps.Marker({
+            marker = new google.maps.Marker({
             position: location,
+            title: "test",
             icon: marker_icon
           });
+          return marker;
         });
 
         // Add a marker clusterer to manage the markers.
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-
     }
+
     function drawRoute(flightCoordinates) {
         const routeCoords = new google.maps.Polyline({
             path: flightCoordinates,
