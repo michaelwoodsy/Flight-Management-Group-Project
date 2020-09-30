@@ -297,7 +297,6 @@ public class GUIController implements Initializable {
             currentRecord = new Record("Record 1");
             recordList.add(currentRecord);
         }
-        Database.populateTables();
 
         ArrayList<String> recordNames = new ArrayList<String>();
         for (Record record: recordList) {
@@ -402,9 +401,10 @@ public class GUIController implements Initializable {
         }
 
         for(Route routePlot: filteredRoutes) {
-            ArrayList<Double> points = Database.getLatLong(routePlot);
+            ArrayList<Double> sourcePoints = Database.getLatLong(routePlot, "sourceID");
+            ArrayList<Double> destPoints = Database.getLatLong(routePlot, "destID");
             try {
-                String scriptToExecute = "drawRoute(" + "[{ lat: " + points.get(0) + ", lng: " + points.get(1) + " },{ lat: " + points.get(2) + ", lng: " + points.get(3) + " },]" + ");";
+                String scriptToExecute = "drawRoute(" + "[{ lat: " + sourcePoints.get(0) + ", lng: " + sourcePoints.get(1) + " },{ lat: " + destPoints.get(0) + ", lng: " + destPoints.get(1) + " },]" + ");";
                 this.mapEngine.executeScript(scriptToExecute);
             } catch (Exception IndexOutOfBoundsException){
                 continue;
@@ -1274,11 +1274,7 @@ public class GUIController implements Initializable {
         if (DialogBoxes.confirmationAlert("delete airline")) {
             Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
             currentRecord.removeAirlines(airline);
-            try {
-                Database.removeAirline("id", Integer.toString(airline.getId()), airline.getRecordName());
-            } catch (NoSuchFieldException e) {
-                System.out.println("WHoopes");
-            }
+            Database.removeData(airline.getId(), airline.getRecordName(), "airlines");
             modifyAirlinePane.setVisible(false);
             modifyAirlineWindowButton.setVisible(false);
             airlineSplitPane.setVisible(true);
@@ -1372,10 +1368,7 @@ public class GUIController implements Initializable {
         if (DialogBoxes.confirmationAlert("delete route")) {
             Route route = (Route) routeList.getSelectionModel().getSelectedItem();
             currentRecord.removeRoutes(route);
-            try {
-                Database.removeRoute("id", Integer.toString(route.getId()), route.getRecordName());
-            } catch (NoSuchFieldException e) {
-            }
+            Database.removeData(route.getId(), route.getRecordName(), "routes");
             modifyRoutePane.setVisible(false);
             modifyRouteWindowButton.setVisible(false);
             routeSplitPane.setVisible(true);
@@ -1503,8 +1496,7 @@ public class GUIController implements Initializable {
         if (DialogBoxes.confirmationAlert("delete airport")) {
             Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
             currentRecord.removeAirports(airport);
-            try { Database.removeAirport("id", Integer.toString(airport.getId()), airport.getRecordName());
-            } catch (NoSuchFieldException e) {System.out.println("Whoopsie"); System.out.println(e.getMessage());}
+            Database.removeData(airport.getId(), airport.getRecordName(), "airports");
             modifyAirportPane.setVisible(false);
             modifyAirportWindowButton.setVisible(false);
             airportSplitPane.setVisible(true);
