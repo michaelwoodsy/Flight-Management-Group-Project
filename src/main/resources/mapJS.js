@@ -41,7 +41,11 @@ the flight rather than a direct line connecting them
 
     }
 
-    function displayRoute(flightPath) {
+    function clearMap() {
+      initMap();
+    }
+
+    function displayAirport(flightPath) {
 
         if (flightPath.length < 2) {
             return;
@@ -67,8 +71,8 @@ the flight rather than a direct line connecting them
         // Add a marker clusterer to manage the markers.
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-
     }
+
     function drawRoute(flightCoordinates) {
         const routeCoords = new google.maps.Polyline({
             path: flightCoordinates,

@@ -356,8 +356,8 @@ public class GUIController implements Initializable {
 
     }
 
-    private void displayRoute(AirportLocations newAirportLocation) {
-        String scriptToExecute = "displayRoute(" + newAirportLocation.toJSONArray() + ");";
+    private void displayAirport(AirportLocations newAirportLocation) {
+        String scriptToExecute = "displayAirport(" + newAirportLocation.toJSONArray() + ");";
         this.mapEngine.executeScript(scriptToExecute);
     }
 
@@ -368,9 +368,13 @@ public class GUIController implements Initializable {
 
     @FXML
     public void airportLoop() {
+        String scriptToExecute = "clearMap();";
+        this.mapEngine.executeScript(scriptToExecute);
+
+
         airports = new AirportLocations();
         airports.addAirports(currentRecord);
-        displayRoute(airports);
+        displayAirport(airports);
     }
 
     @FXML
@@ -378,7 +382,7 @@ public class GUIController implements Initializable {
         airports = new AirportLocations();
         airports.addAirports(currentRecord);
         plotRoute();
-        displayRoute(airports);
+        displayAirport(airports);
     }
 
     public void plotRoute() {
@@ -981,7 +985,6 @@ public class GUIController implements Initializable {
      * in the main list view on the airport tab.
      */
     public void displayAllAirports() {
-        airportLoop();
         airportList.setItems(observableArrayList(currentRecord.getAirportList()));
         recordSelectAirport.getSelectionModel().select(currentRecord.getName());
 
