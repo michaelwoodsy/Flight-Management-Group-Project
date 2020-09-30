@@ -189,7 +189,7 @@ public class DialogBoxes {
                 " a country's airport poses to your health. As such, we see it as our duty to notify you that these risks are calculated " +
                 "using the WHO's COVID case data for each country, and that these risks are purely approximations, and should not " +
                 "be used to fully inform your chances of infection in a country. Our risk matrix for countries is as follows:\n" +
-                "Extremely Low: Less than 0.1% of the population have cases\nLow: Less than 0.5% of the population have cases\n " +
+                "Extremely Low: Less than 0.1% of the population have cases\nLow: Less than 0.5% of the population have cases\n" +
                 "Medium: Less than 1% of the population have cases\nHigh: Less than 5% of the population have cases\n" +
                 "Extreme: More than 5% of the population have cases\nRemember to social distance when you can, and stay safe.";
         alert.setTitle("WELCOME");
@@ -219,6 +219,7 @@ public class DialogBoxes {
         }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         alert.setTitle("CONFIRM DATABASE SYNC");
         alert.setHeaderText(null);
         alert.setContentText(String.format("Synchronising this file (%d lines) with the database will take approximately %.2f seconds. Continue?", numLines, syncTime));
@@ -230,6 +231,28 @@ public class DialogBoxes {
         } else {
             return false;
         }
+    }
+
+    public static void airlinesThroughAirport(Airport airport) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        String headerText = String.format("Planes using Airport #%d: %s", airport.getId(), airport.getName());
+        alert.setTitle(null);
+
+        ArrayList<String> airlines = Database.getAirlinesThroughAirport(airport);
+
+        String bodyText = airlines.get(0);
+
+        for (int i = 1; i < airlines.size(); i++) {
+            bodyText += ", " + airlines.get(i);
+        }
+
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make aler to stage so icon can be changed
+        stage.getIcons().add(new Image("primaryStageIcon.png"));
+
+        alert.setHeaderText(headerText);
+        alert.setContentText(bodyText);
+        alert.showAndWait();
     }
 
 }

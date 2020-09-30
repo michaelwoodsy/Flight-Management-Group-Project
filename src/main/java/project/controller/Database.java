@@ -98,7 +98,7 @@ public class Database {
 
         byte[] routeAsBytes = SerializationUtils.serialize(route);
 
-        String insertStatement = "INSERT INTO routes(id, airlineId, sourceID, destID, routeObject, equipment, record) VALUES(?,?,?,?,?,?)";
+        String insertStatement = "INSERT INTO routes(id, airlineId, sourceID, destID, routeObject, equipment, record) VALUES(?,?,?,?,?,?,?)";
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
             pstmt.setInt(1, route.getId());
