@@ -148,41 +148,31 @@ public class DatabaseTest {
         Database.addNewAirport(testAirport4);
         Database.addNewAirport(testAirport5);
 
-        Database.removeData("id", "101", "Test");
-        Database.removeData("Test4", "Test");
-        Database.removeData("city", "Christchurch", "Test");
-        Database.removeData("city", "New Zealand", "Test");
+        Database.removeData(101, "Test", "airports");
+        Database.removeData(102, "Test", "airports");
+        Database.removeData(105, "Test", "airports");
+        Database.removeData(104, "Test", "airports");
+        Database.removeData(-1, "Bad Record", "airports");
+
 
         ArrayList<Airport> resultingAirports = Database.getAllAirports().get(0);
-        assertTrue(resultingAirports.size() == 1);
+        assertEquals(resultingAirports.size(), 1);
         assertEquals(resultingAirports.get(0), testAirport3);
     }
 
     @Test
     public void removeAirlineTest() {
-        Database.populateAirlineTableColumns();
         Database.addNewAirline(testAirline1);
         Database.addNewAirline(testAirline2);
         Database.addNewAirline(testAirline3);
         Database.addNewAirline(testAirline4);
         Database.addNewAirline(testAirline5);
 
-        try {
-            Database.removeAirline("id", "101", "Test");
-            Database.removeAirline("airlineName", "Test3", "Test");
-            Database.removeAirline("active", "1", "Test");
-            //Remove none, but don't throw an error
-            Database.removeAirline("id", "New Zealand", "Test");
-        } catch (NoSuchFieldException e) {
-            fail("Exception thrown when not appropriate");
-        }
-
-        try {
-            Database.removeAirline("No such column", "bad value", "Test");
-            fail("Exception not thrown with inappropriate data value");
-        } catch (NoSuchFieldException e) {
-            System.out.println(e.getMessage());
-        }
+        Database.removeData(101, "Test", "airlines");
+        Database.removeData(100, "Test", "airlines");
+        Database.removeData(102, "Test", "airlines");
+        Database.removeData(104, "Test", "airlines");
+        Database.removeData(1000, "Test", "airlines");
 
         ArrayList<Airline> resultingAirlines = Database.getAllAirlines().get(0);
         assertTrue(resultingAirlines.size() == 1);
@@ -191,7 +181,6 @@ public class DatabaseTest {
 
     @Test
     public void removeRouteTest() {
-        Database.populateRouteTableColumns();
         Database.addNewRoute(testRoute1);
         Database.addNewRoute(testRoute2);
         Database.addNewRoute(testRoute3);
@@ -199,24 +188,15 @@ public class DatabaseTest {
         Database.addNewRoute(testRoute5);
         Database.addNewRoute(testRoute6);
 
-        try {
-            Database.removeRoute("airlineId", "502", "Test");
-            Database.removeRoute("numStops", "0", "Test");
-            Database.removeRoute("destAirport", "SYD", "Test");
-            Database.removeRoute("sourceAirport", "Totally Real Airport", "Test");
-        } catch (NoSuchFieldException e) {
-            fail("Exception caught when not expected");
-        }
-
-        try {
-            Database.removeRoute("routeName", "This is a route name", "Test");
-            fail("Exception not caught when expected.");
-        } catch (NoSuchFieldException e) {
-            System.out.println(e.getMessage());
-        }
+        Database.removeData(1, "Test", "routes");
+        Database.removeData(2, "Test", "routes");
+        Database.removeData(5, "Test", "routes");
+        Database.removeData(3, "Test", "routes");
+        Database.removeData(4, "Test", "routes");
+        Database.removeData(8, "Test", "routes");
 
         ArrayList<Route> resultingRoutes = Database.getAllRoutes().get(0);
-        assertTrue(resultingRoutes.size() == 1);
+        assertEquals(resultingRoutes.size(), 1);
         assertEquals(resultingRoutes.get(0), testRoute6);
 
     }
@@ -251,16 +231,16 @@ public class DatabaseTest {
 
     @Test
     public void addNewAirlineTest() {
-        Database.addNewAirport(testAirport1);
-        Database.addNewAirport(testAirport2);
-        Database.addNewAirport(testAirport4);
+        Database.addNewAirline(testAirline1);
+        Database.addNewAirline(testAirline2);
+        Database.addNewAirline(testAirline5);
 
-        ArrayList<Integer> airportIDs = new ArrayList<Integer>();
-        airportIDs.add(testAirport1.getId());
-        airportIDs.add(testAirport2.getId());
-        airportIDs.add(testAirport4.getId());
+        ArrayList<Integer> airlineIDs = new ArrayList<Integer>();
+        airlineIDs.add(testAirline1.getId());
+        airlineIDs.add(testAirline2.getId());
+        airlineIDs.add(testAirline5.getId());
 
-        String testQuery = "SELECT id FROM airports";
+        String testQuery = "SELECT id FROM airlines";
         ArrayList<Integer> retrievedIDs = new ArrayList<Integer>();
         try (Connection conn = Database.connect();
              Statement stmt = conn.createStatement();
@@ -273,22 +253,22 @@ public class DatabaseTest {
             System.err.println(e.getMessage());
         }
 
-        assertEquals(retrievedIDs, airportIDs);
+        assertEquals(retrievedIDs, airlineIDs);
 
     }
 
     @Test
     public void addNewRouteTest() {
-        Database.addNewAirport(testAirport1);
-        Database.addNewAirport(testAirport2);
-        Database.addNewAirport(testAirport4);
+        Database.addNewRoute(testRoute2);
+        Database.addNewRoute(testRoute5);
+        Database.addNewRoute(testRoute3);
 
-        ArrayList<Integer> airportIDs = new ArrayList<Integer>();
-        airportIDs.add(testAirport1.getId());
-        airportIDs.add(testAirport2.getId());
-        airportIDs.add(testAirport4.getId());
+        ArrayList<Integer> routeIDs = new ArrayList<Integer>();
+        routeIDs.add(testRoute2.getId());
+        routeIDs.add(testRoute3.getId());
+        routeIDs.add(testRoute5.getId());
 
-        String testQuery = "SELECT id FROM airports";
+        String testQuery = "SELECT id FROM routes";
         ArrayList<Integer> retrievedIDs = new ArrayList<Integer>();
         try (Connection conn = Database.connect();
              Statement stmt = conn.createStatement();
@@ -301,7 +281,7 @@ public class DatabaseTest {
             System.err.println(e.getMessage());
         }
 
-        assertEquals(retrievedIDs, airportIDs);
+        assertEquals(retrievedIDs, routeIDs);
     }
 
     @Test
