@@ -646,6 +646,7 @@ public class GUIController implements Initializable {
      */
     @FXML
     public void leastRoutesButton(ActionEvent event) throws IOException {
+        Database.getAllEquipment();
         List<Airport> currentData = airportList.getItems();
         List<Airport> rankedAirports = currentRecord.rankAirports(false, currentData);
         airportList.setItems(observableArrayList(rankedAirports));

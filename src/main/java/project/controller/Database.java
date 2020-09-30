@@ -98,7 +98,7 @@ public class Database {
 
         byte[] routeAsBytes = SerializationUtils.serialize(route);
 
-        String insertStatement = "INSERT INTO routes(id, airlineId, sourceID, destID, routeObject, record) VALUES(?,?,?,?,?,?)";
+        String insertStatement = "INSERT INTO routes(id, airlineId, sourceID, destID, routeObject, equipment, record) VALUES(?,?,?,?,?,?)";
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
             pstmt.setInt(1, route.getId());
@@ -106,7 +106,8 @@ public class Database {
             pstmt.setInt(3, route.getSourceID());
             pstmt.setInt(4, route.getDestID());
             pstmt.setBytes(5, routeAsBytes);
-            pstmt.setString(6, route.getRecordName());
+            pstmt.setString(6, route.getEquipment());
+            pstmt.setString(7, route.getRecordName());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -235,6 +236,7 @@ public class Database {
                 + " sourceID integer,\n"
                 + " destID integer,\n"
                 + " routeObject blob,\n"
+                + " equipment text,\n"
                 + " record text NOT NULL,\n"
                 + " PRIMARY KEY(id, record)\n"
                 + ");";
@@ -289,9 +291,7 @@ public class Database {
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
                 byte[] airportBytes = rs.getBytes("airportObject");
-                ByteArrayInputStream baip = new ByteArrayInputStream(airportBytes);
-                ObjectInputStream ois = new ObjectInputStream(baip);
-                Airport airport = (Airport) ois.readObject();
+                Airport airport = SerializationUtils.deserialize(airportBytes);
                 String record = airport.getRecordName();
                 if (recordNumbers.get(record) != null) {
                     int recordNum = recordNumbers.get(record);
@@ -304,10 +304,6 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
         return recordList;
@@ -328,9 +324,7 @@ public class Database {
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
                 byte[] airlineBytes = rs.getBytes("airlineObject");
-                ByteArrayInputStream baip = new ByteArrayInputStream(airlineBytes);
-                ObjectInputStream ois = new ObjectInputStream(baip);
-                Airline airline = (Airline) ois.readObject();
+                Airline airline = SerializationUtils.deserialize(airlineBytes);
                 String record = airline.getRecordName();
                 if (recordNumbers.get(record) != null) {
                     int recordNum = recordNumbers.get(record);
@@ -343,10 +337,6 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
         return recordList;
@@ -370,9 +360,7 @@ public class Database {
             while (rs.next()) {
 
                 byte[] routeBytes = rs.getBytes("routeObject");
-                ByteArrayInputStream baip = new ByteArrayInputStream(routeBytes);
-                ObjectInputStream ois = new ObjectInputStream(baip);
-                Route route = (Route) ois.readObject();
+                Route route = SerializationUtils.deserialize(routeBytes);
 
                 String record = route.getRecordName();
                 if (recordNumbers.get(record) != null) {
@@ -387,16 +375,12 @@ public class Database {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
         }
         return recordList;
     }
 
     /**
-     * Provides the user with a lsit of airlines within the current record that either arrive at or depart from through the specified airport
+     * Provides the user with a list of airlines within the current record that either arrive at or depart from through the specified airport
      * @param airport The airport that the user wants to know the airlines of
      * @return An arraylist containing the names of each of the airlines that use the airport
      */
@@ -469,6 +453,19 @@ public class Database {
         return records;
     }
 
+    public static void getAllEquipment() {
+        String select = "SELECT DISTINCT equipment FROM routes";
+
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(select)) {
+            while (rs.next()) {
+                System.out.println(rs.getString("equipment"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
     public static ArrayList<Double> getLatLong(Route route, String sourceOrDest) {
 
