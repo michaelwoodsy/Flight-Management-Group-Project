@@ -142,29 +142,16 @@ public class DatabaseTest {
 
     @Test
     public void removeAirportTest() {
-        Database.populateAirportTableColumns();
         Database.addNewAirport(testAirport1);
         Database.addNewAirport(testAirport2);
         Database.addNewAirport(testAirport3);
         Database.addNewAirport(testAirport4);
         Database.addNewAirport(testAirport5);
 
-        try {
-            //Remove Airline 2
-            Database.removeAirport("id", "101", "Test");
-            Database.removeAirport("airportName", "Test4", "Test");
-            Database.removeAirport("city", "Christchurch", "Test");
-            Database.removeAirport("city", "New Zealand", "Test");
-        } catch (NoSuchFieldException e) {
-            fail("Exception thrown when not appropriate");
-        }
-
-        try {
-            Database.removeAirport("Not an appropriate column", "Not an appropriate value", "Test");
-            fail("Exception not thrown with inappropriate data value");
-        } catch (NoSuchFieldException e) {
-            System.out.println(e.getMessage());
-        }
+        Database.removeData("id", "101", "Test");
+        Database.removeData("Test4", "Test");
+        Database.removeData("city", "Christchurch", "Test");
+        Database.removeData("city", "New Zealand", "Test");
 
         ArrayList<Airport> resultingAirports = Database.getAllAirports().get(0);
         assertTrue(resultingAirports.size() == 1);

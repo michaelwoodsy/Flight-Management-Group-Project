@@ -2,6 +2,7 @@ package project.model;
 
 import project.controller.Database;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Objects;
  * You can calculate the distance between two Airports and
  * from the covid statistics will set the airport's risk accordingly
  */
-public class Airport {
+public class Airport implements Serializable {
     private int id;
     private double risk;
     private String riskString;
