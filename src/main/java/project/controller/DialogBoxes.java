@@ -205,19 +205,16 @@ public class DialogBoxes {
     public static boolean confirmSync(String type, int numLines) {
 
         double syncTime = 0;
-        double timePerAirport = 77.4/8107;
-        double timePerRoute = 21.8/3000;
-        double timePerAirline = 49.3/6048;
 
         switch(type) {
             case "Airport":
-                syncTime = timePerAirport*numLines;
+                syncTime = (57.1/8107)*numLines;
                 break;
             case "Airline":
-                syncTime = timePerAirline*numLines;
+                syncTime = (45.3/6048)*numLines;
                 break;
             case "Route":
-                syncTime = timePerRoute*numLines;
+                syncTime = (21.8/3000)*numLines;
                 break;
         }
 
@@ -228,7 +225,7 @@ public class DialogBoxes {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make alert to stage so icon can be changed
         stage.getIcons().add(new Image("primaryStageIcon.png"));
         alert.showAndWait();
-        if (alert.getResult() == ButtonType.OK){
+        if (alert.getResult() == ButtonType.OK) {
             return true;
         } else {
             return false;
