@@ -2,6 +2,7 @@ package project.model;
 
 import project.controller.Database;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Objects;
  * You can calculate the distance between two Airports and
  * from the covid statistics will set the airport's risk accordingly
  */
-public class Airport {
+public class Airport implements Serializable {
     private int id;
     private double risk;
     private String riskString;
@@ -60,7 +61,7 @@ public class Airport {
         this.dst = dst;
         this.timezoneString = timezoneString;
         this.determineCovidRisk();
-        this.determineNumRoutes();
+        //this.determineNumRoutes();
     }
 
     /**
@@ -141,9 +142,8 @@ public class Airport {
     }
 
     public void determineNumRoutes() {
-        this.numRoutesSource = Database.getNumRoutes(this, "sourceID");
-        this.numRoutesDest = Database.getNumRoutes(this, "destID");
-        this.totalRoutes = this.numRoutesDest + this.numRoutesSource;
+        setNumRoutesDest();
+        setNumRoutesSource();
     }
 
     /**
@@ -177,17 +177,21 @@ public class Airport {
         return nameString + cityString + countryString;
     }
 
-    public void setNumRoutesSource() {
-        this.numRoutesSource = Database.getNumRoutes(this, "sourceID");
-        setTotalRoutes();
-    }
-
     public int getNumRoutesDest() {
         return numRoutesDest;
     }
 
     public void setNumRoutesDest() {
         this.numRoutesDest = Database.getNumRoutes(this, "destID");
+        setTotalRoutes();
+    }
+
+    public int getNumRoutesSource() {
+        return numRoutesSource;
+    }
+
+    public void setNumRoutesSource() {
+        this.numRoutesSource = Database.getNumRoutes(this, "sourceID");
         setTotalRoutes();
     }
 
@@ -287,22 +291,5 @@ public class Airport {
     public void setRecordName(String recordName) { this.recordName = recordName; }
 
     public String getRecordName() { return recordName; }
-
-    public int getNumRoutesSource() {
-        return numRoutesSource;
-    }
-
-    /**
-     * Create a string representation for the database
-     */
-    public String getDatabaseValues() {
-        String values = String.format("%d,%d,?,?,?,'%s','%s','%s','%s',%f,%f,%f,'%s'",
-                this.id, this.altitude, this.iata, this.icao,
-                this.dst, this.timezoneString, this.latitude,
-                this.longitude, this.timezone, this.recordName);
-        return values;
-
-    }
-
 
 }

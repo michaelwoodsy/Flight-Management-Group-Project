@@ -291,7 +291,6 @@ public class GUIController implements Initializable {
             currentRecord = new Record("Record 1");
             recordList.add(currentRecord);
         }
-        Database.populateTables();
 
         ArrayList<String> recordNames = new ArrayList<String>();
         for (Record record: recordList) {
@@ -738,6 +737,7 @@ public class GUIController implements Initializable {
                     boolean sync = DialogBoxes.confirmSync("Airport", newAirportList.size());
                     if (sync) {
                         for (Airport airport : newAirportList) {
+                            airport.determineNumRoutes();
                             Database.addNewAirport(airport);
                         }
                     }
@@ -1000,11 +1000,13 @@ public class GUIController implements Initializable {
                 risk = String.format("COVID risk level: %s (%.2f%%)", airport.getRiskString(), airport.getRisk());
             }
 
-            //INCLUDED WHEN NUMROUTES IMPLEMENTATION IS COMPLETE
-            String numRoutes = ("A total of " + airport.getTotalRoutes() + " flight routes go through this airport");
+            //Update the airports numRoutes, in case new rotes have been added
+            airport.setNumRoutesSource();
+            airport.setNumRoutesDest();
+            int totalRoutes = airport.getTotalRoutes();
+            String numRoutes = ("A total of " + totalRoutes + " flight routes go through this airport");
             //Displays a pop-up when an airport that gets clicked on has no routes
-            //Currently not active as each airport currently has 0 routes
-            if (airport.getTotalRoutes() < 1) {
+            if (totalRoutes < 1) {
                 DialogBoxes.noRoutes();
             }
 
@@ -1177,12 +1179,9 @@ public class GUIController implements Initializable {
     /**
      * Overlays a window over the airline tab in which the user can make their desired
      * changes to the selected airline.
-     *
-     * @param event The user selects an airline and then the modifyAirlineWindowButton.
-     * @throws IOException Signals that an I/O exception of some sort has occurred.
      */
     @FXML
-    public void modifyAirlineWindowButton(ActionEvent event) throws IOException {
+    public void modifyAirlineWindowButton() {
         Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
         airlineSplitPane.setVisible(false);
         airlineList.setVisible(false);
@@ -1199,20 +1198,14 @@ public class GUIController implements Initializable {
 
     /**
      * Permanently removes the selected airline from the airline database.
-     *
-     * @param event The user selects an airline and presses the deleteAirlineButton.
-     * @throws IOException Signals that an I/O exception of some sort has occurred.
      */
     @FXML
-    public void deleteAirlineButton(ActionEvent event) throws IOException {
+    public void deleteAirlineButton() {
         if (DialogBoxes.confirmationAlert("delete airline")) {
             Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
             currentRecord.removeAirlines(airline);
-            try {
-                Database.removeAirline("id", Integer.toString(airline.getId()), airline.getRecordName());
-            } catch (NoSuchFieldException e) {
-                System.out.println("WHoopes");
-            }
+            Database.removeData(airline.getId(), airline.getRecordName(), "airlines");
+
             modifyAirlinePane.setVisible(false);
             modifyAirlineWindowButton.setVisible(false);
             airlineSplitPane.setVisible(true);
@@ -1228,13 +1221,9 @@ public class GUIController implements Initializable {
      *
      * If they are not, the program will notify the user about which input(s) are invalid and need to
      * be changed.
-     *
-     * @param event The user has filled in the modifyAirline section with the changes they would like to
-     *              make and have pressed the modifyAirlineButton.
-     * @throws IOException Signals that an I/O exception of some sort has occurred.
      */
     @FXML
-    public void modifyAirlineButton(ActionEvent event) throws IOException {
+    public void modifyAirlineButton() {
         Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
         int airlineIndex = currentRecord.getAirlineList().indexOf(airline);
         currentRecord.removeAirlines(airline);
@@ -1274,12 +1263,9 @@ public class GUIController implements Initializable {
     /**
      * Overlays a window over the route tab in which the user can make their desired
      * changes to the selected route.
-     *
-     * @param event The user selects an route and then the modifyRouteWindowButton.
-     * @throws IOException Signals that an I/O exception of some sort has occurred.
      */
     @FXML
-    public void modifyRouteWindowButton(ActionEvent event) throws IOException {
+    public void modifyRouteWindowButton() {
         Route route = (Route) routeList.getSelectionModel().getSelectedItem();
         routeSplitPane.setVisible(false);
         routeList.setVisible(false);
@@ -1306,10 +1292,7 @@ public class GUIController implements Initializable {
         if (DialogBoxes.confirmationAlert("delete route")) {
             Route route = (Route) routeList.getSelectionModel().getSelectedItem();
             currentRecord.removeRoutes(route);
-            try {
-                Database.removeRoute("id", Integer.toString(route.getId()), route.getRecordName());
-            } catch (NoSuchFieldException e) {
-            }
+            Database.removeData(route.getId(), route.getRecordName(), "routes");
             modifyRoutePane.setVisible(false);
             modifyRouteWindowButton.setVisible(false);
             routeSplitPane.setVisible(true);
@@ -1437,8 +1420,7 @@ public class GUIController implements Initializable {
         if (DialogBoxes.confirmationAlert("delete airport")) {
             Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
             currentRecord.removeAirports(airport);
-            try { Database.removeAirport("id", Integer.toString(airport.getId()), airport.getRecordName());
-            } catch (NoSuchFieldException e) {System.out.println("Whoopsie"); System.out.println(e.getMessage());}
+            Database.removeData(airport.getId(), airport.getRecordName(), "airports");
             modifyAirportPane.setVisible(false);
             modifyAirportWindowButton.setVisible(false);
             airportSplitPane.setVisible(true);

@@ -208,23 +208,28 @@ public class DialogBoxes {
         double timePerAirport = 77.4/8107;
         double timePerRoute = 21.8/3000;
         double timePerAirline = 49.3/6048;
+        String additionalInfo = "\nPlease note: not synchronising %s cause %s airports to have a total of 0 routes " +
+                "through them. Synchronisation with the database cannot be performed after this step!";
 
         switch(type) {
             case "Airport":
                 syncTime = timePerAirport*numLines;
+                additionalInfo = String.format(additionalInfo, "airports will", "all");
                 break;
             case "Airline":
                 syncTime = timePerAirline*numLines;
+                additionalInfo = "\nPlease note: Synchronisation with the database cannot be performed after this step!";
                 break;
             case "Route":
                 syncTime = timePerRoute*numLines;
+                additionalInfo = String.format(additionalInfo, "these routes may", "some");
                 break;
         }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("CONFIRM DATABASE SYNC");
         alert.setHeaderText(null);
-        alert.setContentText(String.format("Synchronising this file (%d lines) with the database will take approximately %.2f seconds. Continue?", numLines, syncTime));
+        alert.setContentText(String.format("Synchronising this file (%d lines) with the database will take approximately %.2f seconds.%s\nContinue?", numLines, syncTime, additionalInfo));
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make alert to stage so icon can be changed
         stage.getIcons().add(new Image("primaryStageIcon.png"));
         alert.showAndWait();

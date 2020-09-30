@@ -1,69 +1,14 @@
 package project.controller;
 
+import org.apache.commons.lang3.SerializationUtils;
 import project.model.*;
 
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Database {
-
-    private static ArrayList<String> airportTableColumns = new ArrayList<String>();
-    private static ArrayList<String> airlineTableColumns = new ArrayList<String>();
-    private static ArrayList<String> routeTableColumns = new ArrayList<String>();
-
-    public static void populateAirportTableColumns() {
-        if (airportTableColumns.size() == 0) {
-            airportTableColumns.add("id");
-            airportTableColumns.add("altitude");
-            airportTableColumns.add("numRoutesSource");
-            airportTableColumns.add("numRoutesDest");
-            airportTableColumns.add("airportName");
-            airportTableColumns.add("city");
-            airportTableColumns.add("country");
-            airportTableColumns.add("iata");
-            airportTableColumns.add("icao");
-            airportTableColumns.add("dst");
-            airportTableColumns.add("timezoneString");
-            airportTableColumns.add("airportType");
-            airportTableColumns.add("airportSource");
-            airportTableColumns.add("latitude");
-            airportTableColumns.add("longitude");
-            airportTableColumns.add("timezone");
-            airportTableColumns.add("record");
-        }
-    }
-
-    public static void populateAirlineTableColumns() {
-        if (airlineTableColumns.size() == 0) {
-            airlineTableColumns.add("id");
-            airlineTableColumns.add("airlineName");
-            airlineTableColumns.add("country");
-            airlineTableColumns.add("alias");
-            airlineTableColumns.add("callsign");
-            airlineTableColumns.add("icao");
-            airlineTableColumns.add("iata");
-            airlineTableColumns.add("active");
-            airlineTableColumns.add("record");
-        }
-    }
-
-    public static void populateRouteTableColumns() {
-        if (routeTableColumns.size() == 0) {
-            routeTableColumns.add("id");
-            routeTableColumns.add("airlineId");
-            routeTableColumns.add("sourceID");
-            routeTableColumns.add("destID");
-            routeTableColumns.add("numStops");
-            routeTableColumns.add("airline");
-            routeTableColumns.add("sourceAirport");
-            routeTableColumns.add("destAirport");
-            routeTableColumns.add("equipment");
-            routeTableColumns.add("codeshare");
-            routeTableColumns.add("record");
-        }
-    }
-
 
     /**
      * Connects to the database stored in the resources folder
@@ -115,41 +60,34 @@ public class Database {
      */
     public static void addNewAirport(Airport airport) {
 
-        String insertStatement = String.format("INSERT INTO airports(id, altitude, " +
-                "airportName, city, country, iata, icao, dst, timezoneString, latitude, " +
-                "longitude, timezone, record) VALUES(%s)", airport.getDatabaseValues());
+        byte[] airportAsBytes = SerializationUtils.serialize(airport);
+
+        String insertStatement = "INSERT INTO airports(id, airportObject, latitude, " +
+                "longitude, record) VALUES(?,?,?,?,?)";
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
-            //Set the name, city, and country fields separately, to handle the presence of apostrophes.
-            pstmt.setString(1, airport.getName());
-            pstmt.setString(2, airport.getCity());
-            pstmt.setString(3, airport.getCountry());
+            pstmt.setInt(1, airport.getId());
+            pstmt.setBytes(2, airportAsBytes);
+            pstmt.setDouble(3, airport.getLatitude());
+            pstmt.setDouble(4, airport.getLongitude());
+            pstmt.setString(5, airport.getRecordName());
             pstmt.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(insertStatement);
             System.out.println(e.getMessage());
         }
     }
 
     public static void addNewAirline(Airline airline) {
 
-        String insertStatement = String.format("INSERT INTO airlines(id, airlineName, country, alias, callsign, icao, iata, " +
-                "active, record) VALUES(?,?,?,?,?,?,?,?,?)");
+        byte[] airlineAsBytes = SerializationUtils.serialize(airline);
+
+        String insertStatement = "INSERT INTO airlines(id, airlineName, airlineObject, record) VALUES(?,?,?,?)";
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
             pstmt.setInt(1, airline.getId());
             pstmt.setString(2, airline.getName());
-            pstmt.setString(3, airline.getCountry());
-            pstmt.setString(4, airline.getAlias());
-            pstmt.setString(5, airline.getCallSign());
-            pstmt.setString(6, airline.getIcao());
-            pstmt.setString(7, airline.getIata());
-            if (airline.isActive()) {
-                pstmt.setInt(8, 1);
-            } else {
-                pstmt.setInt(8, 0);
-            }
-            pstmt.setString(9, airline.getRecordName());
+            pstmt.setBytes(3, airlineAsBytes);
+            pstmt.setString(4, airline.getRecordName());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -157,49 +95,30 @@ public class Database {
     }
 
     public static void addNewRoute(Route route) {
-        String insertStatement = String.format("INSERT INTO routes(id, sourceID, destID, numStops, airline, sourceAirport, " +
-                "destAirport, equipment, codeshare, record, airlineId) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+
+        byte[] routeAsBytes = SerializationUtils.serialize(route);
+
+        String insertStatement = "INSERT INTO routes(id, airlineId, sourceID, destID, routeObject, record) VALUES(?,?,?,?,?,?)";
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
             pstmt.setInt(1, route.getId());
-            pstmt.setInt(2, route.getSourceID());
-            pstmt.setInt(3, route.getDestID());
-            pstmt.setInt(4, route.getNumStops());
-            pstmt.setString(5, route.getAirline());
-            pstmt.setString(6, route.getSourceAirport());
-            pstmt.setString(7, route.getDestAirport());
-            pstmt.setString(8, route.getEquipment());
-            if (route.isCodeshare()) {
-                pstmt.setInt(9, 1);
-            } else {
-                pstmt.setInt(9, 0);
-            }
-            pstmt.setString(10, route.getRecordName());
-            pstmt.setInt(11, route.getAirlineId());
+            pstmt.setInt(2, route.getAirlineId());
+            pstmt.setInt(3, route.getSourceID());
+            pstmt.setInt(4, route.getDestID());
+            pstmt.setBytes(5, routeAsBytes);
+            pstmt.setString(6, route.getRecordName());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    /**
-     * Removes an amount of airports from the database that match the provided criteria.
-     * @param column If a data point has 'value' in this column, it will be deleted.
-     * @param value If a data point has this value in 'column', it will be deleted.
-     */
-    public static void removeAirport(String column, String value, String record) throws NoSuchFieldException {
-
-        if (!airportTableColumns.contains(column)) {
-            throw new NoSuchFieldException("Provided column value is not a column in the airport table");
-        }
-
-        System.out.println(value);
-        System.out.println(record);
-        String deleteStatement = String.format("DELETE FROM airports WHERE %s = ? AND record = ?", column);
+    public static void removeData(int id, String record, String table) {
+        String deleteStatement = String.format("DELETE FROM %s WHERE id = ? AND record = ?", table);
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(deleteStatement)) {
-            pstmt.setString(1, value);
+            pstmt.setInt(1, id);
             pstmt.setString(2, record);
             pstmt.executeUpdate();
         } catch (SQLException e) {
@@ -207,55 +126,19 @@ public class Database {
         }
     }
 
-    public static void removeAirline(String column, String value, String record) throws NoSuchFieldException {
-        if (!airlineTableColumns.contains(column)) {
-            throw new NoSuchFieldException("Column name does not exist in the airline table.");
-        }
+    public static void updateRoute(Route route) {
 
-        String deleteStatement = String.format("DELETE FROM airlines WHERE %s = ?", column);
-
-        try (Connection conn = connect();
-            PreparedStatement pstmt = conn.prepareStatement(deleteStatement)) {
-            pstmt.setString(1, value);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-
-    }
-
-    public static void removeRoute(String column, String value, String record) throws NoSuchFieldException {
-        if (!routeTableColumns.contains(column)) {
-            throw new NoSuchFieldException("Column name does not exist in the routes table.");
-        }
-
-        System.out.println(record);
-        try (Connection conn = connect();
-             PreparedStatement pstmt = conn.prepareStatement(String.format("DELETE FROM routes WHERE %s = ? AND record = ?", column))) {
-            pstmt.setString(1, value);
-            pstmt.setString(2, record);
-            pstmt.executeUpdate();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public static void updateRoute(Route newRoute) {
-        int codeshare;
-        if (newRoute.isCodeshare()) {
-            codeshare = 1;
-        } else {
-            codeshare = 0;
-        }
-        String columnUpdates = String.format("airline = '%s', sourceAirport = '%s', sourceID = %d, destAirport = '%s', " +
-                "destID = '%s', numStops = %d, equipment = '%s', codeshare = %d", newRoute.getAirline(), newRoute.getSourceAirport(),
-        newRoute.getSourceID(), newRoute.getDestAirport(), newRoute.getDestID(), newRoute.getNumStops(), newRoute.getEquipment(), codeshare);
+        byte[] routeInBytes = SerializationUtils.serialize(route);
+        String columnUpdates = "airlineId = ?, sourceID = ?, destID = ?, routeObject = ?";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(String.format("UPDATE routes SET %s WHERE id = ? and record = ?", columnUpdates))) {
-            pstmt.setInt(1, newRoute.getId());
-            pstmt.setString(2, newRoute.getRecordName());
+            pstmt.setInt(1, route.getAirlineId());
+            pstmt.setInt(2, route.getSourceID());
+            pstmt.setInt(3, route.getDestID());
+            pstmt.setBytes(4, routeInBytes);
+            pstmt.setInt(5, route.getId());
+            pstmt.setString(6, route.getRecordName());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -263,26 +146,19 @@ public class Database {
     }
 
     public static void updateAirport(Airport airport) {
-        String columnUpdates = "airportName = ?,\ncity = ?,\ncountry = ?,\niata = ?,\nicao = ?,\nlatitude = ?,\n" +
-                        " longitude = ?,\naltitude = ?,\ntimezone = ?,\ndst = ?,\ntimezoneString = ?";
 
-        String pstmtString = String.format("UPDATE airports\nSET %s\nWHERE id = ? AND record = ?", columnUpdates);
+        byte[] airportInBytes = SerializationUtils.serialize(airport);
+        String columnUpdates = "airportObject = ?, latitude = ?, longitude = ?";
+
+        String pstmtString = String.format("UPDATE airports SET WHERE id = ? AND record = ?", columnUpdates);
         System.out.println(pstmtString);
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(pstmtString)) {
-            pstmt.setString(1, airport.getName());
-            pstmt.setString(2, airport.getCity());
-            pstmt.setString(3, airport.getCountry());
-            pstmt.setString(4, airport.getIata());
-            pstmt.setString(5, airport.getIcao());
-            pstmt.setDouble(6, airport.getLatitude());
-            pstmt.setDouble(7, airport.getLongitude());
-            pstmt.setInt(8, airport.getAltitude());
-            pstmt.setDouble(9, airport.getTimezone());
-            pstmt.setString(10, airport.getDst());
-            pstmt.setString(11, airport.getTimezoneString());
-            pstmt.setInt(12, airport.getId());
-            pstmt.setString(13, airport.getRecordName());
+            pstmt.setBytes(1, airportInBytes);
+            pstmt.setDouble(2, airport.getLatitude());
+            pstmt.setDouble(3, airport.getLongitude());
+            pstmt.setInt(4, airport.getId());
+            pstmt.setString(5, airport.getRecordName());
             System.out.println(pstmt.toString());
             pstmt.executeUpdate();
             System.out.println("Airport Updated");
@@ -292,25 +168,16 @@ public class Database {
     }
 
     public static void updateAirline(Airline airline) {
-        int active;
-        if (airline.isActive()) {
-            active = 1;
-        } else {
-            active = 0;
-        }
-        String columnUpdates = "airlineName = ?, active = ?, country = ?, alias = ?, callsign = ?, iata = ?, icao = ?";
+
+        byte[] airlineInBytes = SerializationUtils.serialize(airline);
+        String columnUpdates = "airlineName = ?, airlineObject = ?";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(String.format("UPDATE airlines SET %s WHERE id = ? AND record = ?;", columnUpdates))) {
             pstmt.setString(1, airline.getName());
-            pstmt.setInt(2, active);
-            pstmt.setString(3, airline.getCountry());
-            pstmt.setString(4, airline.getAlias());
-            pstmt.setString(5, airline.getCallSign());
-            pstmt.setString(6, airline.getIata());
-            pstmt.setString(7, airline.getIcao());
-            pstmt.setInt(8, airline.getId());
-            pstmt.setString(9, airline.getRecordName());
+            pstmt.setBytes(2, airlineInBytes);
+            pstmt.setInt(3, airline.getId());
+            pstmt.setString(4, airline.getRecordName());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -323,20 +190,10 @@ public class Database {
     public static void createAirportTable() {
         String sql = "CREATE TABLE IF NOT EXISTS airports (\n"
                 + " id integer NOT NULL,\n"
-                + " altitude integer,\n"
-                + " numRoutesSource integer,\n"
-                + " numRoutesDest integer,\n"
-                + " airportName text,\n"
-                + " city text,\n"
-                + " country text,\n"
-                + " iata text,\n"
-                + " icao text,\n"
-                + " dst text,\n"
-                + " timezoneString text,\n"
+                + " airportObject blob,\n"
                 + " latitude real,\n"
                 + " longitude real,\n"
-                + " timezone real,\n"
-                + " record integer NOT NULL,\n"
+                + " record text NOT NULL,\n"
                 + " PRIMARY KEY(id, record)\n"
                 + ");";
 
@@ -355,13 +212,8 @@ public class Database {
         String sql = "CREATE TABLE IF NOT EXISTS airlines (\n"
                 + " id integer NOT NULL,\n"
                 + " airlineName text,\n"
-                + " country text,\n"
-                + " alias text,\n"
-                + " callsign text,\n"
-                + " icao text,\n"
-                + " iata text,\n"
-                + " active integer,\n" //Boolean value, can only be either 1 or 0
-                + " record integer NOT NULL,\n"
+                + " airlineObject blob,\n"
+                + " record text NOT NULL,\n"
                 + " PRIMARY KEY(id, record)\n"
                 + ");";
 
@@ -378,17 +230,12 @@ public class Database {
      */
     public static void createRouteTable() {
         String sql = "CREATE TABLE IF NOT EXISTS routes (\n"
-                + "id integer NOT NULL,\n"
+                + " id integer NOT NULL,\n"
                 + " airlineId integer,\n"
                 + " sourceID integer,\n"
                 + " destID integer,\n"
-                + " numStops integer,\n"
-                + " airline text,\n"
-                + " sourceAirport text,\n"
-                + " destAirport text,\n"
-                + " equipment text,\n"
-                + " codeshare integer,\n" //Boolean value, can only be either 1 or 0
-                + " record integer NOT NULL,\n"
+                + " routeObject blob,\n"
+                + " record text NOT NULL,\n"
                 + " PRIMARY KEY(id, record)\n"
                 + ");";
 
@@ -432,9 +279,7 @@ public class Database {
      * @return airports - an ArrayList containing an object for each airport in the database
      */
     public static ArrayList<ArrayList<Airport>> getAllAirports() {
-        String query = "SELECT id, altitude, numRoutesSource, numRoutesDest, airportName, city, " +
-                "country, iata, icao, dst, timezoneString, latitude, longitude, " +
-                "timezone, record FROM airports";
+        String query = "SELECT airportObject FROM airports";
         HashMap<String, Integer> recordNumbers = new HashMap<>();
         ArrayList<ArrayList<Airport>> recordList = new ArrayList<>();
         int currentNumOfRecords = 0;
@@ -443,25 +288,26 @@ public class Database {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
-                Airport newAirport = new Airport(rs.getInt("id"),
-                        rs.getString("airportName"), rs.getString("city"), rs.getString("country"),
-                        rs.getString("iata"), rs.getString("icao"), rs.getDouble("latitude"),
-                        rs.getDouble("longitude"), rs.getInt("altitude"), rs.getDouble("timezone"),
-                        rs.getString("dst"), rs.getString("timezoneString"),
-                        rs.getInt("numRoutesSource"), rs.getInt("numRoutesDest"));
-                String record = rs.getString("record");
-                newAirport.setRecordName(record);
+                byte[] airportBytes = rs.getBytes("airportObject");
+                ByteArrayInputStream baip = new ByteArrayInputStream(airportBytes);
+                ObjectInputStream ois = new ObjectInputStream(baip);
+                Airport airport = (Airport) ois.readObject();
+                String record = airport.getRecordName();
                 if (recordNumbers.get(record) != null) {
                     int recordNum = recordNumbers.get(record);
-                    recordList.get(recordNum).add(newAirport);
+                    recordList.get(recordNum).add(airport);
                 } else {
                     recordList.add(new ArrayList<>());
-                    recordList.get(currentNumOfRecords).add(newAirport);
+                    recordList.get(currentNumOfRecords).add(airport);
                     recordNumbers.put(record, currentNumOfRecords);
                     currentNumOfRecords += 1;
                 }
             }
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
         return recordList;
@@ -472,7 +318,7 @@ public class Database {
      * @return airlines - an ArrayList containing each an object for each airline in the database
      */
     public static ArrayList<ArrayList<Airline>> getAllAirlines() {
-        String query = "SELECT id, airlineName, country, alias, callsign, icao, iata, active, record FROM airlines";
+        String query = "SELECT airlineObject FROM airlines";
         HashMap<String, Integer> recordNumbers = new HashMap<>();
         ArrayList<ArrayList<Airline>> recordList = new ArrayList<>();
         int currentRecordNum = 0;
@@ -481,26 +327,26 @@ public class Database {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
-                boolean active = false;
-                if (rs.getInt("active") == 1) {
-                    active = true;
-                }
-                Airline newAirline = new Airline(rs.getInt("id"), rs.getString("airlineName"), active,
-                        rs.getString("country"), rs.getString("alias"), rs.getString("callsign"),
-                        rs.getString("iata"), rs.getString("icao"));
-                String record = rs.getString("record");
-                newAirline.setRecordName(record);
+                byte[] airlineBytes = rs.getBytes("airlineObject");
+                ByteArrayInputStream baip = new ByteArrayInputStream(airlineBytes);
+                ObjectInputStream ois = new ObjectInputStream(baip);
+                Airline airline = (Airline) ois.readObject();
+                String record = airline.getRecordName();
                 if (recordNumbers.get(record) != null) {
                     int recordNum = recordNumbers.get(record);
-                    recordList.get(recordNum).add(newAirline);
+                    recordList.get(recordNum).add(airline);
                 } else {
                     recordList.add(new ArrayList<>());
-                    recordList.get(currentRecordNum).add(newAirline);
+                    recordList.get(currentRecordNum).add(airline);
                     recordNumbers.put(record, currentRecordNum);
                     currentRecordNum += 1;
                 }
             }
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
         return recordList;
@@ -511,8 +357,7 @@ public class Database {
      * @return routes - an ArrayList containing a route object for each route in the database
      */
     public static ArrayList<ArrayList<Route>> getAllRoutes() {
-        String query = "SELECT id, airlineID, sourceID, destID, numStops, airline, sourceAirport, destAirport, equipment, codeshare, " +
-                "record FROM routes";
+        String query = "SELECT routeObject FROM routes";
 
         HashMap<String, Integer> recordNumbers = new HashMap<>();
         ArrayList<ArrayList<Route>> recordList = new ArrayList<>();
@@ -523,28 +368,28 @@ public class Database {
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
-                boolean codeshare = false;
-                if (rs.getInt("codeshare") == 1) {
-                    codeshare = true;
-                }
-                Route newRoute = new Route(rs.getInt("id"), rs.getString("airline"), rs.getInt("airlineId"),
-                        rs.getString("sourceAirport"), rs.getInt("sourceID"), rs.getString("destAirport"),
-                        rs.getInt("destID"), rs.getInt("numStops"), rs.getString("equipment"),
-                        codeshare);
 
-                String record = rs.getString("record");
-                newRoute.setRecordName(record);
+                byte[] routeBytes = rs.getBytes("routeObject");
+                ByteArrayInputStream baip = new ByteArrayInputStream(routeBytes);
+                ObjectInputStream ois = new ObjectInputStream(baip);
+                Route route = (Route) ois.readObject();
+
+                String record = route.getRecordName();
                 if (recordNumbers.get(record) != null) {
                     int recordNum = recordNumbers.get(record);
-                    recordList.get(recordNum).add(newRoute);
+                    recordList.get(recordNum).add(route);
                 } else {
                     recordList.add(new ArrayList<>());
-                    recordList.get(currentRecordNum).add(newRoute);
+                    recordList.get(currentRecordNum).add(route);
                     recordNumbers.put(record, currentRecordNum);
                     currentRecordNum += 1;
                 }
             }
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
         return recordList;
@@ -625,25 +470,20 @@ public class Database {
     }
 
 
-    public static ArrayList<Double> getLatLong(String sourceIATA, String destIATA) {
-        String sourceSelect = String.format("SELECT latitude, longitude FROM airports WHERE iata = %s", sourceIATA);
-        String destSelect = String.format("SELECT latitude, longitude FROM airports WHERE iata = %s", destIATA);
+    public static ArrayList<Double> getLatLong(Route route, String sourceOrDest) {
+
+        String selectStatement = "SELECT latitude, longitude FROM airports WHERE id = %s";
+
+        if (sourceOrDest.equals("source")) {
+            selectStatement = String.format(selectStatement, route.getSourceID());
+        } else {
+            selectStatement = String.format(selectStatement, route.getDestID());
+        }
         ArrayList<Double> latsAndLongs = new ArrayList<>();
 
         try (Connection conn = connect();
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sourceSelect)) {
-            while (rs.next()) {
-                latsAndLongs.add(rs.getDouble("latitude"));
-                latsAndLongs.add(rs.getDouble("longitude"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-
-        try (Connection conn = connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(destSelect)) {
+             ResultSet rs = stmt.executeQuery(selectStatement)) {
             while (rs.next()) {
                 latsAndLongs.add(rs.getDouble("latitude"));
                 latsAndLongs.add(rs.getDouble("longitude"));
@@ -685,11 +525,5 @@ public class Database {
         createAirportTable();
         createAirlineTable();
         createRouteTable();
-    }
-
-    public static void populateTables() {
-        populateRouteTableColumns();
-        populateAirportTableColumns();
-        populateAirlineTableColumns();
     }
 }

@@ -143,8 +143,7 @@ public class RecordTest {
         ArrayList<Airport> testAirports = testRecord.getAirportList();
 
         for (Airport airport: testAirports) {
-            airport.setNumRoutesDest();
-            airport.setNumRoutesSource();
+            airport.getTotalRoutes();
         }
 
         List<Airport> rankedAirports = testRecord.rankAirports(false, testAirports);

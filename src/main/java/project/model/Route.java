@@ -1,12 +1,12 @@
 package project.model;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * This is a Class implements Route taken from Route.dat.
  */
-public class Route {
+public class Route implements Serializable {
     private int id;
     private String airline;
     private int airlineId;
