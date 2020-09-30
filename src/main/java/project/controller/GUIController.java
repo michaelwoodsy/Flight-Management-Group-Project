@@ -371,7 +371,6 @@ public class GUIController implements Initializable {
         String scriptToExecute = "clearMap();";
         this.mapEngine.executeScript(scriptToExecute);
 
-
         airports = new AirportLocations();
         airports.addAirports(currentRecord);
         displayAirport(airports);
@@ -379,6 +378,9 @@ public class GUIController implements Initializable {
 
     @FXML
     public void showMapRoutes() {
+        String scriptToExecute = "clearMap();";
+        this.mapEngine.executeScript(scriptToExecute);
+
         airports = new AirportLocations();
         airports.addAirports(currentRecord);
         plotRoute();
