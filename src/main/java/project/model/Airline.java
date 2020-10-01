@@ -1,11 +1,12 @@
 package project.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * This is a Class implements an Airline.
  */
-public class Airline {
+public class Airline implements Serializable {
     private int id;
     private String name;
     private boolean active;

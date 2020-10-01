@@ -14,7 +14,7 @@ the flight rather than a direct line connecting them
 //    var dest1 = [-43.4876, 172.5374]
 //    var dest2 = [-37.0082, 174.7850]
 //    var flightPlanCoordinates = [
-//            {lat: dest1[0], lng: dest1[1]}
+//            {lat: dest1[0], lng: dest1[1], title: "Test"}
 //        ];
 //
 
@@ -35,25 +35,6 @@ the flight rather than a direct line connecting them
         var infoWindow = new google.maps.InfoWindow();
         var latlngbounds = new google.maps.LatLngBounds();
 
-//        var myLatlng = {lat: -25.363, lng: 131.044};
-//
-//        var infoWindow = new google.maps.InfoWindow(
-//                    {content: 'Click the map to get Lat/Lng!', position: myLatlng});
-//                infoWindow.open(map);
-//
-//                // Configure the click listener.
-//                map.addListener('click', function(mapsMouseEvent) {
-//                  // Close the current InfoWindow.
-//                  infoWindow.close();
-//
-//                  // Create a new InfoWindow.
-//                  infoWindow = new google.maps.InfoWindow({position: mapsMouseEvent.latLng});
-//                  infoWindow.setContent(mapsMouseEvent.latLng.toString());
-//                  infoWindow.open(map);
-//          });
-
-
-//        drawRoute(flightPlanCoordinates);
 //         displayAirport(flightPlanCoordinates);
 
     }
@@ -63,25 +44,12 @@ the flight rather than a direct line connecting them
     }
 
     function displayAirport(flightPath) {
-
-        if (flightPath.length < 2) {
-            return;
-        }
-//        for (var i = 0; i < flightPath.length; i++) {
-//            var data = flightPath[i]
-//            var Latlng = new google.maps.LatLng(data.lat, data.lng);
-//            var marker = new google.maps.Marker({
-//                position: Latlng,
-//                map: map,
-//                title: data.title,
-//                icon: marker_icon
-//            });
-//        }
         var marker = null;
-        var markers = flightPath.map(function(location, i) {
+        var markers = flightPath.map(function(location) {
+            alert(location);
             marker = new google.maps.Marker({
             position: location,
-            title: "test",
+            title: location.title,
             icon: marker_icon
           });
           return marker;

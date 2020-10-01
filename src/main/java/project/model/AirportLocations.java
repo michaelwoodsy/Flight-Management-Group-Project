@@ -13,7 +13,7 @@ public class AirportLocations {
 
     public void addAirports(Record currentRecord) {
         for(Airport location:currentRecord.getAirportList()) {
-            this.routeLocations.add(new Position(location.getLatitude(), location.getLongitude()));
+            this.routeLocations.add(new Position(location.getLatitude(), location.getLongitude(), location.getName(), location.getIata()));
         }
     }
 
@@ -25,7 +25,7 @@ public class AirportLocations {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
         routeLocations.forEach(pos -> stringBuilder.append(
-                String.format("{lat: %f, lng: %f}, ", pos.lat, pos.lng)));
+                String.format("{lat: %f, lng: %f, title: (\"%s (%s)\") }, ", pos.lat, pos.lng, pos.name, pos.iata)));
         stringBuilder.append("]");
         return stringBuilder.toString();
     }

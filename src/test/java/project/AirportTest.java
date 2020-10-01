@@ -1,13 +1,7 @@
 package project;
 
-import org.junit.Before;
 import org.junit.Test;
 import project.model.Airport;
-import project.model.Covid;
-import project.model.Record;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;

@@ -78,18 +78,18 @@ public class RecordTest {
         testRouteList.add(testRoute6); testRoute6.setRecordName("Test");
 
         ArrayList<Airport> testAirportList = new ArrayList<>();
-        testAirportList.add(testAirport1);
-        testAirportList.add(testAirport2);
-        testAirportList.add(testAirport3);
-        testAirportList.add(testAirport4);
-        testAirportList.add(testAirport5);
+        testAirportList.add(testAirport1); testAirport1.setRecordName("Test");
+        testAirportList.add(testAirport2); testAirport2.setRecordName("Test");
+        testAirportList.add(testAirport3); testAirport3.setRecordName("Test");
+        testAirportList.add(testAirport4); testAirport4.setRecordName("Test");
+        testAirportList.add(testAirport5); testAirport5.setRecordName("Test");
 
         ArrayList<Airline> testAirlineList = new ArrayList<>();
-        testAirlineList.add(testAirline1);
-        testAirlineList.add(testAirline2);
-        testAirlineList.add(testAirline3);
-        testAirlineList.add(testAirline4);
-        testAirlineList.add(testAirline5);
+        testAirlineList.add(testAirline1); testAirline1.setRecordName("Test");
+        testAirlineList.add(testAirline2); testAirline2.setRecordName("Test");
+        testAirlineList.add(testAirline3); testAirline3.setRecordName("Test");
+        testAirlineList.add(testAirline4); testAirline4.setRecordName("Test");
+        testAirlineList.add(testAirline5); testAirline5.setRecordName("Test");
 
         testRecord = new Record(testFlightList, testRouteList, testAirportList, testAirlineList);
         addToDatabase();
