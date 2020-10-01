@@ -1,7 +1,7 @@
 //Embedded javascript for google maps API
     var map;
     var path;
-    var marker_icon = 'airportIcon.png';
+    var marker_icon = 'airporticon.png';
 
 /*
 For the line connecting the two airports, path co-ordinates are needed. If we have for information
