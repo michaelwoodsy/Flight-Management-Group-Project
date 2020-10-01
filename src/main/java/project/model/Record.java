@@ -106,6 +106,27 @@ public class Record {
         return rankedAirports;
     }
 
+    /**
+     * Finds airports where the value of the airport's IATA/ICAO code matches 'iata'
+     * @param iata The value of the airport's iata that we are searching for
+     * @return A list of airports which have a value of iata that matches the searched iata.
+     */
+    public List<Airport> searchAirportsMap(String iata) {
+        List<Airport> searchResult = new ArrayList<Airport>();
+        iata = iata.trim();
+        for (Airport airport: airportList) {
+            boolean airportMatches = false;
+            airportMatches = airport.getIata().toLowerCase().equals(iata.toLowerCase());
+            if (airportMatches) {
+                searchResult.add(airport);
+            }
+            airportMatches = airport.getIcao().toLowerCase().equals(iata.toLowerCase());
+            if (airportMatches) {
+                searchResult.add(airport);
+            }
+        }
+        return searchResult;
+    }
 
     /**
      * Finds airports where the value of the airport's 'attribute' matches 'keyword'

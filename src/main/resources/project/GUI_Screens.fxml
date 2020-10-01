@@ -61,7 +61,7 @@
                               <AnchorPane fx:id="airportDetailPane" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
                                     <ListView fx:id="airportDetailList" layoutX="-1.0" prefHeight="185.0" prefWidth="200.0" />
-                                    <Button fx:id="modifyAirportWindowButton" layoutX="73.0" layoutY="190.0" mnemonicParsing="false" onAction="#modifyAirportWindowButton" text="Modify" visible="false" />
+                                    <Button fx:id="modifyAirportWindowButton" layoutX="69.0" layoutY="190.0" mnemonicParsing="false" onAction="#modifyAirportWindowButton" text="MODIFY" visible="false" />
                                  </children>
                               </AnchorPane>
                            </items>
@@ -159,7 +159,7 @@
                               <AnchorPane fx:id="airlineDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
                                     <ListView fx:id="airlineDetailList" layoutX="-1.0" prefHeight="185.0" prefWidth="200.0" />
-                                    <Button fx:id="modifyAirlineWindowButton" layoutX="73.0" layoutY="190.0" mnemonicParsing="false" onAction="#modifyAirlineWindowButton" text="Modify" visible="false" />
+                                    <Button fx:id="modifyAirlineWindowButton" layoutX="69.0" layoutY="190.0" mnemonicParsing="false" onAction="#modifyAirlineWindowButton" text="MODIFY" visible="false" />
                                  </children>
                               </AnchorPane>
                            </items>
@@ -240,7 +240,8 @@
                               <AnchorPane fx:id="routeDetailPanel" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
                                     <ListView fx:id="routeDetailList" layoutX="-1.0" prefHeight="185.0" prefWidth="200.0" />
-                                    <Button fx:id="modifyRouteWindowButton" layoutX="73.0" layoutY="190.0" mnemonicParsing="false" onAction="#modifyRouteWindowButton" text="Modify" visible="false" />
+                                    <Button fx:id="modifyRouteWindowButton" layoutX="20.0" layoutY="190.0" mnemonicParsing="false" onAction="#modifyRouteWindowButton" text="MODIFY" visible="false" />
+                                    <Button layoutX="85.0" layoutY="190.0" mnemonicParsing="false" onAction="#showEquipment" text="SHOW PLANES" visible="false" />
                                  </children>
                               </AnchorPane>
                            </items>
@@ -339,11 +340,11 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <WebView fx:id="mapView" layoutX="15.0" layoutY="10.0" prefHeight="450.0" prefWidth="500.0" />
-                        <SplitPane fx:id="routeSplitPane2" dividerPositions="0.5" layoutX="536.0" layoutY="11.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="200.0">
+                        <SplitPane fx:id="routeSplitPane2" dividerPositions="0.5" layoutX="535.0" layoutY="10.0" orientation="VERTICAL" prefHeight="450.0" prefWidth="200.0">
                            <items>
                               <AnchorPane fx:id="routeSearchPanel2" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
-                                    <Text fill="WHITE" layoutX="8.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Filter Routes By:" />
+                                    <Text fill="WHITE" layoutX="8.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Show Routes By:" />
                                     <ChoiceBox fx:id="mapFilter" layoutX="5.0" layoutY="88.0" prefHeight="25.0" prefWidth="130.0" />
                                     <Button fx:id="showAllRoutes1" layoutX="55.0" layoutY="189.0" mnemonicParsing="false" onAction="#airportLoop" text="RELOAD MAP" />
                                     <TextField fx:id="mapSearchBox" layoutX="5.0" layoutY="113.0" prefHeight="25.0" prefWidth="130.0" />
@@ -356,12 +357,14 @@
                                           <Font size="9.0" />
                                        </font>
                                     </Text>
+                                    <TextField fx:id="airportInfoBox" layoutX="5.0" layoutY="157.0" prefHeight="25.0" prefWidth="130.0" />
+                                    <Button layoutX="134.0" layoutY="157.0" mnemonicParsing="false" onAction="#airportMapInfo" prefHeight="25.0" prefWidth="60.0" text="SHOW" />
+                                    <Text fill="WHITE" layoutX="8.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Display Airport Info:" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane fx:id="routeDetailPanel2" minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                  <children>
-                                    <ListView fx:id="routeDetailList1" layoutX="-1.0" prefHeight="185.0" prefWidth="200.0" />
-                                    <Button fx:id="modifyRouteWindowButton1" layoutX="73.0" layoutY="190.0" mnemonicParsing="false" onAction="#modifyRouteWindowButton" text="Modify" visible="false" />
+                                    <ListView fx:id="mapDetailList" layoutX="-1.0" prefHeight="185.0" prefWidth="200.0" />
                                  </children>
                               </AnchorPane>
                            </items>
@@ -428,7 +431,7 @@
                                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                              </padding>
                                           </GridPane>
-                                          <Button fx:id="addAirportButton" layoutX="503.0" layoutY="364.0" mnemonicParsing="false" onAction="#addAirportButton" text="Add to" />
+                                          <Button fx:id="addAirportButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addAirportButton" text="Add to" />
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -470,7 +473,7 @@
                                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                              </padding>
                                           </GridPane>
-                                          <Button fx:id="addAirlineButton" layoutX="503.0" layoutY="364.0" mnemonicParsing="false" onAction="#addAirlineButton" text="Add to" />
+                                          <Button fx:id="addAirlineButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addAirlineButton" text="Add to" />
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -510,7 +513,7 @@
                                                 <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
                                              </padding>
                                           </GridPane>
-                                          <Button fx:id="addRouteButton" layoutX="503.0" layoutY="364.0" mnemonicParsing="false" onAction="#addRouteButton" text="Add to" />
+                                          <Button fx:id="addRouteButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addRouteButton" text="Add to" />
                                           <Text fill="WHITE" layoutX="539.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: New Routes are invalid when added if there are no Airports or Airlines loaded or added into the record." wrappingWidth="139.69921875" />
                                        </children>
                                     </AnchorPane>
@@ -528,7 +531,7 @@
                                           <RadioButton fx:id="airlineRadioButton" layoutX="43.0" layoutY="73.0" mnemonicParsing="false" text="Airline" textFill="WHITE" toggleGroup="$selectFile" />
                                           <RadioButton fx:id="routeRadioButton" layoutX="43.0" layoutY="113.0" mnemonicParsing="false" text="Route" textFill="WHITE" toggleGroup="$selectFile" />
                                           <RadioButton fx:id="flightRadioButton" layoutX="43.0" layoutY="153.0" mnemonicParsing="false" text="Flight" textFill="WHITE" toggleGroup="$selectFile" />
-                                          <Button fx:id="addFileButton" layoutX="503.0" layoutY="364.0" mnemonicParsing="false" onAction="#addFileButton" text="Add to" />
+                                          <Button fx:id="addFileButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addFileButton" text="Add to" />
                                           <Text fill="WHITE" layoutX="179.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To add a new file:&#10;1. Select the type of file you would like to add.&#10;2. Select which record you would like to add the file to in the dropdown next to the &quot;Add to&quot; button. Select &quot;New Record&quot; if you would like to start a new record.&#10;3. Click the &quot;Add to&quot; button and find the file you would like to add in your file directory. Note the file must be a .dat or .csv file and be in the correct format.&#10;&#10;Please Note: Airports will only calculate the number of routes that pass through them, that were in the database at time of upload." wrappingWidth="393.79425048828125" />
                                        </children>
                                     </AnchorPane>
@@ -763,5 +766,6 @@
             <Image url="@../aiporticon.png" />
          </image>
       </ImageView>
+      <Accordion />
    </children>
 </AnchorPane>

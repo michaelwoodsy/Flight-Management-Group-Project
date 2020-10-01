@@ -249,6 +249,10 @@ public class GUIController implements Initializable {
     private ChoiceBox mapFilter;
     @FXML
     private TextField mapSearchBox;
+    @FXML
+    private TextField airportInfoBox;
+    @FXML
+    private ListView mapDetailList;
 
     private ArrayList<Record> recordList;
     private Record currentRecord;
@@ -409,6 +413,105 @@ public class GUIController implements Initializable {
             } catch (Exception IndexOutOfBoundsException){
                 continue;
             }
+        }
+    }
+
+    @FXML
+    public void showEquipment() {
+       // TODO;
+    }
+
+    @FXML
+    public void airportMapInfo() {
+        String searchCriteria = airportInfoBox.getText().toLowerCase();
+        if (!searchCriteria.isBlank()) {
+            List<Airport> matchingAirports = currentRecord.searchAirportsMap(searchCriteria.toLowerCase());
+            if (matchingAirports.size() == 0 || searchCriteria.equals("null") || searchCriteria.equals("unknown")) {
+
+                String entry_one = "No airport in the selected record";
+                String entry_two =  "matches this IATA code.";
+                String entry_three = "IATA codes for an airport can be";
+                String entry_four = "found by hovering over the";
+                String entry_five = " airport's icon on the map.";
+                String entry_six = "Note entered IATA codes must";
+                String entry_seven = "match exactly: Only one airport's";
+                String entry_eight = "information can be displayed at once.";
+
+                mapDetailList.setItems(observableArrayList(entry_one, entry_two, entry_three, entry_four, entry_five, entry_six, entry_seven, entry_eight));
+                DialogBoxes.noneReturned("airports");
+            } else {
+
+                Airport airport = matchingAirports.get(0);
+
+                String name = String.format("Name: %s", airport.getName());
+                String location = String.format("Location: %s, %s", airport.getCity(), airport.getCountry());
+
+                String risk;
+                if (airport.getRiskString() == null) {
+                    risk = "COVID risk level: Unknown (???%)";
+                } else {
+                    risk = String.format("COVID risk level: %s (%.2f%%)", airport.getRiskString(), airport.getRisk());
+                }
+
+                String iata = String.format("IATA code: %s", airport.getIata());
+                String icao = String.format("ICAO code: %s", airport.getIcao());
+
+                airport.determineNumRoutes();
+
+                String numRoutesSource = ("A total of " + airport.getNumRoutesSource() + " flight routes begin at this airport");
+                String numRoutesDest = ("A total of " + airport.getNumRoutesDest() + " flight routes are destined to this airport");
+
+                String timezoneNum;
+                if (airport.getTimezone() == 25) {
+                    timezoneNum = "Unknown";
+                } else {
+                    timezoneNum = Double.toString(airport.getTimezone());
+                    if (airport.getTimezone() > 0) {
+                        timezoneNum = "+" + timezoneNum;
+                    }
+                }
+
+                String timezone = String.format("Timezone: %s, %s hours", airport.getTimezoneString(), timezoneNum);
+
+                mapDetailList.setItems(observableArrayList(name, location, risk, iata, icao, numRoutesSource, numRoutesDest, timezone));
+                if (optedIn) {
+                    String lat;
+                    if (airport.getLatitude() == 360) {
+                        lat = ("Latitude: Unknown");
+                    } else {
+                        lat = ("Latitude: " + airport.getLatitude() + "°");
+                    }
+
+                    String lon;
+                    if (airport.getLongitude() == 360) {
+                        lon = ("Longitude: Unknown");
+                    } else {
+                        lon = ("Longitude: " + airport.getLongitude() + "°");
+                    }
+
+                    String alt;
+                    if (airport.getAltitude() == -1) {
+                        alt = ("Altitude: Unknown");
+                    } else {
+                        alt = ("Altitude: " + airport.getAltitude() + " ft");
+                    }
+
+                    mapDetailList.getItems().addAll(lat, lon, alt);
+                }
+            }
+        } else {
+            String entry_one = "Please enter an IATA code";
+            String entry_two =  "matching an airport in this record.";
+            String entry_three = "IATA codes for an airport can be";
+            String entry_four = "found by hovering over the";
+            String entry_five = " airport's icon on the map.";
+            String entry_six = "Note entered IATA codes must";
+            String entry_seven = " match exactly: Only one airport's";
+            String entry_eight = "information can be displayed at once.";
+
+            mapDetailList.setItems(observableArrayList(entry_one, entry_two, entry_three, entry_four, entry_five, entry_six, entry_seven, entry_eight));
+
+            DialogBoxes.blankTextField(false);
         }
     }
 
@@ -1066,10 +1169,9 @@ public class GUIController implements Initializable {
                 risk = String.format("COVID risk level: %s (%.2f%%)", airport.getRiskString(), airport.getRisk());
             }
 
-            //INCLUDED WHEN NUMROUTES IMPLEMENTATION IS COMPLETE
+            airport.determineNumRoutes();
             String numRoutes = ("A total of " + airport.getTotalRoutes() + " flight routes go through this airport");
-            //Displays a pop-up when an airport that gets clicked on has no routes
-            //Currently not active as each airport currently has 0 routes
+
             if (airport.getTotalRoutes() < 1) {
                 DialogBoxes.noRoutes();
             }
