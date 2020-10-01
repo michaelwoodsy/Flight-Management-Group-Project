@@ -98,7 +98,7 @@ public class Database {
 
         byte[] routeAsBytes = SerializationUtils.serialize(route);
 
-        String insertStatement = "INSERT INTO routes(id, airlineId, sourceID, destID, routeObject, equipment, record) VALUES(?,?,?,?,?,?,?)";
+        String insertStatement = "INSERT INTO routes(id, airlineId, sourceID, destID, routeObject, record) VALUES(?,?,?,?,?,?)";
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
             pstmt.setInt(1, route.getId());
@@ -106,8 +106,7 @@ public class Database {
             pstmt.setInt(3, route.getSourceID());
             pstmt.setInt(4, route.getDestID());
             pstmt.setBytes(5, routeAsBytes);
-            pstmt.setString(6, route.getEquipment());
-            pstmt.setString(7, route.getRecordName());
+            pstmt.setString(6, route.getRecordName());
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -236,7 +235,6 @@ public class Database {
                 + " sourceID integer,\n"
                 + " destID integer,\n"
                 + " routeObject blob,\n"
-                + " equipment text,\n"
                 + " record text NOT NULL,\n"
                 + " PRIMARY KEY(id, record)\n"
                 + ");";
@@ -451,20 +449,6 @@ public class Database {
         }
 
         return records;
-    }
-
-    public static void getAllEquipment() {
-        String select = "SELECT DISTINCT equipment FROM routes";
-
-        try (Connection conn = connect();
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(select)) {
-            while (rs.next()) {
-                System.out.println(rs.getString("equipment"));
-            }
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     public static ArrayList<Double> getLatLong(Route route, String sourceOrDest) {
