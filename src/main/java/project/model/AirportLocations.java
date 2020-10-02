@@ -12,6 +12,7 @@ public class AirportLocations {
     }
 
     public void addAirports(Record currentRecord) {
+        //loops through all airports, creates a position and adds to a list
         for(Airport location:currentRecord.getAirportList()) {
             this.routeLocations.add(new Position(location.getLatitude(), location.getLongitude(), location.getName(), location.getIata()));
         }
@@ -21,7 +22,7 @@ public class AirportLocations {
 
 
     public String toJSONArray() {
-        System.out.println("json");
+        //Used for putting each airport lat, lon, name, iata into a javascript array format, returns a string with javascript array formatted array
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("[");
         routeLocations.forEach(pos -> stringBuilder.append(

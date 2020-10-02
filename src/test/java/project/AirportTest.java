@@ -47,7 +47,7 @@ public class AirportTest {
         assertNotEquals(testAirport3.getRisk(), 0);
 
         assertEquals(0.03, testAirport1.getRisk(), 0);
-        assertEquals(2.02, testAirport2.getRisk(), 0);
+        assertEquals(2.19, testAirport2.getRisk(), 0);
         assertEquals(0.11, testAirport3.getRisk(), 0);
     }
 }
