@@ -1,6 +1,7 @@
 package project.model;
 
 import project.controller.Database;
+import project.controller.RetrieveFromDatabase;
 
 import java.io.Serializable;
 import java.util.Objects;
@@ -142,8 +143,8 @@ public class Airport implements Serializable {
     }
 
     public void determineNumRoutes() {
-        this.numRoutesSource = Database.getNumRoutes(this, "sourceID");
-        this.numRoutesDest = Database.getNumRoutes(this, "destID");
+        this.numRoutesSource = RetrieveFromDatabase.getNumRoutes(this, "sourceID");
+        this.numRoutesDest = RetrieveFromDatabase.getNumRoutes(this, "destID");
         this.totalRoutes = this.numRoutesDest + this.numRoutesSource;
     }
 
@@ -179,7 +180,7 @@ public class Airport implements Serializable {
     }
 
     public void setNumRoutesSource() {
-        this.numRoutesSource = Database.getNumRoutes(this, "sourceID");
+        this.numRoutesSource = RetrieveFromDatabase.getNumRoutes(this, "sourceID");
         setTotalRoutes();
     }
 
@@ -188,7 +189,7 @@ public class Airport implements Serializable {
     }
 
     public void setNumRoutesDest() {
-        this.numRoutesDest = Database.getNumRoutes(this, "destID");
+        this.numRoutesDest = RetrieveFromDatabase.getNumRoutes(this, "destID");
         setTotalRoutes();
     }
 

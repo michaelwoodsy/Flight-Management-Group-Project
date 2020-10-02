@@ -24,6 +24,17 @@ public class AirportLoader {
 
         int numUnknown = 0;
 
+        String type;
+        try {
+            type = airportData[12].replaceAll("\"", "").replace("\\\\", "");
+            if (!(type == "airport")) { //Data is not an airport - do not complete creation of airport
+                return null;
+            }
+        } catch (Exception e) {
+            return null;
+        }
+
+
         int id;
         try {
             id = Integer.parseInt(airportData[0]);
