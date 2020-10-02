@@ -1196,7 +1196,18 @@ public class GUIController implements Initializable {
             }
             lastSelectedAirport = airport;
 
-            airportDetailList.setItems(observableArrayList(name, location, risk, numRoutes, timezone, distanceString));
+            String airlinesUsing = "Airlines using this airport: ";
+            ArrayList<String> airlines = Database.getAirlinesThroughAirport(airport);
+            if (airlines.size() == 0) {
+                airlinesUsing += "None";
+            } else {
+                airlinesUsing += airlines.get(0);
+                for (int i=1; i < airlines.size(); i++) {
+                    airlinesUsing += (", " + airlines.get(i));
+                }
+            }
+
+            airportDetailList.setItems(observableArrayList(name, location, risk, numRoutes, timezone, distanceString, airlinesUsing));
             modifyAirportWindowButton.setVisible(true);
 
             if (optedIn) {
