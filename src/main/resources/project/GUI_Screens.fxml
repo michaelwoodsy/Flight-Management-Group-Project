@@ -533,6 +533,11 @@
                                           <RadioButton fx:id="flightRadioButton" layoutX="43.0" layoutY="153.0" mnemonicParsing="false" text="Flight" textFill="WHITE" toggleGroup="$selectFile" />
                                           <Button fx:id="addFileButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addFileButton" text="Add to" />
                                           <Text fill="WHITE" layoutX="179.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To add a new file:&#10;1. Select the type of file you would like to add.&#10;2. Select which record you would like to add the file to in the dropdown next to the &quot;Add to&quot; button. Select &quot;New Record&quot; if you would like to start a new record.&#10;3. Click the &quot;Add to&quot; button and find the file you would like to add in your file directory. Note the file must be a .dat or .csv file and be in the correct format.&#10;&#10;Please Note: Airports will only calculate the number of routes that pass through them, that were in the database at time of upload." wrappingWidth="393.79425048828125" />
+                                          <Text fill="WHITE" layoutX="515.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to only add one file at a time" wrappingWidth="184.29925537109375">
+                                             <font>
+                                                <Font size="10.0" />
+                                             </font>
+                                          </Text>
                                        </children>
                                     </AnchorPane>
                                  </content>
@@ -729,7 +734,7 @@
                                           <Text fill="WHITE" layoutX="424.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Data tab contains information of each downloaded" />
                                           <Text fill="WHITE" layoutX="426.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="data type used in the application, obtained from their" />
                                           <Text fill="WHITE" layoutX="426.0" layoutY="313.0" strokeType="OUTSIDE" strokeWidth="0.0" text="respective websites." />
-                                          <Pane layoutX="414.0" layoutY="329.0" prefHeight="69.0" prefWidth="298.0" style="-fx-background-color: #1b2336;">
+                                          <Pane layoutX="414.0" layoutY="329.0" prefHeight="69.0" prefWidth="298.0" style="-fx-background-color: #2c5c82; -fx-background-radius: 5 5 5 5; -fx-border-radius: 5 5 5 5;">
                                              <children>
                                                 <CheckBox fx:id="extraInfoBox" layoutX="47.0" layoutY="28.0" mnemonicParsing="false" onAction="#setOptedIn" prefHeight="40.0" prefWidth="204.0" text="Display Additional Information" textFill="WHITE" />
                                                 <Label alignment="CENTER" prefHeight="36.0" prefWidth="299.0" text="Flight Enthusiast Opt-In" textFill="WHITE">
