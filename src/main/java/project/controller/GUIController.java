@@ -351,7 +351,6 @@ public class GUIController implements Initializable {
         DialogBoxes.welcomeBox();
 
 
-
         helpDropdown.setItems(observableArrayList("Airport - ID", "Airport - Name", "Airport - City", "Airport - Country", "Airport - IATA Code", "Airport - ICAO Code", "Airport - Timezone", "Airport - Timezone Offset", "Airport - DST", "Airport - Latitude", "Airport - Longitude", "Airport - Altitude", "Airline - ID", "Airline - Name", "Airline - Alias", "Airline - Callsign", "Airline - Active", "Airline - IATA Code", "Airline - ICAO Code", "Airline - Country", "Route - Airline Code", "Route - Source Airport Code", "Route - Destination Airport Code", "Route - Equipment", "Route - Number of Stops", "Route - Codeshare"));
         helpDropdown.getSelectionModel().selectFirst();
         helpTextArea.setText("OpenFlights and PlaneSonar25's ID for the airport. Must be an integer.");
@@ -360,6 +359,7 @@ public class GUIController implements Initializable {
     }
 
     private void displayAirport(AirportLocations newAirportLocation) {
+        //executes displayAirport with the JS array of airport details
         String scriptToExecute = "displayAirport(" + newAirportLocation.toJSONArray() + ");";
         this.mapEngine.executeScript(scriptToExecute);
     }
@@ -371,6 +371,7 @@ public class GUIController implements Initializable {
 
     @FXML
     public void airportLoop() {
+        //clears map, then marks airports on map
         String scriptToExecute = "clearMap();";
         this.mapEngine.executeScript(scriptToExecute);
 
@@ -381,6 +382,7 @@ public class GUIController implements Initializable {
 
     @FXML
     public void showMapRoutes() {
+        //clears map then adds airports and selected routes
         String scriptToExecute = "clearMap();";
         this.mapEngine.executeScript(scriptToExecute);
 
@@ -1196,7 +1198,18 @@ public class GUIController implements Initializable {
             }
             lastSelectedAirport = airport;
 
-            airportDetailList.setItems(observableArrayList(name, location, risk, numRoutes, timezone, distanceString));
+            String airlinesUsing = "Airlines using this airport: ";
+            ArrayList<String> airlines = Database.getAirlinesThroughAirport(airport);
+            if (airlines.size() == 0) {
+                airlinesUsing += "None";
+            } else {
+                airlinesUsing += airlines.get(0);
+                for (int i=1; i < airlines.size(); i++) {
+                    airlinesUsing += (", " + airlines.get(i));
+                }
+            }
+
+            airportDetailList.setItems(observableArrayList(name, location, risk, numRoutes, timezone, distanceString, airlinesUsing));
             modifyAirportWindowButton.setVisible(true);
 
             if (optedIn) {

@@ -130,7 +130,7 @@ public class DialogBoxes {
         alert.setHeaderText("ERRORS WITH DATA");
         alert.setTitle("Adding Status");
 
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make aler to stage so icon can be changed
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow(); //make alert to stage so icon can be changed
         stage.getIcons().add(new Image("primaryStageIcon.png"));
 
         alert.showAndWait();
@@ -171,6 +171,7 @@ public class DialogBoxes {
     // Unused because we don't currently have the means to add routes to airports. Will be added in phase 3.
     public static void noRoutes() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         String bodyText = "The airport you have selected does not have any flights either in or out of it.\nHave you considered adding some?";
         alert.setContentText(bodyText);
         alert.setHeaderText(null);
