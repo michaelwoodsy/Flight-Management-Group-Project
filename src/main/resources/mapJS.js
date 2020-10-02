@@ -22,8 +22,8 @@ the flight rather than a direct line connecting them
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
 
-            center: new google.maps.LatLng(-41.2985, 173.2441),
-            zoom: 5.1,
+            center: new google.maps.LatLng(15.0000, 156.681448),
+            zoom: 1,
             zoomControl: false,
             mapTypeControl: false,
             scaleControl: false,
