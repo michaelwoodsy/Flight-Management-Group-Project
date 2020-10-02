@@ -743,6 +743,49 @@
                                     </AnchorPane>
                               </content>
                             </Tab>
+                              <Tab text="Page 3">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <Text fill="WHITE" layoutX="3.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Map Viewer" underline="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Map tab contains a map viewer of the world via the Google Maps" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="API. As PlaneSonar25 is a developmental application, the map is" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="watermarked with &quot;For development purposes only&quot;. The map exists " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clicking the Reload Map button will place airport markers from the " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Furthermore, route paths can be shown by specifying in the display " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="After selecting either Airport Code or Equipment Code in the drop " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Airport Code must be an IATA code. These can be found either by " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment codes can be found for specific routes by selecting them " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="There is also an additional table on the map tab much like the " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="more as a proof of concept as to how we might visualise flight data in " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="a commercial version of PlaneSonar25, as currently it costs a large sum " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="of money to use the maps API without the watermarks." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="currently selected record onto the map, based on their latitudes and " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="longitudes. These markers are grouped to prevent map clutter." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="on the right side of the map the selected filter and code." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="down, and entering the chosen value, clicking the show button to the " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="right of the two boxes will display the routes on the map." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hovering over airport markers on the map, or by selecting an airport " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="in the airport table viewer. This is because route source and airport " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="attributes use the IATA codes of their respective airports." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="in the route table viewer after checking the opt-in checkbox." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="information tables in the data tabs. This serves to provide " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="information of the entered airport alongside the map view. Note the " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="entered value in the textbox must be an exact IATA code of the " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="record. Help will be displayed if information is entered wrongly." />
+                                          <Text fill="WHITE" layoutX="414.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Database and Persistent Storage" underline="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
                           </tabs>
                         </TabPane>
                      </children>

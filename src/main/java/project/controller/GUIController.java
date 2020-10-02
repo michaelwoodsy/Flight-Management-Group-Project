@@ -1734,11 +1734,11 @@ public class GUIController implements Initializable {
         } else if (helpDropdown.getValue() == "Airline - Country") {
             helpTextArea.setText("The name of the country of origin of the airline.");
         } else if (helpDropdown.getValue() == "Route - Airline Code") {
-            helpTextArea.setText("2 letter IATA or 3 Letter ICAO code of the airline operating the flight route.");
+            helpTextArea.setText("2 letter IATA of the airline operating the flight route.");
         } else if (helpDropdown.getValue() == "Route - Source Airport Code") {
-            helpTextArea.setText("3 letter IATA or 4 Letter ICAO code of the source airport of the route.");
+            helpTextArea.setText("3 letter IATA of the source airport of the route.");
         } else if (helpDropdown.getValue() == "Route - Destination Airport Code") {
-            helpTextArea.setText("3 letter IATA or 4 Letter ICAO code of the destination airport of the route.");
+            helpTextArea.setText("3 letter IATA of the destination airport of the route.");
         } else if (helpDropdown.getValue() == "Route - Equipment") {
             helpTextArea.setText("3 letter code(s) of plane types used on the route.");
         } else if (helpDropdown.getValue() == "Route - Number of Stops") {
