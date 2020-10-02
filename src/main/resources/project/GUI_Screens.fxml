@@ -763,7 +763,7 @@
       <Accordion />
       <ImageView fitHeight="38.0" fitWidth="44.0" layoutX="284.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../aiporticon.png" />
+            <Image url="@../LogoIcon.png" />
          </image>
       </ImageView>
       <Accordion />

@@ -1,7 +1,7 @@
 package project.model;
 
 public class Position {
-//    from the Git lab, google maps
+//  Used for getting airport info for plotting on map in the JS file
     public double lat;
     public double lng;
     public String name;

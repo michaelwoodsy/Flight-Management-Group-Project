@@ -3,25 +3,9 @@
     var path;
     var marker_icon = 'airporticon.png';
 
-/*
-For the line connecting the two airports, path co-ordinates are needed. If we have for information
-about the path of the flight, we can input the long and lat data into flightPlanCoordinates to show the curve of
-the flight rather than a direct line connecting them
-*/
-
-
-//// lat and long for source and dest go in here
-//    var dest1 = [-43.4876, 172.5374]
-//    var dest2 = [-37.0082, 174.7850]
-//    var flightPlanCoordinates = [
-//            {lat: dest1[0], lng: dest1[1], title: "Test"}
-//        ];
-//
-
-
     function initMap() {
+    //basic map set-up, disabling some map features and setting default map position
         map = new google.maps.Map(document.getElementById('map'), {
-
             center: new google.maps.LatLng(15.0000, 156.681448),
             zoom: 1,
             zoomControl: false,
@@ -34,16 +18,15 @@ the flight rather than a direct line connecting them
 
         var infoWindow = new google.maps.InfoWindow();
         var latlngbounds = new google.maps.LatLngBounds();
-
-//         displayAirport(flightPlanCoordinates);
-
     }
 
     function clearMap() {
+    //re-initialise map
       initMap();
     }
 
     function displayAirport(flightPath) {
+    //places a marker on map, based on airport lat and long.
         var marker = null;
         var markers = flightPath.map(function(location) {
             alert(location);
@@ -55,12 +38,13 @@ the flight rather than a direct line connecting them
           return marker;
         });
 
-        // Add a marker clusterer to manage the markers.
+        // Add a marker clustering to avoid overcrowding map.
         var markerCluster = new MarkerClusterer(map, markers,
             {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
     }
 
     function drawRoute(flightCoordinates) {
+    //draws a line connecting dest and source airport
         const routeCoords = new google.maps.Polyline({
             path: flightCoordinates,
             geodesic: true,
