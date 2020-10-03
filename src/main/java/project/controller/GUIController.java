@@ -268,7 +268,7 @@ public class GUIController implements Initializable {
     private List<Airline> defaultAirlineList = new ArrayList<>();
     private List<Route> defaultRouteList = new ArrayList<>();
     private Airport lastSelectedAirport = null;
-
+    private ArrayList<String> recordNames = new ArrayList<String>();
 
     private WebEngine mapEngine;
 
@@ -302,9 +302,7 @@ public class GUIController implements Initializable {
             recordList.add(currentRecord);
         }
 
-        ArrayList<String> recordNames = new ArrayList<String>();
         for (Record record: recordList) {
-            System.out.println(record.getName());
             recordNames.add(record.getName());
         }
 
@@ -830,7 +828,18 @@ public class GUIController implements Initializable {
     public void addFileHelper() {
 
         if (recordDropdown.getValue() == "New Record") {
-            Record record = new Record("Record " + (recordList.size() + 1));
+            String newRecordName = "Record " + (recordList.size() + 1);
+            if (recordNames.contains(newRecordName)) {
+                //There is a record somewhere prior to this number that is unused - try and find it
+                for (int i = 1; i <= recordList.size(); i++) {
+                    newRecordName = "Record " + i;
+                    if (!recordNames.contains(newRecordName)) {
+                        break;
+                    }
+                }
+            }
+
+            Record record = new Record(newRecordName);
             recordList.add(record);
             currentRecord = record;
 
