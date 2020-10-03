@@ -241,7 +241,9 @@
                                  <children>
                                     <ListView fx:id="routeDetailList" layoutX="-1.0" prefHeight="185.0" prefWidth="200.0" />
                                     <Button fx:id="modifyRouteWindowButton" layoutX="20.0" layoutY="190.0" mnemonicParsing="false" onAction="#modifyRouteWindowButton" text="MODIFY" visible="false" />
-                                    <Button layoutX="85.0" layoutY="190.0" mnemonicParsing="false" onAction="#showEquipment" text="SHOW PLANES" visible="false" />
+                                    <Button fx:id="showPlaneButton" layoutX="85.0" layoutY="190.0" mnemonicParsing="false" onAction="#showEquipment" text="SHOW PLANE" visible="false" />
+                                    <ImageView fx:id="planeImage" fitHeight="135.0" fitWidth="200.0" layoutX="-1.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                                    <Button fx:id="hidePlaneButton" layoutX="85.0" layoutY="190.0" mnemonicParsing="false" onAction="#hideEquipment" prefHeight="25.0" prefWidth="90.0" text="HIDE PLANE" visible="false" />
                                  </children>
                               </AnchorPane>
                            </items>
@@ -691,7 +693,7 @@
                                              </font>
                                           </Text>
                                           <Text fill="WHITE" layoutX="13.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A record will store data of all types loaded into it." />
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When adding or loading data, You may choose to add data into a" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When adding or loading data, you may choose to add data into a" />
                                           <Text fill="WHITE" layoutX="13.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="particular existing record, or add it into a new one." />
                                           <Text fill="WHITE" layoutX="13.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Switching between records will change the data you can see based on" />
                                           <Text fill="WHITE" layoutX="13.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the data you've loaded into the selected record." />
@@ -811,11 +813,11 @@
                                              </font>
                                           </Text>
                                           <Text fill="WHITE" layoutX="424.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When selecting a route in the table viewer of the Route " />
-                                          <Text fill="WHITE" layoutX="424.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tab, next to the modify button is the 'Show Equipment' " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tab, next to the modify button is the 'Show Plane' " />
                                           <Text fill="WHITE" layoutX="424.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="button. Clicking this will display an image of the type of " />
                                           <Text fill="WHITE" layoutX="424.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="plane that flies that route, based on its equipment code, " />
                                           <Text fill="WHITE" layoutX="423.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="in the information table. This can be hidden again by" />
-                                          <Text fill="WHITE" layoutX="424.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="clicking the 'Hide Equipment' button." />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="clicking the 'Hide Plane' button." />
                                           <Text fill="WHITE" layoutX="3.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: Due to the long process of referencing plane images, only a few common equipment images can be shown. This is set to change in future versions of PlaneSonar25. ">
                                              <font>
                                                 <Font size="9.5" />

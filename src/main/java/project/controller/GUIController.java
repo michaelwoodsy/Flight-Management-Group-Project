@@ -3,12 +3,15 @@ package project.controller;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.image.Image;
+
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
@@ -28,6 +31,7 @@ import java.util.List;
 
 import org.json.simple.JSONArray;
 
+import javax.imageio.ImageIO;
 import javax.naming.Binding;
 
 import static javafx.collections.FXCollections.observableArrayList;
@@ -253,6 +257,12 @@ public class GUIController implements Initializable {
     private TextField airportInfoBox;
     @FXML
     private ListView mapDetailList;
+    @FXML
+    private ImageView planeImage;
+    @FXML
+    private Button showPlaneButton;
+    @FXML
+    private Button hidePlaneButton;
 
     private ArrayList<Record> recordList;
     private Record currentRecord;
@@ -419,8 +429,42 @@ public class GUIController implements Initializable {
     }
 
     @FXML
-    public void showEquipment() {
-       // TODO;
+    public void showEquipment() throws IOException {
+
+        Route route = (Route) routeList.getSelectionModel().getSelectedItem();
+
+        if (route != null && (route.getEquipment().contains("76") || route.getEquipment().contains("77")) ) {
+
+            if (route.getEquipment().contains("76")) {
+
+                File file = new File("planes/76.jpg");
+                Image image = new Image(file.toURI().toString());
+                planeImage.setImage(image);
+                routeDetailList.setItems(observableArrayList("Showing plane for equipment code:", route.getEquipment()));
+            } else if (route.getEquipment().contains("77")) {
+                File file = new File("planes/77.jpg");
+                Image image = new Image(file.toURI().toString());
+                planeImage.setImage(image);
+                routeDetailList.setItems(observableArrayList("Showing plane for equipment code:", route.getEquipment()));
+            }
+            planeImage.setVisible(true);
+        } else {
+            planeImage.setVisible(false);
+            routeDetailList.setItems(observableArrayList("No image in our files matches", "the equipment code for:", route.getEquipment()));
+
+        }
+
+        showPlaneButton.setVisible(false);
+        hidePlaneButton.setVisible(true);
+    }
+
+    @FXML
+    public void hideEquipment() {
+
+        additionalRouteInfo();
+        planeImage.setVisible(false);
+        showPlaneButton.setVisible(true);
+        hidePlaneButton.setVisible(false);
     }
 
     @FXML
@@ -1306,6 +1350,9 @@ public class GUIController implements Initializable {
 
             routeDetailList.setItems(observableArrayList(airline, numStops, sourceAirport, destAirport));
             modifyRouteWindowButton.setVisible(true);
+            showPlaneButton.setVisible(true);
+            hidePlaneButton.setVisible(false);
+            planeImage.setVisible(false);
 
             if (optedIn) {
 
@@ -1486,10 +1533,15 @@ public class GUIController implements Initializable {
             ManipulateDatabase.removeData(route.getId(), route.getRecordName(), "routes");
             modifyRoutePane.setVisible(false);
             modifyRouteWindowButton.setVisible(false);
+            planeImage.setVisible(false);
+            hidePlaneButton.setVisible(false);
+            showPlaneButton.setVisible(false);
             routeSplitPane.setVisible(true);
             routeList.setVisible(true);
             displayAllRoutes();
             additionalRouteInfo();
+            routeDetailList.setItems(observableArrayList());
+
         }
     }
 
@@ -1565,9 +1617,14 @@ public class GUIController implements Initializable {
             currentRecord.modifyRoute(route, newRoute);
             modifyRoutePane.setVisible(false);
             modifyRouteWindowButton.setVisible(false);
+            showPlaneButton.setVisible(false);
+            hidePlaneButton.setVisible(false);
+            planeImage.setVisible(false);
             routeSplitPane.setVisible(true);
             routeList.setVisible(true);
             displayAllRoutes();
+            routeDetailList.setItems(observableArrayList());
+
         } else {
             DialogBoxes.newDataError(errors);
         }
