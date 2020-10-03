@@ -1,6 +1,7 @@
 package project.model;
 
 import project.controller.Database;
+import project.controller.ManipulateDatabase;
 
 import java.io.*;
 import java.util.*;
@@ -386,7 +387,7 @@ public class Record {
      */
     public void modifyAirport(int airportIndex, Airport newAirport) {
         this.airportList.add(airportIndex, newAirport);
-        Database.updateAirport(newAirport);
+        ManipulateDatabase.updateAirport(newAirport);
     }
 
     /**
@@ -397,7 +398,7 @@ public class Record {
      */
     public void modifyAirline(int airlineIndex, Airline newAirline) {
         this.airlineList.add(airlineIndex, newAirline);
-        Database.updateAirline(newAirline);
+        ManipulateDatabase.updateAirline(newAirline);
     }
 
     /**
@@ -409,7 +410,7 @@ public class Record {
     public void modifyRoute(Route oldRoute, Route newRoute) {
         if (this.routeList.contains(oldRoute)) {
             this.routeList.set(routeList.indexOf(oldRoute), newRoute);
-            Database.updateRoute(newRoute);
+            ManipulateDatabase.updateRoute(newRoute);
         }
     }
 

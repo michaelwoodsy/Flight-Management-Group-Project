@@ -2,7 +2,9 @@ package project;
 
 import org.junit.Before;
 import org.junit.Test;
+import project.controller.CreateDatabase;
 import project.controller.Database;
+import project.controller.ManipulateDatabase;
 import project.model.*;
 
 import java.io.IOException;
@@ -39,25 +41,25 @@ public class RecordTest {
     private Record testRecord;
 
     public void addToDatabase() {
-        Database.addNewAirport(testAirport1);
-        Database.addNewAirport(testAirport2);
-        Database.addNewAirport(testAirport3);
-        Database.addNewAirport(testAirport4);
-        Database.addNewAirport(testAirport5);
-        Database.addNewRoute(testRoute1);
-        Database.addNewRoute(testRoute2);
-        Database.addNewRoute(testRoute3);
-        Database.addNewRoute(testRoute4);
-        Database.addNewRoute(testRoute5);
-        Database.addNewRoute(testRoute6);
+        ManipulateDatabase.addNewAirport(testAirport1);
+        ManipulateDatabase.addNewAirport(testAirport2);
+        ManipulateDatabase.addNewAirport(testAirport3);
+        ManipulateDatabase.addNewAirport(testAirport4);
+        ManipulateDatabase.addNewAirport(testAirport5);
+        ManipulateDatabase.addNewRoute(testRoute1);
+        ManipulateDatabase.addNewRoute(testRoute2);
+        ManipulateDatabase.addNewRoute(testRoute3);
+        ManipulateDatabase.addNewRoute(testRoute4);
+        ManipulateDatabase.addNewRoute(testRoute5);
+        ManipulateDatabase.addNewRoute(testRoute6);
     }
 
 
     @Before
     public void setUp() throws IOException {
 
-        Database.clearDatabase();
-        Database.setupDatabase();
+        ManipulateDatabase.clearDatabase();
+        CreateDatabase.setupDatabase();
 
         Flight testFlight1 = flightLoad.loadFlightFile("data/flight.csv");
         Flight testFlight2 = flightLoad.loadFlightFile("data/flighttest.csv");

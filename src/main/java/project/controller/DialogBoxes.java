@@ -240,7 +240,7 @@ public class DialogBoxes {
         String headerText = String.format("Planes using Airport #%d: %s", airport.getId(), airport.getName());
         alert.setTitle(null);
 
-        ArrayList<String> airlines = Database.getAirlinesThroughAirport(airport);
+        ArrayList<String> airlines = RetrieveFromDatabase.getAirlinesThroughAirport(airport);
 
         String bodyText = airlines.get(0);
 

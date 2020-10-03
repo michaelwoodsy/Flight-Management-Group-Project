@@ -294,7 +294,7 @@ public class GUIController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
 
         //recordList = new ArrayList<Record>();
-        recordList = Database.generateRecord();
+        recordList = RetrieveFromDatabase.generateRecord();
         if (recordList.size() > 0) {
             currentRecord = recordList.get(0);
         } else {
@@ -407,8 +407,8 @@ public class GUIController implements Initializable {
         }
 
         for(Route routePlot: filteredRoutes) {
-            ArrayList<Double> sourcePoints = Database.getLatLong(routePlot, "sourceID");
-            ArrayList<Double> destPoints = Database.getLatLong(routePlot, "destID");
+            ArrayList<Double> sourcePoints = RetrieveFromDatabase.getLatLong(routePlot, "sourceID");
+            ArrayList<Double> destPoints = RetrieveFromDatabase.getLatLong(routePlot, "destID");
             try {
                 String scriptToExecute = "drawRoute(" + "[{ lat: " + sourcePoints.get(0) + ", lng: " + sourcePoints.get(1) + " },{ lat: " + destPoints.get(0) + ", lng: " + destPoints.get(1) + " },]" + ");";
                 this.mapEngine.executeScript(scriptToExecute);
@@ -910,7 +910,7 @@ public class GUIController implements Initializable {
                     boolean sync = DialogBoxes.confirmSync("Airport", newAirportList.size());
                     if (sync) {
                         for (Airport airport : newAirportList) {
-                            Database.addNewAirport(airport);
+                            ManipulateDatabase.addNewAirport(airport);
                         }
                     }
                     hideAllTables();
@@ -931,7 +931,7 @@ public class GUIController implements Initializable {
                     boolean sync = DialogBoxes.confirmSync("Airline", newAirlineList.size());
                     if (sync) {
                         for (Airline airline : newAirlineList) {
-                            Database.addNewAirline(airline);
+                            ManipulateDatabase.addNewAirline(airline);
                         }
                     }
                     hideAllTables();
@@ -949,7 +949,7 @@ public class GUIController implements Initializable {
                     boolean sync = DialogBoxes.confirmSync("Route", newRouteList.size());
                     if (sync) {
                         for (Route route : newRouteList) {
-                            Database.addNewRoute(route);
+                            ManipulateDatabase.addNewRoute(route);
                         }
                     }
                     hideAllTables();
@@ -1199,7 +1199,7 @@ public class GUIController implements Initializable {
             lastSelectedAirport = airport;
 
             String airlinesUsing = "Airlines using this airport: ";
-            ArrayList<String> airlines = Database.getAirlinesThroughAirport(airport);
+            ArrayList<String> airlines = RetrieveFromDatabase.getAirlinesThroughAirport(airport);
             if (airlines.size() == 0) {
                 airlinesUsing += "None";
             } else {
@@ -1389,7 +1389,7 @@ public class GUIController implements Initializable {
         if (DialogBoxes.confirmationAlert("delete airline")) {
             Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
             currentRecord.removeAirlines(airline);
-            Database.removeData(airline.getId(), airline.getRecordName(), "airlines");
+            ManipulateDatabase.removeData(airline.getId(), airline.getRecordName(), "airlines");
             modifyAirlinePane.setVisible(false);
             modifyAirlineWindowButton.setVisible(false);
             airlineSplitPane.setVisible(true);
@@ -1483,7 +1483,7 @@ public class GUIController implements Initializable {
         if (DialogBoxes.confirmationAlert("delete route")) {
             Route route = (Route) routeList.getSelectionModel().getSelectedItem();
             currentRecord.removeRoutes(route);
-            Database.removeData(route.getId(), route.getRecordName(), "routes");
+            ManipulateDatabase.removeData(route.getId(), route.getRecordName(), "routes");
             modifyRoutePane.setVisible(false);
             modifyRouteWindowButton.setVisible(false);
             routeSplitPane.setVisible(true);
@@ -1611,7 +1611,7 @@ public class GUIController implements Initializable {
         if (DialogBoxes.confirmationAlert("delete airport")) {
             Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
             currentRecord.removeAirports(airport);
-            Database.removeData(airport.getId(), airport.getRecordName(), "airports");
+            ManipulateDatabase.removeData(airport.getId(), airport.getRecordName(), "airports");
             modifyAirportPane.setVisible(false);
             modifyAirportWindowButton.setVisible(false);
             airportSplitPane.setVisible(true);
