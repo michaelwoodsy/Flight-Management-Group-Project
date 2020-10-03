@@ -4,13 +4,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
-
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -32,6 +33,7 @@ import java.util.List;
 import org.json.simple.JSONArray;
 
 import javax.imageio.ImageIO;
+
 import javax.naming.Binding;
 
 import static javafx.collections.FXCollections.observableArrayList;
@@ -42,17 +44,17 @@ import static javafx.collections.FXCollections.observableArrayList;
 public class GUIController implements Initializable {
 
     @FXML
-    private ListView airportList;
+    private ListView <Airport> airportList;
     @FXML
-    private ListView airlineList;
+    private ListView <Airline> airlineList;
     @FXML
-    private ListView routeList;
+    private ListView <Route> routeList;
     @FXML
-    private ListView airlineDetailList;
+    private ListView <String> airlineDetailList;
     @FXML
-    private ListView airportDetailList;
+    private ListView <String> airportDetailList;
     @FXML
-    private ListView routeDetailList;
+    private ListView <String> routeDetailList;
     @FXML
     private TextField airportSearchCriteria;
     @FXML
@@ -106,15 +108,11 @@ public class GUIController implements Initializable {
     @FXML
     private TextField airportICAO;
     @FXML
-    private TextField airportType;
-    @FXML
     private TextField airportTimezone;
     @FXML
     private TextField airportTimezoneString;
     @FXML
     private TextField airportDST;
-    @FXML
-    private TextField airportSource;
     @FXML
     private TextField airportLatitude;
     @FXML
@@ -162,15 +160,9 @@ public class GUIController implements Initializable {
     @FXML
     private TextField routeAirlineMod;
     @FXML
-    private TextField routeAirlineIDMod;
-    @FXML
     private TextField routeSourceMod;
     @FXML
-    private TextField routeSourceIDMod;
-    @FXML
     private TextField routeDestMod;
-    @FXML
-    private TextField routeDestIDMod;
     @FXML
     private TextField routeEquipmentMod;
     @FXML
@@ -218,15 +210,11 @@ public class GUIController implements Initializable {
     @FXML
     private TextField airportICAOMod;
     @FXML
-    private TextField airportTypeMod;
-    @FXML
     private TextField airportTimezoneMod;
     @FXML
     private TextField airportTimezoneStringMod;
     @FXML
     private TextField airportDSTMod;
-    @FXML
-    private TextField airportSourceMod;
     @FXML
     private TextField airportLatitudeMod;
     @FXML
@@ -303,7 +291,6 @@ public class GUIController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        //recordList = new ArrayList<Record>();
         recordList = RetrieveFromDatabase.generateRecord();
         if (recordList.size() > 0) {
             currentRecord = recordList.get(0);
@@ -429,6 +416,17 @@ public class GUIController implements Initializable {
     }
 
     @FXML
+    /**
+     * Displays an image of a plane upon clicking the "Show Plane" button in the route window,
+     * if one in the files matches the route's equipment code.
+     *
+     * If none match, displays an error message in the information table.
+     *
+     * Hardcoded due to the few images we have thanks to referencing issues.
+     * Can be easily changed in future versions if need be.
+     *
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
     public void showEquipment() throws IOException {
 
         Route route = (Route) routeList.getSelectionModel().getSelectedItem();
@@ -438,12 +436,12 @@ public class GUIController implements Initializable {
             if (route.getEquipment().contains("76")) {
 
                 File file = new File("planes/76.jpg");
-                Image image = new Image(file.toURI().toString());
+                javafx.scene.image.Image image = new javafx.scene.image.Image(file.toURI().toString());
                 planeImage.setImage(image);
                 routeDetailList.setItems(observableArrayList("Showing plane for equipment code:", route.getEquipment()));
             } else if (route.getEquipment().contains("77")) {
                 File file = new File("planes/77.jpg");
-                Image image = new Image(file.toURI().toString());
+                javafx.scene.image.Image image = new Image(file.toURI().toString());
                 planeImage.setImage(image);
                 routeDetailList.setItems(observableArrayList("Showing plane for equipment code:", route.getEquipment()));
             }
@@ -459,8 +457,10 @@ public class GUIController implements Initializable {
     }
 
     @FXML
+    /**
+     * Hides the image of a plane upon clicking the "Hide Plane" button in the route window.
+     */
     public void hideEquipment() {
-
         additionalRouteInfo();
         planeImage.setVisible(false);
         showPlaneButton.setVisible(true);
@@ -1154,7 +1154,13 @@ public class GUIController implements Initializable {
         airlineDetailList.setItems(observableArrayList());
         routeDetailList.setItems(observableArrayList());
         flightDetailList.setItems(observableArrayList());
-    }
+        modifyRouteWindowButton.setVisible(false);
+        modifyAirlineWindowButton.setVisible(false);
+        modifyAirportWindowButton.setVisible(false);
+        hidePlaneButton.setVisible(false);
+        showPlaneButton.setVisible(false);
+        planeImage.setVisible(false);
+}
 
     /**
      * When the button is pressed, all the airline data currently loaded into the program is shown
@@ -1441,8 +1447,7 @@ public class GUIController implements Initializable {
             modifyAirlineWindowButton.setVisible(false);
             airlineSplitPane.setVisible(true);
             airlineList.setVisible(true);
-            displayAllAirlines();
-            additionalAirlineInfo();
+            hideAllTables();
         }
     }
 
@@ -1478,15 +1483,16 @@ public class GUIController implements Initializable {
         ArrayList<String> errors = dataChecker.checkAirline(currentRecord, name, country, iata, icao);
 
         if (errors.size() == 0) {
-            Airline newAirline = new Airline(id, name, active, country, alias, callSign, iata, icao);
-            newAirline.setRecordName(airline.getRecordName());
-            currentRecord.modifyAirline(airlineIndex, newAirline);
-            modifyAirlinePane.setVisible(false);
-            modifyAirlineWindowButton.setVisible(false);
-            airlineSplitPane.setVisible(true);
-            airlineList.setVisible(true);
-            displayAllAirlines();
-            additionalAirlineInfo();
+            if (DialogBoxes.confirmationAlert("modify this Airline")) {
+                Airline newAirline = new Airline(id, name, active, country, alias, callSign, iata, icao);
+                newAirline.setRecordName(airline.getRecordName());
+                currentRecord.modifyAirline(airlineIndex, newAirline);
+                modifyAirlinePane.setVisible(false);
+                modifyAirlineWindowButton.setVisible(false);
+                airlineSplitPane.setVisible(true);
+                airlineList.setVisible(true);
+                hideAllTables();
+            }
         } else {
             DialogBoxes.newDataError(errors);
         }
@@ -1508,11 +1514,8 @@ public class GUIController implements Initializable {
         routeSplitPane.setVisible(false);
         routeList.setVisible(false);
         routeAirlineMod.setText(route.getAirline());
-        routeAirlineIDMod.setText(String.valueOf(route.getAirlineId()));
         routeSourceMod.setText(route.getSourceAirport());
-        routeSourceIDMod.setText(String.valueOf(route.getSourceID()));
         routeDestMod.setText(route.getDestAirport());
-        routeDestIDMod.setText(String.valueOf(route.getDestID()));
         routeEquipmentMod.setText(route.getEquipment());
         routeStopsMod.setText(String.valueOf(route.getNumStops()));
         routeCodeShareMod.setSelected(route.isCodeshare());
@@ -1538,10 +1541,8 @@ public class GUIController implements Initializable {
             showPlaneButton.setVisible(false);
             routeSplitPane.setVisible(true);
             routeList.setVisible(true);
-            displayAllRoutes();
-            additionalRouteInfo();
+            hideAllTables();
             routeDetailList.setItems(observableArrayList());
-
         }
     }
 
@@ -1560,37 +1561,36 @@ public class GUIController implements Initializable {
     public void modifyRouteButton(ActionEvent event) throws IOException {
         ArrayList<String> errors = new ArrayList<>();
         Route route = (Route) routeList.getSelectionModel().getSelectedItem();
-
         int id = route.getId();
-        int airlineId = route.getAirlineId();
 
         String airline = routeAirlineMod.getText().trim();
-        if (airline.equals("") || airline.length() != 2){
-            errors.add("Invalid Airline IATA");
+        int airlineId = route.getAirlineId();
+        List<Airline> resultAirline = currentRecord.searchAirlines(airline, "iata");
+        if (airline.equals("") || airline.length() != 2) {
+            errors.add("Invalid Airline IATA" + airline.length());
+        } else if (resultAirline.size() == 1) {
+            airline = resultAirline.get(0).getIata();
+            airlineId = resultAirline.get(0).getId();
         }
 
         String sourceAirport = routeSourceMod.getText().trim();
+        int sourceID = route.getSourceID();
+        List<Airport> resultSource = currentRecord.searchAirports(sourceAirport, "iata");
         if (sourceAirport.equals("") || sourceAirport.length() != 3) {
             errors.add("Invalid Source Airport IATA");
-        }
-
-        int sourceID = 0;
-        try {
-            sourceID = Integer.parseInt(routeSourceIDMod.getText().trim());
-        } catch (Exception e) {
-            errors.add("Invalid Source Airport IATA");
+        } else if (resultSource.size() == 1) {
+            sourceAirport = resultSource.get(0).getIata();
+            sourceID = resultSource.get(0).getId();
         }
 
         String destAirport = routeDestMod.getText().trim();
-        if (destAirport.equals("") || destAirport.length() != 3) {
-            errors.add("Invalid Destination Airport IATA");
-        }
-
-        int destID = 0;
-        try {
-            destID = Integer.parseInt(routeDestIDMod.getText().trim());
-        } catch (Exception e) {
-            errors.add("Invalid Destination Airport ID");
+        int destID = route.getSourceID();
+        List<Airport> resultDest = currentRecord.searchAirports(destAirport, "iata");
+        if (destAirport.equals("") || sourceAirport.length() != 3) {
+            errors.add("Invalid Destination Airport Name");
+        } else if (resultDest.size() == 1) {
+            destAirport = resultDest.get(0).getIata();
+            destID = resultSource.get(0).getId();
         }
 
         int numStops = 0;
@@ -1611,20 +1611,22 @@ public class GUIController implements Initializable {
         }
 
         if (errors.size() == 0) {
-            Route newRoute = new Route(id, airline, airlineId, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
-            newRoute.setRecordName(route.getRecordName());
-            System.out.println(newRoute.getRecordName());
-            currentRecord.modifyRoute(route, newRoute);
-            modifyRoutePane.setVisible(false);
-            modifyRouteWindowButton.setVisible(false);
-            showPlaneButton.setVisible(false);
-            hidePlaneButton.setVisible(false);
-            planeImage.setVisible(false);
-            routeSplitPane.setVisible(true);
-            routeList.setVisible(true);
-            displayAllRoutes();
-            routeDetailList.setItems(observableArrayList());
+            if (DialogBoxes.confirmationAlert("modify this Route")) {
+                Route newRoute = new Route(id, airline, airlineId, sourceAirport, sourceID, destAirport, destID, numStops, equipment, codeshare);
+                newRoute.setRecordName(route.getRecordName());
+                System.out.println(newRoute.getRecordName());
+                currentRecord.modifyRoute(route, newRoute);
+                modifyRoutePane.setVisible(false);
+                modifyRouteWindowButton.setVisible(false);
+                showPlaneButton.setVisible(false);
+                hidePlaneButton.setVisible(false);
+                planeImage.setVisible(false);
+                routeSplitPane.setVisible(true);
+                routeList.setVisible(true);
+                hideAllTables();
+                routeDetailList.setItems(observableArrayList());
 
+            }
         } else {
             DialogBoxes.newDataError(errors);
         }
@@ -1673,8 +1675,8 @@ public class GUIController implements Initializable {
             modifyAirportWindowButton.setVisible(false);
             airportSplitPane.setVisible(true);
             airportList.setVisible(true);
-            displayAllAirports();
-            additionalAirportInfo();
+            hideAllTables();
+
         }
     }
 
@@ -1714,19 +1716,57 @@ public class GUIController implements Initializable {
         int numRoutesDest = airport.getNumRoutesDest();
 
         if (errors.size() == 0) {
-            Airport newAirport = new Airport(id, name, city, country, iata, icao, Double.parseDouble(latitude), Double.parseDouble(longitude), Integer.parseInt(altitude), Double.parseDouble(timezone), dst, timezoneString, numRoutesSource, numRoutesDest);
-            currentRecord.modifyAirport(airportIndex, newAirport);
-            modifyAirportPane.setVisible(false);
-            modifyAirportWindowButton.setVisible(false);
-            airportSplitPane.setVisible(true);
-            airportList.setVisible(true);
-            displayAllAirlines();
-            additionalAirlineInfo();
-            displayAllAirports();
-            additionalAirportInfo();
+            if (DialogBoxes.confirmationAlert("modify this Airport")) {
+                Airport newAirport = new Airport(id, name, city, country, iata, icao, Double.parseDouble(latitude), Double.parseDouble(longitude), Integer.parseInt(altitude), Double.parseDouble(timezone), dst, timezoneString, numRoutesSource, numRoutesDest);
+                currentRecord.modifyAirport(airportIndex, newAirport);
+                modifyAirportPane.setVisible(false);
+                modifyAirportWindowButton.setVisible(false);
+                airportSplitPane.setVisible(true);
+                airportList.setVisible(true);
+                hideAllTables();
+            }
         } else {
             DialogBoxes.newDataError(errors);
         }
+    }
+
+    /**
+     * Button to cancel modifying airport
+     * @param event The user has wants to cancel modifying and return back to list
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
+    @FXML
+    public void modifyAirportCancel(ActionEvent event) throws IOException {
+        modifyAirportPane.setVisible(false);
+        modifyAirportWindowButton.setVisible(true);
+        airportSplitPane.setVisible(true);
+        airportList.setVisible(true);
+    }
+
+    /**
+     * Button to cancel modifying airline
+     * @param event The user has wants to cancel modifying and return back to list
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
+    @FXML
+    public void modifyAirlineCancel(ActionEvent event) throws IOException {
+        modifyAirlinePane.setVisible(false);
+        modifyAirlineWindowButton.setVisible(true);
+        airlineSplitPane.setVisible(true);
+        airlineList.setVisible(true);
+    }
+
+    /**
+     * Button to cancel modifying route
+     * @param event The user has wants to cancel modifying and return back to list
+     * @throws IOException Signals that an I/O exception of some sort has occurred.
+     */
+    @FXML
+    public void modifyRouteCancel(ActionEvent event) throws IOException {
+        modifyRoutePane.setVisible(false);
+        modifyRouteWindowButton.setVisible(true);
+        routeSplitPane.setVisible(true);
+        routeList.setVisible(true);
     }
 
     /**

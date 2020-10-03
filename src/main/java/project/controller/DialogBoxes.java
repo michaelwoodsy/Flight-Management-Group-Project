@@ -137,8 +137,8 @@ public class DialogBoxes {
     }
 
     /**
-     *
-     * @param type
+     * A dialog box that displays when data is successfully added
+     * @param type the type of data that is added
      */
     public static void addedAlert(String type) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -152,7 +152,9 @@ public class DialogBoxes {
     }
 
     /**
-     *
+     * A confirmation dialog box that displays to ensure that the user wants create a certain event
+     * @param type String representing the type of confirmation
+     * @return a boolean that notifies that the user wants to confirm
      */
     public static boolean confirmationAlert(String type) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

@@ -91,25 +91,21 @@
                                     <Label text="Country:" textFill="WHITE" GridPane.rowIndex="2" />
                                     <Label text="IATA:" textFill="WHITE" GridPane.rowIndex="3" />
                                     <Label text="ICAO:" textFill="WHITE" GridPane.rowIndex="4" />
-                                    <Label text="Type:" textFill="WHITE" GridPane.rowIndex="5" />
+                                    <Label text="DST:" textFill="WHITE" GridPane.rowIndex="5" />
                                     <TextField fx:id="airportNameMod" GridPane.columnIndex="1" />
                                     <TextField fx:id="airportCityMod" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <TextField fx:id="airportCountryMod" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <TextField fx:id="airportIATAMod" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <TextField fx:id="airportICAOMod" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField fx:id="airportTypeMod" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                     <Label prefHeight="17.0" prefWidth="188.0" text="Timezone Offset:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <Label text="DST:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Label text="Source:" textFill="WHITE" GridPane.rowIndex="6" />
-                                    <Label text="Latitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                    <Label text="Longitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                    <Label text="Altitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                    <Label text="Latitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label text="Longitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Label text="Altitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                                     <TextField fx:id="airportTimezoneMod" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                    <TextField fx:id="airportDSTMod" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                    <TextField fx:id="airportSourceMod" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <TextField fx:id="airportLatitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                    <TextField fx:id="airportLongitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                                    <TextField fx:id="airportAltitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                    <TextField fx:id="airportDSTMod" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="airportLatitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <TextField fx:id="airportLongitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <TextField fx:id="airportAltitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                                     <Label text="Timezone:" textFill="WHITE" GridPane.columnIndex="2" />
                                     <TextField fx:id="airportTimezoneStringMod" GridPane.columnIndex="3" />
                                  </children>
@@ -124,6 +120,7 @@
                               </Label>
                               <Button fx:id="modifyAirportButton" layoutX="615.0" layoutY="420.0" mnemonicParsing="false" onAction="#modifyAirportButton" text="Modify" />
                               <Button fx:id="deleteAirportButton" layoutX="615.0" layoutY="30.0" mnemonicParsing="false" onAction="#deleteAirportButton" text="Delete" />
+                              <Button layoutX="530.0" layoutY="420.0" mnemonicParsing="false" onAction="#modifyAirportCancel" text="Cancel" />
                            </children>
                         </Pane>
                      </children>
@@ -205,6 +202,7 @@
                               </Label>
                               <Button fx:id="modifyAirlineButton" layoutX="615.0" layoutY="420.0" mnemonicParsing="false" onAction="#modifyAirlineButton" text="Modify" />
                               <Button fx:id="deleteAirlineButton" layoutX="615.0" layoutY="30.0" mnemonicParsing="false" onAction="#deleteAirlineButton" text="Delete" />
+                              <Button layoutX="530.0" layoutY="420.0" mnemonicParsing="false" onAction="#modifyAirlineCancel" text="Cancel" />
                            </children>
                         </Pane>
                      </children>
@@ -250,7 +248,7 @@
                         </SplitPane>
                         <Pane fx:id="modifyRoutePane" prefHeight="474.0" prefWidth="750.0" visible="false">
                            <children>
-                              <GridPane hgap="25.0" layoutX="15.0" layoutY="60.0" prefHeight="375.0" prefWidth="715.0" vgap="25.0">
+                              <GridPane hgap="25.0" layoutX="15.0" layoutY="60.0" prefHeight="291.0" prefWidth="699.0" vgap="25.0">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="105.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="289.0" />
@@ -262,29 +260,20 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
                                     <Label text="Airline IATA:" textFill="WHITE" />
-                                    <Label text="Airline ID:" textFill="WHITE" GridPane.rowIndex="1" />
-                                    <Label text="Source Airport IATA:" textFill="WHITE" GridPane.rowIndex="2" />
-                                    <Label text="Source Airport ID:" textFill="WHITE" GridPane.rowIndex="3" />
-                                    <Label text="Destination Airport IATA:" textFill="WHITE" GridPane.rowIndex="4" />
-                                    <Label text="Destination Airport ID:" textFill="WHITE" GridPane.rowIndex="5" />
-                                    <Label text="Equipment:" textFill="WHITE" GridPane.rowIndex="6" />
-                                    <Label text="Number of Stops:" textFill="WHITE" GridPane.rowIndex="7" />
-                                    <Label text="Code Share:" textFill="WHITE" GridPane.rowIndex="8" />
+                                    <Label text="Source Airport IATA:" textFill="WHITE" GridPane.rowIndex="1" />
+                                    <Label text="Destination Airport IATA:" textFill="WHITE" GridPane.rowIndex="2" />
+                                    <Label text="Equipment:" textFill="WHITE" GridPane.rowIndex="3" />
+                                    <Label text="Number of Stops:" textFill="WHITE" GridPane.rowIndex="4" />
+                                    <Label text="Code Share:" textFill="WHITE" GridPane.rowIndex="5" />
                                     <TextField fx:id="routeAirlineMod" prefHeight="17.0" prefWidth="174.0" GridPane.columnIndex="1" />
-                                    <TextField fx:id="routeAirlineIDMod" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField fx:id="routeSourceMod" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="routeSourceIDMod" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="routeDestMod" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField fx:id="routeDestIDMod" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <TextField fx:id="routeEquipmentMod" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <TextField fx:id="routeStopsMod" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                    <CheckBox fx:id="routeCodeShareMod" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <TextField fx:id="routeSourceMod" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="routeDestMod" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="routeEquipmentMod" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="routeStopsMod" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <CheckBox fx:id="routeCodeShareMod" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                  </children>
                                  <padding>
                                     <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
@@ -297,6 +286,7 @@
                               </Label>
                               <Button fx:id="deleteRouteButton" layoutX="615.0" layoutY="30.0" mnemonicParsing="false" onAction="#deleteRouteButton" text="Delete" />
                               <Button fx:id="modifyRouteButton" layoutX="615.0" layoutY="420.0" mnemonicParsing="false" onAction="#modifyRouteButton" text="Modify" />
+                              <Button layoutX="530.0" layoutY="420.0" mnemonicParsing="false" onAction="#modifyRouteCancel" text="Cancel" />
                            </children>
                         </Pane>
                      </children>
@@ -407,26 +397,22 @@
                                                 <Label text="Country:" textFill="WHITE" GridPane.rowIndex="2" />
                                                 <Label text="IATA:" textFill="WHITE" GridPane.rowIndex="3" />
                                                 <Label text="ICAO:" textFill="WHITE" GridPane.rowIndex="4" />
-                                                <Label text="Type:" textFill="WHITE" GridPane.rowIndex="5" />
-                                                <Label text="Source:" textFill="WHITE" GridPane.rowIndex="6" />
+                                                <Label text="DST:" textFill="WHITE" GridPane.rowIndex="5" />
                                                 <TextField fx:id="airportName" GridPane.columnIndex="1" />
                                                 <TextField fx:id="airportCity" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <TextField fx:id="airportCountry" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                 <TextField fx:id="airportIATA" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                 <TextField fx:id="airportICAO" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <TextField fx:id="airportType" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                <TextField fx:id="airportAltitude" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                                <TextField fx:id="airportAltitude" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                                                 <Label text="Timezone:" textFill="WHITE" GridPane.columnIndex="2" />
                                                 <Label text="Timezone Offset:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label text="DST:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <Label text="Latitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                                <Label text="Longitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                                <Label text="Altitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                <Label text="Latitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <Label text="Longitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                <Label text="Altitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                                                 <TextField fx:id="airportTimezone" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                                <TextField fx:id="airportDST" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                <TextField fx:id="airportSource" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                                <TextField fx:id="airportLatitude" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                                <TextField fx:id="airportLongitude" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                                <TextField fx:id="airportDST" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <TextField fx:id="airportLatitude" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                                <TextField fx:id="airportLongitude" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                                                 <TextField fx:id="airportTimezoneString" GridPane.columnIndex="3" />
                                              </children>
                                              <padding>
