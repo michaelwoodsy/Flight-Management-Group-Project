@@ -533,7 +533,7 @@
                                           <RadioButton fx:id="flightRadioButton" layoutX="43.0" layoutY="153.0" mnemonicParsing="false" text="Flight" textFill="WHITE" toggleGroup="$selectFile" />
                                           <Button fx:id="addFileButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addFileButton" text="Add to" />
                                           <Text fill="WHITE" layoutX="179.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To add a new file:&#10;1. Select the type of file you would like to add.&#10;2. Select which record you would like to add the file to in the dropdown next to the &quot;Add to&quot; button. Select &quot;New Record&quot; if you would like to start a new record.&#10;3. Click the &quot;Add to&quot; button and find the file you would like to add in your file directory. Note the file must be a .dat or .csv file and be in the correct format.&#10;&#10;Please Note: Airports will only calculate the number of routes that pass through them, that were in the database at time of upload." wrappingWidth="393.79425048828125" />
-                                          <Text fill="WHITE" layoutX="515.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to only add one file at a time" wrappingWidth="184.29925537109375">
+                                          <Text fill="WHITE" layoutX="406.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Warning: Make sure to finish adding one file before adding another." wrappingWidth="311.29925537109375">
                                              <font>
                                                 <Font size="10.0" />
                                              </font>
@@ -787,6 +787,41 @@
                                                 <Font size="15.0" />
                                              </font>
                                           </Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data appended to records either manually or through " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This database is unique to each client of PlaneSonar25." />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This allows data added by users to be stored " />
+                                          <Text fill="WHITE" layoutX="423.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The database also handles the linking of datatypes, " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This process can take a while, so the option to sync with " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choosing not to sync will still load the files into the " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="loading of files is stored in a local database." />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="persistently, meaning the application can be closed and " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="reopened freely without worry of loss of data, provided " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the database synchronisation process has finished." />
+                                          <Text fill="WHITE" layoutX="423.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="such as linking airports to routes in order to get the " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the database, plus an estimation of the time it will take, " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="is given when loading files into the application." />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="application, only they won't be stored persistently." />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data added manually will be synchronised with the " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="database immediately due to the relative ease of adding " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="just one file at a time." />
+                                          <Text fill="WHITE" layoutX="423.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="number of routes each airport is connected to." />
+                                          <Text fill="WHITE" layoutX="414.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment Visualisation" underline="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When selecting a route in the table viewer of the Route " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tab, next to the modify button is the 'Show Equipment' " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="button. Clicking this will display an image of the type of " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="plane that flies that route, based on its equipment code, " />
+                                          <Text fill="WHITE" layoutX="423.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="in the information table. This can be hidden again by" />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="clicking the 'Hide Equipment' button." />
+                                          <Text fill="WHITE" layoutX="3.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: Due to the long process of referencing plane images, only a few common equipment images can be shown. This is set to change in future versions of PlaneSonar25. ">
+                                             <font>
+                                                <Font size="9.5" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="3.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                                        </children>
                                     </AnchorPane>
                                 </content>
