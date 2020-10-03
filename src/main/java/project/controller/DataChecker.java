@@ -5,28 +5,33 @@ import project.model.Airport;
 import project.model.Record;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+/**
+ * A class that contains error checking methods to ensure that all data types meet the criteria
+ */
 public class DataChecker {
 
     /**
-     *
-     * @param currentRecord
-     * @param name
-     * @param city
-     * @param country
-     * @param iata
-     * @param icao
-     * @param latitude
-     * @param longitude
-     * @param altitude
-     * @param timezone
-     * @param dst
-     * @param timezoneString
-     * @return
+     * An error checking method to ensure the Airport data is valid and that there are no errors
+     * @param currentRecord the currentRecord of the data
+     * @param name  String representing name of airport
+     * @param city  String representing city of airport
+     * @param country   String representing country of airport
+     * @param iata  String representing IATA code ensuring it's meets boundary
+     * @param icao  String representing ICAO code ensuring it's meets boundary
+     * @param latitude  String representing latitude ensuring it's an double and meets boundary
+     * @param longitude String representing longitude ensuring it's an double and meets boundary
+     * @param altitude String representing altitude ensuring it's an int and meets boundary
+     * @param timezone String representing timezone offset ensuring it's an double and meets boundary
+     * @param dst String representing ensuring it meets the list of dst
+     * @param timezoneString String representing timezone
+     * @return an ArrayList of Strings representing errors
      */
     public ArrayList<String> checkAirport(Record currentRecord, String name, String city, String country, String iata, String icao, String latitude, String longitude, String altitude, String timezone, String dst, String timezoneString) {
         ArrayList<String> errors = new ArrayList<String>();
+        List<String> dstList = Arrays.asList("E", "A", "S", "O", "Z", "N", "U");
 
         if (name.equals("")) { errors.add("Invalid Airport Name"); }
 
@@ -70,6 +75,7 @@ public class DataChecker {
         int num_altitude = 0;
         try {
             num_altitude = Integer.parseInt(altitude);
+            if (num_altitude < 0) { errors.add("Invalid Altitude (Altitude cannot be < 0)"); };
         } catch (Exception e) {
             errors.add("Invalid Altitude");
         }
@@ -83,19 +89,20 @@ public class DataChecker {
         }
 
         if (dst.equals("")) { errors.add("Invalid DST"); }
+        else if (!dstList.contains(dst)) { errors.add("Invalid DST (E, A, S, O, Z, N, U"); }
 
         if (timezoneString.equals("")) { errors.add("Invalid Timezone Name"); }
         return errors;
     }
 
     /**
-     *
-     * @param currentRecord
-     * @param name
-     * @param country
-     * @param iata
-     * @param icao
-     * @return
+     * An error checking method to ensure the Airline data is valid and that there are no errors
+     * @param currentRecord the currentRecord of the data
+     * @param name String representing name of airline
+     * @param country String representing country of airline
+     * @param iata String representing IATA code ensuring it's meets boundary
+     * @param icao String representing ICAO code ensuring it's meets boundary
+     * @return an ArrayList of Strings representing errors
      */
     public ArrayList<String> checkAirline(Record currentRecord, String name, String country, String iata, String icao) {
         ArrayList<String> errors = new ArrayList<String>();
@@ -119,19 +126,18 @@ public class DataChecker {
         } else if (currentRecord.searchAirlines(icao.toLowerCase(), "icao").size() != 0) {
             errors.add("New ICAO code matches an existing airline");
         }
-
         return errors;
     }
 
     /**
-     *
-     * @param currentRecord
-     * @param airline
-     * @param sourceAirport
-     * @param destAirport
-     * @param numStops
-     * @param equipment
-     * @return
+     * An error checking method to ensure the Route data is valid and that there are no errors
+     * @param currentRecord the currentRecord of the data
+     * @param airline String to ensure that the airline exists in the record
+     * @param sourceAirport String to ensure that the airport exists in the record
+     * @param destAirport String to ensure that the airport exists in the record
+     * @param numStops String to represent number of stops ensuring it is an int
+     * @param equipment String to represent equipment
+     * @return an ArrayList of Strings representing errors
      */
     public ArrayList<String> checkRoutes(Record currentRecord, String airline, String sourceAirport, String destAirport, String numStops, String equipment) {
         ArrayList<String> errors = new ArrayList<String>();
@@ -175,6 +181,9 @@ public class DataChecker {
         int testNumStops = 0;
         try {
             testNumStops = Integer.parseInt(numStops);
+            if (testNumStops < 0) {
+                errors.add("Invalid Numbers of Stops (Cannot be less than 0)");
+            }
         } catch (Exception e) {
             errors.add("Invalid Number of Stops");
         }

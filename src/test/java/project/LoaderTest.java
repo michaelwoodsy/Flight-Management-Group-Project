@@ -11,7 +11,6 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 
 public class LoaderTest {
-    private final Loader loader = new Loader();
     private final RouteLoader routeLoad = new RouteLoader();
     private final CovidLoader covidLoad = new CovidLoader();
     private final AirportLoader airportLoad = new AirportLoader();
@@ -118,7 +117,7 @@ public class LoaderTest {
      **/
     public void loadIndividualAirportTest() {
 
-        String[] airportData1 = {"1", "Goroka", "Goroka", "Papua New Guinea", "GKA", "AYGA", "-6.081689", "145.391881", "5282", "10", "U", "Pacific/Port_Moresby", "type", "source"};
+        String[] airportData1 = {"1", "Goroka", "Goroka", "Papua New Guinea", "GKA", "AYGA", "-6.081689", "145.391881", "5282", "10", "U", "Pacific/Port_Moresby", "airport", "source"};
         Airport testAirport1 = airportLoad.loadAirport(airportData1);
 
         assertEquals(testAirport1.getId(), 1);
@@ -137,7 +136,7 @@ public class LoaderTest {
         assertEquals(testAirport1.getNumRoutesDest(), 0);
         assertEquals(testAirport1.getTotalRoutes(), 0);
 
-        String[] airportData2 = {"1a", "Goroka", "Goroka", "Papua New Guinea", "GKA", "AYGA", "-6.081689a", "145.391881a", "5282a", "10a", "U", "Pacific/Port_Moresby", "type", "source"};
+        String[] airportData2 = {"1a", "Goroka", "Goroka", "Papua New Guinea", "GKA", "AYGA", "-6.081689a", "145.391881a", "5282a", "10a", "U", "Pacific/Port_Moresby", "airport", "source"};
         testAirport1 = airportLoad.loadAirport(airportData2);
 
         assertEquals(testAirport1.getId(), -1);
@@ -146,26 +145,9 @@ public class LoaderTest {
         assertEquals(testAirport1.getAltitude(), -1);
         assertEquals(testAirport1.getTimezone(), 25, 0);
 
-
-        // Code works but fails tests due to nullpointer in thanks to having no record in loadertest.
-        // Tests worked before this addition and code works.
         String[] airportData3 = {"", "", "", "", "", "", "", "", "", "", "", "", "", ""};
         testAirport1 = airportLoad.loadAirport(airportData3);
         assertNull(testAirport1);
-        /*.getId(), -1);
-        assertEquals(testAirport1.getName(), );
-        assertEquals(testAirport1.getCity(), null);
-        assertEquals(testAirport1.getCountry(), null);
-        assertEquals(testAirport1.getIata(), null);
-        assertEquals(testAirport1.getIcao(), null);
-        assertEquals(testAirport1.getLatitude(), 360, 0);
-        assertEquals(testAirport1.getLongitude(), 360, 0);
-        assertEquals(testAirport1.getAltitude(), -1);
-        assertEquals(testAirport1.getTimezone(), 25, 0);
-        assertEquals(testAirport1.getDst(), null);
-        assertEquals(testAirport1.getTimezoneString(), null);
-        assertEquals(testAirport1.getType(), null);
-        assertEquals(testAirport1.getSource(), null);*/
 
     }
 

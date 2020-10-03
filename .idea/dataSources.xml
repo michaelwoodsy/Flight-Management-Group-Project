@@ -7,5 +7,17 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\Users\dan\Documents\SENG202\planesonar25\data\database.db</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="database [2]" uuid="604d1725-fd03-4764-a246-c059a6375419">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\meeta\Desktop\SENG202\planesonar25\data\database.db</jdbc-url>
+    </data-source>
+    <data-source source="LOCAL" name="database [3]" uuid="ef74cdd7-3149-4571-b728-0df233b47fc5">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\meeta\Desktop\SENG202\planesonar25\database.db</jdbc-url>
+    </data-source>
   </component>
 </project>

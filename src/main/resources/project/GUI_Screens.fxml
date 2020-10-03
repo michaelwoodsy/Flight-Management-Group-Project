@@ -91,25 +91,21 @@
                                     <Label text="Country:" textFill="WHITE" GridPane.rowIndex="2" />
                                     <Label text="IATA:" textFill="WHITE" GridPane.rowIndex="3" />
                                     <Label text="ICAO:" textFill="WHITE" GridPane.rowIndex="4" />
-                                    <Label text="Type:" textFill="WHITE" GridPane.rowIndex="5" />
+                                    <Label text="DST:" textFill="WHITE" GridPane.rowIndex="5" />
                                     <TextField fx:id="airportNameMod" GridPane.columnIndex="1" />
                                     <TextField fx:id="airportCityMod" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                     <TextField fx:id="airportCountryMod" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                     <TextField fx:id="airportIATAMod" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                     <TextField fx:id="airportICAOMod" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField fx:id="airportTypeMod" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                     <Label prefHeight="17.0" prefWidth="188.0" text="Timezone Offset:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                    <Label text="DST:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                    <Label text="Source:" textFill="WHITE" GridPane.rowIndex="6" />
-                                    <Label text="Latitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                    <Label text="Longitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                    <Label text="Altitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                    <Label text="Latitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <Label text="Longitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                    <Label text="Altitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                                     <TextField fx:id="airportTimezoneMod" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                    <TextField fx:id="airportDSTMod" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                    <TextField fx:id="airportSourceMod" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <TextField fx:id="airportLatitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                    <TextField fx:id="airportLongitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                                    <TextField fx:id="airportAltitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                    <TextField fx:id="airportDSTMod" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <TextField fx:id="airportLatitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                    <TextField fx:id="airportLongitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                                    <TextField fx:id="airportAltitudeMod" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                                     <Label text="Timezone:" textFill="WHITE" GridPane.columnIndex="2" />
                                     <TextField fx:id="airportTimezoneStringMod" GridPane.columnIndex="3" />
                                  </children>
@@ -124,6 +120,7 @@
                               </Label>
                               <Button fx:id="modifyAirportButton" layoutX="615.0" layoutY="420.0" mnemonicParsing="false" onAction="#modifyAirportButton" text="Modify" />
                               <Button fx:id="deleteAirportButton" layoutX="615.0" layoutY="30.0" mnemonicParsing="false" onAction="#deleteAirportButton" text="Delete" />
+                              <Button layoutX="530.0" layoutY="420.0" mnemonicParsing="false" onAction="#modifyAirportCancel" text="Cancel" />
                            </children>
                         </Pane>
                      </children>
@@ -205,6 +202,7 @@
                               </Label>
                               <Button fx:id="modifyAirlineButton" layoutX="615.0" layoutY="420.0" mnemonicParsing="false" onAction="#modifyAirlineButton" text="Modify" />
                               <Button fx:id="deleteAirlineButton" layoutX="615.0" layoutY="30.0" mnemonicParsing="false" onAction="#deleteAirlineButton" text="Delete" />
+                              <Button layoutX="530.0" layoutY="420.0" mnemonicParsing="false" onAction="#modifyAirlineCancel" text="Cancel" />
                            </children>
                         </Pane>
                      </children>
@@ -241,14 +239,16 @@
                                  <children>
                                     <ListView fx:id="routeDetailList" layoutX="-1.0" prefHeight="185.0" prefWidth="200.0" />
                                     <Button fx:id="modifyRouteWindowButton" layoutX="20.0" layoutY="190.0" mnemonicParsing="false" onAction="#modifyRouteWindowButton" text="MODIFY" visible="false" />
-                                    <Button layoutX="85.0" layoutY="190.0" mnemonicParsing="false" onAction="#showEquipment" text="SHOW PLANES" visible="false" />
+                                    <Button fx:id="showPlaneButton" layoutX="85.0" layoutY="190.0" mnemonicParsing="false" onAction="#showEquipment" text="SHOW PLANE" visible="false" />
+                                    <ImageView fx:id="planeImage" fitHeight="135.0" fitWidth="200.0" layoutX="-1.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true" visible="false" />
+                                    <Button fx:id="hidePlaneButton" layoutX="85.0" layoutY="190.0" mnemonicParsing="false" onAction="#hideEquipment" prefHeight="25.0" prefWidth="90.0" text="HIDE PLANE" visible="false" />
                                  </children>
                               </AnchorPane>
                            </items>
                         </SplitPane>
                         <Pane fx:id="modifyRoutePane" prefHeight="474.0" prefWidth="750.0" visible="false">
                            <children>
-                              <GridPane hgap="25.0" layoutX="15.0" layoutY="60.0" prefHeight="375.0" prefWidth="715.0" vgap="25.0">
+                              <GridPane hgap="25.0" layoutX="15.0" layoutY="60.0" prefHeight="291.0" prefWidth="699.0" vgap="25.0">
                                  <columnConstraints>
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="163.0" minWidth="10.0" prefWidth="105.0" />
                                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="322.0" minWidth="10.0" prefWidth="289.0" />
@@ -260,29 +260,20 @@
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
                                     <Label text="Airline IATA:" textFill="WHITE" />
-                                    <Label text="Airline ID:" textFill="WHITE" GridPane.rowIndex="1" />
-                                    <Label text="Source Airport IATA:" textFill="WHITE" GridPane.rowIndex="2" />
-                                    <Label text="Source Airport ID:" textFill="WHITE" GridPane.rowIndex="3" />
-                                    <Label text="Destination Airport IATA:" textFill="WHITE" GridPane.rowIndex="4" />
-                                    <Label text="Destination Airport ID:" textFill="WHITE" GridPane.rowIndex="5" />
-                                    <Label text="Equipment:" textFill="WHITE" GridPane.rowIndex="6" />
-                                    <Label text="Number of Stops:" textFill="WHITE" GridPane.rowIndex="7" />
-                                    <Label text="Code Share:" textFill="WHITE" GridPane.rowIndex="8" />
+                                    <Label text="Source Airport IATA:" textFill="WHITE" GridPane.rowIndex="1" />
+                                    <Label text="Destination Airport IATA:" textFill="WHITE" GridPane.rowIndex="2" />
+                                    <Label text="Equipment:" textFill="WHITE" GridPane.rowIndex="3" />
+                                    <Label text="Number of Stops:" textFill="WHITE" GridPane.rowIndex="4" />
+                                    <Label text="Code Share:" textFill="WHITE" GridPane.rowIndex="5" />
                                     <TextField fx:id="routeAirlineMod" prefHeight="17.0" prefWidth="174.0" GridPane.columnIndex="1" />
-                                    <TextField fx:id="routeAirlineIDMod" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                    <TextField fx:id="routeSourceMod" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                    <TextField fx:id="routeSourceIDMod" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                                    <TextField fx:id="routeDestMod" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                    <TextField fx:id="routeDestIDMod" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                    <TextField fx:id="routeEquipmentMod" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                    <TextField fx:id="routeStopsMod" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                                    <CheckBox fx:id="routeCodeShareMod" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                                    <TextField fx:id="routeSourceMod" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <TextField fx:id="routeDestMod" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <TextField fx:id="routeEquipmentMod" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    <TextField fx:id="routeStopsMod" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <CheckBox fx:id="routeCodeShareMod" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                                  </children>
                                  <padding>
                                     <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
@@ -295,6 +286,7 @@
                               </Label>
                               <Button fx:id="deleteRouteButton" layoutX="615.0" layoutY="30.0" mnemonicParsing="false" onAction="#deleteRouteButton" text="Delete" />
                               <Button fx:id="modifyRouteButton" layoutX="615.0" layoutY="420.0" mnemonicParsing="false" onAction="#modifyRouteButton" text="Modify" />
+                              <Button layoutX="530.0" layoutY="420.0" mnemonicParsing="false" onAction="#modifyRouteCancel" text="Cancel" />
                            </children>
                         </Pane>
                      </children>
@@ -405,26 +397,22 @@
                                                 <Label text="Country:" textFill="WHITE" GridPane.rowIndex="2" />
                                                 <Label text="IATA:" textFill="WHITE" GridPane.rowIndex="3" />
                                                 <Label text="ICAO:" textFill="WHITE" GridPane.rowIndex="4" />
-                                                <Label text="Type:" textFill="WHITE" GridPane.rowIndex="5" />
-                                                <Label text="Source:" textFill="WHITE" GridPane.rowIndex="6" />
+                                                <Label text="DST:" textFill="WHITE" GridPane.rowIndex="5" />
                                                 <TextField fx:id="airportName" GridPane.columnIndex="1" />
                                                 <TextField fx:id="airportCity" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                 <TextField fx:id="airportCountry" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                 <TextField fx:id="airportIATA" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                                                 <TextField fx:id="airportICAO" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                                                <TextField fx:id="airportType" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                                                <TextField fx:id="airportAltitude" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                                                <TextField fx:id="airportAltitude" GridPane.columnIndex="3" GridPane.rowIndex="4" />
                                                 <Label text="Timezone:" textFill="WHITE" GridPane.columnIndex="2" />
                                                 <Label text="Timezone Offset:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label text="DST:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                                                <Label text="Latitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                                                <Label text="Longitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                                                <Label text="Altitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                                <Label text="Latitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                                <Label text="Longitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                                                <Label text="Altitude:" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4" />
                                                 <TextField fx:id="airportTimezone" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                                                <TextField fx:id="airportDST" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                                                <TextField fx:id="airportSource" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                                                <TextField fx:id="airportLatitude" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                                                <TextField fx:id="airportLongitude" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                                <TextField fx:id="airportDST" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <TextField fx:id="airportLatitude" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                                <TextField fx:id="airportLongitude" GridPane.columnIndex="3" GridPane.rowIndex="3" />
                                                 <TextField fx:id="airportTimezoneString" GridPane.columnIndex="3" />
                                              </children>
                                              <padding>
@@ -533,7 +521,7 @@
                                           <RadioButton fx:id="flightRadioButton" layoutX="43.0" layoutY="153.0" mnemonicParsing="false" text="Flight" textFill="WHITE" toggleGroup="$selectFile" />
                                           <Button fx:id="addFileButton" layoutX="506.0" layoutY="365.0" mnemonicParsing="false" onAction="#addFileButton" text="Add to" />
                                           <Text fill="WHITE" layoutX="179.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To add a new file:&#10;1. Select the type of file you would like to add.&#10;2. Select which record you would like to add the file to in the dropdown next to the &quot;Add to&quot; button. Select &quot;New Record&quot; if you would like to start a new record.&#10;3. Click the &quot;Add to&quot; button and find the file you would like to add in your file directory. Note the file must be a .dat or .csv file and be in the correct format.&#10;&#10;Please Note: Airports will only calculate the number of routes that pass through them, that were in the database at time of upload." wrappingWidth="393.79425048828125" />
-                                          <Text fill="WHITE" layoutX="515.0" layoutY="403.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Make sure to only add one file at a time" wrappingWidth="184.29925537109375">
+                                          <Text fill="WHITE" layoutX="406.0" layoutY="405.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Warning: Make sure to finish adding one file before adding another." wrappingWidth="311.29925537109375">
                                              <font>
                                                 <Font size="10.0" />
                                              </font>
@@ -691,7 +679,7 @@
                                              </font>
                                           </Text>
                                           <Text fill="WHITE" layoutX="13.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A record will store data of all types loaded into it." />
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When adding or loading data, You may choose to add data into a" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When adding or loading data, you may choose to add data into a" />
                                           <Text fill="WHITE" layoutX="13.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="particular existing record, or add it into a new one." />
                                           <Text fill="WHITE" layoutX="13.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Switching between records will change the data you can see based on" />
                                           <Text fill="WHITE" layoutX="13.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the data you've loaded into the selected record." />
@@ -748,6 +736,84 @@
                                     </AnchorPane>
                               </content>
                             </Tab>
+                              <Tab text="Page 3">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <Text fill="WHITE" layoutX="3.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Map Viewer" underline="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Map tab contains a map viewer of the world via the Google Maps" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="API. As PlaneSonar25 is a developmental application, the map is" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="watermarked with &quot;For development purposes only&quot;. The map exists " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clicking the Reload Map button will place airport markers from the " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Furthermore, route paths can be shown by specifying in the display " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="After selecting either Airport Code or Equipment Code in the drop " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Airport Code must be an IATA code. These can be found either by " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment codes can be found for specific routes by selecting them " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="There is also an additional table on the map tab much like the " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="more as a proof of concept as to how we might visualise flight data in " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="a commercial version of PlaneSonar25, as currently it costs a large sum " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="of money to use the maps API without the watermarks." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="currently selected record onto the map, based on their latitudes and " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="longitudes. These markers are grouped to prevent map clutter." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="on the right side of the map the selected filter and code." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="down, and entering the chosen value, clicking the show button to the " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="right of the two boxes will display the routes on the map." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="hovering over airport markers on the map, or by selecting an airport " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="in the airport table viewer. This is because route source and airport " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="attributes use the IATA codes of their respective airports." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="in the route table viewer after checking the opt-in checkbox." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="information tables in the data tabs. This serves to provide " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="information of the entered airport alongside the map view. Note the " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="entered value in the textbox must be an exact IATA code of the " />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="377.0" strokeType="OUTSIDE" strokeWidth="0.0" text="record. Help will be displayed if information is entered wrongly." />
+                                          <Text fill="WHITE" layoutX="414.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Database and Persistent Storage" underline="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data appended to records either manually or through " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This database is unique to each client of PlaneSonar25." />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This allows data added by users to be stored " />
+                                          <Text fill="WHITE" layoutX="423.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The database also handles the linking of datatypes, " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This process can take a while, so the option to sync with " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choosing not to sync will still load the files into the " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="loading of files is stored in a local database." />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="persistently, meaning the application can be closed and " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="reopened freely without worry of loss of data, provided " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the database synchronisation process has finished." />
+                                          <Text fill="WHITE" layoutX="423.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="such as linking airports to routes in order to get the " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the database, plus an estimation of the time it will take, " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="is given when loading files into the application." />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="application, only they won't be stored persistently." />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data added manually will be synchronised with the " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="database immediately due to the relative ease of adding " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="just one file at a time." />
+                                          <Text fill="WHITE" layoutX="423.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="number of routes each airport is connected to." />
+                                          <Text fill="WHITE" layoutX="414.0" layoutY="298.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipment Visualisation" underline="true">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When selecting a route in the table viewer of the Route " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tab, next to the modify button is the 'Show Plane' " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="button. Clicking this will display an image of the type of " />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="plane that flies that route, based on its equipment code, " />
+                                          <Text fill="WHITE" layoutX="423.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="in the information table. This can be hidden again by" />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="clicking the 'Hide Plane' button." />
+                                          <Text fill="WHITE" layoutX="3.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note: Due to the long process of referencing plane images, only a few common equipment images can be shown. This is set to change in future versions of PlaneSonar25. ">
+                                             <font>
+                                                <Font size="9.5" />
+                                             </font>
+                                          </Text>
+                                          <Text fill="WHITE" layoutX="3.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
                           </tabs>
                         </TabPane>
                      </children>
