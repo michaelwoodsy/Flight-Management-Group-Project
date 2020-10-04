@@ -415,8 +415,8 @@ public class GUIController implements Initializable {
         }
 
         for(Route routePlot: filteredRoutes) {
-            ArrayList<Double> sourcePoints = RetrieveFromDatabase.getLatLong(routePlot, "sourceID");
-            ArrayList<Double> destPoints = RetrieveFromDatabase.getLatLong(routePlot, "destID");
+            ArrayList<Double> sourcePoints = RetrieveFromDatabase.getLatLong(routePlot, "source");
+            ArrayList<Double> destPoints = RetrieveFromDatabase.getLatLong(routePlot, "dest");
             try {
                 String scriptToExecute = "drawRoute(" + "[{ lat: " + sourcePoints.get(0) + ", lng: " + sourcePoints.get(1) + " },{ lat: " + destPoints.get(0) + ", lng: " + destPoints.get(1) + " },]" + ");";
                 this.mapEngine.executeScript(scriptToExecute);
