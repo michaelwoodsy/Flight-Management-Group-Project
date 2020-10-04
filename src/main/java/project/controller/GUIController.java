@@ -1216,7 +1216,7 @@ public class GUIController implements Initializable {
      * is also displayed.
      */
     public void additionalAirportInfo() {
-        Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
+        Airport airport = airportList.getSelectionModel().getSelectedItem();
 
         if (airport != null) {
 
@@ -1310,7 +1310,7 @@ public class GUIController implements Initializable {
      * is also displayed.
      */
     public void additionalAirlineInfo() {
-        Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
+        Airline airline = airlineList.getSelectionModel().getSelectedItem();
 
         if (airline != null) {
 
@@ -1326,7 +1326,18 @@ public class GUIController implements Initializable {
 
             String alias = String.format("Known aliases for this airline: %s", airline.getAlias());
 
-            airlineDetailList.setItems(observableArrayList(name, country, active, alias));
+            String airportsFlownTo = "Airports this airline travels to: ";
+            ArrayList<String> airports = RetrieveFromDatabase.getAirportsFromAirline(airline);
+            if (airports.size() == 0) {
+                airportsFlownTo += "None";
+            } else {
+                airportsFlownTo += airports.get(0);
+                for (int i=1; i < airports.size(); i++) {
+                    airportsFlownTo += (", " + airports.get(i));
+                }
+            }
+
+            airlineDetailList.setItems(observableArrayList(name, country, active, alias, airportsFlownTo));
             modifyAirlineWindowButton.setVisible(true);
 
             if (optedIn) {
