@@ -179,6 +179,31 @@ public class RetrieveFromDatabase extends Database {
         return airlineNames;
     }
 
+    /**
+     * Provides the user with a list of airports within the current record that the specified airline travels to
+     * @param airline The airline that the user wants to know the destinations of
+     * @return An arraylist containing the names of each of the airports that the airline travels to
+     */
+    public static ArrayList<String> getAirportsFromAirline(Airline airline) {
+        String sql = String.format("SELECT DISTINCT airportName FROM airports WHERE id IN " +
+                "(SELECT sourceID FROM routes WHERE airlineID = %s) OR id IN " +
+                "(SELECT destID FROM routes WHERE airlineID = %s)", airline.getId(), airline.getId());
+
+        ArrayList<String> airportNames = new ArrayList<>();
+
+        try (Connection conn = connect();
+             Statement stmt = conn.createStatement();
+             ResultSet rs = stmt.executeQuery(sql)) {
+            while (rs.next()) {
+                airportNames.add(rs.getString("airportName"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return airportNames;
+    }
+
 
     /**
      * Generates each of the records that each group of airlines, airports, and routes are stored in. Airlines, airports,
