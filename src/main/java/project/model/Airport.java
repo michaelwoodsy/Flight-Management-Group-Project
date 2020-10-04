@@ -142,6 +142,9 @@ public class Airport implements Serializable {
         }
     }
 
+    /**
+     * Using the database select it determines the number of routes an airport has both source and destination routes.
+     */
     public void determineNumRoutes() {
         this.numRoutesSource = RetrieveFromDatabase.getNumRoutes(this, "sourceID");
         this.numRoutesDest = RetrieveFromDatabase.getNumRoutes(this, "destID");
@@ -150,7 +153,6 @@ public class Airport implements Serializable {
 
     /**
      * This method returns a String of information about the Airport, and the city and country it's from.
-     *
      * @return  A String of information about Airport, and the city and country it's from.
      */
     @Override
@@ -179,18 +181,24 @@ public class Airport implements Serializable {
         return nameString + cityString + countryString;
     }
 
+    /**
+     * Using the database select it determines the number of routes that use the airport as a source
+     */
     public void setNumRoutesSource() {
         this.numRoutesSource = RetrieveFromDatabase.getNumRoutes(this, "sourceID");
         setTotalRoutes();
     }
 
-    public int getNumRoutesDest() {
-        return numRoutesDest;
-    }
-
+    /**
+     * Using the database select it determines the number of routes that use the airport as a destination
+     */
     public void setNumRoutesDest() {
         this.numRoutesDest = RetrieveFromDatabase.getNumRoutes(this, "destID");
         setTotalRoutes();
+    }
+
+    public int getNumRoutesDest() {
+        return numRoutesDest;
     }
 
     public int getTotalRoutes() {
