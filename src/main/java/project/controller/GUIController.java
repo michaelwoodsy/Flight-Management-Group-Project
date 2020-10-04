@@ -1814,6 +1814,8 @@ public class GUIController implements Initializable {
      */
     @FXML
     public void hyperLink (ActionEvent event) throws IOException {
+        //Doesn't work on lab computers, has been disabled.
+        /**
         if(Desktop.isDesktopSupported())
         {
             try {
@@ -1824,6 +1826,8 @@ public class GUIController implements Initializable {
                 e1.printStackTrace();
             }
         }
+         */
+
     }
 
     @FXML
