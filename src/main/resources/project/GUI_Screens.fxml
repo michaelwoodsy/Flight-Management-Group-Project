@@ -657,7 +657,10 @@
                                                 <Font size="15.0" />
                                              </font>
                                           </Text>
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In the airport, airline, route, and flight tabs, there is a table of the data" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In the airport, airline, route, and flight tabs, there is a table of the data">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
                                           <Text fill="WHITE" layoutX="13.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="currently loaded into the application's selected record." />
                                           <Text fill="WHITE" layoutX="13.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="There are various buttons to the side of the table to perform specific" />
                                           <Text fill="WHITE" layoutX="13.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="functionalities." />
@@ -670,50 +673,144 @@
                                           <Text fill="WHITE" layoutX="13.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="on the Airport, Airline, and Route tabs." />
                                           <Text fill="WHITE" layoutX="13.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clicking this button will change the tab to a UI similar to the add data" />
                                           <Text fill="WHITE" layoutX="13.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="menu. Each field must be filled out correctly before modifying, and you" />
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can also choose to delete the selected data item." />
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can also choose to delete the selected data item.">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
                                           <Text fill="WHITE" layoutX="3.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Records" underline="true">
                                              <font>
                                                 <Font size="15.0" />
                                              </font>
                                           </Text>
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A record will store data of all types loaded into it." />
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When adding or loading data, you may choose to add data into a" />
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="particular existing record, or add it into a new one." />
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Switching between records will change the data you can see based on" />
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the data you've loaded into the selected record." />
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Switching records can be done on each datatype tab, as well as the Map" />
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tab." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A record will store data of all types loaded into it.">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="301.0" strokeType="OUTSIDE" strokeWidth="0.0" text="When adding or loading data, you may choose to add data into a">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="particular existing record, or add it into a new one.">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Switching between records will change the data you can see based on">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="343.0" strokeType="OUTSIDE" strokeWidth="0.0" text="the data you've loaded into the selected record.">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Switching records can be done on each datatype tab, as well as the Map">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="371.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tab.">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
                                           <Text fill="WHITE" layoutX="414.0" layoutY="24.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Covid Data" underline="true">
                                              <font>
                                                 <Font size="15.0" />
                                              </font>
                                           </Text>
-                                          <Text fill="WHITE" layoutX="424.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our covid data comes preloaded into the application" />
-                                          <Text fill="WHITE" layoutX="424.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="with no user input. In future releases, this is subject to" />
-                                          <Text fill="WHITE" layoutX="424.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="change." />
-                                          <Text fill="WHITE" layoutX="424.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our covid risk rating for each airport is merely an" />
-                                          <Text fill="WHITE" layoutX="424.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="approximation, and should be taken with a grain of salt." />
-                                          <Text fill="WHITE" layoutX="424.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data is obtained from ourworldindata.org, which in turn" />
-                                          <Text fill="WHITE" layoutX="424.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="is obtained from WHO statistics." />
-                                          <Text fill="WHITE" layoutX="424.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We take a rounded percentage of the population of " />
-                                          <Text fill="WHITE" layoutX="424.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="that country infected by covid to estimate a risk level." />
-                                          <Text fill="WHITE" layoutX="485.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•" />
-                                          <Text fill="#1f9900" layoutX="493.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extremely low risk" />
-                                          <Text fill="WHITE" layoutX="485.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•" />
-                                          <Text fill="#98ad00" layoutX="493.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Low risk" />
-                                          <Text fill="WHITE" layoutX="485.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• " />
-                                          <Text fill="WHITE" layoutX="485.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• " />
-                                          <Text fill="WHITE" layoutX="485.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• " />
-                                          <Text fill="#e8d805" layoutX="493.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medium risk" />
-                                          <Text fill="#ff9900" layoutX="493.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="High risk" />
-                                          <Text fill="#da2100" layoutX="493.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extreme risk" />
-                                          <Text fill="WHITE" layoutX="589.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &lt;= 0.1%" />
-                                          <Text fill="WHITE" layoutX="537.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &gt; 0.1% and &lt;= 0.5%" />
-                                          <Text fill="WHITE" layoutX="560.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &gt; 0.5% and &lt;= 1%" />
-                                          <Text fill="WHITE" layoutX="540.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &gt; 1% and &lt;= 5%" />
-                                          <Text fill="WHITE" layoutX="557.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &gt; 5%" />
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our covid data comes preloaded into the application">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="with no user input. In future releases, this is subject to">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="change.">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our covid risk rating for each airport is merely an">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="approximation, and should be taken with a grain of salt.">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data is obtained from ourworldindata.org, which in turn">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="is obtained from WHO statistics.">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="We take a rounded percentage of the population of ">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="424.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="that country infected by covid to estimate a risk level.">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="485.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="#1f9900" layoutX="493.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extremely low risk">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="485.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="•">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="#98ad00" layoutX="493.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Low risk">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="485.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• ">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="485.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• ">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="485.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="• ">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="#e8d805" layoutX="493.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Medium risk">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="#ff9900" layoutX="493.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="High risk">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="#da2100" layoutX="493.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Extreme risk">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="589.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &lt;= 0.1%">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="537.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &gt; 0.1% and &lt;= 0.5%">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="560.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &gt; 0.5% and &lt;= 1%">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="540.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &gt; 1% and &lt;= 5%">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
+                                          <Text fill="WHITE" layoutX="557.0" layoutY="247.0" strokeType="OUTSIDE" strokeWidth="0.0" text=": &gt; 5%">
+                                             <font>
+                                                <Font size="11.0" />
+                                             </font></Text>
                                           <Text fill="WHITE" layoutX="414.0" layoutY="268.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The Data Tab" underline="true">
                                              <font>
                                                 <Font size="15.0" />
