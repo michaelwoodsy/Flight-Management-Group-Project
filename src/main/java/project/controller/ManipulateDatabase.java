@@ -41,7 +41,7 @@ public class ManipulateDatabase extends Database {
 
         //Store additional attributes to allow accessing of additional airport information without needing to deserialise
         String insertStatement = "INSERT INTO airports(id, airportObject, latitude, " +
-                "longitude, airportName, record) VALUES(?,?,?,?,?)";
+                "longitude, airportName, record) VALUES(?,?,?,?,?,?)";
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(insertStatement)) {
             pstmt.setInt(1, airport.getId());
