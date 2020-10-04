@@ -62,9 +62,9 @@ public class GUIController implements Initializable {
     @FXML
     private TextField routeSearchCriteria;
     @FXML
-    private ChoiceBox airlineSearchBy;
+    private ChoiceBox <String> airlineSearchBy;
     @FXML
-    private ChoiceBox routeSearchBy;
+    private ChoiceBox <String> routeSearchBy;
     @FXML
     private TabPane newTab;
     @FXML
@@ -78,9 +78,9 @@ public class GUIController implements Initializable {
     @FXML
     private RadioButton flightRadioButton;
     @FXML
-    private ChoiceBox recordDropdown;
+    private ChoiceBox <String> recordDropdown;
     @FXML
-    private ChoiceBox airportSearchBy;
+    private ChoiceBox <String> airportSearchBy;
     @FXML
     private CheckBox airlineActiveBox;
     @FXML
@@ -146,11 +146,11 @@ public class GUIController implements Initializable {
     @FXML
     private CheckBox routeCodeShare;
     @FXML
-    private ChoiceBox recordSelectAirport;
+    private ChoiceBox <String> recordSelectAirport;
     @FXML
-    private ChoiceBox recordSelectAirline;
+    private ChoiceBox <String> recordSelectAirline;
     @FXML
-    private ChoiceBox recordSelectRoute;
+    private ChoiceBox <String> recordSelectRoute;
     @FXML
     private Button modifyRouteWindowButton;
     @FXML
@@ -224,27 +224,27 @@ public class GUIController implements Initializable {
     @FXML
     private Text flightText;
     @FXML
-    private ChoiceBox recordSelectFlight;
+    private ChoiceBox <String> recordSelectFlight;
     @FXML
-    private ChoiceBox flightDropDown;
+    private ChoiceBox <String> flightDropDown;
     @FXML
-    private ListView flightDetailList;
+    private ListView <String> flightDetailList;
     @FXML
-    private ListView flightList;
+    private ListView <String> flightList;
     @FXML
-    private ComboBox helpDropdown;
+    private ComboBox <String> helpDropdown;
     @FXML
     private TextArea helpTextArea;
     @FXML
-    private ChoiceBox recordSelectMap;
+    private ChoiceBox <String> recordSelectMap;
     @FXML
-    private ChoiceBox mapFilter;
+    private ChoiceBox <String> mapFilter;
     @FXML
     private TextField mapSearchBox;
     @FXML
     private TextField airportInfoBox;
     @FXML
-    private ListView mapDetailList;
+    private ListView <String> mapDetailList;
     @FXML
     private ImageView planeImage;
     @FXML
@@ -266,7 +266,7 @@ public class GUIController implements Initializable {
     private List<Airline> defaultAirlineList = new ArrayList<>();
     private List<Route> defaultRouteList = new ArrayList<>();
     private Airport lastSelectedAirport = null;
-
+    private ArrayList<String> recordNames = new ArrayList<String>();
 
     private WebEngine mapEngine;
 
@@ -299,9 +299,7 @@ public class GUIController implements Initializable {
             recordList.add(currentRecord);
         }
 
-        ArrayList<String> recordNames = new ArrayList<String>();
         for (Record record: recordList) {
-            System.out.println(record.getName());
             recordNames.add(record.getName());
         }
 
@@ -355,20 +353,30 @@ public class GUIController implements Initializable {
 
     }
 
+    /**
+     * This method executes script that is taken from the AirportLocations class method and is used
+     * the map to display all the airports
+     * @param newAirportLocation AirportLocations object representing all the airport locations
+     */
     private void displayAirport(AirportLocations newAirportLocation) {
         //executes displayAirport with the JS array of airport details
         String scriptToExecute = "displayAirport(" + newAirportLocation.toJSONArray() + ");";
         this.mapEngine.executeScript(scriptToExecute);
     }
 
+    /**
+     * This method initializes the map inside the map tab
+     */
     public void initMap(){
         this.mapEngine = mapView.getEngine();
         this.mapEngine.load(getClass().getResource("/map.html").toExternalForm());
     }
 
     @FXML
+    /**
+     * This method clears the map inside the map tab and then marks the selected airport on the map
+     */
     public void airportLoop() {
-        //clears map, then marks airports on map
         String scriptToExecute = "clearMap();";
         this.mapEngine.executeScript(scriptToExecute);
 
@@ -378,8 +386,10 @@ public class GUIController implements Initializable {
     }
 
     @FXML
+    /**
+     * This method clears the map inside the map tab and then marks the airports and selected routes
+     */
     public void showMapRoutes() {
-        //clears map then adds airports and selected routes
         String scriptToExecute = "clearMap();";
         this.mapEngine.executeScript(scriptToExecute);
 
@@ -389,11 +399,16 @@ public class GUIController implements Initializable {
         displayAirport(airports);
     }
 
+    /**
+     * This method loops through all the routes grabbing the latitude and longitude of routes using the source
+     * and destination airports that are retrieved from the database and draws the line connecting the two airports
+     * by the route.
+     */
     public void plotRoute() {
         //loops through routes and gets lat and long of source and destination airports from database. Then draws line connecting them on map
         ArrayList<Route> filteredRoutes;
 
-        if (mapFilter.getValue() == "Equipment Code") {
+        if (mapFilter.getValue().equals("Equipment Code")) {
             filteredRoutes = currentRecord.searchRoutes(mapSearchBox.getText().toLowerCase(), "equipment");
         } else {
             filteredRoutes = currentRecord.searchRoutes(mapSearchBox.getText().toLowerCase(), "source airport");
@@ -449,7 +464,6 @@ public class GUIController implements Initializable {
         } else {
             planeImage.setVisible(false);
             routeDetailList.setItems(observableArrayList("No image in our files matches", "the equipment code for:", route.getEquipment()));
-
         }
 
         showPlaneButton.setVisible(false);
@@ -467,6 +481,10 @@ public class GUIController implements Initializable {
         hidePlaneButton.setVisible(false);
     }
 
+    /**
+     * Method that displays the airport information from the "Show" button in the Map tab
+     * using a selected airport in the searchCriteria box and displays information inside the mapDetialList
+     */
     @FXML
     public void airportMapInfo() {
         String searchCriteria = airportInfoBox.getText().toLowerCase();
@@ -569,7 +587,7 @@ public class GUIController implements Initializable {
     public void mapSelect() {
         int index = 0;
         for (Record record: recordList) {
-            if (recordSelectMap.getValue() == record.getName()) {
+            if (recordSelectMap.getValue().equals(record.getName())) {
                 index = recordList.indexOf(record);
                 break;
             }
@@ -591,7 +609,7 @@ public class GUIController implements Initializable {
     public void routeSelect() {
         int index = 0;
         for (Record record: recordList) {
-            if (recordSelectRoute.getValue() == record.getName()) {
+            if (recordSelectRoute.getValue().equals(record.getName())) {
                 index = recordList.indexOf(record);
                 break;
             }
@@ -614,7 +632,7 @@ public class GUIController implements Initializable {
     public void airportSelect() {
         int index = 0;
         for (Record record: recordList) {
-            if (recordSelectAirport.getValue() == record.getName()) {
+            if (recordSelectAirport.getValue().equals(record.getName())) {
                 index = recordList.indexOf(record);
                 break;
             }
@@ -637,7 +655,7 @@ public class GUIController implements Initializable {
     public void airlineSelect() {
         int index = 0;
         for (Record record: recordList) {
-            if (recordSelectAirline.getValue() == record.getName()) {
+            if (recordSelectAirline.getValue().equals(record.getName())) {
                 index = recordList.indexOf(record);
                 break;
             }
@@ -660,7 +678,7 @@ public class GUIController implements Initializable {
     public void flightSelect() {
         int index = 0;
         for (Record record: recordList) {
-            if (recordSelectFlight.getValue() == record.getName()) {
+            if (recordSelectFlight.getValue().equals(record.getName())) {
                 index = recordList.indexOf(record);
                 break;
             }
@@ -873,8 +891,19 @@ public class GUIController implements Initializable {
      */
     public void addFileHelper() {
 
-        if (recordDropdown.getValue() == "New Record") {
-            Record record = new Record("Record " + (recordList.size() + 1));
+        if (recordDropdown.getValue().equals("New Record")) {
+            String newRecordName = "Record " + (recordList.size() + 1);
+            if (recordNames.contains(newRecordName)) {
+                //There is a record somewhere prior to this number that is unused - try and find it
+                for (int i = 1; i <= recordList.size(); i++) {
+                    newRecordName = "Record " + i;
+                    if (!recordNames.contains(newRecordName)) {
+                        break;
+                    }
+                }
+            }
+
+            Record record = new Record(newRecordName);
             recordList.add(record);
             currentRecord = record;
 
@@ -902,7 +931,7 @@ public class GUIController implements Initializable {
 
         int index = 0;
         for (Record record: recordList) {
-            if (recordDropdown.getValue() == record.getName()) {
+            if (recordDropdown.getValue().equals(record.getName())) {
                 index = recordList.indexOf(record);
                 break;
             }
@@ -1207,7 +1236,7 @@ public class GUIController implements Initializable {
      * is also displayed.
      */
     public void additionalAirportInfo() {
-        Airport airport = (Airport) airportList.getSelectionModel().getSelectedItem();
+        Airport airport = airportList.getSelectionModel().getSelectedItem();
 
         if (airport != null) {
 
@@ -1301,7 +1330,7 @@ public class GUIController implements Initializable {
      * is also displayed.
      */
     public void additionalAirlineInfo() {
-        Airline airline = (Airline) airlineList.getSelectionModel().getSelectedItem();
+        Airline airline = airlineList.getSelectionModel().getSelectedItem();
 
         if (airline != null) {
 
@@ -1317,7 +1346,18 @@ public class GUIController implements Initializable {
 
             String alias = String.format("Known aliases for this airline: %s", airline.getAlias());
 
-            airlineDetailList.setItems(observableArrayList(name, country, active, alias));
+            String airportsFlownTo = "Airports this airline travels to: ";
+            ArrayList<String> airports = RetrieveFromDatabase.getAirportsFromAirline(airline);
+            if (airports.size() == 0) {
+                airportsFlownTo += "None";
+            } else {
+                airportsFlownTo += airports.get(0);
+                for (int i=1; i < airports.size(); i++) {
+                    airportsFlownTo += (", " + airports.get(i));
+                }
+            }
+
+            airlineDetailList.setItems(observableArrayList(name, country, active, alias, airportsFlownTo));
             modifyAirlineWindowButton.setVisible(true);
 
             if (optedIn) {
@@ -1799,61 +1839,61 @@ public class GUIController implements Initializable {
      * @throws IOException Signals that an I/O exception of some sort has occurred.
      */
     public void helpButton(ActionEvent event) throws IOException {
-        if (helpDropdown.getValue() == "Airport - ID") {
+        if (helpDropdown.getValue().equals("Airport - ID")) {
             helpTextArea.setText("OpenFlights and PlaneSonar25's ID for the airport. Must be an integer.");
-        } else if (helpDropdown.getValue() == "Airport - Name") {
+        } else if (helpDropdown.getValue().equals("Airport - Name")) {
             helpTextArea.setText("The name of the airport.");
-        } else if (helpDropdown.getValue() == "Airport - City") {
+        } else if (helpDropdown.getValue().equals("Airport - City")) {
             helpTextArea.setText("The main city served by the airport.");
-        } else if (helpDropdown.getValue() == "Airport - Country") {
+        } else if (helpDropdown.getValue().equals("Airport - Country")) {
             helpTextArea.setText("The name of the country in which the airport is located.");
-        } else if (helpDropdown.getValue() == "Airport - IATA Code") {
+        } else if (helpDropdown.getValue().equals("Airport - IATA Code")) {
             helpTextArea.setText("Unique 3 letter airport code defined by the International Air Transport Association.");
-        } else if (helpDropdown.getValue() == "Airport - ICAO Code") {
+        } else if (helpDropdown.getValue().equals("Airport - ICAO Code")) {
             helpTextArea.setText("Unique 4 letter airport code defined by the International Civil Aviation Organization.");
-        } else if (helpDropdown.getValue() == "Airport - Timezone") {
+        } else if (helpDropdown.getValue().equals("Airport - Timezone")) {
             helpTextArea.setText("A textual representation of the timezone in which the airport is located. For example, Pacific/Auckland.");
-        } else if (helpDropdown.getValue() == "Airport - Timezone Offset") {
+        } else if (helpDropdown.getValue().equals("Airport - Timezone Offset")) {
             helpTextArea.setText("The amount of hours the airport's timezone is offset by. Can be positive or negative. For example, -12. Must be a number.");
-        } else if (helpDropdown.getValue() == "Airport - DST") {
+        } else if (helpDropdown.getValue().equals("Airport - DST")) {
             helpTextArea.setText("The 1 letter daylight savings code used by OpenFlights.");
-        } else if (helpDropdown.getValue() == "Airport - Latitude") {
+        } else if (helpDropdown.getValue().equals("Airport - Latitude")) {
             helpTextArea.setText("The latitude location of the airport in decimal degrees. Must be a number between -90 and 90.");
-        } else if (helpDropdown.getValue() == "Airport - Longitude") {
+        } else if (helpDropdown.getValue().equals("Airport - Longitude")) {
             helpTextArea.setText("The longitude location of the airport in decimal degrees. Must be a number between -180 and 180.");
-        } else if (helpDropdown.getValue() == "Airport - Altitude") {
+        } else if (helpDropdown.getValue().equals("Airport - Altitude")) {
             helpTextArea.setText("The altitude location of the airport in feet. Must be an integer.");
-        } else if (helpDropdown.getValue() == "Airport - Altitude") {
+        } else if (helpDropdown.getValue().equals("Airport - Altitude")) {
             helpTextArea.setText("The altitude location of the airport in feet. Must be an integer.");
-        } else if (helpDropdown.getValue() == "Airline - ID") {
+        } else if (helpDropdown.getValue().equals("Airline - ID")) {
             helpTextArea.setText("OpenFlights and PlaneSonar25's ID for the airline. Must be an integer.");
-        } else if (helpDropdown.getValue() == "Airline - Name") {
+        } else if (helpDropdown.getValue().equals("Airline - Name")) {
             helpTextArea.setText("The name of the airline.");
-        } else if (helpDropdown.getValue() == "Airline - Alias") {
+        } else if (helpDropdown.getValue().equals("Airline - Alias")) {
             helpTextArea.setText("Common alternate name(s) of the airline.");
-        } else if (helpDropdown.getValue() == "Airline - Callsign") {
+        } else if (helpDropdown.getValue().equals("Airline - Callsign")) {
             helpTextArea.setText("Callsign code that identifies the airline.");
-        } else if (helpDropdown.getValue() == "Airline - Active") {
+        } else if (helpDropdown.getValue().equals("Airline - Active")) {
             helpTextArea.setText("Whether the airline is currently active or not.");
-        } else if (helpDropdown.getValue() == "Airline - IATA Code") {
+        } else if (helpDropdown.getValue().equals("Airline - IATA Code")) {
             helpTextArea.setText("Unique 2 letter airline code defined by the International Air Transport Association.");
-        } else if (helpDropdown.getValue() == "Airline - ICAO Code") {
+        } else if (helpDropdown.getValue().equals("Airline - ICAO Code")) {
             helpTextArea.setText("Unique 3 letter airline code defined by the International Civil Aviation Organization.");
-        } else if (helpDropdown.getValue() == "Airline - Country") {
+        } else if (helpDropdown.getValue().equals("Airline - Country")) {
             helpTextArea.setText("The name of the country of origin of the airline.");
-        } else if (helpDropdown.getValue() == "Airline - Country") {
+        } else if (helpDropdown.getValue().equals("Airline - Country")) {
             helpTextArea.setText("The name of the country of origin of the airline.");
-        } else if (helpDropdown.getValue() == "Route - Airline Code") {
+        } else if (helpDropdown.getValue().equals("Route - Airline Code")) {
             helpTextArea.setText("2 letter IATA of the airline operating the flight route.");
-        } else if (helpDropdown.getValue() == "Route - Source Airport Code") {
+        } else if (helpDropdown.getValue().equals("Route - Source Airport Code")) {
             helpTextArea.setText("3 letter IATA of the source airport of the route.");
-        } else if (helpDropdown.getValue() == "Route - Destination Airport Code") {
+        } else if (helpDropdown.getValue().equals("Route - Destination Airport Code")) {
             helpTextArea.setText("3 letter IATA of the destination airport of the route.");
-        } else if (helpDropdown.getValue() == "Route - Equipment") {
+        } else if (helpDropdown.getValue().equals("Route - Equipment")) {
             helpTextArea.setText("3 letter code(s) of plane types used on the route.");
-        } else if (helpDropdown.getValue() == "Route - Number of Stops") {
+        } else if (helpDropdown.getValue().equals("Route - Number of Stops")) {
             helpTextArea.setText("The number of stops the flight route takes before reaching its destination. Commonly 0. Must be an integer.");
-        } else if (helpDropdown.getValue() == "Route - Codeshare") {
+        } else if (helpDropdown.getValue().equals("Route - Codeshare")) {
             helpTextArea.setText("Indicates if the route is a codeshare or not (route operated by an airline or not).");
         }
     }

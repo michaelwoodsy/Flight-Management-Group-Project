@@ -30,6 +30,7 @@ public class CreateDatabase extends Database {
                 + " airportObject blob,\n" //Store the airport object itself, instead of each of its attributes
                 + " latitude real,\n" //Store additional attributes that can be accessed without having to deserialise the airport bytes
                 + " longitude real,\n"
+                + " airportName text,\n"
                 + " record text NOT NULL,\n"
                 + " PRIMARY KEY(id, record)\n"
                 + ");";

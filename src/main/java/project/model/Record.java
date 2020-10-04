@@ -457,9 +457,6 @@ public class Record {
         Hashtable<String, Covid> covidDict = null;
 
         try {
-//            ClassLoader classLoader = getClass().getClassLoader();
-//            File file = new File(classLoader.getResource())
-
             CovidLoader covidLoad = new CovidLoader();
             covidDict = covidLoad.loadCovidFile("/covid.dat");
 

@@ -205,6 +205,13 @@ public class DialogBoxes {
         alert.showAndWait();
     }
 
+    /**
+     * Dialog Box that shows the amount of time (seconds)
+     * it takes to sync N lines into the database
+     * @param type  String representing the type of data that is syncing
+     * @param numLines  Int representing how many lines there are to be synced
+     * @return Boolean  true if user wants to sync else false
+     */
     public static boolean confirmSync(String type, int numLines) {
 
         double syncTime = 0;
@@ -236,6 +243,10 @@ public class DialogBoxes {
         }
     }
 
+    /**
+     * Dialog box that displays all airlines that are inside a selected airport
+     * @param airport Airport object that represents the selected airport
+     */
     public static void airlinesThroughAirport(Airport airport) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);

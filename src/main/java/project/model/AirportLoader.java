@@ -27,11 +27,13 @@ public class AirportLoader {
         String type;
         try {
             type = airportData[12].replaceAll("\"", "").replace("\\\\", "");
-            if (!(type == "airport")) { //Data is not an airport - do not complete creation of airport
+            if (type.toLowerCase().equals("port") || type.toLowerCase().equals("station")) { //Data is not an airport - do not complete creation of airport
                 return null;
+            } else if (type.toLowerCase().equals("unknown")) {
+                numUnknown += 1;
             }
         } catch (Exception e) {
-            return null;
+            numUnknown += 1;
         }
 
 
