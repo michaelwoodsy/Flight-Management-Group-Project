@@ -19,13 +19,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Merge remote-tracking branch 'origin/master' into master&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/project/controller/GUIController.java">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Merging, equipment  visualisation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/controller/DataChecker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/controller/DataChecker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/controller/DialogBoxes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/controller/DialogBoxes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -272,13 +267,6 @@
       <workItem from="1600314338736" duration="2357000" />
       <workItem from="1601008937649" duration="5115000" />
       <workItem from="1601330576318" duration="666000" />
-    </task>
-    <task id="LOCAL-00040" summary="All filtering completed - need searching">
-      <created>1598930382320</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1598930382320</updated>
     </task>
     <task id="LOCAL-00041" summary="Added additional info when selecting an airport/airline/route">
       <created>1599013965092</created>
@@ -616,7 +604,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601625951802</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Merging, equipment  visualisation">
+      <created>1601704409399</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1601704409399</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,7 +656,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Commented out .css file and removed unused xtml files" />
     <MESSAGE value="changed map layout, made map bigger and added a route and settings tab. also icons are now stored locally." />
     <MESSAGE value="MAPS api automatic scaling has been commented out (buggy in embedded map) manual scaling and position added (Place holder until bug fixed), map controls blocked" />
     <MESSAGE value="Fixed the issue" />
@@ -693,7 +687,8 @@
     <MESSAGE value="Changed default zoom and location" />
     <MESSAGE value="Cleaned up map.html, mapJS, position.java, AirportLocations.java and the map functions in the GUIController.java" />
     <MESSAGE value="Added warning to only manually add one file at a time and restyled opt in pane" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added warning to only manually add one file at a time and restyled opt in pane" />
+    <MESSAGE value="Merging, equipment  visualisation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merging, equipment  visualisation" />
   </component>
   <component name="WindowStateProjectService">
     <state x="381" y="56" key="#Main" timestamp="1600650512140">
@@ -854,10 +849,10 @@
     <state x="166" y="12" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1595997449081" />
     <state x="202" y="0" key="SettingsEditor/0.0.1664.1069@0.0.1664.1069" timestamp="1600911968750" />
     <state x="233" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598425220256" />
-    <state x="390" y="203" key="Vcs.Push.Dialog.v2" timestamp="1600997161578">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1601704414070">
+      <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1600319017099" />
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1601704414070" />
     <state x="312" y="160" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1598581356049" />
     <state x="338" y="208" key="Vcs.Push.Dialog.v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017372267" />
     <state x="390" y="203" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600997161578" />
