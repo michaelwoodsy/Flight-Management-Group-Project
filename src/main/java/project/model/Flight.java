@@ -28,10 +28,6 @@ public class Flight {
      * A string detailing the status of the flight at any point
      */
     private ArrayList<String> status;
-    /**
-     * An integer displaying the percentage COVID risk that the flight holds
-     */
-    private int risk;
 
     /**
      * First code displayed in locations array (source ICAO airport code).
@@ -46,13 +42,12 @@ public class Flight {
     /**
      * Constructor class for a flight
      */
-    public Flight(ArrayList<Double> latitudes, ArrayList<Double> longitudes, ArrayList<Integer> altitudes, ArrayList<String> locations, ArrayList<String> status, int risk) {
+    public Flight(ArrayList<Double> latitudes, ArrayList<Double> longitudes, ArrayList<Integer> altitudes, ArrayList<String> locations, ArrayList<String> status) {
         this.latitudes = latitudes;
         this.longitudes = longitudes;
         this.altitudes = altitudes;
         this.locations = locations;
         this.status = status;
-        this.risk = risk;
         this.source = locations.get(0);
         this.dest = locations.get(locations.size() - 1);
     }
@@ -108,12 +103,6 @@ public class Flight {
     public int hashCode() {
         return Objects.hash(getLatitudes(), getLongitudes(), getAltitudes(), getLocations(), getStatus());
     }
-
-    /*public void setLocations(ArrayList<String> locations) {
-        this.locations = locations;
-        this.source = locations.get(0);
-        this.dest = locations.get(locations.size() - 1);
-    }*/
 
 
     public ArrayList<Double> getLatitudes() {

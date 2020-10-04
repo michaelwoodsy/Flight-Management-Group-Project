@@ -272,10 +272,6 @@ public class GUIController implements Initializable {
 
     private DataChecker dataChecker = new DataChecker();
 
-
-    //need to get this function to loop through airports adding position then RouteLocations
-
-
     private AirportLocations airports = new AirportLocations();
     private AirportLocations RoutesPlotLocations = new AirportLocations();
 
@@ -367,7 +363,7 @@ public class GUIController implements Initializable {
     /**
      * This method initializes the map inside the map tab
      */
-    public void initMap(){
+    public void initMap() {
         this.mapEngine = mapView.getEngine();
         this.mapEngine.load(getClass().getResource("/map.html").toExternalForm());
     }

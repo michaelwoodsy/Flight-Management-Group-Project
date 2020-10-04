@@ -25,7 +25,6 @@ public class FlightLoader {
         ArrayList<Integer> altitudes = new ArrayList<Integer>();
         ArrayList<Double> latitudes = new ArrayList<Double>();
         ArrayList<Double> longitudes = new ArrayList<Double>();
-        int risk = 0; // Placeholder
 
         BufferedReader dataReader = new BufferedReader(new FileReader(path));
 
@@ -81,7 +80,7 @@ public class FlightLoader {
         }
         dataReader.close();
 
-        return new Flight(latitudes, longitudes, altitudes, locations, statuses, risk);
+        return new Flight(latitudes, longitudes, altitudes, locations, statuses);
     }
 
     /**

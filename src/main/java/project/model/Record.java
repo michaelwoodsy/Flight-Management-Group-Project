@@ -231,37 +231,6 @@ public class Record {
     }
 
     /**
-     * Requires special implementation in GUI.
-     * To search flights, check either the destination or source checkbox (can't be both).
-     * Then enter the name of the source/destination airport. If this is on record, will identify the
-     * ICAO code from that airport, and search the flightlist for flights matching this source/destination
-     * ICAO. If none can be found, returns empty list. Print exception when this occurs.
-
-    public ArrayList<Flight> searchFlights(boolean source, String keyword) {
-
-        ArrayList<Flight> searchResult = new ArrayList<Flight>();
-
-        for (Airport airport: airportList) {
-            if (airport.getName().toUpperCase().contains(keyword.toUpperCase())) {
-                String icao = airport.getIcao();
-                for (Flight flight : flightList) {
-                    if (source) { // Searching source
-                        if (flight.getSource().equals(icao)) {
-                            searchResult.add(flight);
-                        }
-                    } else {  // Searching destination
-                        if (flight.getDest().equals(icao)) {
-                            searchResult.add(flight);
-                        }
-                    }
-                }
-            }
-        }
-        return searchResult;
-    }
-     */
-
-    /**
      * Searches the current COVID list for a country, and returns the the COVID object that is of that country
      * @param country The country who's COVID stats we are looking for
      * @return The COVID object that contains the stats of the requested country
@@ -276,40 +245,6 @@ public class Record {
             throw new NoSuchFieldException("No such country exists in our records");
         }
     }
-
-    // Region commented out because these will be replaced soon.
-    /**
-    /*
-     * Iterates through the list of airports and list of routes and adds 1 to the numRoutesSource attribute
-     * of each airport based on how many routes begin at that airport.
-
-    public void setNumRoutesSource() {
-        for (Airport airport : airportList) {
-            String icao = airport.getIcao();
-            String iata = airport.getIata();
-            for (Route route : routeList) {
-                if (route.getSourceAirport().equals(icao) || route.getSourceAirport().equals(iata)) {
-                    airport.setNumRoutesSource(airport.getNumRoutesSource() + 1);
-                }
-            }
-        }
-    }
-
-    /*
-     * Iterates through the list of airports and list of routes and adds 1 to the numRoutesDest attribute
-     * of each airport based on how many routes end at that airport.
-    public void setNumRoutesDest() {
-        for (Airport airport : airportList) {
-            String icao = airport.getIcao();
-            String iata = airport.getIata();
-            for (Route route : routeList) {
-                if (route.getDestAirport().equals(icao) || route.getDestAirport().equals(iata)) {
-                    airport.setNumRoutesDest(airport.getNumRoutesDest() + 1);
-                }
-            }
-        }
-    }
-     */
 
     /**
      * Assigns IDs to each route in the record. Check if some IDs are available after deletion occurs.

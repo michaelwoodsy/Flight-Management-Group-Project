@@ -671,8 +671,8 @@
                                           <Text fill="WHITE" layoutX="13.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Clicking this button will change the tab to a UI similar to the add data" />
                                           <Text fill="WHITE" layoutX="13.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="menu. Each field must be filled out correctly before modifying, and you" />
                                           <Text fill="WHITE" layoutX="13.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="can also choose to delete the selected data item." />
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note you must refresh the table via the Show [Datatype] button in order" />
-                                          <Text fill="WHITE" layoutX="13.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" text="to see the changes made." />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                                          <Text fill="WHITE" layoutX="13.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                                           <Text fill="WHITE" layoutX="3.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Records" underline="true">
                                              <font>
                                                 <Font size="15.0" />
@@ -837,6 +837,7 @@
             <Image url="@../LogoIcon.png" />
          </image>
       </ImageView>
+      <Accordion />
       <Accordion />
    </children>
 </AnchorPane>

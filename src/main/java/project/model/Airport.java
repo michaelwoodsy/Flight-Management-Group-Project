@@ -302,17 +302,5 @@ public class Airport implements Serializable {
         return numRoutesSource;
     }
 
-    /**
-     * Create a string representation for the database
-     */
-    public String getDatabaseValues() {
-        String values = String.format("%d,%d,?,?,?,'%s','%s','%s','%s',%f,%f,%f,'%s'",
-                this.id, this.altitude, this.iata, this.icao,
-                this.dst, this.timezoneString, this.latitude,
-                this.longitude, this.timezone, this.recordName);
-        return values;
-
-    }
-
 
 }
