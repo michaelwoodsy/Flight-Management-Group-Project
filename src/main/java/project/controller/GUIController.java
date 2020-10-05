@@ -11,8 +11,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
@@ -20,11 +18,8 @@ import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import project.model.*;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
@@ -438,23 +433,22 @@ public class GUIController implements Initializable {
      *
      * @throws IOException Signals that an I/O exception of some sort has occurred.
      */
-    public void showEquipment() throws IOException {
+    public void showEquipment() throws URISyntaxException {
 
-        Route route = (Route) routeList.getSelectionModel().getSelectedItem();
+        Route route = routeList.getSelectionModel().getSelectedItem();
 
         if (route != null && (route.getEquipment().contains("76") || route.getEquipment().contains("77")) ) {
 
             if (route.getEquipment().contains("76")) {
-
-                File file = new File("planes/76.jpg");
-                javafx.scene.image.Image image = new javafx.scene.image.Image(file.toURI().toString());
+                URL file = this.getClass().getResource("/76.jpg");
+                javafx.scene.image.Image image = new javafx.scene.image.Image(file.toExternalForm());
                 planeImage.setImage(image);
-                routeDetailList.setItems(observableArrayList("Showing plane for equipment code:", route.getEquipment()));
+                routeDetailList.setItems(observableArrayList("Equipment: " + route.getEquipment()));
             } else if (route.getEquipment().contains("77")) {
-                File file = new File("planes/77.jpg");
+                URL file = this.getClass().getResource("/77.jpg");
                 javafx.scene.image.Image image = new Image(file.toURI().toString());
                 planeImage.setImage(image);
-                routeDetailList.setItems(observableArrayList("Showing plane for equipment code:", route.getEquipment()));
+                routeDetailList.setItems(observableArrayList("Equipment: " + route.getEquipment()));
             }
             planeImage.setVisible(true);
         } else {
@@ -465,6 +459,7 @@ public class GUIController implements Initializable {
         showPlaneButton.setVisible(false);
         hidePlaneButton.setVisible(true);
     }
+
 
     @FXML
     /**
