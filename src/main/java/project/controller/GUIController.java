@@ -435,13 +435,12 @@ public class GUIController implements Initializable {
         if (route != null && (route.getEquipment().contains("76") || route.getEquipment().contains("77")) ) {
 
             if (route.getEquipment().contains("76")) {
-                ImageIO.read(getClass().getClassLoader().getResource("76.jpg"));
-                Image image2 = new Image(this.getClass().getResourceAsStream("76.jpg"));
+                File file = new File("src/main/java/resources/76.jpg");
                 javafx.scene.image.Image image = new javafx.scene.image.Image(file.toURI().toString());
-                planeImage.setImage(image2);
+                planeImage.setImage(image);
                 routeDetailList.setItems(observableArrayList("Showing plane for equipment:", route.getEquipment()));
             } else if (route.getEquipment().contains("77")) {
-                File file = new File("resources/77.jpg.extension");
+                File file = new File("src/main/java/resources/77.jpg");
                 javafx.scene.image.Image image = new Image(file.toURI().toString());
                 planeImage.setImage(image);
                 routeDetailList.setItems(observableArrayList("Showing plane for equipment:", route.getEquipment()));

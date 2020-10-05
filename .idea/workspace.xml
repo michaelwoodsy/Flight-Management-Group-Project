@@ -26,18 +26,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="trying to fix text sizes">
+    <list default="true" id="d3c478fa-eb59-4f02-a51a-7f81b94b0a87" name="Default Changelist" comment="Setting everything to how it was on linux">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/76.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/76.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/77.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/77.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUIController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI_Design.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GUI_Screens.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/database.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/controller/GUIController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/project/GUI_Design.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/GUI_Design.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/project/GUI_Screens.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/project/LoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/LoaderTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -111,13 +102,6 @@
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Woodsy\Desktop\planesonar25\src\main\resources" />
-      <recent name="C:\Users\Woodsy\Desktop\planesonar25\src\main\resources\project" />
-      <recent name="C:\Users\elang\planesonar25\src\main\resources" />
-      <recent name="C:\Users\elang\planesonar25\src\main\resources\project" />
-      <recent name="C:\Users\dan\Documents\SENG202\planesonar25\src\main\resources\project" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="project" />
     </key>
@@ -125,6 +109,13 @@
       <recent name="C:\Users\elang\planesonar25\src\main\resources" />
       <recent name="C:\Users\elang\planesonar25\src\main\resources\project" />
       <recent name="C:\Users\elang\planesonar25\src\test\java\project" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\64272\2ndyear\seng202\planesonar25\src\main\resources\project" />
+      <recent name="C:\Users\64272\2ndyear\seng202\planesonar25\src\main\java\project\controller" />
+      <recent name="C:\Users\64272\2ndyear\seng202\planesonar25\src\main\resources" />
+      <recent name="C:\Users\Woodsy\Desktop\planesonar25\src\main\resources" />
+      <recent name="C:\Users\Woodsy\Desktop\planesonar25\src\main\resources\project" />
     </key>
   </component>
   <component name="RunManager" selected="Application.Main">
@@ -264,20 +255,6 @@
       <workItem from="1601714592034" duration="143000" />
       <workItem from="1601714772587" duration="1759000" />
       <workItem from="1601770383920" duration="1579000" />
-    </task>
-    <task id="LOCAL-00044" summary="Handling invalid values in info for data classes in GUI">
-      <created>1599021353054</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1599021353055</updated>
-    </task>
-    <task id="LOCAL-00045" summary="Error handling for string representations for data classes">
-      <created>1599022344968</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1599022344968</updated>
     </task>
     <task id="LOCAL-00046" summary="Error handling for string representations for data classes">
       <created>1599023125733</created>
@@ -608,7 +585,21 @@
       <option name="project" value="LOCAL" />
       <updated>1601850490700</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Setting everything to how it was on linux">
+      <created>1601861854464</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1601861854465</updated>
+    </task>
+    <task id="LOCAL-00094" summary="Setting everything to how it was on linux">
+      <created>1601861858350</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1601861858350</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -653,9 +644,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Code cleanups" />
-    <MESSAGE value="Fixed the additional info button" />
-    <MESSAGE value="Set up flight functionality for record selection etc, still cant get file to load in properly however" />
     <MESSAGE value="Added documentation for the leftover classes in GUIController" />
     <MESSAGE value="Added a statement in risk calculation to avoid division by 0 error. Covid test (added risk boundary test) and loader test (removed redundancy)." />
     <MESSAGE value="Re-commit for Record documentation" />
@@ -682,7 +670,8 @@
     <MESSAGE value="Cleaned up map.html, mapJS, position.java, AirportLocations.java and the map functions in the GUIController.java" />
     <MESSAGE value="Added warning to only manually add one file at a time and restyled opt in pane" />
     <MESSAGE value="trying to fix text sizes" />
-    <option name="LAST_COMMIT_MESSAGE" value="trying to fix text sizes" />
+    <MESSAGE value="Setting everything to how it was on linux" />
+    <option name="LAST_COMMIT_MESSAGE" value="Setting everything to how it was on linux" />
   </component>
   <component name="WindowStateProjectService">
     <state x="381" y="56" key="#Main" timestamp="1600650512140">
@@ -746,48 +735,48 @@
     <state x="653" y="184" key="FileChooserDialogImpl/1920.-355.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1601421828562" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1600597383174" />
     <state x="653" y="184" key="FileChooserDialogImpl/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1597981987286" />
-    <state width="1326" height="227" key="GridCell.Tab.0.bottom" timestamp="1601861599988">
+    <state width="1326" height="227" key="GridCell.Tab.0.bottom" timestamp="1601862233016">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
     <state width="1237" height="164" key="GridCell.Tab.0.bottom/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="1326" height="227" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1601861599988" />
+    <state width="1326" height="227" key="GridCell.Tab.0.bottom/0.0.1368.872@0.0.1368.872" timestamp="1601862233016" />
     <state width="746" height="265" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1601625918856" />
     <state width="1621" height="162" key="GridCell.Tab.0.bottom/0.0.1664.1069@0.0.1664.1069" timestamp="1601005790078" />
     <state width="1877" height="205" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1601771607473" />
     <state width="1376" height="153" key="GridCell.Tab.0.bottom/1920.-355.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1601799282622" />
     <state width="1877" height="206" key="GridCell.Tab.0.bottom/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1600649412148" />
     <state width="1877" height="420" key="GridCell.Tab.0.bottom/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
-    <state width="1326" height="227" key="GridCell.Tab.0.center" timestamp="1601861599987">
+    <state width="1326" height="227" key="GridCell.Tab.0.center" timestamp="1601862233015">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
     <state width="1237" height="164" key="GridCell.Tab.0.center/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="1326" height="227" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1601861599987" />
+    <state width="1326" height="227" key="GridCell.Tab.0.center/0.0.1368.872@0.0.1368.872" timestamp="1601862233015" />
     <state width="746" height="265" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1601625918856" />
     <state width="1621" height="162" key="GridCell.Tab.0.center/0.0.1664.1069@0.0.1664.1069" timestamp="1601005790078" />
     <state width="1877" height="205" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1601771607473" />
     <state width="1376" height="153" key="GridCell.Tab.0.center/1920.-355.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1601799282622" />
     <state width="1877" height="206" key="GridCell.Tab.0.center/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1600649412148" />
     <state width="1877" height="420" key="GridCell.Tab.0.center/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751131" />
-    <state width="1326" height="227" key="GridCell.Tab.0.left" timestamp="1601861599987">
+    <state width="1326" height="227" key="GridCell.Tab.0.left" timestamp="1601862233015">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
     <state width="1237" height="164" key="GridCell.Tab.0.left/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="1326" height="227" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1601861599987" />
+    <state width="1326" height="227" key="GridCell.Tab.0.left/0.0.1368.872@0.0.1368.872" timestamp="1601862233015" />
     <state width="746" height="265" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1601625918856" />
     <state width="1621" height="162" key="GridCell.Tab.0.left/0.0.1664.1069@0.0.1664.1069" timestamp="1601005790078" />
     <state width="1877" height="205" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1601771607472" />
     <state width="1376" height="153" key="GridCell.Tab.0.left/1920.-355.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1601799282622" />
     <state width="1877" height="206" key="GridCell.Tab.0.left/1920.-356.1080.1880/0.0.1920.1040@0.0.1920.1040" timestamp="1600649412147" />
     <state width="1877" height="420" key="GridCell.Tab.0.left/1920.0.1664.1082/0.0.1920.1040@0.0.1920.1040" timestamp="1598506751130" />
-    <state width="1326" height="227" key="GridCell.Tab.0.right" timestamp="1601861599987">
+    <state width="1326" height="227" key="GridCell.Tab.0.right" timestamp="1601862233015">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.688/1920.0.1920.1050@0.0.1280.688" timestamp="1598681211263" />
     <state width="1237" height="164" key="GridCell.Tab.0.right/0.0.1280.688@0.0.1280.688" timestamp="1597982167297" />
-    <state width="1326" height="227" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1601861599987" />
+    <state width="1326" height="227" key="GridCell.Tab.0.right/0.0.1368.872@0.0.1368.872" timestamp="1601862233015" />
     <state width="746" height="265" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1601625918856" />
     <state width="1621" height="162" key="GridCell.Tab.0.right/0.0.1664.1069@0.0.1664.1069" timestamp="1601005790078" />
     <state width="1877" height="205" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1601771607473" />
@@ -845,10 +834,10 @@
     <state x="166" y="12" key="SettingsEditor/0.0.1368.872@0.0.1368.872" timestamp="1595997449081" />
     <state x="202" y="0" key="SettingsEditor/0.0.1664.1069@0.0.1664.1069" timestamp="1600911968750" />
     <state x="233" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1598425220256" />
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1601861822692">
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2" timestamp="1601861863292">
       <screen x="0" y="0" width="1368" height="872" />
     </state>
-    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1601861822692" />
+    <state x="278" y="170" key="Vcs.Push.Dialog.v2/0.0.1368.872@0.0.1368.872" timestamp="1601861863292" />
     <state x="312" y="160" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1598581356049" />
     <state x="338" y="208" key="Vcs.Push.Dialog.v2/0.0.1664.1069@0.0.1664.1069" timestamp="1596017372267" />
     <state x="390" y="203" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1600997161578" />
