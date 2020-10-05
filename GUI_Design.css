@@ -1,0 +1,141 @@
+/*
+ * Sets background colour of GUI Screen
+ */
+.root {
+    -fx-background-color: #1b2336;
+    -fx-font-family: Loma;
+}
+
+/*
+ * Sets background colour of all buttons in GUI Screen
+ */
+.button {
+    -fx-background-color: #85bce6;
+}
+
+/*
+ * Sets background colour of all button in GUI Screen when hovering over button.
+ * Also changes cursor to a hand when hovering
+ */
+.button:hover {
+    -fx-background-color: #6690b0;
+    -fx-cursor: hand;
+}
+
+/*
+ * Sets background colour of all list-views in GUI Screen.
+ * Also gives the list-view a curved border
+ */
+.list-view {
+    -fx-background-color: white;
+    -fx-background-radius: 5 5 5 5;
+    -fx-border-radius: 5 5 5 5;
+}
+
+/*
+ * Sets background colour of all list-views in GUI Screen when hovering over them.
+ * Also changes cursor to a hand when hovering
+ */
+.list-cell:filled:hover {
+    -fx-background-color: #c9c9c9;
+    -fx-cursor: hand;
+}
+
+/*
+ * Sets text colour of all tab labels in GUI Screen
+ */
+.tab-label {
+    -fx-text-fill: white;
+}
+
+/*
+ * Sets tab colour for all tabs in GUI Screen
+ */
+.tab {
+    -fx-background-color: #2c5c82;
+}
+
+/*
+ * Sets tab colour for all tabs in GUI Screen when hovering over them.
+ * Also changes cursor to a hand when hovering
+ */
+.tab:hover {
+    -fx-background-color: #2d94cf;
+    -fx-cursor: hand;
+}
+
+/*
+ * Sets tab colour for a selected tab in the GUI Screen
+ */
+.tab:selected {
+    -fx-background-color: #2d94cf;
+}
+
+/*
+ * Sets background colour for all tab header backgrounds in GUI Screen
+ */
+.tab-pane *.tab-header-area *.tab-header-background {
+    -fx-background-color: #1b2336;
+}
+
+/*
+ * Sets background colour for all split-panes in GUI Screen.
+ * Also gives the split-pane a curved border
+ */
+.split-pane {
+    -fx-background-color: #2c5c82;
+    -fx-background-radius: 10 10 10 10;
+    -fx-border-radius: 10 10 10 10;
+}
+
+/*
+ * Sets background colour for all panes in GUI Screen
+ */
+.pane {
+    -fx-background-color: #2a475e;
+}
+
+/*
+ * Sets background colour for all choice-boxes in GUI Screen when hovering over them.
+ * Also changes cursor to a hand when hovering
+ */
+.choice-box:hover {
+    -fx-background-color: #c9c9c9;
+    -fx-cursor: hand;
+}
+
+/*
+ * Sets background colour for all text-fields in GUI Screen when hovering over them.
+ * Also changes cursor to a hand when hovering
+ */
+.text-field:hover {
+    -fx-background-color: #c9c9c9;
+    -fx-cursor: hand;
+}
+
+/*
+ * Sets background colour for all check-boxes in GUI Screen when hovering over them.
+ * Also changes cursor to a hand when hovering
+ */
+.check-box:hover > .box {
+    -fx-background-color: #c9c9c9;
+    -fx-cursor: hand;
+}
+
+/*
+ * Sets background colour for all radio-buttons in GUI Screen when hovering over them.
+ * Also changes cursor to a hand when hovering
+ */
+.radio-button:hover > .radio {
+    -fx-background-color: #c9c9c9;
+    -fx-cursor: hand;
+}
+
+/*
+ * Sets background colour for all combo-boxes in GUI Screen when hovering over them.
+ * Also changes cursor to a hand when hovering
+ */
+.combo-box:hover {
+    -fx-background-color: #c9c9c9;
+    -fx-cursor: hand;
+}
