@@ -3,7 +3,6 @@ package project.controller;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -12,7 +11,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.scene.web.WebEngine;
@@ -23,18 +21,10 @@ import project.model.*;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 import java.util.List;
-
-import org.json.simple.JSONArray;
-
-import javax.imageio.ImageIO;
-
-import javax.naming.Binding;
 
 import static javafx.collections.FXCollections.observableArrayList;
 
@@ -438,23 +428,23 @@ public class GUIController implements Initializable {
      *
      * @throws IOException Signals that an I/O exception of some sort has occurred.
      */
-    public void showEquipment() throws IOException {
+    public void showEquipment() throws IOException, URISyntaxException, ClassNotFoundException {
 
         Route route = (Route) routeList.getSelectionModel().getSelectedItem();
 
         if (route != null && (route.getEquipment().contains("76") || route.getEquipment().contains("77")) ) {
 
             if (route.getEquipment().contains("76")) {
-
-                File file = new File("planes/76.jpg");
+                ImageIO.read(getClass().getClassLoader().getResource("76.jpg"));
+                Image image2 = new Image(this.getClass().getResourceAsStream("76.jpg"));
                 javafx.scene.image.Image image = new javafx.scene.image.Image(file.toURI().toString());
-                planeImage.setImage(image);
-                routeDetailList.setItems(observableArrayList("Showing plane for equipment code:", route.getEquipment()));
+                planeImage.setImage(image2);
+                routeDetailList.setItems(observableArrayList("Showing plane for equipment:", route.getEquipment()));
             } else if (route.getEquipment().contains("77")) {
-                File file = new File("planes/77.jpg");
+                File file = new File("resources/77.jpg.extension");
                 javafx.scene.image.Image image = new Image(file.toURI().toString());
                 planeImage.setImage(image);
-                routeDetailList.setItems(observableArrayList("Showing plane for equipment code:", route.getEquipment()));
+                routeDetailList.setItems(observableArrayList("Showing plane for equipment:", route.getEquipment()));
             }
             planeImage.setVisible(true);
         } else {

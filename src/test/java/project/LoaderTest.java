@@ -153,7 +153,7 @@ public class LoaderTest {
 
     @Test
     /**
-     * Manual testing. Not gonna bother to type out the entire data files as an ArrayList of classes. Functions work.
+     * To assist with manual testing.
      */
     public void loadRouteFileTest() throws IOException {
         ArrayList<Route> routeList = routeLoad.loadRouteFile("data/routes.dat", "Test Name");
@@ -161,7 +161,7 @@ public class LoaderTest {
 
     @Test
     /**
-     * Manual testing. Will update later.
+     * To assist with manual testing.
      */
     public void loadFlightFileTest() throws IOException {
 
@@ -177,7 +177,7 @@ public class LoaderTest {
 
     @Test
     /**
-     * Manual testing. Not gonna bother to type out the entire data files as an ArrayList of classes. Functions work.
+     * To assist with manual testing.
      */
     public void loadAirportFileTest() throws IOException {
         AirportLoader airportLoad = new AirportLoader();
@@ -188,7 +188,7 @@ public class LoaderTest {
 
     @Test
     /**
-     * Manual testing. Not gonna bother to type out the entire data files as an ArrayList of classes. Functions work.
+     * To assist with manual testing.
      */
     public void loadAirlineFileTest() throws IOException {
         Loader loader = new Loader();
