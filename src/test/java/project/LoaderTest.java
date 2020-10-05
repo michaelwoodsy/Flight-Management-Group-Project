@@ -101,13 +101,6 @@ public class LoaderTest {
         testAirline1 = airlineLoad.loadAirline(airlineData4);
         assertNull(testAirline1);
 
-        /*assertEquals(testAirline1.getName(), null);
-        assertEquals(testAirline1.getAlias(), null);
-        assertEquals(testAirline1.getIata(), null);
-        assertEquals(testAirline1.getIcao(), null);
-        assertEquals(testAirline1.getCallSign(), null);
-        assertEquals(testAirline1.getCountry(), null);*/
-
     }
 
     @Test
@@ -153,7 +146,7 @@ public class LoaderTest {
 
     @Test
     /**
-     * Manual testing. Not gonna bother to type out the entire data files as an ArrayList of classes. Functions work.
+     * To aid with manual testing
      */
     public void loadRouteFileTest() throws IOException {
         ArrayList<Route> routeList = routeLoad.loadRouteFile("data/routes.dat", "Test Name");
@@ -161,7 +154,7 @@ public class LoaderTest {
 
     @Test
     /**
-     * Manual testing. Will update later.
+     * To aid with manual testing
      */
     public void loadFlightFileTest() throws IOException {
 
@@ -177,7 +170,7 @@ public class LoaderTest {
 
     @Test
     /**
-     * Manual testing. Not gonna bother to type out the entire data files as an ArrayList of classes. Functions work.
+     * To aid with manual testing
      */
     public void loadAirportFileTest() throws IOException {
         AirportLoader airportLoad = new AirportLoader();
@@ -188,7 +181,7 @@ public class LoaderTest {
 
     @Test
     /**
-     * Manual testing. Not gonna bother to type out the entire data files as an ArrayList of classes. Functions work.
+     * To aid with manual testing
      */
     public void loadAirlineFileTest() throws IOException {
         Loader loader = new Loader();
